@@ -25,7 +25,7 @@ export const NavBar=()=>{
                 <Row>
                     
                     <Col >
-                        <span onClick={handleGoHome} className="logoNav">FYT</span>
+                        <span onClick={handleGoHome } className="logoNav">FYT</span>
                     </Col>
 
                     <Col   xs={10}><div>Searchbar</div>    </Col>
