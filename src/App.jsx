@@ -6,6 +6,8 @@ import {Perfil} from './view/Perfil/Perfil'
 
 function App() {
 
+  console.log("nice");
+
   return (
     <div className="App">
      <Routes>
