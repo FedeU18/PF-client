@@ -1,7 +1,7 @@
-export const PerfilAlumno=()=>{
-    return(
-        <div>
-            Perfil Alumno
-        </div>
-    )
-}
+export const PerfilAlumno = () => {
+  return (
+    <div>
+      <h1>soy un alumno .</h1>
+    </div>
+  );
+};
