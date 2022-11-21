@@ -1,0 +1,1 @@
+export const GET_PROFESORES = "GET_PROFESORES";
