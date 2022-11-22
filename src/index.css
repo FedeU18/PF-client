@@ -23,3 +23,18 @@ img {
   width: 100%;
   height: auto;
 }
+
+input:focus,
+select:focus,
+select,
+input.form-control:focus {
+  box-shadow: none;
+}
+
+
+/* Colores Globales para la app */
+
+/* 
+:root {
+
+} */
