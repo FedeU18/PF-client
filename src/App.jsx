@@ -1,9 +1,8 @@
-import { getAuth, onAuthStateChanged } from 'firebase/auth';
-import { useContext, useEffect, useState } from 'react';
-import { Routes, Route, Navigate, useNavigate } from 'react-router-dom'
+import { useContext, useEffect } from 'react';
+import { Routes, Route, useNavigate } from 'react-router-dom'
 import { AuthContext } from './Authentication/context/AuthContext';
 import { Home } from './view/Home/Home'
-import Landing from './view/Landing/Landing';
+import { Landing } from './view/Landing/Landing';
 import { Perfil } from './view/Perfil/Perfil'
 
 function App() {
