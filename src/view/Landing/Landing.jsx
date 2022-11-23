@@ -1,4 +1,3 @@
-
 import './Landing.css'
 import img from './img/google.png'
 import Container from 'react-bootstrap/Container'
@@ -54,5 +53,4 @@ export const Landing =()=>{
 
     )
 }
-
 

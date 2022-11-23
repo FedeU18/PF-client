@@ -1,36 +1,36 @@
-
+import logOut from "../../Authentication/functions/logOut"
+import { NavBar } from "../../components/Nav/Nav"
+import { useNavigate } from "react-router-dom"
+import { useContext } from "react"
+import { AuthContext } from "../../Authentication/context/AuthContext"
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { NavBar } from "../../components/Nav/Nav";
 import { allProfes } from "../../redux/Actions/Profesor";
 import ProfeCards from "../../components/profesores/ProfeCards";
 
-
-export const Home=()=>{
+export const Home = () => {
+    const user = useContext(AuthContext)
+    const navigate = useNavigate()
+    const dispatch = useDispatch()
+    const profes =useSelector(state=>state.profesores)  //todo el estado de profes 
     
-  const dispatch = useDispatch()
-  const profes =useSelector(state=>state.profesores)  //todo el estado de profes 
-
-
     useEffect(()=>{
     dispatch(allProfes())
     },[dispatch])
+    
+    const CloseMySesion = () => {
+        logOut()
+        navigate("/")
+    }
 
-    
-    
-    
-    
     return(
-
-
-
-
         <div>
-            <NavBar/>
-            Home.
-
-
-
+            <NavBar />
+            <button
+                className="btn btn-danger btn-sm"
+                onClick={CloseMySesion}>
+                Log out
+            </button>
 
             <div className="homeCardContainer">
 
@@ -50,9 +50,6 @@ export const Home=()=>{
                  }
 
             </div>
-
-         
-
         </div>
     )
 }

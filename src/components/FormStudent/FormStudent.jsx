@@ -2,13 +2,13 @@ import React, { useRef } from 'react'
 import { AuthContext } from '../../Authentication/context/AuthContext'
 import loginWithGoogle from '../../Authentication/functions/loginWithGoogle'
 import logOut from '../../Authentication/functions/logOut'
-import { useContext } from "react"
 import { useState } from "react";
 import styles from "./FormStudent.module.css"
 import registerUser from '../../Authentication/functions/registerUser'
 import LoginWithEmailPassword from '../../Authentication/functions/loginWithEmailAndPassword'
 import { validateInput } from './validateInputStudents'
 import setUserData from '../../Authentication/functions/setUserData'
+import { Link } from 'react-router-dom'
 
 const initialStudentForm = {
   name: "",
@@ -38,8 +38,6 @@ const FormStudent = () => {
   const { name, lastname, email, password, passwordConfirm, age, rol } = form;
   const [errors, setErrors] = useState(initialStudentErrors)
   const { nameErr, lastnameErr, emailErr, passwordErr, ageErr } = errors;
-  const auth = useContext(AuthContext)
-  console.log(auth);
 
   // const validateInput = (inputName, text) => {
   //   if (inputName === "email") {
@@ -94,12 +92,13 @@ const FormStudent = () => {
     })
   }
 
-  // const handleShowPassword = (e) => {
-  //   e.preventDefault()
-  //   const show = passwordShow.current;
-  //   if (show.type === "password") show.type = "text"
-  //   else show.type = "password"
-  // }
+  const enterWithGoogle = async () => {
+    try {
+      await loginWithGoogle()
+    } catch (error) {
+      console.error(error)
+    }
+  }
 
   const handlerSubmitStudent = async (e) => {
     e.preventDefault();
@@ -130,7 +129,7 @@ const FormStudent = () => {
     }
 
 
-    setForm(initialStudentForm)
+    setForm(initialStudentForm);
   }
 
   return (
@@ -302,11 +301,11 @@ const FormStudent = () => {
           <p className='text-center'><b className='fs-4'>or</b></p>
           <div className={`${styles.loginButtons} d-flex justify-content-center`}>
             <button
-              onClick={loginWithGoogle}
+              onClick={enterWithGoogle}
               className="btn btn-primary fs-6 rounded-0 p-2">Google</button>
-            <button
+            {/* <button
               onClick={logOut}
-              className="btn btn-danger fs-6 rounded-0 p-2">Log out</button>
+              className="btn btn-danger fs-6 rounded-0 p-2">Log out</button> */}
           </div>
         </div>
 
@@ -331,6 +330,7 @@ const FormStudent = () => {
               {login ? "log in" : "Sign up"}
             </a>
           </p>
+
         </div>
 
       </div>
