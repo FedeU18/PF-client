@@ -1,20 +1,12 @@
-const initialState={
-    profesores:[],
-   
-}
-const rootReducer = (state = initialState, action) => {
-    switch (action.type) {
-     
-      case 'GET_PROFESORES':
-        return{
-            ...state,
-           
-        }
-        default:
-            return {
-              ...state
-            };
-        }
-}
-        
-      export default rootReducer;
+
+import { combineReducers } from "redux";
+import profesoresReducer from "./profesoresReducer";
+import alumnosReducer from "./alumnosReducer";
+
+const rootReducer = combineReducers({
+  profesores: profesoresReducer,
+  alumnos: alumnosReducer
+});
+
+export default rootReducer;
+

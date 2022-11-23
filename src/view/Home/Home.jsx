@@ -1,8 +1,10 @@
+
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavBar } from "../../components/Nav/Nav";
 import { allProfes } from "../../redux/Actions/Profesor";
 import ProfeCards from "../../components/profesores/ProfeCards";
+
 
 export const Home=()=>{
     

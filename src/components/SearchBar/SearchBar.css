@@ -1,0 +1,19 @@
+.inputBuscar {
+  width: 50% !important;
+}
+
+.containerInput {
+  align-items: end;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  padding-bottom: 25px;
+}
+@media (max-width: 988px) {
+  .inputBuscar {
+    width: 100% !important;
+  }
+  .containerInput {
+    padding-bottom: 15px;
+  }
+}
