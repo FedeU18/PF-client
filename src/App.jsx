@@ -4,6 +4,7 @@ import { AuthContext } from './Authentication/context/AuthContext';
 import { Home } from './view/Home/Home'
 import { Landing } from './view/Landing/Landing';
 import { Perfil } from './view/Perfil/Perfil'
+import {Error} from "./view/Error/error";
 
 function App() {
   const user = useContext(AuthContext)
@@ -20,11 +21,12 @@ function App() {
 
   return (
     <div className="App">
-      <Routes>
-        <Route path='/' element={<Landing />} />
-        <Route path='/home' element={<Home />} />
-        <Route path="/profile" element={<Perfil />} />
-      </Routes>
+     <Routes>
+        <Route path='/' element={<Landing/>}/>
+        <Route path='/home' element={<Home/>}/> 
+        <Route path="/profile" element={<Perfil/>}  /> 
+        <Route path= "*" element={<Error/>} />
+      </Routes>        
     </div>
   )
 }

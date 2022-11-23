@@ -47,3 +47,29 @@ import {
       
     };
   }
+
+  export function postAlumno(alumno) {
+    return function (dispatch) {
+      axios
+        .post("http://localhost:3001/alumnos", alumno)
+        .then(() => {
+          dispatch(getAlumnoFromAPI());
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    };
+  }
+
+  export function editAlumno(alumno,id) {
+    return function (dispatch) {
+      axios
+        .patch(`http://localhost:3001/alumnos/${id}`, alumno)
+        .then(() => {
+          dispatch(getAlumnoFromAPI());
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    };
+  }
