@@ -1,12 +1,14 @@
 const initialState={
-    Profesores:[]
+    profesores:[],
+   
 }
 const rootReducer = (state = initialState, action) => {
     switch (action.type) {
      
       case 'GET_PROFESORES':
         return{
-            ...state
+            ...state,
+           
         }
         default:
             return {
