@@ -150,10 +150,14 @@
 .logo {
     width: 10rem;
     border-radius: 8px;
-
+    position: fixed;
 }
 
 .title {
-    
+    margin-top: 6rem;
     font-weight: bolder;
+}
+
+.text {
+    position: relative;
 }

@@ -17,7 +17,7 @@ export const Landing =()=>{
                 </svg>
             </div>
             <div>
-                        <img className='logo' src={logo} alt="logo" />
+                <img className='logo' src={logo} alt="logo" />
                 <Container className='container'>
                     <Row className='two-col'>
                         <Col>          
@@ -43,7 +43,7 @@ export const Landing =()=>{
                             </div>
             
                         </Col>
-                        <Col>
+                        <Col className='text'>
                             <h1 className='title'>Encuentra un profesor particular</h1>
                             <div>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Vero, corrupti? Debitis assumenda odio ex itaque maxime quas cumque minus nobis. Exercitationem soluta et distinctio unde incidunt delectus laborum error ratione.</div>
                         </Col>
@@ -51,6 +51,8 @@ export const Landing =()=>{
                 </Container>
             </div>
         </div>
-    )  
+
+    )
 }
+
 
