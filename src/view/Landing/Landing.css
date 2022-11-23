@@ -154,11 +154,11 @@
 }
 
 .title {
+    margin-top: 6rem;
     font-weight: bolder;
     margin-top: 6rem;
 }
 
 .text {
-    margin-top: 5px;
     position: relative;
 }
