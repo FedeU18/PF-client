@@ -50,4 +50,6 @@ export const Landing =()=>{
                     </Row>
                 </Container>
             </div>
-
+        </div>
+    )
+}
