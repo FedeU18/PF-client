@@ -8,10 +8,27 @@ import { BrowserRouter } from 'react-router-dom';
 import store from './redux/store/index';
 
 
+
+import AuthenticationProvider from './Authentication/context/AuthContext';
+import Aos from 'aos';
+import "aos/dist/aos.css"
+Aos.init();
+
+
+
 ReactDOM.createRoot(document.getElementById('root')).render(
   <Provider store={store}>
     <BrowserRouter>
-      <App />
+      <AuthenticationProvider>
+        <App />
+      </AuthenticationProvider>
     </BrowserRouter>
   </Provider>
 )
+
+
+
+// no tocar ni borrar =>
+// npm install -g firebase-tools
+// firebase login
+// firebase init

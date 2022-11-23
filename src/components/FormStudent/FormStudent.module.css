@@ -1,0 +1,27 @@
+.max_width {
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.loginButtons button {
+  margin: 0 1rem;
+}
+
+.hover_email {
+  color: blue;
+}
+
+.login_or_signup {
+  margin-left: 0.8rem;
+}
+
+.login_or_signup:hover {
+  text-decoration: underline;
+}
+
+.form_student {
+  color: #f6f6f6;
+  background-color:hsl(0, 0%, 7%);
+  border-radius: 1rem;
+  border-left: green;
+}
