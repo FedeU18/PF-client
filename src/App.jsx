@@ -2,7 +2,6 @@ import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { useContext, useEffect, useState } from 'react';
 import { Routes, Route, Navigate, useNavigate } from 'react-router-dom'
 import { AuthContext } from './Authentication/context/AuthContext';
-import { auth } from './Authentication/firebase/credenciales';
 import ProtectedRoute from './Authentication/protection/ProtectedRoute';
 import { Home } from './view/Home/Home'
 import Landing from './view/Landing/Landing';
