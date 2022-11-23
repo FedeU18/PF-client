@@ -23,20 +23,6 @@ export const Home = () => {
                 onClick={CloseMySesion}>
                 Log out
             </button>
-            <br />
-
-            <h1>Hola :)!!!</h1>
-            <h2>
-                {user ?
-                    user.currentUserData.name ||
-                    user.displayName
-                    : null}
-            </h2>
-            <h2>
-                email : {user ? user.email || user.currentUserData.email : null}
-            </h2>
-
-            <img src="" alt={user ? user.displayName : null} />
         </div>
     )
 }
