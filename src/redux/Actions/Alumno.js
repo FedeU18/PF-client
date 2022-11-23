@@ -33,7 +33,7 @@ import {
       axios
         .delete(`http://localhost:3001/alumnos/${id}`)
         .then(() => {
-          dispatch(destroyAlumno(id));
+          dispatch(destroyAlumno());
         })
         .catch((error) => {
           console.log(error);
@@ -41,9 +41,9 @@ import {
     };
   }
   
-  function destroyAlumno(payload) {
+  function destroyAlumno() {
     return {
       type: DELETE_ALUMNO,
-      payload,
+      
     };
   }

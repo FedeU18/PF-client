@@ -1,7 +1,7 @@
 import { GET_ALUMNO, DELETE_ALUMNO } from "../types/typesAlumno";
 
 const initialState = {
-  alumnos: [],
+  alumno: [],
 };
 
 const alumnosReducer = (state = initialState, action) => {
@@ -9,7 +9,7 @@ const alumnosReducer = (state = initialState, action) => {
     case GET_ALUMNO:
       return {
         ...state,
-        alumnos: action.payload,
+        alumno: action.payload,
       };
     default:
       return {
@@ -18,7 +18,7 @@ const alumnosReducer = (state = initialState, action) => {
       case DELETE_ALUMNO:
       return {
         ...state,
-        alumnos: alumnos.filter(a => a.id !== action.payload),
+        alumno: [],
       };
   }
 };
