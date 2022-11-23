@@ -1,6 +1,6 @@
 import { Routes, Route } from 'react-router-dom'
 import { Home } from './view/Home/Home'
-import { Landing } from './view/Landing/Landing';
+import Landing from './view/Landing/Landing';
 import { Perfil } from './view/Perfil/Perfil'
 
 function App() {
