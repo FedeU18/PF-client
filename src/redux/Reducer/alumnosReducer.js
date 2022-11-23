@@ -1,7 +1,7 @@
-import { GET_ALUMNO } from "../types/typesAlumno";
+import { GET_ALUMNO, DELETE_ALUMNO } from "../types/typesAlumno";
 
 const initialState = {
-  alumno: [],
+  alumnos: [],
 };
 
 const alumnosReducer = (state = initialState, action) => {
@@ -9,11 +9,16 @@ const alumnosReducer = (state = initialState, action) => {
     case GET_ALUMNO:
       return {
         ...state,
-        alumno: action.payload,
+        alumnos: action.payload,
       };
     default:
       return {
         ...state,
+      };
+      case DELETE_ALUMNO:
+      return {
+        ...state,
+        alumnos: alumnos.filter(a => a.id !== action.payload),
       };
   }
 };
