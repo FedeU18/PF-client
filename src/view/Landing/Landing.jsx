@@ -1,7 +1,7 @@
 import React from 'react'
 import FormStudent from '../../components/FormStudent/FormStudent'
 
-const Landing = () => {
+export const Landing = () => {
 
     return (
         <div>
@@ -10,4 +10,3 @@ const Landing = () => {
     )
 }
 
-export default Landing
