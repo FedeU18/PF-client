@@ -1,11 +1,18 @@
-import {PerfilProfesor} from '../PerfilProfesor/PerfilProfesor'
-import { PerfilAlumno } from '../PerfilAlumno/PerfilAlumno'
+import { PerfilProfesor } from "../../components/PerfilProfesor/PerfilProfesor";
+import PerfilAlumno from "../../components/PerfilAlumno/PerfilAlumno";
+import { useParams } from "react-router-dom";
 
-export const Perfil=()=>{
-    const tipoUsuario='profesor'
-    return(
-        <>
-            {tipoUsuario==='profesor'?(<PerfilProfesor/>):(<PerfilAlumno/>)}
-        </>
-    )
-}
+export const Perfil = () => {
+  const { id } = useParams();
+  console.log(id);
+  const tipoUsuario = "otro";
+  return (
+    <>
+      {tipoUsuario === "profesor" ? (
+        <PerfilProfesor />
+      ) : (
+        <PerfilAlumno id={id} />
+      )}
+    </>
+  );
+};

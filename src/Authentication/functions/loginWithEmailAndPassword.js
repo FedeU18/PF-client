@@ -1,12 +1,14 @@
 import { auth } from "../firebase/credenciales";
 import { signInWithEmailAndPassword } from "firebase/auth";
+import getCurrentUser from "./getCurrentUser";
 
 const LoginWithEmailPassword = async (email, password) => {
   try {
     const usuario = await signInWithEmailAndPassword(auth, email, password);
-    console.log(usuario);
+    getCurrentUser(usuario)
+
+    localStorage.setItem("user", "test");
   } catch (err) {
-    console.error(err.message);
     console.error(err.code);
 
     if (err.code === "auth/user-not-found") {
@@ -22,6 +24,3 @@ const LoginWithEmailPassword = async (email, password) => {
 };
 
 export default LoginWithEmailPassword;
-
-// auth/user-not-found => no existe el usuario
-// auth/invalid-email => email invalido

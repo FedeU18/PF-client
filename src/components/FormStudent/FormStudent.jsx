@@ -1,5 +1,4 @@
 import React, { useRef } from 'react'
-import { AuthContext } from '../../Authentication/context/AuthContext'
 import loginWithGoogle from '../../Authentication/functions/loginWithGoogle'
 import logOut from '../../Authentication/functions/logOut'
 import { useState } from "react";
@@ -7,8 +6,7 @@ import styles from "./FormStudent.module.css"
 import registerUser from '../../Authentication/functions/registerUser'
 import LoginWithEmailPassword from '../../Authentication/functions/loginWithEmailAndPassword'
 import { validateInput } from './validateInputStudents'
-import setUserData from '../../Authentication/functions/setUserData'
-import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom';
 
 const initialStudentForm = {
   name: "",
@@ -31,6 +29,7 @@ const initialStudentErrors = {
 }
 
 const FormStudent = () => {
+  const navigate = useNavigate()
   const passwordShow = useRef()
   const [globalMessage, setGlobalMessage] = useState("")
   const [login, setLogin] = useState(true)
@@ -38,42 +37,6 @@ const FormStudent = () => {
   const { name, lastname, email, password, passwordConfirm, age, rol } = form;
   const [errors, setErrors] = useState(initialStudentErrors)
   const { nameErr, lastnameErr, emailErr, passwordErr, ageErr } = errors;
-
-  // const validateInput = (inputName, text) => {
-  //   if (inputName === "email") {
-  //     const emailRegex = /^\w+([.-_+ñ]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/;
-
-  //     if (emailRegex.test(text)) {
-  //       setErrors({ ...errors, emailErr: false })
-  //     } else {
-  //       setErrors({ ...errors, emailErr: true })
-  //     }
-  //   } else if (inputName === "name" || inputName === "lastname") {
-  //     const expRegNombre = /^[a-zA-ZÑñÁáÉéÍíÓóÚúÜü\s]+$/;
-
-  //     if (expRegNombre.test(text)) {
-  //       setErrors({ ...errors, [`${inputName}Err`]: false })
-  //     } else {
-  //       setErrors({ ...errors, [`${inputName}Err`]: true })
-  //     }
-  //   } else if (inputName === "password") {
-  //     const passwordRegex = /^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,20}$/
-
-  //     if (passwordRegex.test(text)) {
-  //       setErrors({ ...errors, passwordErr: false })
-  //     } else {
-  //       setErrors({ ...errors, passwordErr: true })
-  //     }
-  //   } else if (inputName === "age") {
-  //     const isNumber$ = parseInt(text);
-
-  //     if (isNumber$ && isNumber$ > 100) {
-  //       setErrors({ ...errors, ageErr: false })
-  //     } else {
-  //       setErrors({ ...errors, ageErr: true })
-  //     }
-  //   }
-  // }
 
   const handleChangeStudent = (e) => {
     const username = e.target.name;
@@ -95,6 +58,7 @@ const FormStudent = () => {
   const enterWithGoogle = async () => {
     try {
       await loginWithGoogle()
+      navigate("/home")
     } catch (error) {
       console.error(error)
     }
@@ -104,28 +68,36 @@ const FormStudent = () => {
     e.preventDefault();
 
     if (!login) {
-      const data = await LoginWithEmailPassword(email, password);
+      try {
+        const data = await LoginWithEmailPassword(email, password);
+        if (typeof data === "string") {
+          setGlobalMessage(data)
+          setTimeout(() => {
+            setGlobalMessage("")
+          }, 4000)
+          return;
+        }
+        navigate("/home")
 
-      if (typeof data === "string") {
-        setGlobalMessage(data)
-        setTimeout(() => {
-          setGlobalMessage("")
-        }, 5000)
-        return;
+      } catch (error) {
+        console.error(error)
       }
+
     } else {
-      const userLogin = await registerUser(email, password)
+      try {
+        const userLogin = await registerUser(email, password, form)
 
-      if (typeof userLogin === "string") {
-        setGlobalMessage(userLogin)
-        setTimeout(() => {
-          setGlobalMessage("")
-        }, 3000);
-        return;
+        if (typeof userLogin === "string") {
+          setGlobalMessage(userLogin)
+          setTimeout(() => {
+            setGlobalMessage("")
+          }, 4000);
+          return;
+        }
+        navigate("/home")
+      } catch (error) {
+        console.error(error)
       }
-
-      const UID = userLogin.user.uid
-      setUserData(UID, { name, lastname, email, rol, age })
     }
 
 
@@ -303,9 +275,9 @@ const FormStudent = () => {
             <button
               onClick={enterWithGoogle}
               className="btn btn-primary fs-6 rounded-0 p-2">Google</button>
-            {/* <button
+            <button
               onClick={logOut}
-              className="btn btn-danger fs-6 rounded-0 p-2">Log out</button> */}
+              className="btn btn-danger fs-6 rounded-0 p-2">Log out</button>
           </div>
         </div>
 

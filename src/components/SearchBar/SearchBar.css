@@ -1,21 +1,85 @@
-.inputBuscar {
-  width: 50% !important;
+
+.searchInputWrapper {
+  position: relative;
+  margin-left: 25%;
+  
 }
 
-.containerInput {
-  align-items: end;
-  right: 0;
-  display: flex;
-  justify-content: center;
-  padding-bottom: 25px;
+.searchInput {
+  width: 60%;
+  height: 2rem;
+  padding: 0 1rem; 
+  border-radius: 2rem;
+  border: none;
+  padding-left: 1.5rem;
+  left:5px;
+  transition: transform 0.3s ease-in-out;
 }
-@media (max-width: 988px) {
-  .inputBuscar {
-    width: 100% !important;
+
+:focus::placeholder {
+  text-indent: -999px
+}
+
+.searchInput:focus {
+  outline: none;
+  transform: scale(1.01);
+  border-radius: 5px 5px 0px 0px;
+  transition: all 0.3s ease-in-out;
+}
+
+    
+.icon {    
+  all:unset;
+  height: 1.5rem;
+  width: 1.5rem;    
+  padding: 4px;
+  position: absolute;
+  box-sizing:border-box;
+  top:50%;
+  left:235%;
+  transform: translateY(-50%); 
+    
+}
+
+.lupa{
+  width: 80%;
+}
+.lupa:hover{
+  width: 100%;
+  cursor: pointer;
+}
+  .sugCont{
+    position: absolute;   
+   
+    margin-left:20%;
   }
+.suggestion{
+   background-color: white;
+    padding-left: 0;
+    height: 18px;
+    width: 730px;
+    font-size: 15px;
+    cursor:pointer;
+    border-right: 1px solid black;
+    border-left: 1px solid black;
+    color :black;
+    margin:0px auto;
+    text-align: left;
 
-  .containerInput {
-
-    padding-bottom: 15px;
-  }
 }
+.suggestion:hover{
+  color: rgb(12, 12, 12);
+  background-color: rgb(201, 201, 201);
+}
+
+#su{
+  border-bottom-right-radius:5px;
+  border-bottom-left-radius: 5px;
+  border-bottom: 1px solid black;
+  
+}
+
+.sugestiononKey{
+background-color: rgb(201, 201, 201);
+}
+
