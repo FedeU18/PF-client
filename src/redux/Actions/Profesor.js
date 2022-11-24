@@ -1,4 +1,5 @@
 import axios from "axios";
+
 import {
     GET_PROFESOR_ID,
     PUT_PROFESORES,
@@ -77,3 +78,19 @@ export function filterPuntuacion(payload){
         payload
     }
 }
+
+export function allProfes (){
+    
+  return async function(dispatch){
+    let info = await axios.get("http://localhost:3001/profesores");
+
+    return dispatch({
+      type:"GET_PROFESORES",
+      payload : info.data
+    })
+  }
+      
+
+};
+
+

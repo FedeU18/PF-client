@@ -1,32 +1,51 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import { auth } from "../firebase/credenciales";
 import { onAuthStateChanged } from "firebase/auth"
 import getCurrentUser from "../functions/getCurrentUser";
 
-export const AuthContext = createContext();
+const AuthContext = createContext();
+
+export const useAuth = () => {
+  try {
+    const context = useContext(AuthContext);
+    if (!context) {
+      console.log("no hay usuario")
+    }
+    return context;
+  } catch (error) {
+    console.error(error)
+  }
+}
 
 function AuthenticationProvider({ children }) {
   const [isAuth, setIsAuth] = useState(null);
+  const [dbDataUser, setdbDataUser] = useState(null)
 
-
-  onAuthStateChanged(auth, (userOnline) => {
-    if (userOnline) {
-      if (isAuth === null) {
-        getCurrentUser(userOnline.uid)
-          .then(currentUser => {
-            setIsAuth({
-              ...userOnline,
-              currentUserData: currentUser
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (userOnline) => {
+      if (userOnline) {
+        if (!isAuth) {
+          getCurrentUser(userOnline.uid)
+            .then(userData => {
+              setdbDataUser(userData)
+              setIsAuth(userOnline);
             })
-        })
+        }
+      } else {
+        setIsAuth(null)
       }
-    } else {
-      setIsAuth(null)
-    }
-  })
+    })
+
+    return () => unsubscribe();
+  }, [])
+
+  const data = {
+    isAuth,
+    dbDataUser,
+  }
 
   return (
-    <AuthContext.Provider value={isAuth}>
+    <AuthContext.Provider value={data}>
       {children}
     </AuthContext.Provider>
   )

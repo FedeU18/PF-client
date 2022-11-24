@@ -12,6 +12,7 @@ import "aos/dist/aos.css"
 Aos.init();
 
 
+
 ReactDOM.createRoot(document.getElementById('root')).render(
   <Provider store={store}>
     <BrowserRouter>

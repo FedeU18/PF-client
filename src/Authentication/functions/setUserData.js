@@ -6,7 +6,8 @@ import { doc, setDoc } from "firebase/firestore";
 export default function setUserData(id, data) {
   try {
     const docuRef = doc(db, `users/${id}`);
-    setDoc(docuRef, data);
+    const value = setDoc(docuRef, data);
+    return value;
   } catch (error) {
     console.error(error);
   }

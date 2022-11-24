@@ -1,0 +1,14 @@
+.err{
+  background-color:#5591c5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100vh;
+ width: 100vw;
+  
+}
+
+.letra{
+  color: rgb(185, 44, 44);
+}
