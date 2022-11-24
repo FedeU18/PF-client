@@ -18,10 +18,10 @@ export const Home=()=>{
      const auth = useAuth()
     const dispatch= useDispatch()
     const filtrosSeleccionados=useSelector(state=> state.materias.filtrosSeleccionados)
-     const user = useContext(AuthContext)
+    //  const user = useContext(AuthContext)
     const navigate = useNavigate()
-    const profes =useSelector(state=>state.profesores)  //todo el estado de profes 
-    
+    const profes =useSelector(state=>state.profesores.profesores)  //todo el estado de profes 
+    console.log(profes)
     useEffect(()=>{
     dispatch(allProfes())
     },[dispatch])
@@ -99,23 +99,28 @@ export const Home=()=>{
                 Log out
             </button>
 
-            <div className="homeCardContainer">
+            <div className="homeCardContainer ">
                 {
                     profes.length ?
                         profes?.map(e => {
                             return (
                                 e.Error ? <h4>profesor no encontrado</h4> :
-                                    <div className="homeProfeCard" key={e.id}>
-
-                                        <ProfeCards nombre={e.nombre} imagen={e.imagen} pais={e.pais} descripcion={e.descripcion} materias={e.materias} />
-
+                                    <div className="homeProfeCard col-md-3" key={e.id} >
+                                       
+                                        <ProfeCards nombre={e.nombre} imagen={e.imagen} pais={e.pais} descripcion={e.descripcion} materias={e.materias} puntuacion={e.puntuacion} />
+                                       
                                     </div>
                             )
                         }) :
                         <div><h1>Cargando...</h1></div>
                 }
             </div>
+                <div className="foot">
+                <footer>
+                        <h5>HERNAN BELLASSAI</h5>
 
+                    </footer>
+                </div>
             </div>
         </div>
     )
