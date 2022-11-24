@@ -1,10 +1,16 @@
+
 import { combineReducers } from "redux";
 import profesoresReducer from "./profesoresReducer";
-import alumnosReducer from "./alumnosReducer";
+import materiasReducer from "./materiasReducer";
+import paisesReducer from "./paisesReducer";
 
 const rootReducer = combineReducers({
   profesores: profesoresReducer,
-  alumnos: alumnosReducer
+  materias: materiasReducer,
+  paises:paisesReducer
+
+
 });
 
 export default rootReducer;
+

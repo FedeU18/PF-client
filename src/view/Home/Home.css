@@ -1,0 +1,47 @@
+.iconFiltro{
+    color:red
+}
+.filtroBtn {
+    all:unset;
+    color: rgb(122, 122, 122);
+    margin-left: 30px;
+    font-size: 36px;
+    /* transition: color 2s; */
+  }
+  
+  .filtroBtn:hover {
+    color: rgb(101, 101, 141);
+  }
+
+  .filtroBtn:active{
+    font-size: 40px;
+  }
+  .btnListOpSelected{
+   margin-left: 10px;
+    padding: 5px 15px 5px 15px ;
+    border-radius: 15px;
+    background-color: transparent;
+  }
+  .homeCardContainer{
+     display: flex;
+     background: rgb(110,182,244);
+     background: linear-gradient(0deg, rgba(110,182,244,1) 0%, rgba(85,145,197,1) 89%, rgba(85,145,197,1) 100%);
+     flex-direction: column;
+     padding: 5%;
+     
+     margin-bottom: 10%;
+     
+}
+.homeProfeCard{
+  margin-top: 20px;
+}
+
+
+.foot{
+  display: flex;
+  background-color: rgb(29, 29, 29);
+  
+  padding: 1px;
+  justify-content: center;
+}
+

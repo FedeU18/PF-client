@@ -20,6 +20,11 @@ const alumnosReducer = (state = initialState, action) => {
     case DELETE_ALUMNO:
       return {
         ...state,
+        alumno: action.payload,
+      };
+    case DELETE_ALUMNO:
+      return {
+        ...state,
         alumno: [],
       };
     case GET_ALL_ALUMNOS:
