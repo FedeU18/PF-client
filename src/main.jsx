@@ -6,9 +6,6 @@ import './index.css'
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import store from './redux/store/index';
-
-
-
 import AuthenticationProvider from './Authentication/context/AuthContext';
 import Aos from 'aos';
 import "aos/dist/aos.css"
