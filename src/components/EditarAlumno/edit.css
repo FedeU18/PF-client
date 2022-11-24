@@ -1,0 +1,211 @@
+.abicuaso {
+  height: 100%;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: rgba(0, 0, 0, 0.7);
+  overflow-x: hidden;
+  color: white;
+  width: 100%;
+  display: block;
+}
+.btnVolver {
+  width: 3vw;
+  height: 3vw;
+  margin-left: 35vw;
+  margin-top: 1vw;
+  margin-bottom: 1vw;
+  background: rgb(47, 47, 159);
+  border: none;
+  font-size: 2vw;
+  font-family: cursive;
+}
+.btnVolver:hover {
+  border-radius: 1vw;
+  cursor: pointer;
+  font-size: 1.8vw;
+  box-shadow: 0 1px 10px 1px rgb(215, 215, 242);
+}
+.closecuaso {
+  /* width: 0%; */
+  display: none;
+}
+.formEditAlumno {
+  background: rgb(47, 47, 159);
+  width: 40%;
+  height: 100%;
+  border-radius: 25px;
+  border: 0.5px solid white;
+}
+.input {
+  width: 2vw;
+}
+
+.conatinerFormEditAlumno {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  vertical-align: middle;
+  justify-content: center;
+  align-content: center;
+}
+
+/* ------------------------------------------------ */
+
+.sectionFormulario {
+  background: #2e1a06;
+  border-radius: 1vw;
+  box-shadow: 0 0 10px 2px rgb(234, 124, 14);
+  font-family: cursive;
+  margin-left: 22vw;
+  margin-top: 1vw;
+  padding: 1.7vw;
+  width: 50vw;
+}
+
+.tituloFormulario {
+  color: black;
+  font-size: 1.8vw;
+  margin-bottom: 2vw;
+  text-align: center;
+}
+
+.divBtn {
+  height: 5vw;
+  width: 5vw;
+}
+
+.button {
+  background: rgb(102, 102, 245);
+  border: none;
+  border-radius: 1vw;
+  color: black;
+  font-family: cursive;
+  font-size: 1.5vw;
+  margin-left: 15vw;
+  padding: 1vw;
+  transition: all ease 0.2s;
+  width: 10vw;
+  font-weight: 500;
+}
+
+.button:hover {
+  border-color: black;
+  box-shadow: 0 1px 10px 1px rgb(215, 215, 242);
+
+  cursor: pointer;
+  font-size: 1.4vw;
+}
+
+.input-container {
+  font-weight: 300;
+  margin-bottom: 2vw;
+  margin-left: 2vw;
+  position: relative;
+  width: 90%;
+  display: flex;
+  justify-content: center;
+}
+.input-container label {
+  color: black;
+  font-weight: 500;
+  margin-left: 3.5vw;
+}
+
+.input {
+  background: rgb(204, 204, 240);
+  border-bottom: 3px solid black;
+  border-left: none;
+  border-top: none;
+  border-right: none;
+  box-sizing: border-box;
+  font-weight: 450;
+  border-radius: 0.8vw;
+  color: black;
+  font-size: 1.2vw;
+  height: 3.25rem;
+  padding: 1.375rem 0.5rem 0.5rem;
+  width: 80%;
+}
+
+.input::placeholder {
+  visibility: visible;
+  color: black;
+}
+
+.input:focus {
+  box-shadow: 0 1px 10px 1px rgb(215, 215, 242);
+  outline: none;
+}
+
+.descriptionFormulario {
+  background: #2e1a06;
+  border-bottom: 3px solid white;
+  border-left: none;
+  border-right: none;
+  border-top: none;
+  box-sizing: border-box;
+  color: white;
+  font-family: cursive;
+  font-size: 1.3vw;
+  height: 7rem;
+  padding: 1.375rem 0.5rem 0.5rem;
+  width: 100%;
+}
+.descriptionFormulario::placeholder {
+  visibility: hidden;
+}
+
+.descriptionFormulario:focus {
+  box-shadow: 0 1px 10px 1px rgb(234, 124, 14);
+  outline: none;
+}
+.descriptionFormulario {
+  height: 10vw;
+}
+
+.textarea {
+  height: 10vw;
+  width: 90%;
+}
+
+.nombre {
+  color: rgb(202, 197, 197);
+  font-size: 1.2vw;
+  left: 0.5rem;
+  position: absolute;
+  top: 1.375rem;
+  transition: all 0.25s;
+}
+.input:not(:placeholder-shown) + .nombre,
+.input + label {
+  font-size: 0.875rem;
+  top: 0.25rem;
+  transition: all 0.25s;
+}
+
+.selectDiets {
+  background: #2e1a06;
+  border-radius: 0.5vw;
+  color: white;
+  font-size: 1.3vw;
+  height: 2.5vw;
+  margin: 1vw 0 5vw 0;
+  width: 15vw;
+}
+.selectDiets:focus {
+  border-color: white;
+}
+
+.diets {
+  color: white;
+}
+.contenedorDiets {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+}
