@@ -1,0 +1,146 @@
+.filtrosContainerShow{
+    height: 100%;    
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;   
+    background-repeat:no-repeat;
+    background-position: center;
+    background-color: rgba(0,0,0, 0.7);
+    overflow-x: hidden;  
+    color :white;
+    width: 100%;
+    display: block;
+   
+}
+.notShow{
+    display: none;
+    width: 0%;
+}
+
+.filtCloseBtn{
+    all:unset;
+    cursor: pointer;
+    font-size: 35px;
+    position: absolute;
+    top: 20px;
+    right: 45px;
+    
+}
+
+.filtCloseBtn:hover{
+    font-size: 37px;
+    right: 43px;
+    
+}
+.btnMaterias{
+    all:unset;
+    width: 84px;
+    height: 84px;
+    border: 1px solid white;
+    margin: 10px 10px 10px 10px;
+    cursor: pointer;
+}
+
+.btnMateriasImg{
+    all:unset;
+    width: 60px;
+    height: 56px;
+    background-size: 80% 80%;
+    background-repeat: no-repeat;
+    background-position: center;
+    
+    margin-bottom: none;
+    margin-left: 12px;
+}
+.btnMateriasNames{
+    all: unset;
+    width: 100%;
+   font-size: 11px;
+    text-align: center;
+}
+
+.materiasContainer{
+    margin: 5%;
+    margin-left: 12%;
+    display: grid;
+    grid-template-columns: max-content max-content max-content max-content max-content max-content
+}
+
+.btnMaterias:hover{
+    border: 3px double white;
+    backdrop-filter: blur(15px);
+    box-shadow: 0 0 20px #fffcfc;
+}
+
+.Materiaselected{
+    border: 3px double white;
+    backdrop-filter: blur(15px);
+    box-shadow: 0 0 20px #fffcfc;
+}
+
+.opcionesCont{
+    display: grid;
+    grid-template-columns: max-content max-content max-content;
+    margin-left: 12%;
+    margin-top: 3%;
+    margin-bottom: 3%;
+    
+}
+
+.opcionesContOp{
+    all:unset;
+    padding: 15px 16px 15px 16px ;
+    width: 140px;
+    height: 60px;    
+    border: 1px solid white;
+    margin:0px 10px 0px 20px ;
+    font-size: 12px;
+    cursor: pointer;
+    text-align:end;
+    background-size: 50px 50px;
+    background-repeat: no-repeat;
+    background-position: center left;
+}
+
+.opcionesContOp:hover{
+    border: 3px double white;
+    backdrop-filter: blur(15px);
+    box-shadow: 0 0 20px #fffcfc;
+}
+
+.FiltrosContent{
+   margin-top: 3%;
+   margin-bottom: 15%;
+    margin-left: 15%;
+}
+
+.filtNames{
+    font-size: 30px;   
+}
+
+.filtOrdNames{
+    font-size: 22px;
+    
+}
+
+
+.opcinSelected{
+    border: 3px double white;
+    backdrop-filter: blur(15px);
+    box-shadow: 0 0 20px #fffcfc;
+}
+
+.inputPais{
+    border:1px solid rgb(255, 255, 255);
+    margin-left: 12%;
+    padding-left: 1%;
+    border-radius: 12px;
+    height: 38px;
+    width: 55%;
+}
+
+.containerPaisInpt{
+    margin-top: 10%;
+    margin-bottom: 10%;
+}

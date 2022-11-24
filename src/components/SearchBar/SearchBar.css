@@ -7,7 +7,7 @@
     right: 0;
     display: flex;
     justify-content: center;
-    padding-bottom: 25px;
+   
   }
   @media (max-width: 988px){  
 .inputBuscar{

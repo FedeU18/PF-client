@@ -1,7 +1,9 @@
+@import url('https://fonts.googleapis.com/css?family=Josefin+Sans');
+@import url('https://fonts.googleapis.com/css?family=Ropa+Sans');
 html {
   font-size: 16px;
   box-sizing: border-box;
-  font-family: sans-serif;
+  
 }
 
 *,
@@ -13,6 +15,8 @@ html {
 
 body {
   margin: 0;
+  /* font-family: 'Josefin Sans', cursive; */
+  font-family: 'Ropa Sans';
 }
 
 a {
