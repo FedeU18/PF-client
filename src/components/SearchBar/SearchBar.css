@@ -1,6 +1,8 @@
 
 .searchInputWrapper {
   position: relative;
+  margin-left: 25%;
+  
 }
 
 .searchInput {
@@ -48,14 +50,14 @@
 }
   .sugCont{
     position: absolute;   
-    margin-left: 308px;
- 
+   
+    margin-left:20%;
   }
 .suggestion{
    background-color: white;
-    padding-left: 20px;
+    padding-left: 0;
     height: 18px;
-    width: 950px;
+    width: 730px;
     font-size: 15px;
     cursor:pointer;
     border-right: 1px solid black;

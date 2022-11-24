@@ -11,6 +11,7 @@ import { addOPSelected } from "../../redux/Actions/Materias";
 import { useDispatch, useSelector } from "react-redux";
 import { allProfes } from "../../redux/Actions/Profesor";
 import ProfeCards from "../../components/profesores/ProfeCards";
+import { useNavigate } from "react-router-dom"
 
 export const Home=()=>{
     const [open, setOpen] = useState(false)
