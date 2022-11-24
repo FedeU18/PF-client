@@ -1,8 +1,7 @@
 import "bootstrap/dist/css/bootstrap.css";
 import Image from 'react-bootstrap/Image'
 import Container from 'react-bootstrap/Container';
-// import Nav from 'react-bootstrap/Nav';
-// import Navbar from 'react-bootstrap/Navbar';
+
 import './Nav.css'
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
