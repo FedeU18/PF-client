@@ -136,14 +136,14 @@
     margin-top: 15px;
 }
 
-.pie-form a {
+.pie-form .link {
     display: block;
     text-decoration: none;
     color: #bbe1fa;
     margin-bottom: 3px;
 }
 
-.pie-form a:hover {
+.pie-form .link:hover {
     color: #0f4c75;
 }
 

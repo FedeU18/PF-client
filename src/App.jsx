@@ -4,7 +4,7 @@ import {Home} from './view/Home/Home';
 import {Landing} from './view/Landing/Landing';
 import {Perfil} from './view/Perfil/Perfil';
 import {Error} from "./view/Error/error";
-
+import Registro from './view/Registro/Registro';
 
 
 
@@ -16,6 +16,7 @@ function App() {
 
      <Routes>
         <Route path='/' element={<Landing/>}/>
+        <Route path='/register' element={<Registro/>}/>
         <Route path='/home' element={<Home/>}/> 
         <Route path="/profile" element={<Perfil/>}  /> 
         <Route path= "*" element={<Error/>} />
