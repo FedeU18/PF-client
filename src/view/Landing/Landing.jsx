@@ -64,9 +64,7 @@ export const Landing = () => {
             <br />
             <br />
             <br />
-            <FormStudent></FormStudent>
         </div>
-
     )
 }
 
