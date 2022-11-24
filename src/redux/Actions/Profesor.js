@@ -1,6 +1,7 @@
 import axios from "axios";
 
 import {
+    GET_PROFESORES,
     GET_PROFESOR_ID,
     PUT_PROFESORES,
     POST_PROFESORES,
@@ -85,7 +86,7 @@ export function allProfes (){
     let info = await axios.get("http://localhost:3001/profesores");
 
     return dispatch({
-      type:"GET_PROFESORES",
+      type:GET_PROFESORES,
       payload : info.data
     })
   }

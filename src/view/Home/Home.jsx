@@ -1,8 +1,6 @@
 import logOut from "../../Authentication/functions/logOut"
 import { NavBar } from "../../components/Nav/Nav"
-import { useNavigate } from "react-router-dom"
 import { useAuth } from "../../Authentication/context/AuthContext"
-import { useEffect } from "react";
 import { Filtros } from "../../components/Filtros/Filtros";
 import {BsFillGrid3X3GapFill } from "react-icons/bs";
 import './Home.css'
