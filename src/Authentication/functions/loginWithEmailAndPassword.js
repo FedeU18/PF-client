@@ -6,7 +6,6 @@ const LoginWithEmailPassword = async (email, password) => {
     const usuario = await signInWithEmailAndPassword(auth, email, password);
     console.log(usuario);
   } catch (err) {
-    console.error(err.message);
     console.error(err.code);
 
     if (err.code === "auth/user-not-found") {
@@ -22,6 +21,3 @@ const LoginWithEmailPassword = async (email, password) => {
 };
 
 export default LoginWithEmailPassword;
-
-// auth/user-not-found => no existe el usuario
-// auth/invalid-email => email invalido

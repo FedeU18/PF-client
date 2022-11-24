@@ -1,5 +1,8 @@
 import logOut from "../../Authentication/functions/logOut"
 import { NavBar } from "../../components/Nav/Nav"
+import { useNavigate } from "react-router-dom"
+import { useAuth } from "../../Authentication/context/AuthContext"
+import { useEffect } from "react";
 import { Filtros } from "../../components/Filtros/Filtros";
 import {BsFillGrid3X3GapFill } from "react-icons/bs";
 import './Home.css'
@@ -8,14 +11,13 @@ import { getMaterias } from "../../redux/Actions/Materias";
 import { getPaises} from "../../redux/Actions/Paises"
 import { addOPSelected } from "../../redux/Actions/Materias"; 
 import { useNavigate } from "react-router-dom"
-import { useContext } from "react"
-import { AuthContext } from "../../Authentication/context/AuthContext"
 import { useDispatch, useSelector } from "react-redux";
 import { allProfes } from "../../redux/Actions/Profesor";
 import ProfeCards from "../../components/profesores/ProfeCards";
 
 export const Home=()=>{
     const [open , setOpen]=useState(false)
+     const auth = useAuth()
     const dispatch= useDispatch()
     const filtrosSeleccionados=useSelector(state=> state.materias.filtrosSeleccionados)
      const user = useContext(AuthContext)
@@ -56,6 +58,7 @@ export const Home=()=>{
     }
 
     return(
+    <div>
         <div >
             <NavBar/>
             <button className="filtroBtn">
@@ -99,27 +102,23 @@ export const Home=()=>{
             </button>
 
             <div className="homeCardContainer">
+                {
+                    profes.length ?
+                        profes?.map(e => {
+                            return (
+                                e.Error ? <h4>profesor no encontrado</h4> :
+                                    <div className="homeProfeCard" key={e.id}>
 
-                 {
-                    profes.length ? 
-                    profes?.map(e=>{
-                        return (
-                            e.Error? <h4>profesor no encontrado</h4> :
-                            <div className="homeProfeCard" key={e.id}>
+                                        <ProfeCards nombre={e.nombre} imagen={e.imagen} pais={e.pais} descripcion={e.descripcion} materias={e.materias} />
 
-                              <ProfeCards nombre={e.nombre} imagen={e.imagen} pais={e.pais} descripcion={e.descripcion} materias={e.materias} />
-                   
-                            </div>
-                        )
-                    }) :
-                    <div><h1>Cargando...</h1></div>
-                 }
-
+                                    </div>
+                            )
+                        }) :
+                        <div><h1>Cargando...</h1></div>
+                }
             </div>
 
-            
-           
-
+            </div>
         </div>
     )
 }

@@ -1,16 +1,12 @@
-import React, { useEffect } from 'react'
-import { Navigate, Outlet, useNavigate } from 'react-router-dom'
+import React from 'react'
+import { Navigate, Outlet, useLocation } from 'react-router-dom'
 
 const ProtectedRoute = ({ user }) => {
-  const navigate = useNavigate()
-  console.log(user);
-  // 
-  useEffect(() => {
-    if (!user) { // user === null ? nav("/") : nav("/home")
-      console.log("no registrado");
-      navigate("/")
-    }
-  }, [])
+  const location = useLocation();
+
+  if (user.isAuth) {
+    // return <Navigate to="/home" state={{from: location}} replace/>
+  }
 
   return <Outlet />
 }

@@ -1,52 +1,51 @@
-import { createContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import { auth } from "../firebase/credenciales";
 import { onAuthStateChanged } from "firebase/auth"
 import getCurrentUser from "../functions/getCurrentUser";
-import { Navigate, useNavigate } from "react-router-dom"
 
-export const AuthContext = createContext();
+const AuthContext = createContext();
+
+export const useAuth = () => {
+  try {
+    const context = useContext(AuthContext);
+    if (!context) {
+      console.log("no hay usuario")
+    }
+    return context;
+  } catch (error) {
+    console.error(error)
+  }
+}
 
 function AuthenticationProvider({ children }) {
-  const navigate = useNavigate()
   const [isAuth, setIsAuth] = useState(null);
+  const [dbDataUser, setdbDataUser] = useState(null)
 
-  onAuthStateChanged(auth, (userOnline) => {
-    if (userOnline) {
-      const UID = userOnline.uid
-      if (!isAuth) {
-        getCurrentUser(UID)
-          .then((currentUser) => {
-            if (!currentUser) {
-              const allUserData = {
-                ...userOnline,
-                currentUserData: {
-                  name: userOnline.displayName,
-                  apellido: userOnline.displayName.split(" ")[1],
-                  email: userOnline.email,
-                  photo: userOnline.photoURL
-                }
-              }
-              console.log(allUserData);
-              setIsAuth({
-                ...userOnline,
-                currentUserData: allUserData
-              })
-              return;
-            }
-            setIsAuth({
-              ...userOnline,
-              currentUserData: currentUser
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (userOnline) => {
+      if (userOnline) {
+        if (!isAuth) {
+          getCurrentUser(userOnline.uid)
+            .then(userData => {
+              setdbDataUser(userData)
+              setIsAuth(userOnline);
             })
-          })
-
+        }
+      } else {
+        setIsAuth(null)
       }
-    } else {
-      setIsAuth(null)
-    }
-  })
+    })
+
+    return () => unsubscribe();
+  }, [])
+
+  const data = {
+    isAuth,
+    dbDataUser,
+  }
 
   return (
-    <AuthContext.Provider value={isAuth}>
+    <AuthContext.Provider value={data}>
       {children}
     </AuthContext.Provider>
   )
