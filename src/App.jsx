@@ -5,6 +5,8 @@ import { Home } from './view/Home/Home'
 import { Landing } from './view/Landing/Landing';
 import { Perfil } from './view/Perfil/Perfil'
 import { Error } from "./view/Error/error";
+
+
 import ProtectedRoute from './Authentication/protection/ProtectedRoute';
 
 
@@ -20,7 +22,8 @@ function App() {
         <Route path='/register' element={<Registro/>}/>
         <Route element={<ProtectedRoute user={authUser} />}>
           <Route path='/home' element={<Home />} />
-          <Route path="/profile" element={<Perfil />} />
+          <Route path="/profile/:id" element={<Perfil />} />
+          
         </Route>
         <Route path="*" element={<Error />} />
       </Routes>
