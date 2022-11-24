@@ -51,19 +51,6 @@ export const Landing = () => {
                     </Row>
                 </Container>
             </div>
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
         </div>
     )
 }
