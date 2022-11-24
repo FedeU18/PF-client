@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import './Landing.css'
 import img from './img/google.png'
 import Container from 'react-bootstrap/Container'
@@ -5,9 +6,29 @@ import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
 import logo from './img/1.png'
 import { Link } from 'react-router-dom'
-import FormStudent from '../../components/FormStudent/FormStudent'
+import LoginWithEmailPassword from '../../Authentication/functions/loginWithEmailAndPassword'
+import { useNavigate } from 'react-router-dom'
 
-export const Landing = () => {
+export const Landing =()=>{
+    const navigate = useNavigate()
+
+    const [input,setInput] = useState({
+        email: "",
+        password: ""
+    })
+
+    const handleInput = (e)=>{
+        setInput({
+            ...input,
+            [e.target.name]: e.target.value
+        })
+    }
+
+    const handleSubmit = async (e) =>{
+        e.preventDefault()
+        await LoginWithEmailPassword(input.email,input.password)
+        navigate('/home')
+    }
     return (
         <div className="fondo">
             <div className="custom-shape-divider-bottom-1669219916">
@@ -29,15 +50,15 @@ export const Landing = () => {
                                             Bienvenido
                                         </div>
                                         <form id="loginform">
-                                            <input type="text" name="usuario" placeholder="Email" required />
-
-                                            <input type="password" placeholder="Contraseña" name="password" required />
-
-                                            <button type="submit" title="Ingresar" name="Ingresar">Login</button>
+                                            <input onChange={(e)=>handleInput(e)} type="text" name="email" placeholder="Email" value={input.email} />
+                                            
+                                            <input onChange={(e)=>handleInput(e)} type="password" placeholder="Contraseña" name="password" value={input.password} />
+                                            
+                                            <button type="submit" onClick={(e)=>handleSubmit(e)} title="Ingresar" name="Ingresar">Login</button>
                                         </form>
                                         <div className="pie-form">
-                                            <Link to="/">¿Perdiste tu contraseña?</Link>
-                                            <Link to="/">¿No tienes Cuenta? Registrate</Link>
+                                            <Link className='link'>¿Perdiste tu contraseña?</Link><br />
+                                            <Link to="/register" className='link'>¿No tienes Cuenta? Registrate</Link>
                                         </div>
                                     </div>
                                 </div>
