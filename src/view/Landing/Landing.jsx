@@ -29,7 +29,6 @@ export const Landing =()=>{
         await LoginWithEmailPassword(input.email,input.password)
         navigate('/home')
     }
-
     return (
         <div className="fondo">
             <div className="custom-shape-divider-bottom-1669219916">
@@ -43,7 +42,7 @@ export const Landing =()=>{
                 <img className='logo' src={logo} alt="logo" />
                 <Container className='container'>
                     <Row className='two-col'>
-                        <Col className="formulario">          
+                        <Col className="formulario">
                             <div id="contenedor">
                                 <div id="central">
                                     <div id="login">
@@ -64,7 +63,7 @@ export const Landing =()=>{
                                     </div>
                                 </div>
                             </div>
-            
+
                         </Col>
                         <Col className='text'>
                             <h1 className='title'>Encuentra un profesor particular</h1>
@@ -74,8 +73,6 @@ export const Landing =()=>{
                 </Container>
             </div>
         </div>
-
     )
 }
-
 
