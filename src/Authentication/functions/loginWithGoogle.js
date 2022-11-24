@@ -9,7 +9,7 @@ export default async function loginWithGoogle() {
   try {
     const provider = new GoogleAuthProvider();
     const loginUser = await signInWithPopup(auth, provider);
-    return loginUser;
+    return loginUser
   } catch (error) {
     console.error(error);
   }

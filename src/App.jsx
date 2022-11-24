@@ -1,5 +1,4 @@
-import { useEffect } from 'react';
-import { Routes, Route, useNavigate } from 'react-router-dom'
+import { Routes, Route } from 'react-router-dom'
 import { useAuth } from './Authentication/context/AuthContext';
 import { Home } from './view/Home/Home'
 import { Landing } from './view/Landing/Landing';

@@ -1,4 +1,3 @@
-import "bootstrap/dist/css/bootstrap.css";
 import Image from 'react-bootstrap/Image'
 import Container from 'react-bootstrap/Container';
 import './Nav.css'
@@ -39,11 +38,9 @@ export const NavBar = () => {
                                 Cerrar Sesión
                             </NavDropdown.Item>
                         </NavDropdown>
-
                     </Col>
                 </Row>
             </Container>
-
         </div>
     )
 
