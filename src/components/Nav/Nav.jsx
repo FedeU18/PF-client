@@ -1,6 +1,7 @@
 import "bootstrap/dist/css/bootstrap.css";
 import Image from 'react-bootstrap/Image'
 import Container from 'react-bootstrap/Container';
+
 import './Nav.css'
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -34,7 +35,7 @@ export const NavBar = () => {
                         <NavDropdown className="dro" id="basic-nav-dropdown">
 
                             <NavDropdown.Item onClick={handleProfile} >
-                                Mi Perfil
+                                Ver Mi Perfil
                             </NavDropdown.Item>
                             <NavDropdown.Item href="">
                                 Cerrar Sesión
