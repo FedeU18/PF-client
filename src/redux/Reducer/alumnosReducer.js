@@ -1,7 +1,9 @@
-import { GET_ALUMNO, DELETE_ALUMNO } from "../types/typesAlumno";
+import { GET_ALUMNO, DELETE_ALUMNO, GET_ALL_ALUMNOS } from "../types/typesAlumno";
 
 const initialState = {
   alumno: [],
+  alumnos: [],
+
 };
 
 const alumnosReducer = (state = initialState, action) => {
@@ -11,15 +13,21 @@ const alumnosReducer = (state = initialState, action) => {
         ...state,
         alumno: action.payload,
       };
-    default:
-      return {
-        ...state,
-      };
-      case DELETE_ALUMNO:
+    case DELETE_ALUMNO:
       return {
         ...state,
         alumno: [],
       };
+    case GET_ALL_ALUMNOS:
+      return {
+        ...state,
+        alumnos: action.payload,
+      };
+      default:
+      return {
+        ...state,
+      };
+    
   }
 };
 

@@ -1,6 +1,7 @@
 import axios from "axios";
 import {
   GET_ALUMNO,
+  GET_ALL_ALUMNOS,
   DELETE_ALUMNO,
  } from "../types/typesAlumno";
 
@@ -23,6 +24,26 @@ import {
   function setAlumno(payload) {
     return {
       type: GET_ALUMNO,
+      payload,
+    };
+  }
+
+  export function getAllAlumnos() {
+    return function (dispatch) {
+      axios
+        .get("http://localhost:3001/alumnos")
+        .then((alumnos) => {
+          dispatch(setAlumnos(alumnos.data));
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    };
+  }
+
+  function setAlumnos(payload) {
+    return {
+      type: GET_ALL_ALUMNOS,
       payload,
     };
   }
