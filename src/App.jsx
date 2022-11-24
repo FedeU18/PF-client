@@ -1,18 +1,31 @@
-import './App.css'
-import {Routes,Route} from 'react-router-dom'
-import {Home} from './view/Home/Home'
-import {Landing} from './view/Landing/Landing';
-import {Perfil} from './view/Perfil/Perfil'
+import Registro from './view/Registro/Registro';
+import { Routes, Route } from 'react-router-dom'
+import { Home } from './view/Home/Home'
+import { Landing } from './view/Landing/Landing';
+import { Perfil } from './view/Perfil/Perfil'
+import { Error } from "./view/Error/error";
+import ProtectedRoute from './Authentication/protection/ProtectedRoute';
+import PublicRoutes from "./Authentication/protection/PublicRoutes"
+
 
 function App() {
 
   return (
     <div className="App">
-     <Routes>
-        <Route  path='/' element={<Landing/>}/>
-        <Route path='/home' element={<Home/>}/> 
-        <Route path="/profile" element={<Perfil/>}  />     
-      </Routes>        
+      <Routes>
+        <Route element={<PublicRoutes />}>
+          <Route path='/' element={<Landing />} />
+          <Route path='/register' element={<Registro/>}/>
+        </Route>
+
+        <Route path='/' element={<ProtectedRoute />}>
+          <Route path='/home' element={<Home />} />
+          <Route path="/profile/:id" element={<Perfil />} />
+        </Route>
+
+
+        <Route path="*" element={<Error />} />
+      </Routes>
     </div>
   )
 }

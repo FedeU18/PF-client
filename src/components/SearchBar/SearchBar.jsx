@@ -1,9 +1,16 @@
+
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import './SearchBar.css'
 import { useEffect } from 'react';
 const usersNames= ['alan or','python','react','Lady Gaga', 'avigail','aveces']
+
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {faSearch} from "@fortawesome/free-solid-svg-icons"
+
+
 
 export const SearchBar =()=>{
     const dispatch=useDispatch()

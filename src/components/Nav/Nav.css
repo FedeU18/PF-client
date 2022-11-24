@@ -1,33 +1,38 @@
-.nnnn{
+.nnnn {
   width: 100%;
 }
 
-.NavColorCss{
-    width: 99%;
-    font-size: 22px;
-    margin-top: 5px;
-    background-image: linear-gradient(to right, rgb(39, 7, 185) , rgb(133, 159, 236));
-    
-    color: aliceblue;
-    padding: 1.2% 0% 1.2% 0%;
+.NavColorCss {
+  width: 100%;
+  font-size: 22px;
+  background-image: linear-gradient(
+    to right,
+    rgb(39, 7, 185),
+    rgb(133, 159, 236)
+  );
+
+  color: aliceblue;
+  padding: 1.2% 0% 1.2% 0%;
 }
 
-.imgAvatar{
-    border: 2px solid rgb(230, 227, 227);
-    max-height: 42px;
-    
-}
-.logoNav{
-    font-weight: bolder;
-    cursor: pointer;
-}
-.colAvatarDrop{
-    width: 50%; 
- display: grid;
- grid-template-columns: 56% 5%;
- 
+.imgAvatar {
+  border: 2px solid rgb(230, 227, 227);
+  max-height: 42px;
+  /* max-width: 40px; */
+  width: 40px;
 }
 
-.dro{
-   margin-top: 6px;
+.logoNav {
+  font-weight: bolder;
+  cursor: pointer;
+}
+
+.colAvatarDrop {
+  width: 50%;
+  display: grid;
+  grid-template-columns: 56% 5%;
+}
+
+.dro {
+  margin-top: 6px;
 }
