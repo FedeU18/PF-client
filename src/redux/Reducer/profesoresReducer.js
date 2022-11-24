@@ -19,6 +19,8 @@ const profesoresReducer = (state = initialState, action) => {
     case GET_PROFESORES:
       return {
         ...state,
+        profesores: action.payload,
+        allProfesores: action.payload
       };
     case GET_PROFESOR_ID:{
       return{
