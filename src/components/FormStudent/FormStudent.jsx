@@ -68,32 +68,36 @@ const FormStudent = () => {
     e.preventDefault();
 
     if (!login) {
-      const data = await LoginWithEmailPassword(email, password);
-
-      if (typeof data === "string") {
-        setGlobalMessage(data)
-        setTimeout(() => {
-          setGlobalMessage("")
-        }, 5000)
-        return;
-      } else {
+      try {
+        const data = await LoginWithEmailPassword(email, password);
+        if (typeof data === "string") {
+          setGlobalMessage(data)
+          setTimeout(() => {
+            setGlobalMessage("")
+          }, 4000)
+          return;
+        }
         navigate("/home")
+
+      } catch (error) {
+        console.error(error)
       }
+
     } else {
-      const userLogin = await registerUser(email, password, form)
+      try {
+        const userLogin = await registerUser(email, password, form)
 
-      if (typeof userLogin === "string") {
-        setGlobalMessage(userLogin)
-        setTimeout(() => {
-          setGlobalMessage("")
-        }, 3000);
-        return;
-      } else {
+        if (typeof userLogin === "string") {
+          setGlobalMessage(userLogin)
+          setTimeout(() => {
+            setGlobalMessage("")
+          }, 4000);
+          return;
+        }
         navigate("/home")
+      } catch (error) {
+        console.error(error)
       }
-
-      // const UID = userLogin.user.uid
-      // setUserData(UID, { name, lastname, email, rol, age })
     }
 
 

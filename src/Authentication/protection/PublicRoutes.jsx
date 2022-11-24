@@ -4,14 +4,17 @@ import { Navigate, Outlet } from 'react-router-dom'
 const verifyAuth = () => {
   const user = localStorage.getItem("user")
 
-  if (user) return true
-  else return false
+  if (user) {
+    return true
+  } else {
+    return false
+  }
 }
 
-const ProtectedRoute = () => {
+const PublicRoutes = () => {
   const verify = verifyAuth()
 
-  return verify ? <Outlet /> : <Navigate to="/" />
+  return verify ? <Navigate to="/home" /> : <Outlet />;
 }
 
-export default ProtectedRoute;
+export default PublicRoutes;

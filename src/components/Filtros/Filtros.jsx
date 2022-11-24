@@ -101,11 +101,11 @@ export const Filtros=({open, close })=>{
             </div>
             
 
-            <div class="container mt-3  containerPaisInpt">
+            <div className="container mt-3  containerPaisInpt">
                 <span className='filtOrdNames' >PAÍS</span>                 
 
                         <br></br>
-                        <input  onChange={hadleOrdByPais} class="inputPais" list="browsers" name="browser" id="browser"/>
+                        <input  onChange={hadleOrdByPais} className="inputPais" list="browsers" name="browser" id="browser"/>
                         <datalist    id="browsers">
                         {paises.length>0 && paises.map(p=>(
                         <option value={p.name}></option>))}
