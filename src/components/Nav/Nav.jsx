@@ -26,7 +26,10 @@ export const NavBar = () => {
                         <span onClick={handleGoHome} className="logoNav">FYT</span>
                     </Col>
 
-                    <Col xs={10}><div><SearchBar /></div>    </Col>
+
+                    <Col   xs={10}>
+                        <SearchBar/>   </Col>
+
 
                     <Col className="colAvatarDrop">
                         <Image className="imgAvatar" src='https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png' roundedCircle />
