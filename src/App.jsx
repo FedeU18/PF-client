@@ -1,3 +1,4 @@
+import Registro from './view/Registro/Registro';
 import { Routes, Route } from 'react-router-dom'
 import { Home } from './view/Home/Home'
 import { Landing } from './view/Landing/Landing';
@@ -6,6 +7,7 @@ import { Error } from "./view/Error/error";
 import ProtectedRoute from './Authentication/protection/ProtectedRoute';
 import PublicRoutes from "./Authentication/protection/PublicRoutes"
 
+
 function App() {
 
   return (
@@ -13,12 +15,14 @@ function App() {
       <Routes>
         <Route element={<PublicRoutes />}>
           <Route path='/' element={<Landing />} />
+          <Route path='/register' element={<Registro/>}/>
         </Route>
 
         <Route path='/' element={<ProtectedRoute />}>
           <Route path='/home' element={<Home />} />
-          <Route path="/profile" element={<Perfil />} />
+          <Route path="/profile/:id" element={<Perfil />} />
         </Route>
+
 
         <Route path="*" element={<Error />} />
       </Routes>

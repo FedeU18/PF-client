@@ -22,3 +22,26 @@
     border-radius: 15px;
     background-color: transparent;
   }
+  .homeCardContainer{
+     display: flex;
+     background: rgb(110,182,244);
+     background: linear-gradient(0deg, rgba(110,182,244,1) 0%, rgba(85,145,197,1) 89%, rgba(85,145,197,1) 100%);
+     flex-direction: column;
+     padding: 5%;
+     
+     margin-bottom: 10%;
+     
+}
+.homeProfeCard{
+  margin-top: 20px;
+}
+
+
+.foot{
+  display: flex;
+  background-color: rgb(29, 29, 29);
+  
+  padding: 1px;
+  justify-content: center;
+}
+

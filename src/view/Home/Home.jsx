@@ -1,6 +1,5 @@
 import logOut from "../../Authentication/functions/logOut"
 import { NavBar } from "../../components/Nav/Nav"
-import { useNavigate } from "react-router-dom"
 import { useAuth } from "../../Authentication/context/AuthContext"
 import { Filtros } from "../../components/Filtros/Filtros";
 import { BsFillGrid3X3GapFill } from "react-icons/bs";
@@ -13,18 +12,19 @@ import { useDispatch, useSelector } from "react-redux";
 import { allProfes } from "../../redux/Actions/Profesor";
 import ProfeCards from "../../components/profesores/ProfeCards";
 
-export const Home = () => {
+export const Home=()=>{
     const [open, setOpen] = useState(false)
     const auth = useAuth()
     const dispatch = useDispatch()
-    const filtrosSeleccionados = useSelector(state => state.materias.filtrosSeleccionados)
     const navigate = useNavigate()
-    const profes = useSelector(state => state.profesores)  //todo el estado de profes 
-
-    useEffect(() => {
-        dispatch(allProfes())
-    }, [dispatch])
-
+    const filtrosSeleccionados=useSelector(state => state.materias.filtrosSeleccionados)
+    const profes =useSelector(state=>state.profesores.profesores)  //todo el estado de profes 
+    console.log(profes)
+    
+    useEffect(()=>{
+    dispatch(allProfes())
+    },[dispatch])
+    
     const CloseMySesion = () => {
         logOut()
         navigate("/")
@@ -91,34 +91,39 @@ export const Home = () => {
                 {filtrosSeleccionados.precio && filtrosSeleccionados.precio !== '' && (
                     <button className="btnListOpSelected"
                         name="precio"
-                        onClick={handleDelOp}>
-                        X {filtrosSeleccionados.precio} </button>)}
+                        onClick={handleDelOp}> 
+                X {filtrosSeleccionados.precio} </button>) }
 
-                <Filtros open={open} close={handleCloseFiltros} />
-                <br></br>
-                <button
-                    className="btn btn-danger btn-sm"
-                    onClick={CloseMySesion}>
-                    Log out
-                </button>
+            <Filtros open={open} close={handleCloseFiltros}/>
+            <br></br>
+           <button
+                className="btn btn-danger btn-sm"
+                onClick={CloseMySesion}>
+                Log out
+            </button>
 
-                <div className="homeCardContainer">
-                    {
-                        profes.length ?
-                            profes?.map(e => {
-                                return (
-                                    e.Error ? <h4>profesor no encontrado</h4> :
-                                        <div className="homeProfeCard" key={e.id}>
+            <div className="homeCardContainer ">
+                {
+                    profes.length ?
+                        profes?.map(e => {
+                            return (
+                                e.Error ? <h4>profesor no encontrado</h4> :
+                                    <div className="homeProfeCard col-md-3" key={e.id} >
+                                       
+                                        <ProfeCards nombre={e.nombre} imagen={e.imagen} pais={e.pais} descripcion={e.descripcion} materias={e.materias} puntuacion={e.puntuacion} />
+                                       
+                                    </div>
+                            )
+                        }) :
+                        <div><h1>Cargando...</h1></div>
+                }
+            </div>
+                <div className="foot">
+                <footer>
+                        <h5>HERNAN BELLASSAI</h5>
 
-                                            <ProfeCards nombre={e.nombre} imagen={e.imagen} pais={e.pais} descripcion={e.descripcion} materias={e.materias} />
-
-                                        </div>
-                                )
-                            }) :
-                            <div><h1>Cargando...</h1></div>
-                    }
+                    </footer>
                 </div>
-
             </div>
         </div>
     )
