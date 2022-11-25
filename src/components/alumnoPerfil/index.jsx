@@ -78,7 +78,7 @@ export const AlumnoPerfil = (props) => {
                 </tr>
                 <tr>
                   <th scope="row">Pais</th>
-                  <td colspan="2">{info.country}</td>
+                  <td colspan="2">{info.country.name}</td>
                 </tr>
               </tbody>
             </table>
