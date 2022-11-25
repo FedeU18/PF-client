@@ -1,4 +1,3 @@
-
 import { combineReducers } from "redux";
 import profesoresReducer from "./profesoresReducer";
 import materiasReducer from "./materiasReducer";
@@ -10,9 +9,6 @@ const rootReducer = combineReducers({
   materias: materiasReducer,
   paises:paisesReducer,
   alumnos: alumnosReducer
-
-
 });
 
 export default rootReducer;
-
