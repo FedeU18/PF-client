@@ -29,7 +29,7 @@ export const FilterOrder=(allProfesores,object)=>{
             newallProfesores=newallProfesores
         }
         if(object.pais!==''){
-            const provisonal= newallProfesores.filter(f=> f.country === object.pais)
+            const provisonal= newallProfesores.filter(f=> f.country.name === object.pais)
             newallProfesores=provisonal
         }
    }
@@ -63,11 +63,13 @@ export const FilterOrder=(allProfesores,object)=>{
 
 
     if(object.precio){
+        console.log('entro precio')
         if(object.precio===''){
-            
+            console.log('entro sin')
             newallProfesores=newallProfesores              
         }
-        if(object.precio==='Puntuación de menor a mayor'){
+        if(object.precio==='Precio de menor a mayor'){
+            console.log('entro menor')
             function SortArray(x, y){
                 if (x.precio < y.precio) {return -1;}
                 if (x.precio > y.precio) {return 1;}
@@ -77,7 +79,8 @@ export const FilterOrder=(allProfesores,object)=>{
          
             
         }
-        if(object.precio==='Puntuación de mayor a menor'){
+        if(object.precio==='Precio de mayor a menor'){
+            console.log('entro mayor')
             function SortArray(y, x){
                 if (x.precio < y.precio) {return -1;}
                 if (x.precio > y.precio) {return 1;}

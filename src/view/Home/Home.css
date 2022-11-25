@@ -38,10 +38,22 @@
 
 
 .foot{
-  display: flex;
-  background-color: rgb(29, 29, 29);
-  
-  padding: 1px;
-  justify-content: center;
+  border-top: 0.5px solid rgb(75, 74, 74, 0.1);
+  padding-top: 25px;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+ height: 80px;
+  color: rgb(109, 107, 107);
+  text-align: center;
 }
 
+
+.aFootAbout{
+  cursor: pointer;
+  
+}
+
+.aFootAbout:hover{
+  color: rgb(41, 40, 40);
+}

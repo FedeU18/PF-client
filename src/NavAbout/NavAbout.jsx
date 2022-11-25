@@ -9,7 +9,7 @@ export const NavAbout=()=>{
        
          <Navbar bg="dark"  className='NavAboutCont' variant="dark">
         <Container>
-          <Navbar.Brand href="/">
+          <Navbar.Brand href="/home">
             <img className='logoPF' src={'logoPF.png'}/>
           </Navbar.Brand>
           <Nav className="me-auto">

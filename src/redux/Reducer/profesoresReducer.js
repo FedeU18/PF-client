@@ -14,14 +14,24 @@ const initialState = {
   detail: []
 };
 
+import { FilterOrder } from "./filterHelper";
+
 const profesoresReducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_PROFESORES:
+      
       return {
         ...state,
         profesores: action.payload,
         allProfesores: action.payload
       };
+
+    case 'FILTER_ORDER':
+      const newAllprofes=FilterOrder(state.allProfesores,action.payload  )
+      return{
+        ...state,
+        profesores:newAllprofes
+      }
     case GET_PROFESOR_ID:{
       return{
         ...state,

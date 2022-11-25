@@ -1,4 +1,3 @@
-import logOut from "../../Authentication/functions/logOut";
 import { NavBar } from "../../components/Nav/Nav";
 import { useAuth } from "../../Authentication/context/AuthContext";
 import { Filtros } from "../../components/Filtros/Filtros";
@@ -10,8 +9,10 @@ import { getPaises } from "../../redux/Actions/Paises";
 import { addOPSelected } from "../../redux/Actions/Materias";
 import { useDispatch, useSelector } from "react-redux";
 import { allProfes } from "../../redux/Actions/Profesor";
-import ProfeCards from "../../components/profesores/ProfeCards";
+import { ProfeCards } from "../../ProfeCards/ProfeCards";
 import { useNavigate } from "react-router-dom";
+import { filterProfes } from "../../redux/Actions/Profesor";
+
 
 import { Link } from "react-router-dom";
 
@@ -33,13 +34,12 @@ export const Home = () => {
 
 
   useEffect(() => {
-    dispatch(allProfes());
+    dispatch(allProfes(filtrosSeleccionados));
   }, [dispatch]);
 
-  const CloseMySesion = () => {
-    logOut();
-    navigate("/");
-  };
+  useEffect(()=>{
+    dispatch(filterProfes(filtrosSeleccionados))
+  },[filtrosSeleccionados])
 
   console.log(filtrosSeleccionados);
   const handleFiltros = () => {
@@ -129,32 +129,13 @@ export const Home = () => {
 
         <Filtros open={open} close={handleCloseFiltros} />
         <br></br>
-        <button className="btn btn-danger btn-sm" onClick={CloseMySesion}>
-          Log out
-        </button>
+        
+        <ProfeCards profes={profes}/>
 
-        <div className="homeCardContainer ">
-          {profes.length ? (
-            profes?.map((e) => {
-              return e.Error ? (
-                <h4>profesor no encontrado</h4>
-              ) : (
-                <div className="homeProfeCard col-md-3" key={e.id}>
-                  <Link to={"/profesores/"+ e.id}>
-                        <ProfeCards nombre={e.nombre} imagen={e.imagen} pais={e.pais} descripcion={e.descripcion} materias={e.materias} puntuacion={e.puntuacion} />
-                     </Link>
-                </div>
-              );
-            })
-          ) : (
-            <div>
-              <h1>Cargando...</h1>
-            </div>
-          )}
-        </div>
+
         <div className="foot">
-          <footer>
-            <h5>HERNAN BELLASSAI</h5>
+          <footer >
+            <a className="aFootAbout" onClick={()=>{navigate('/about')}}>About</a>
           </footer>
         </div>
       </div>
