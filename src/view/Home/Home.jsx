@@ -14,6 +14,13 @@ import { useNavigate } from "react-router-dom";
 import { filterProfes } from "../../redux/Actions/Profesor";
 
 
+import { Link } from "react-router-dom";
+
+
+
+
+
+
 export const Home = () => {
   const [open, setOpen] = useState(false);
   const auth = useAuth();
@@ -24,6 +31,7 @@ export const Home = () => {
   );
   const profes = useSelector((state) => state.profesores.profesores); //todo el estado de profes
   console.log(profes);
+
 
   useEffect(() => {
     dispatch(allProfes(filtrosSeleccionados));
@@ -109,8 +117,7 @@ export const Home = () => {
               X {filtrosSeleccionados.puntuacion}
             </button>
           )}
-
-        {filtrosSeleccionados.precio && filtrosSeleccionados.precio !== "" && (
+           {filtrosSeleccionados.precio && filtrosSeleccionados.precio !== "" && (
           <button
             className="btnListOpSelected"
             name="precio"
@@ -125,7 +132,7 @@ export const Home = () => {
         
         <ProfeCards profes={profes}/>
 
-      
+
         <div className="foot">
           <footer >
             <a className="aFootAbout" onClick={()=>{navigate('/about')}}>About</a>
