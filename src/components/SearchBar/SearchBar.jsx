@@ -1,20 +1,16 @@
-
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import './SearchBar.css'
 import { useEffect } from 'react';
-const usersNames= ['alan or','python','react','Lady Gaga', 'avigail','aveces']
-
-
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {faSearch} from "@fortawesome/free-solid-svg-icons"
-
-
+const infoDemo= ['alan or','python','react','Lady Gaga', 'avigail','aveces']
 
 export const SearchBar =()=>{
-    const dispatch=useDispatch()
-    const history=useNavigate()
+    const dispatch = useDispatch()
+    const history = useNavigate()
+
+    const allTeachers = useSelector((state)=>state.profesores.profesores)
+    console.log("Soy los profesores", allTeachers)
     
     const[suggestions,setSuggestions]=useState([])
     const [text,setText] = useState('')
@@ -23,12 +19,12 @@ export const SearchBar =()=>{
 
     const handleKeyDown = (event) => {  
         const im=suggestions.indexOf(text)
-        /*if (event.key === 'Enter') {          
+        if (event.key === 'Enter') {          
           onSuggestHandler(text)
           event.preventDefault(); 
-         }*/
+         }
 
-         /*if (event.key === "ArrowUp"){
+         if (event.key === "ArrowUp"){
              
             if(im>=0){
                 setText(suggestions[im-1])
@@ -36,10 +32,10 @@ export const SearchBar =()=>{
             else{                
                 setText(suggestions[suggestions.length-1])
                 }
-            }*/
+            }
             
          
-         /*if (event.key === "ArrowDown"){
+         if (event.key === "ArrowDown"){
             
              if(im<suggestions.length){
                 setText(suggestions[im+1])               
@@ -48,13 +44,13 @@ export const SearchBar =()=>{
                 
                 setText(suggestions[im])
             }           
-         }*/
+         }
        };
     const onChangeInput=(text)=>{
         let matches=[]
         let short=[]
         if(text.length>0){
-            matches=usersNames.filter(name=>{
+            matches=allTeachers.filter(name=>{
                 
                 const regex= new RegExp(`${text}`,"gi")
                 return name.match(regex)
