@@ -12,6 +12,7 @@ import { useNavigate } from "react-router";
 import SearchBar from "../SearchBar/SearchBar";
 
 export const NavBar = (props) => {
+  console.log("soy id de alumno ", props.idAlumno);
   const navigate = useNavigate();
 
   const CloseMySesion = () => {
@@ -21,7 +22,7 @@ export const NavBar = (props) => {
 
   const handleProfile = () => {
     console.log("me ejcute");
-    navigate(`/miPerfil/${props.id}`);
+    navigate(`/profile/${props.idAlumno}`);
   };
 
   const handleGoHome = () => {

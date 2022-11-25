@@ -1,0 +1,50 @@
+.divPrincipal {
+  display: flex;
+  flex-direction: row;
+  height: 58vw;
+  background: #7f7fd5;
+  background: -webkit-linear-gradient(to bottom, #7f7fd5, #86a8e7, #91eae4);
+  background: linear-gradient(to bottom, #7f7fd5, #86a8e7, white);
+}
+.nameCountry {
+  font-weight: 600;
+  margin-left: 1.5vw;
+  margin-top: 0.5vw;
+}
+.containerImgPerfil {
+  background: rgb(155, 155, 213);
+  padding: 0.1vw 2.5vw 4vw 0;
+  margin-left: 2vw;
+  margin-top: 2vw;
+  border-radius: 1vw;
+}
+
+.containerPerfil {
+  height: 20vw;
+  width: 20vw;
+  background: rgb(118, 118, 190);
+  border-radius: 100%;
+  margin-bottom: 5vw;
+  margin-top: 7vw;
+  margin-left: 2vw;
+}
+.tbInfoAlumno {
+  height: 25vw;
+  width: 60vw;
+  background: white;
+  margin-top: 7vw;
+  margin-left: 5vw;
+  border-radius: 1vw;
+}
+.tbInfoAlumno h2 {
+  padding-top: 2vw;
+  text-align: center;
+  font-weight: 550;
+}
+
+.btnEliminar {
+  margin-left: 2vw;
+}
+.btnEditarCuenta {
+  margin-left: 2vw;
+}

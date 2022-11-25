@@ -18,8 +18,7 @@ function PerfilAlumno(props) {
 
   return (
     <div>
-      <AlumnoPerfil id={id} />
-      <button onClick={openTrue}>Editar Cuenta</button>
+      <AlumnoPerfil open={openTrue} id={id} />
       <EditarAlumno open={open} close={OpenFalse} id={id} />
     </div>
   );
