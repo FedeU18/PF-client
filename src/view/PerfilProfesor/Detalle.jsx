@@ -2,28 +2,35 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import "./Detalle.css";
-// import img from "../../components/profesores/img/profecard.jpg"
+import img from "../../view/PerfilProfesor/img/1.jpg"
 import { getProfesorById } from "../../redux/Actions/Profesor";
 
 export const Detalle = () => {
   let { id } = useParams();
   let dispatch = useDispatch();
   let details = useSelector((state) => state.profesores.detail);
+  
   console.log(details);
+  
   useEffect(() => {
     dispatch(getProfesorById(id));
   }, []);
   return (
     <>
       <div className="firstContainer" key={details.id}>
-        <div className="detailContainer">
-          <img
+       
+      <div className="overflow">
+              <img
             className="profImg"
             src={details.image ? details.image : img}
             alt=""
-            width="380px"
-            height="300px"
-          />
+            width="200px"
+            height="200px"
+             />
+           </div> 
+       
+        <div className="detailContainer">
+         
 
           <div className="gameDetail">
             <h1>{details.nombre}</h1>

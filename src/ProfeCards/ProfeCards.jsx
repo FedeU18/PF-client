@@ -1,5 +1,6 @@
 import { ProfeCard } from "../ProfeCard/Profecard"
 import './ProfeCards.css'
+import { Link } from "react-router-dom"
 export const ProfeCards=({profes})=>{
   console.log(profes)
     return (
@@ -10,6 +11,7 @@ export const ProfeCards=({profes})=>{
                 <h4>profesor no encontrado</h4>
               ) : (
                 <div className="homeProfeCard col-md-3" key={e.id}>
+                 <Link to={"/profesores/"+ e.id }> 
                   <ProfeCard
                     username={e.username}
                     nombre={e.nombre}
@@ -21,6 +23,7 @@ export const ProfeCards=({profes})=>{
                     precio={e.precio}
                     
                   />
+                  </Link>
                 </div>
               );
             })
