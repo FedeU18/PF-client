@@ -9,8 +9,6 @@ const LoginWithEmailPassword = async (email, password) => {
 
     localStorage.setItem("user", "test");
   } catch (err) {
-    console.error(err.code);
-
     if (err.code === "auth/user-not-found") {
       return "this account does not exist";
     } else if (err.code === "auth/invalid-email") {
