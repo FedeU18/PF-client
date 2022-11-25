@@ -12,12 +12,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { allProfes } from "../../redux/Actions/Profesor";
 import ProfeCards from "../../components/profesores/ProfeCards";
 import { useNavigate } from "react-router-dom";
+import * as actions from "../../redux/Actions/Alumno";
 
 export const Home = () => {
   const [open, setOpen] = useState(false);
   const auth = useAuth();
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const idAlumno = 13; //este id para alumno es provisional
   const filtrosSeleccionados = useSelector(
     (state) => state.materias.filtrosSeleccionados
   );
@@ -69,7 +71,7 @@ export const Home = () => {
   return (
     <div>
       <div>
-        <NavBar />
+        <NavBar idAlumno={idAlumno} />
         <button className="filtroBtn">
           <BsFillGrid3X3GapFill onClick={handleFiltros} />
         </button>

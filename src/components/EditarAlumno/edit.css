@@ -15,30 +15,34 @@
 .btnVolver {
   width: 3vw;
   height: 3vw;
-  margin-left: 35vw;
-  margin-top: 1vw;
-  margin-bottom: 1vw;
-  background: rgb(47, 47, 159);
+  margin-left: 35.5vw;
+  margin-top: 0.3vw;
+  /* margin-bottom: 1vw; */
   border: none;
+  background: rgb(148, 48, 48);
   font-size: 2vw;
   font-family: cursive;
+  border-radius: 1vw;
 }
 .btnVolver:hover {
   border-radius: 1vw;
   cursor: pointer;
   font-size: 1.8vw;
-  box-shadow: 0 1px 10px 1px rgb(215, 215, 242);
+  box-shadow: 0 1px 10px 1px rgb(148, 48, 48);
 }
 .closecuaso {
   /* width: 0%; */
   display: none;
 }
 .formEditAlumno {
-  background: rgb(47, 47, 159);
+  background: #373b44;
+  background: -webkit-linear-gradient(to bottom, #373b44, #4286f4);
+  background: linear-gradient(to bottom, #373b44, #4286f4);
   width: 40%;
-  height: 100%;
+  height: 48vw;
   border-radius: 25px;
   border: 0.5px solid white;
+  margin-top: 5vw;
 }
 .input {
   width: 2vw;
@@ -75,12 +79,13 @@
 }
 
 .divBtn {
-  height: 5vw;
-  width: 5vw;
+  height: 10vw;
+  width: 10vw;
+  padding-bottom: 10vw;
 }
 
 .button {
-  background: rgb(102, 102, 245);
+  background: #5c6272;
   border: none;
   border-radius: 1vw;
   color: black;
@@ -91,12 +96,12 @@
   transition: all ease 0.2s;
   width: 10vw;
   font-weight: 500;
+  margin-bottom: 5vw;
 }
 
 .button:hover {
   border-color: black;
   box-shadow: 0 1px 10px 1px rgb(215, 215, 242);
-
   cursor: pointer;
   font-size: 1.4vw;
 }
