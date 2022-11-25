@@ -22,7 +22,7 @@ export const Home = () => {
   const auth = useAuth();
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const idAlumno = 14; //este id para alumno es provisional
+  const idAlumno = 14; //este id para alumno es provisional, para probar la vista de el perfil de alumno se debe colocar el id de un alumno que este en la tabla alumnos, "esto para probar"
   const filtrosSeleccionados = useSelector(
     (state) => state.materias.filtrosSeleccionados
   );
