@@ -11,10 +11,14 @@ import { addOPSelected } from "../../redux/Actions/Materias";
 import { useDispatch, useSelector } from "react-redux";
 import { allProfes } from "../../redux/Actions/Profesor";
 import ProfeCards from "../../components/profesores/ProfeCards";
+import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+
+
 
 export const Home=()=>{
     const [open, setOpen] = useState(false)
-    const auth = useAuth()
+    // const auth = useAuth()
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const filtrosSeleccionados=useSelector(state => state.materias.filtrosSeleccionados)
@@ -109,9 +113,9 @@ export const Home=()=>{
                             return (
                                 e.Error ? <h4>profesor no encontrado</h4> :
                                     <div className="homeProfeCard col-md-3" key={e.id} >
-                                       
+                                       <Link to={"/profesores/"+ e.id}>
                                         <ProfeCards nombre={e.nombre} imagen={e.imagen} pais={e.pais} descripcion={e.descripcion} materias={e.materias} puntuacion={e.puntuacion} />
-                                       
+                                        </Link>
                                     </div>
                             )
                         }) :

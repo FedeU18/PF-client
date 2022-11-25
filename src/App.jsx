@@ -4,6 +4,7 @@ import { Home } from './view/Home/Home'
 import { Landing } from './view/Landing/Landing';
 import { Perfil } from './view/Perfil/Perfil'
 import { Error } from "./view/Error/error";
+import { Detalle } from './view/PerfilProfesor/Detalle';
 import ProtectedRoute from './Authentication/protection/ProtectedRoute';
 import PublicRoutes from "./Authentication/protection/PublicRoutes"
 
@@ -21,6 +22,7 @@ function App() {
         <Route path='/' element={<ProtectedRoute />}>
           <Route path='/home' element={<Home />} />
           <Route path="/profile/:id" element={<Perfil />} />
+          <Route path="/profesores/:id" element={<Detalle/>} />
         </Route>
 
 
