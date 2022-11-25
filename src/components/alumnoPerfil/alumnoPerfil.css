@@ -41,10 +41,26 @@
   text-align: center;
   font-weight: 550;
 }
-
+.containerBtns {
+  display: flex;
+  flex-direction: column;
+}
 .btnEliminar {
   margin-left: 2vw;
 }
 .btnEditarCuenta {
   margin-left: 2vw;
+}
+.btnVolverInicio {
+  margin-top: 3vw;
+  width: 3vw;
+  height: 3vw;
+  font-size: 3.5vw;
+  border: none;
+  background: rgb(155, 155, 213);
+  margin-left: 9vw;
+  font-family: cursive;
+}
+.btnVolverInicio:hover {
+  font-size: 3.2vw;
 }
