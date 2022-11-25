@@ -22,7 +22,7 @@ export const Detalle = () => {
       <div className="overflow">
               <img
             className="profImg"
-            src={details.image ? details.image : img}
+            src={details.imagen ? details.imagen : img}
             alt=""
             width="200px"
             height="200px"
@@ -32,10 +32,10 @@ export const Detalle = () => {
         <div className="detailContainer">
          
 
-          <div className="gameDetail">
+          <div className="nameeDetail">
             <h1>{details.nombre}</h1>
-
-            <div className="detailPlatform">
+           
+            <div className="detailemail">
               <strong>Email: </strong> {details.email}{" "}
             </div>
             <p>
