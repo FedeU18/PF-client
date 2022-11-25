@@ -5,6 +5,7 @@ import {postProfesor} from '../../redux/Actions/Profesor'
 import registerUser from '../../Authentication/functions/registerUser'
 import { useDispatch, useSelector } from 'react-redux'
 import {getMaterias} from '../../redux/Actions/Materias'
+import {getPaises} from '../../redux/Actions/Paises'
 
 const FormTeacher = () => {
   const [teacher,setTeacher] = useState({
@@ -16,15 +17,20 @@ const FormTeacher = () => {
     username: '',
     imagen: '',
     descripcion: '',
+    puntuacion:[1],
     precio: '',
-    estudios: '',
-    materias: ''
+    estudios: [],
+    materias: [],
+    pais: []
   })
   const navigate = useNavigate()
   const materias = useSelector(state=> state.materias.materias)
+  const paises = useSelector(state=>state.paises.paises)
   const dispatch = useDispatch()
+  const [globalMessage, setGlobalMessage] = useState("")
 
   useEffect(()=>{
+    dispatch(getPaises())
     dispatch(getMaterias())
   },[])
 
@@ -35,17 +41,40 @@ const FormTeacher = () => {
     })
   }
   
-  const handleSelect=(e)=>{
+  const handleSelectMaterias=(e)=>{
     setTeacher({
       ...teacher,
-      materias: e.target.value
+      materias: [...teacher.materias,Number(e.target.value)]
+    })
+    console.log(e.target.value)
+  }
+
+  const handleSelectPaises=(e)=>{
+    setTeacher({
+      ...teacher,
+      pais: [...teacher.pais, e.target.value]
     })
   }
 
-  const handleOnClick = (e) => {
+  const handleEstudios=(e)=>{
+    setTeacher({
+      ...teacher,
+      estudios: [...teacher.estudios, e.target.value]
+    })
+  }
+
+  const handleOnClick = async(e) => {
     e.preventDefault()
     dispatch(postProfesor(teacher))
-    registerUser(teacher.email,teacher.contraseña, teacher)
+    const userLogin = await registerUser(teacher.email, teacher.contraseña, teacher)
+
+    if (typeof userLogin === "string") {
+      setGlobalMessage(userLogin)
+      setTimeout(() => {
+        setGlobalMessage("")
+      }, 4000);
+      return;
+    }
     navigate("/home")
   }
 
@@ -53,6 +82,7 @@ const FormTeacher = () => {
     <div>
       <form className='form'>
         <h3>¡Registrate como profesor!</h3>
+        {globalMessage && <p>{globalMessage}</p>}
         <div>
           <input onChange={(e)=>handleOnChange(e)} type="text" name='nombre' value={teacher.nombre} placeholder="Nombre"/>
           <input onChange={(e)=>handleOnChange(e)} type="text" name='apellido' value={teacher.apellido} placeholder="Apellido"/>
@@ -63,18 +93,24 @@ const FormTeacher = () => {
         <input onChange={(e)=>handleOnChange(e)} type="text" name='imagen' value={teacher.imagen} placeholder="Foto de perfil(url)"/>
         <textarea onChange={(e)=>handleOnChange(e)} type="text" name='descripcion' value={teacher.descripcion} placeholder="Descripcion"/>
         <input onChange={(e)=>handleOnChange(e)} type="text" name='precio' value={teacher.precio} placeholder="Precio" />
-        <input onChange={(e)=>handleOnChange(e)} type="text" name='estudios' value={teacher.estudios} placeholder="estudios" />
+        <input onChange={(e)=>handleEstudios(e)} type="text" name='estudios' value={teacher.estudios} placeholder="estudios" />
 
-        <select onChange={(e)=>handleSelect(e)}>
+        <select onChange={(e)=>handleSelectMaterias(e)}>
           {materias.length && materias.map(m=>{
             return(
-              <option key={m.id} value={m.name}>{m.name}</option>
+              <option key={m.id} value={m.id}>{m.name}</option>
             )
           })
 
-}
+          }
         </select>
-
+          <select onChange={(e)=>handleSelectPaises(e)}>
+            {paises.length && paises.map(p=>{
+              return(
+                <option key={p.id} value={p.name}>{p.name}</option>
+              )
+            })}
+          </select>
         <button type='submit' onClick={(e)=>handleOnClick(e)}>Register</button>
       </form>
     </div>
