@@ -5,8 +5,9 @@
   
   height: 100vh;
   margin-bottom: 20rem;
-  background: linear-gradient(rgb(156, 203, 245),rgb(85, 145, 197),
-  rgb(133, 159, 236));
+  background: rgb(240,241,242);
+  background: linear-gradient(0deg, rgba(240,241,242,1) 1%, rgba(85,145,197,1) 63%, rgba(40,127,203,1) 83%);
+  
   margin-right: 80%;
   margin-top: 1%;
   padding: 3%;
@@ -22,7 +23,7 @@
   display: flex;
   flex-wrap: wrap;
   padding-top: 2rem;
-  background-color: rgb(73, 73, 73);
+  background-color: rgb(83, 90, 97);
   border-radius: 2%;
  justify-content: center;
   color: aliceblue;
@@ -50,11 +51,12 @@ overflow: hidden;
 
 
 }
-.gameDetail{
- 
+.nameeDetail{
+   
+  margin-top: 1%;
   align-items: center;
-  max-width: 300px;
-  margin-right: 60%;
+  max-width: 100px;
+  margin-right: 50%;
 
 }
 .ratingDetails{
