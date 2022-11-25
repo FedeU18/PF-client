@@ -15,35 +15,27 @@ import { useNavigate } from "react-router-dom";
 import * as actions from "../../redux/Actions/Alumno";
 import { filterProfes } from "../../redux/Actions/Profesor";
 
-
 import { Link } from "react-router-dom";
-
-
-
-
-
-
 
 export const Home = () => {
   const [open, setOpen] = useState(false);
   const auth = useAuth();
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const idAlumno = 13; //este id para alumno es provisional
+  const idAlumno = 14; //este id para alumno es provisional
   const filtrosSeleccionados = useSelector(
     (state) => state.materias.filtrosSeleccionados
   );
   const profes = useSelector((state) => state.profesores.profesores); //todo el estado de profes
   console.log(profes);
 
-
   useEffect(() => {
     dispatch(allProfes(filtrosSeleccionados));
   }, [dispatch]);
 
-  useEffect(()=>{
-    dispatch(filterProfes(filtrosSeleccionados))
-  },[filtrosSeleccionados])
+  useEffect(() => {
+    dispatch(filterProfes(filtrosSeleccionados));
+  }, [filtrosSeleccionados]);
 
   console.log(filtrosSeleccionados);
   const handleFiltros = () => {
@@ -121,7 +113,7 @@ export const Home = () => {
               X {filtrosSeleccionados.puntuacion}
             </button>
           )}
-           {filtrosSeleccionados.precio && filtrosSeleccionados.precio !== "" && (
+        {filtrosSeleccionados.precio && filtrosSeleccionados.precio !== "" && (
           <button
             className="btnListOpSelected"
             name="precio"
@@ -133,13 +125,19 @@ export const Home = () => {
 
         <Filtros open={open} close={handleCloseFiltros} />
         <br></br>
-        
-        <ProfeCards profes={profes}/>
 
+        <ProfeCards profes={profes} />
 
         <div className="foot">
-          <footer >
-            <a className="aFootAbout" onClick={()=>{navigate('/about')}}>About</a>
+          <footer>
+            <a
+              className="aFootAbout"
+              onClick={() => {
+                navigate("/about");
+              }}
+            >
+              About
+            </a>
           </footer>
         </div>
       </div>

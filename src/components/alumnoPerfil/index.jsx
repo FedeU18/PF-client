@@ -17,7 +17,7 @@ export const AlumnoPerfil = (props) => {
   const deleteAlumno = () => {
     alert("esta seguro de eliminar su cuenta de alumno");
     dispach(actions.deleteAlumno(props.id));
-    navigate("/profile/1");
+    navigate("/home");
   };
   return (
     <div>
@@ -29,20 +29,28 @@ export const AlumnoPerfil = (props) => {
               <div className="containerPerfil">
                 <img src={image} alt={info.picture} />
               </div>
-              <div>
+              <div className="containerBtns">
+                <div>
+                  <button
+                    onClick={() => props.open()}
+                    type="button"
+                    className="btnEditarCuenta btn btn-secondary"
+                  >
+                    Editar cuenta
+                  </button>
+                  <button
+                    type="button"
+                    className="btn btn-danger btnEliminar"
+                    onClick={deleteAlumno}
+                  >
+                    Eliminar Cuenta
+                  </button>
+                </div>
                 <button
-                  onClick={() => props.open()}
-                  type="button"
-                  className="btnEditarCuenta btn btn-secondary"
+                  onClick={() => navigate("/home")}
+                  className="btnVolverInicio"
                 >
-                  Editar cuenta
-                </button>
-                <button
-                  type="button"
-                  className="btn btn-danger btnEliminar"
-                  onClick={deleteAlumno}
-                >
-                  Eliminar Cuenta
+                  ↖
                 </button>
               </div>
             </div>
