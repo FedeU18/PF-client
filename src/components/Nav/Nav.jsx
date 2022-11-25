@@ -1,4 +1,5 @@
 import "bootstrap/dist/css/bootstrap.css";
+import logOut  from '../../Authentication/functions/logOut'
 import Image from "react-bootstrap/Image";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
@@ -13,6 +14,12 @@ import SearchBar from "../SearchBar/SearchBar";
 export const NavBar = (props) => {
   console.log("soy id de alumno ", props.idAlumno);
   const navigate = useNavigate();
+
+  const CloseMySesion = () => {
+    logOut();
+    navigate("/");
+  };
+
   const handleProfile = () => {
     console.log("me ejcute");
     navigate(`/profile/${props.idAlumno}`);
@@ -32,7 +39,7 @@ export const NavBar = (props) => {
         <Row>
           <Col>
             <span onClick={handleGoHome} className="logoNav">
-              FYT
+             <img src={'logoPF.png'} className={'logoProyecto'}/>
             </span>
           </Col>
 
@@ -52,7 +59,8 @@ export const NavBar = (props) => {
               <NavDropdown.Item onClick={handleProfile}>
                 Mi Perfil
               </NavDropdown.Item>
-              <NavDropdown.Item href="">Cerrar Sesión</NavDropdown.Item>
+              <NavDropdown.Item onClick={CloseMySesion}>
+                Cerrar Sesión</NavDropdown.Item>
               {/* <NavDropdown.Divider />
                         <NavDropdown.Item href="">
                             Separated link

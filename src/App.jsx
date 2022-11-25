@@ -1,4 +1,5 @@
 
+import { Detalle } from './view/PerfilProfesor/Detalle';
 import Registro from "./view/Registro/Registro";
 import { Routes, Route } from "react-router-dom";
 import { Home } from "./view/Home/Home";
@@ -16,13 +17,15 @@ function App() {
         <Route element={<PublicRoutes />}>
           <Route path="/" element={<Landing />} />
           <Route path="/register" element={<Registro />} />
-          <Route path='/about' element ={<About/> }/>
+          
         </Route>
 
         <Route path="/" element={<ProtectedRoute />}>
           <Route path="/home" element={<Home />} />
           <Route path="/profile/:id" element={<Perfil />} />
-          
+          <Route path='/about' element ={<About/> }/>
+          <Route path="/profesores/:id" element={<Detalle/>} />
+
         </Route>
 
         <Route path="*" element={<Error />} />

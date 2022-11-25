@@ -1,0 +1,16 @@
+.form {
+    margin: 1rem;
+    padding: 1rem;
+    box-shadow: 4px 4px 2px 4px rgba(0, 0, 0, .5);
+    display: flex;
+    flex-direction: column;
+    border-radius: 3px;
+}
+
+textarea {
+    resize: none;
+    margin: 2px;
+}
+input {
+    margin: 2px;
+}
