@@ -94,4 +94,12 @@ export function allProfes (){
 
 };
 
+export function filterProfes (filtros){ 
+      return {
+        type:'FILTER_ORDER',
+        payload : filtros
+      }   
+  
+  };
+
 

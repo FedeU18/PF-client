@@ -16,13 +16,13 @@ function App() {
         <Route element={<PublicRoutes />}>
           <Route path="/" element={<Landing />} />
           <Route path="/register" element={<Registro />} />
-          <Route path='/about' element ={<About/> }/>
+          
         </Route>
 
         <Route path="/" element={<ProtectedRoute />}>
           <Route path="/home" element={<Home />} />
           <Route path="/profile/:id" element={<Perfil />} />
-          
+          <Route path='/about' element ={<About/> }/>
         </Route>
 
         <Route path="*" element={<Error />} />
