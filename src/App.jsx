@@ -6,7 +6,7 @@ import { Home } from "./view/Home/Home";
 import { Landing } from "./view/Landing/Landing";
 import { Perfil } from "./view/Perfil/Perfil";
 import { Error } from "./view/Error/error";
-import {About} from "./view/About/About"
+import { About } from "./view/About/About"
 import ProtectedRoute from "./Authentication/protection/ProtectedRoute";
 import PublicRoutes from "./Authentication/protection/PublicRoutes";
 
@@ -17,15 +17,13 @@ function App() {
         <Route element={<PublicRoutes />}>
           <Route path="/" element={<Landing />} />
           <Route path="/register" element={<Registro />} />
-          
         </Route>
 
         <Route path="/" element={<ProtectedRoute />}>
           <Route path="/home" element={<Home />} />
           <Route path="/profile/:id" element={<Perfil />} />
-          <Route path='/about' element ={<About/> }/>
-          <Route path="/profesores/:id" element={<Detalle/>} />
-
+          <Route path='/about' element={<About />} />
+          <Route path="/profesores/:id" element={<Detalle />} />
         </Route>
 
         <Route path="*" element={<Error />} />

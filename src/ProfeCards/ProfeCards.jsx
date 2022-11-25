@@ -6,11 +6,11 @@ export const ProfeCards=({profes})=>{
     return (
         <div  className="ProfeCardsCont">
             {profes && profes.length>0 ?  (
-            profes?.map((e) => {
+            profes?.map((e, index) => {
               return e.Error ? (
                 <h4>profesor no encontrado</h4>
               ) : (
-                <div className="homeProfeCard col-md-3" key={e.id}>
+                <div className="homeProfeCard col-md-3" key={index}>
                  <Link to={"/profesores/"+ e.id }> 
                   <ProfeCard
                     username={e.username}
