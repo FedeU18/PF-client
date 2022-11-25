@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom'
 import "./Detalle.css";
-import img from "../../components/profesores/img/profecard.jpg"
+// import img from "../../components/profesores/img/profecard.jpg"
 import { getProfesorById } from '../../redux/Actions/Profesor';
 
 

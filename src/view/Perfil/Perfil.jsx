@@ -9,7 +9,7 @@ export const Perfil = () => {
   return (
     <>
       {tipoUsuario === "profesor" ? (
-        <PerfilProfesor />
+        <PerfilProfesor id={id}/>
       ) : (
         <PerfilAlumno id={id} />
       )}
