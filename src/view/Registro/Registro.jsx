@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react'
 import FormStudent from "../../components/FormStudent/FormStudent"
 import FormTeacher from '../../components/FormTeacher/FormTeacher'
@@ -14,15 +15,17 @@ const Registro = () => {
     setForm(true)
   }
   return (
-    <div className='forms'>
-      <div className='buttons'>
-        <button className='student' onClick={e=>handleTeacher(e)}>¿Querés enseñar?</button>
-        <button className='teacher' onClick={e=>handleStudent(e)}>¿Querés aprender?</button> 
+    <div className='fondo'>
+      <div className='forms'>
+        <div className='buttons'>
+          <button className='student' onClick={e=>handleTeacher(e)}>¿Querés enseñar?</button>
+          <button className='teacher' onClick={e=>handleStudent(e)}>¿Querés aprender?</button> 
+        </div>
+          {form ?
+          <FormStudent />
+          :
+          <FormTeacher />}
       </div>
-        {form ?
-        <FormStudent />
-        :
-        <FormTeacher />}
     </div>
   )
 }
