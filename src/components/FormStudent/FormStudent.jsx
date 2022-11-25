@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React, { useEffect, useRef } from 'react'
 import loginWithGoogle from '../../Authentication/functions/loginWithGoogle'
 import logOut from '../../Authentication/functions/logOut'
 import { useState } from "react";
@@ -7,6 +7,8 @@ import registerUser from '../../Authentication/functions/registerUser'
 import LoginWithEmailPassword from '../../Authentication/functions/loginWithEmailAndPassword'
 import { validateInput } from './validateInputStudents'
 import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { postAlumno } from '../../redux/Actions/Alumno';
 
 const initialStudentForm = {
   name: "",
@@ -16,7 +18,8 @@ const initialStudentForm = {
   passwordConfirm: "",
   rol: "student",
   age: "",
-  country: ""
+  country: "",
+  picture: "sin foto",
 }
 
 const initialStudentErrors = {
@@ -29,14 +32,21 @@ const initialStudentErrors = {
 }
 
 const FormStudent = () => {
+  const dispatch = useDispatch()
   const navigate = useNavigate()
   const passwordShow = useRef()
   const [globalMessage, setGlobalMessage] = useState("")
   const [login, setLogin] = useState(true)
   const [form, setForm] = useState(initialStudentForm)
-  const { name, lastname, email, password, passwordConfirm, age, rol } = form;
+  const { name, lastname, email, password, passwordConfirm, age, rol, picture, country } = form;
+  const countries = useSelector(state => state.paises.paises)
   const [errors, setErrors] = useState(initialStudentErrors)
   const { nameErr, lastnameErr, emailErr, passwordErr, ageErr } = errors;
+
+  // useEffect(() => {
+
+  // }, [])
+
 
   const handleChangeStudent = (e) => {
     const username = e.target.name;
@@ -66,7 +76,13 @@ const FormStudent = () => {
 
   const handlerSubmitStudent = async (e) => {
     e.preventDefault();
-
+    if (!country) {
+      setGlobalMessage("Please choose a country")
+      setTimeout(() => {
+        setGlobalMessage("")
+      }, 4000)
+      return
+    }
     if (!login) {
       try {
         const data = await LoginWithEmailPassword(email, password);
@@ -94,12 +110,19 @@ const FormStudent = () => {
           }, 4000);
           return;
         }
+        dispatch(postAlumno({
+          name,
+          lastname,
+          picture,
+          age,
+          email,
+          country
+        }))
         navigate("/home")
       } catch (error) {
         console.error(error)
       }
     }
-
 
     setForm(initialStudentForm);
   }
@@ -118,7 +141,7 @@ const FormStudent = () => {
                 id='name'
                 name='name'
                 onChange={handleChangeStudent}
-                className='form-control p-1 fs-5'
+                className='form-control p-1 fs-6 rounded-1'
                 value={name}
                 placeholder="enter your name..."
                 autoComplete='off'
@@ -134,7 +157,7 @@ const FormStudent = () => {
                 id='lastname'
                 name='lastname'
                 onChange={handleChangeStudent}
-                className='form-control p-1 fs-5'
+                className='form-control p-1 fs-6 rounded-1'
                 value={lastname}
                 placeholder="enter your lastname..."
                 autoComplete='off'
@@ -152,13 +175,13 @@ const FormStudent = () => {
               <label htmlFor="email">Email: </label>
               <input
                 type="text"
-                className={`form-control p-1 fs-5 ${styles.hover_email}`}
+                className={`form-control p-1 fs-6 rounded-1 ${styles.hover_email}`}
                 onChange={handleChangeStudent}
                 name="email"
                 value={email}
                 placeholder="email..."
               />
-              {login && emailErr && email.includes("@")
+              {login && emailErr && email.length > 1
                 &&
                 <p
                   className='text-center text-danger'
@@ -178,7 +201,7 @@ const FormStudent = () => {
                   id='age'
                   name='age'
                   onChange={handleChangeStudent}
-                  className='form-control p-1 fs-5'
+                  className='form-control p-1 fs-6 rounded-1'
                   value={age}
                   placeholder="age..."
                 />
@@ -186,6 +209,19 @@ const FormStudent = () => {
                   <p data-aos="fade-down" className='text-center text-danger d-inline'>Invalid age: 10 - 99</p>}
               </div>}
           </div>
+
+          <div className='mt-2'>
+            <label htmlFor="country">Country: </label>
+            <select name="country" id="country" onChange={handleChangeStudent} className="form-control p-1 fs-6 rounded-1">
+              <option value="">---</option>
+              {countries.length > 0 && countries.map(country => {
+                return <option value={country.name} key={country.id}>
+                  {country.name}
+                </option>
+              })}
+            </select>
+          </div>
+
 
 
           <div className='row jcc'>
@@ -199,7 +235,7 @@ const FormStudent = () => {
                 id='password'
                 name='password'
                 onChange={handleChangeStudent}
-                className='form-control p-1 fs-5'
+                className='form-control p-1 fs-6 rounded-1'
                 value={password}
                 placeholder="password..."
                 ref={passwordShow}
@@ -233,7 +269,7 @@ const FormStudent = () => {
               id='password-confirm'
               name='passwordConfirm'
               onChange={handleChangeStudent}
-              className='form-control p-1 fs-5'
+              className='form-control p-1 fs-6 rounded-1'
               value={passwordConfirm}
               placeholder="password Confirm..."
               autoComplete='off'
@@ -244,12 +280,11 @@ const FormStudent = () => {
             <p>{globalMessage}</p>
           </div>}
 
-
           <div className='mt-4 d-block text-center mb-2'>
             <button
               className='btn btn-success fs-6 rounded-1'
               disabled={login ?
-                (
+                (!country ||
                   nameErr ||
                   lastnameErr ||
                   passwordErr ||

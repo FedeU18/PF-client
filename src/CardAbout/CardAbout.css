@@ -1,29 +1,38 @@
-.a{
-    background-color: blue;
+.a {
+  background-color: blue;
 }
 
-.cardAboutContImg{
-    height: 200px;
-    object-fit: cover;
+.cardAboutContImg {
+  height: 200px;
+  object-fit: cover;
 }
 
-.aboutbtnsIc{
-    width: 60px;
+.aboutbtnsIc {
+  width: 60px;
 }
 
-.a{
-    all:unset
+.a {
+  all: unset;
 }
 
-.btnGitLink{
-    display: grid;
+.btnGitLink {
+  display: grid;
+  justify-content: center;
+  vertical-align: middle;
+  align-content: center;
+  background-color: rgb(15, 15, 15);
+  height: 40px;
+  border-radius: 5px;
+}
+.btnGitLink:hover {
+  background-color: rgb(29, 29, 29);
+}
+
+
+/* Añadido por michae para que la pagina no se rompa */
+.CardsContainer {
+    display: flex;
     justify-content: center;
-    vertical-align: middle;
-    align-content: center;
-    background-color: rgb(15, 15, 15);
-    height: 40px;
-    border-radius: 5px;
-}
-.btnGitLink:hover{
-    background-color: rgb(29, 29, 29);
+    flex-wrap: wrap;
+    gap: .4rem 2rem;
 }
