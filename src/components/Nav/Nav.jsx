@@ -1,50 +1,73 @@
-import Image from 'react-bootstrap/Image'
-import Container from 'react-bootstrap/Container';
-import './Nav.css'
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import NavDropdown from 'react-bootstrap/NavDropdown'
+import "bootstrap/dist/css/bootstrap.css";
+import logOut  from '../../Authentication/functions/logOut'
+import Image from "react-bootstrap/Image";
+import Container from "react-bootstrap/Container";
+import Nav from "react-bootstrap/Nav";
+import Navbar from "react-bootstrap/Navbar";
+import "./Nav.css";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import NavDropdown from "react-bootstrap/NavDropdown";
 import { useNavigate } from "react-router";
 import SearchBar from "../SearchBar/SearchBar";
 
+export const NavBar = (props) => {
+  const navigate = useNavigate();
 
-export const NavBar = () => {
-    const navigate = useNavigate()
-    const handleProfile = () => {
-        navigate('/profile')
-    }
+  const CloseMySesion = () => {
+    logOut();
+    navigate("/");
+  };
 
-    const handleGoHome = () => {
-        navigate('/home')
-    }
-    return (
-        <div className="nnnn" >
-            <Container fluid fixed="top" className="NavColorCss shadow-lg  mb-4" variant="dark" >
-                <Row>
+  const handleProfile = () => {
+    console.log("me ejcute");
+    navigate(`/miPerfil/${props.id}`);
+  };
 
-                    <Col >
-                        <span onClick={handleGoHome} className="logoNav">FYT</span>
-                    </Col>
+  const handleGoHome = () => {
+    navigate("/home");
+  };
+  return (
+    <div className="nnnn">
+      <Container
+        fluid
+        fixed="top"
+        className="NavColorCss shadow-lg  mb-4"
+        variant="dark"
+      >
+        <Row>
+          <Col>
+            <span onClick={handleGoHome} className="logoNav">
+             <img src={'logoPF.png'} className={'logoProyecto'}/>
+            </span>
+          </Col>
 
+          <Col xs={10}>
+            <div>
+              <SearchBar />
+            </div>{" "}
+          </Col>
 
-                    <Col   xs={10}>
-                        <SearchBar/>   </Col>
-
-
-                    <Col className="colAvatarDrop">
-                        <Image className="imgAvatar" src='https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png' roundedCircle />
-                        <NavDropdown className="dro" id="basic-nav-dropdown">
-                            <NavDropdown.Item onClick={handleProfile} >
-                                Ver Mi Perfil
-                            </NavDropdown.Item>
-                            <NavDropdown.Item href="">
-                                Cerrar Sesión
-                            </NavDropdown.Item>
-                        </NavDropdown>
-                    </Col>
-                </Row>
-            </Container>
-        </div>
-    )
-
-}
+          <Col className="colAvatarDrop">
+            <Image
+              className="imgAvatar"
+              src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
+              roundedCircle
+            />
+            <NavDropdown className="dro" id="basic-nav-dropdown">
+              <NavDropdown.Item onClick={handleProfile}>
+                Mi Perfil
+              </NavDropdown.Item>
+              <NavDropdown.Item onClick={CloseMySesion}>
+                Cerrar Sesión</NavDropdown.Item>
+              {/* <NavDropdown.Divider />
+                        <NavDropdown.Item href="">
+                            Separated link
+                        </NavDropdown.Item> */}
+            </NavDropdown>
+          </Col>
+        </Row>
+      </Container>
+    </div>
+  );
+};

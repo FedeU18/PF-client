@@ -1,0 +1,74 @@
+.firstContainer{
+  height: 100vh;
+  margin-bottom: 10rem;
+  background-color: rgb(73, 73, 73);
+}
+
+.detailContainer{
+  display: flex;
+  flex-wrap: wrap;
+  padding-top: 3rem;
+  background-color: rgb(73, 73, 73);
+ 
+ justify-content: center;
+  color: aliceblue;
+}
+.profImg{
+  width: 700px;
+  height: 500px;
+  border-radius: 10px;
+  margin-top: 80px;
+  margin-right: 60px;
+}
+.gameDetail{
+ 
+  align-items: center;
+  max-width: 600px;
+  margin-left: 40px;
+
+}
+.ratingDetails{
+  border:solid rgb(240, 152, 80);
+  color: rgb(237, 247, 222);
+  height: 25px;
+  width: 50px;
+  margin-left: 10px;
+  
+}
+.ratingDetail{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 30px;
+  
+}
+.detailPlatform{
+  margin-top: 7px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.backBtnDetail {
+  margin-top: 5rem;
+  padding: 13px 30px;
+  border-radius: 10px;
+  border: 0;
+  background-color: white;
+  box-shadow: rgb(0 0 0 / 5%) 0 0 8px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  font-size: 15px;
+  transition: all .5s ease;
+}
+ 
+
+ 
+
+
+.loadingDetail{
+  display: flex;
+  justify-content: center;
+  color: rgb(239, 239, 242);
+  font-size: 5rem;
+}
