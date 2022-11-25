@@ -4,6 +4,7 @@ import { useAuth } from "../../Authentication/context/AuthContext"
 import { Filtros } from "../../components/Filtros/Filtros";
 import { BsFillGrid3X3GapFill } from "react-icons/bs";
 import './Home.css'
+import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { getMaterias } from "../../redux/Actions/Materias";
 import { getPaises } from "../../redux/Actions/Paises"
