@@ -13,6 +13,13 @@ import { allProfes } from "../../redux/Actions/Profesor";
 import ProfeCards from "../../components/profesores/ProfeCards";
 import { useNavigate } from "react-router-dom";
 
+import { Link } from "react-router-dom";
+
+
+
+
+
+
 export const Home = () => {
   const [open, setOpen] = useState(false);
   const auth = useAuth();
@@ -23,6 +30,7 @@ export const Home = () => {
   );
   const profes = useSelector((state) => state.profesores.profesores); //todo el estado de profes
   console.log(profes);
+
 
   useEffect(() => {
     dispatch(allProfes());
@@ -109,8 +117,7 @@ export const Home = () => {
               X {filtrosSeleccionados.puntuacion}
             </button>
           )}
-
-        {filtrosSeleccionados.precio && filtrosSeleccionados.precio !== "" && (
+           {filtrosSeleccionados.precio && filtrosSeleccionados.precio !== "" && (
           <button
             className="btnListOpSelected"
             name="precio"
@@ -133,14 +140,9 @@ export const Home = () => {
                 <h4>profesor no encontrado</h4>
               ) : (
                 <div className="homeProfeCard col-md-3" key={e.id}>
-                  <ProfeCards
-                    nombre={e.nombre}
-                    imagen={e.imagen}
-                    pais={e.pais}
-                    descripcion={e.descripcion}
-                    materias={e.materias}
-                    puntuacion={e.puntuacion}
-                  />
+                  <Link to={"/profesores/"+ e.id}>
+                        <ProfeCards nombre={e.nombre} imagen={e.imagen} pais={e.pais} descripcion={e.descripcion} materias={e.materias} puntuacion={e.puntuacion} />
+                     </Link>
                 </div>
               );
             })
