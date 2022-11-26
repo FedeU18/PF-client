@@ -16,9 +16,8 @@ export const AlumnoPerfil = (props) => {
   }, []);
   let info = useSelector((state) => state.profesores.profesores);
   
-  
 
-  const deleteProfe= () => {
+  const deleteProfe = () => {
     alert("esta seguro de eliminar su cuenta de alumno");
     dispach(actions.deleteProfesor(props.id));
     navigate("/profile/1");

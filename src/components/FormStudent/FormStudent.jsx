@@ -8,7 +8,7 @@ import LoginWithEmailPassword from '../../Authentication/functions/loginWithEmai
 import { validateInput } from './validateInputStudents'
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { postAlumno } from '../../redux/Actions/Alumno';
+import { getAllAlumnos, postAlumno } from '../../redux/Actions/Alumno';
 
 const initialStudentForm = {
   name: "",
@@ -110,7 +110,11 @@ const FormStudent = () => {
           }, 4000);
           return;
         }
+
+        console.log(userLogin.user.uid);
+
         dispatch(postAlumno({
+          id: userLogin.user.uid,
           name,
           lastname,
           picture,

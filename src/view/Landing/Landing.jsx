@@ -25,6 +25,8 @@ export const Landing = () => {
         })
     }
 
+
+
     const handleSubmit = async (e) => {
         e.preventDefault()
         const register$ = await LoginWithEmailPassword(input.email, input.password)
@@ -66,7 +68,8 @@ export const Landing = () => {
                                         </form>
                                         {globalMessage && <p className='text-danger text-center fw-bold mt-2'>{globalMessage}</p>}
                                         <div className="pie-form">
-                                            <Link className='link'>¿Perdiste tu contraseña?</Link><br />
+                                            <Link to="/forgot-password"
+                                                className='link'>¿Perdiste tu contraseña?</Link><br />
                                             <Link to="/register" className='link'>¿No tienes Cuenta? Registrate</Link>
                                         </div>
                                     </div>

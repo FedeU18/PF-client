@@ -12,8 +12,9 @@ export default async function registerUser(email, password, form) {
       email,
       password
     );
-    await setUserData(userCreate.user.uid, form);
-    localStorage.setItem("isConnect", true)
+    console.log(userCreate);
+    await setUserData(userCreate.user.uid, { id: userCreate.user.uid, ...form });
+    return userCreate;
   } catch (error) {
     console.log(error.message);
     console.log(error.code);
