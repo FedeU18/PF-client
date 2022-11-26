@@ -18,10 +18,10 @@ export const AlumnoPerfil = (props) => {
   const deleteAlumno = () => {
     alert("esta seguro de eliminar su cuenta de alumno");
     dispach(actions.deleteAlumno(props.id));
-    logOut()
+    logOut();
     navigate("/");
   };
-  
+
   return (
     <div>
       {info.name ? (
@@ -81,7 +81,7 @@ export const AlumnoPerfil = (props) => {
                 </tr>
                 <tr>
                   <th scope="row">Pais</th>
-                  <td colspan="2">{info.country.name}</td>
+                  <td colspan="2">{info.country}</td>
                 </tr>
               </tbody>
             </table>

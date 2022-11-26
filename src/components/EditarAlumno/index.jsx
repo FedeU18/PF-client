@@ -128,7 +128,7 @@ export const EditarAlumno = (props) => {
                   className="input"
                   type="text"
                   name="country"
-                  placeholder={info.country.name}
+                  placeholder={info.country}
                   onChange={(e) => objActualizarAlumno(e)}
                   onBlur={(e) => objActualizarAlumno(e)}
                 />

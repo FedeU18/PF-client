@@ -22,12 +22,16 @@ export const Home = () => {
   const auth = useAuth();
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const idAlumno = 14; //este id para alumno es provisional, para probar la vista de el perfil de alumno se debe colocar el id de un alumno que este en 
-  // la tabla alumnos, "esto para probar"
+  console.log("ESTO ES AUTH ", auth.isAuth);
+  console.log("ESTO ES AUTH ", auth.isAuth);
 
-  console.log(auth.isAuth, auth.dbDataUser);
+  const idAlumno = auth.isAuth.uid;
+  // const idAlumno = auth.isAuth
+  //   ? auth.isAuth.displayName || auth.dbDataUser.name
+  //   : auth.isAuth.uid;
+
+  // console.log("--------> ", auth.isAuth);
   // isAuth , dbDataUser
-  
 
   const filtrosSeleccionados = useSelector(
     (state) => state.materias.filtrosSeleccionados
@@ -36,7 +40,7 @@ export const Home = () => {
   console.log(profes);
 
   useEffect(() => {
-    dispatch(getAllAlumnos())
+    dispatch(getAllAlumnos());
     dispatch(allProfes(filtrosSeleccionados));
   }, [dispatch]);
 
