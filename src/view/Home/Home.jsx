@@ -10,19 +10,25 @@ import { addOPSelected } from "../../redux/Actions/Materias";
 import { useDispatch, useSelector } from "react-redux";
 import { allProfes } from "../../redux/Actions/Profesor";
 import { ProfeCards } from "../../ProfeCards/ProfeCards";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
-import * as actions from "../../redux/Actions/Alumno";
 import { filterProfes } from "../../redux/Actions/Profesor";
 
 import { Link } from "react-router-dom";
+import { getAllAlumnos } from "../../redux/Actions/Alumno";
 
 export const Home = () => {
   const [open, setOpen] = useState(false);
   const auth = useAuth();
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const idAlumno = 14; //este id para alumno es provisional, para probar la vista de el perfil de alumno se debe colocar el id de un alumno que este en la tabla alumnos, "esto para probar"
+  const idAlumno = 14; //este id para alumno es provisional, para probar la vista de el perfil de alumno se debe colocar el id de un alumno que este en 
+  // la tabla alumnos, "esto para probar"
+
+  console.log(auth.isAuth, auth.dbDataUser);
+  // isAuth , dbDataUser
+  
+
   const filtrosSeleccionados = useSelector(
     (state) => state.materias.filtrosSeleccionados
   );
@@ -30,6 +36,7 @@ export const Home = () => {
   console.log(profes);
 
   useEffect(() => {
+    dispatch(getAllAlumnos())
     dispatch(allProfes(filtrosSeleccionados));
   }, [dispatch]);
 

@@ -9,6 +9,7 @@ import { Error } from "./view/Error/error";
 import { About } from "./view/About/About"
 import ProtectedRoute from "./Authentication/protection/ProtectedRoute";
 import PublicRoutes from "./Authentication/protection/PublicRoutes";
+import ForgotPassword from './view/ForgotPassword/ForgotPassword';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route element={<PublicRoutes />}>
           <Route path="/" element={<Landing />} />
           <Route path="/register" element={<Registro />} />
+          <Route path='/forgot-password' element={<ForgotPassword />} />
         </Route>
 
         <Route path="/" element={<ProtectedRoute />}>
