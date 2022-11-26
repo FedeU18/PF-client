@@ -14,7 +14,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { filterProfes } from "../../redux/Actions/Profesor";
 import { getAllAlumnos } from "../../redux/Actions/Alumno";
 import deleteCurrentUser from "../../Authentication/functions/deleteUser";
-
+import userAuthenticate from "../../Authentication/functions/user"
 
 export const Home = () => {
   const [open, setOpen] = useState(false);
