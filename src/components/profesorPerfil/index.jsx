@@ -35,7 +35,7 @@ export const AlumnoPerfil = (props) => {
           <br />
           <div>
             <h2>Informacion del Alumno</h2>
-            <table class="table">
+            <table className="table">
               <tbody>
                 <tr>
                   <th scope="row">Nombre</th>
