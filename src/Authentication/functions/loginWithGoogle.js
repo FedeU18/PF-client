@@ -7,9 +7,9 @@ import {
 
 export default async function loginWithGoogle() {
   try {
-    localStorage.setItem("user", "test");
     const provider = new GoogleAuthProvider();
     await signInWithPopup(auth, provider);
+    localStorage.setItem("user", "true");
   } catch (error) {
     console.error(error);
   }
