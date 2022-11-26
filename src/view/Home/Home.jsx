@@ -1,8 +1,7 @@
+import "./Home.css";
 import { NavBar } from "../../components/Nav/Nav";
-import { useAuth } from "../../Authentication/context/AuthContext";
 import { Filtros } from "../../components/Filtros/Filtros";
 import { BsFillGrid3X3GapFill } from "react-icons/bs";
-import "./Home.css";
 import { useEffect, useState } from "react";
 import { getMaterias } from "../../redux/Actions/Materias";
 import { getPaises } from "../../redux/Actions/Paises";
@@ -10,24 +9,18 @@ import { addOPSelected } from "../../redux/Actions/Materias";
 import { useDispatch, useSelector } from "react-redux";
 import { allProfes } from "../../redux/Actions/Profesor";
 import { ProfeCards } from "../../ProfeCards/ProfeCards";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { filterProfes } from "../../redux/Actions/Profesor";
 import { getAllAlumnos } from "../../redux/Actions/Alumno";
-import deleteCurrentUser from "../../Authentication/functions/deleteUser";
 import userAuthenticate from "../../Authentication/functions/user"
 
 export const Home = () => {
   const [open, setOpen] = useState(false);
-  const auth = useAuth();
   const user = userAuthenticate();
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const idAlumno = 14; //este id para alumno es provisional, para probar la vista de el perfil de alumno se debe colocar el id de un alumno que este en 
   // la tabla alumnos, "esto para probar"
-
-  console.log(auth.isAuth, auth.dbDataUser);
-  console.log(user)
-
 
   const filtrosSeleccionados = useSelector(
     (state) => state.materias.filtrosSeleccionados
@@ -77,14 +70,9 @@ export const Home = () => {
     );
   };
 
+
   return (
     <div>
-      <h1>IMPORTANTE</h1>
-      <h2>Ahora para requerir al usuario registrado tendran que llamar a la funcion "userAuthenticate" en el path "src/functions/user" este tiene un objeto con 
-        const myUser = userAuthenticate()
-        los datos si el user está activo y todo lo que necesita el desarrollador que quiera trabjar con la data del usuario registrado
-        se trabaja con el local storage -- este  mensaje será eliminado luego
-      </h2>
       <div>
         <NavBar idAlumno={idAlumno} />
         <button className="filtroBtn">
@@ -142,15 +130,14 @@ export const Home = () => {
         <ProfeCards profes={profes} />
 
         <div className="foot">
+          <hr />
           <footer>
-            <a
+            <Link
+              to="/about"
               className="aFootAbout"
-              onClick={() => {
-                navigate("/about");
-              }}
             >
               About
-            </a>
+            </Link>
           </footer>
         </div>
       </div>
