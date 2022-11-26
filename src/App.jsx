@@ -12,6 +12,7 @@ import PublicRoutes from "./Authentication/protection/PublicRoutes";
 import ForgotPassword from './view/ForgotPassword/ForgotPassword';
 
 function App() {
+
   return (
     <div className="App">
       <Routes>
