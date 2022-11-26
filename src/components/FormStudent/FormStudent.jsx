@@ -42,11 +42,7 @@ const FormStudent = () => {
   const countries = useSelector(state => state.paises.paises)
   const [errors, setErrors] = useState(initialStudentErrors)
   const { nameErr, lastnameErr, emailErr, passwordErr, ageErr } = errors;
-
-  // useEffect(() => {
-
-  // }, [])
-
+  const [loaderRegister, setLoaderRegister] = useState(false)
 
   const handleChangeStudent = (e) => {
     const username = e.target.name;
@@ -76,7 +72,10 @@ const FormStudent = () => {
 
   const handlerSubmitStudent = async (e) => {
     e.preventDefault();
+    console.log("aqui")
+    setLoaderRegister(true)
     if (!country) {
+      setLoaderRegister(false)
       setGlobalMessage("Please choose a country")
       setTimeout(() => {
         setGlobalMessage("")
@@ -86,15 +85,17 @@ const FormStudent = () => {
     if (!login) {
       try {
         const data = await LoginWithEmailPassword(email, password);
+
         if (typeof data === "string") {
+          setLoaderRegister(false)
           setGlobalMessage(data)
           setTimeout(() => {
             setGlobalMessage("")
           }, 4000)
           return;
         }
+        setLoaderRegister(false)
         navigate("/home")
-
       } catch (error) {
         console.error(error)
       }
@@ -104,14 +105,13 @@ const FormStudent = () => {
         const userLogin = await registerUser(email, password, form)
 
         if (typeof userLogin === "string") {
+          setLoaderRegister(false)
           setGlobalMessage(userLogin)
           setTimeout(() => {
             setGlobalMessage("")
           }, 4000);
           return;
         }
-
-        console.log(userLogin.user.uid);
 
         dispatch(postAlumno({
           id: userLogin.user.uid,
@@ -122,6 +122,7 @@ const FormStudent = () => {
           email,
           country
         }))
+        setLoaderRegister(false);
         navigate("/home")
       } catch (error) {
         console.error(error)
@@ -286,7 +287,8 @@ const FormStudent = () => {
 
           <div className='mt-4 d-block text-center mb-2'>
             <button
-              className='btn btn-success fs-6 rounded-1'
+              type='submit'
+              className="btn btn-primary"
               disabled={login ?
                 (!country ||
                   nameErr ||
@@ -302,7 +304,13 @@ const FormStudent = () => {
                 (!email || !password)
               }
             >
-              {login ? "Register" : "Log in"}
+              {loaderRegister &&
+                <>
+                  <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                  <span className="visually-hidden"></span>
+                </>
+              }
+              {login ? " Register" : " Log in"}
             </button>
           </div>
         </form>

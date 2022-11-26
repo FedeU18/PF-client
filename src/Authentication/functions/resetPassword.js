@@ -1,11 +1,13 @@
 import { getAuth, sendPasswordResetEmail } from "firebase/auth";
-import { auth } from "../firebase/credenciales";
+// import { auth } from "../firebase/credenciales";
 
 export default async function resetPassword(email) {
   try {
-    await sendPasswordResetEmail(auth, email);
+    const auth = getAuth();
+    const data = await sendPasswordResetEmail(auth, email);
+    console.log(data);
   } catch (error) {
-    const errorCode = error.code;
-    const errorMessage = error.message;
+    console.log(error.code);
+    console.log(error.message);
   }
 }
