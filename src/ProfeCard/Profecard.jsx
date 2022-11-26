@@ -29,7 +29,7 @@ export const ProfeCard=({nombre,descripcion,imagen,precio,materias,puntuacion,us
         <Card.Text>
           {descripcion}
           <br></br>
-          Enseña:   {materias?.length>0 && materias.map((m)=>(<span className='materiasNaCaPro'>  {m.name}  </span>))}
+          Enseña:   {materias?.length>0 && materias.map((m)=>(<span key={m.name} className='materiasNaCaPro'>  {m.name}  </span>))}
         </Card.Text>
         <div className='puncContCard'>
         <AiFillStar size={22} />
