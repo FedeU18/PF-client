@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 import image from "./concluido.png";
 import "./alumnoPerfil.css";
+import logOut from "../../Authentication/functions/logOut.js";
 
 export const AlumnoPerfil = (props) => {
   console.log("desde alumno perfil ", props.id);
@@ -17,6 +18,8 @@ export const AlumnoPerfil = (props) => {
   const deleteAlumno = () => {
     alert("esta seguro de eliminar su cuenta de alumno");
     dispach(actions.deleteAlumno(props.id));
+    logOut();
+
     navigate("/home");
   };
   return (

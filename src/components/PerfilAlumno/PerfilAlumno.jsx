@@ -12,7 +12,7 @@ function PerfilAlumno(props) {
   const openTrue = () => {
     setOpen(true);
   };
-  const OpenFalse = (close) => {
+  const OpenFalse = () => {
     setOpen(false);
   };
 

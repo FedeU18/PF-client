@@ -11,23 +11,23 @@ import { useDispatch, useSelector } from "react-redux";
 import { allProfes } from "../../redux/Actions/Profesor";
 import { ProfeCards } from "../../ProfeCards/ProfeCards";
 import { useNavigate } from "react-router-dom";
-
-import * as actions from "../../redux/Actions/Alumno";
 import { filterProfes } from "../../redux/Actions/Profesor";
-
-import { Link } from "react-router-dom";
 
 export const Home = () => {
   const [open, setOpen] = useState(false);
   const auth = useAuth();
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const idAlumno = 14; //este id para alumno es provisional, para probar la vista de el perfil de alumno se debe colocar el id de un alumno que este en la tabla alumnos, "esto para probar"
+  const idAlumno = "fahggsd64"; //este id para alumno es provisional, para probar la vista de el perfil de alumno se debe colocar el id de un alumno que este en la tabla alumnos, "esto para probar"
   const filtrosSeleccionados = useSelector(
     (state) => state.materias.filtrosSeleccionados
   );
   const profes = useSelector((state) => state.profesores.profesores); //todo el estado de profes
   console.log(profes);
+
+  /// auth.isAuth ..... buscamos para el usuario que acabo de entrar
+  // auth.dbDataUser--- se encuentra el id de el usuario
+  console.log("este es auth --->", auth);
 
   useEffect(() => {
     dispatch(allProfes(filtrosSeleccionados));
