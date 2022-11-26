@@ -16,7 +16,7 @@ import userAuthenticate from "../../Authentication/functions/user"
 
 export const Home = () => {
   const [open, setOpen] = useState(false);
-  const user = userAuthenticate();
+ // const user = userAuthenticate();
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const idAlumno = 14; //este id para alumno es provisional, para probar la vista de el perfil de alumno se debe colocar el id de un alumno que este en 
