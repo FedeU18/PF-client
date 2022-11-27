@@ -4,18 +4,15 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 import imag from "./default user.png";
 import "./alumnoPerfil.css";
-import deleteFirestoreUser from "../../Authentication/functions/deleteFirestoreUser"
-import deleteCurrentUser from "../../Authentication/functions/deleteCurretUser"
-import logOut from "../../Authentication/functions/logOut"
+import deleteFirestoreUser from "../../Authentication/functions/deleteFirestoreUser";
+import deleteCurrentUser from "../../Authentication/functions/deleteCurretUser";
+import logOut from "../../Authentication/functions/logOut";
 
 export const AlumnoPerfil = (props) => {
   console.log("desde alumno perfil ", props.id);
   const dispach = useDispatch();
   const navigate = useNavigate();
   const [image, setImage] = useState(imag);
-
-
-
 
   useEffect(() => {
     dispach(actions.getAlumnoFromAPI(props.id));
@@ -24,30 +21,35 @@ export const AlumnoPerfil = (props) => {
   let info = useSelector((state) => state.alumnos.alumno);
 
   const deleteAlumno = async () => {
-    const deleteAccount = window.confirm("esta seguro de eliminar su cuenta de alumno");
+    const deleteAccount = window.confirm(
+      "esta seguro de eliminar su cuenta de alumno"
+    );
     if (deleteAccount) {
       const UID = props.id;
       await deleteFirestoreUser(UID); // borra firestore
       dispach(actions.deleteAlumno(UID)); // borra base de datos
-      deleteCurrentUser() // borra de firebase auth
-      logOut() // lo deslogea 
+      deleteCurrentUser(); // borra de firebase auth
+      logOut(); // lo deslogea
       navigate("/"); // lo lleva al landing :)
-      // NO CAMBIAR EL ORDEN ,no comete errores pero si hace que se vea feo , primero eliminamos los datos para que 
+      // NO CAMBIAR EL ORDEN ,no comete errores pero si hace que se vea feo , primero eliminamos los datos para que
       // se podria arreglar con un loader pero ya veremos :)
     }
   };
 
-  function handleOpenWidget(){
-    var myWidget = window.cloudinary.createUploadWidget({
-        cloudName: 'dpeannw8c', 
-        uploadPreset: 'w5okfspz'}, (error, result) => { 
-          if (!error && result && result.event === "success") { 
-            setImage(result.info.url)
-          }
+  function handleOpenWidget() {
+    var myWidget = window.cloudinary.createUploadWidget(
+      {
+        cloudName: "dpeannw8c",
+        uploadPreset: "w5okfspz",
+      },
+      (error, result) => {
+        if (!error && result && result.event === "success") {
+          setImage(result.info.url);
         }
-      )
-      myWidget.open();
-};
+      }
+    );
+    myWidget.open();
+  }
 
   return (
     <div>
@@ -61,7 +63,13 @@ export const AlumnoPerfil = (props) => {
               </div>
               <div className="containerBtns">
                 <div>
-                  <button id = "upload widget" className="cloudinary-button" onClick={()=>handleOpenWidget()}>Upload Profile Picture</button>
+                  <button
+                    id="upload widget"
+                    className="cloudinary-button"
+                    onClick={() => handleOpenWidget()}
+                  >
+                    Upload Profile Picture
+                  </button>
                   <button
                     onClick={() => props.open()}
                     type="button"
@@ -109,7 +117,7 @@ export const AlumnoPerfil = (props) => {
                 </tr>
                 <tr>
                   <th scope="row">Pais</th>
-                  <td colspan="2">{info.country.name}</td>
+                  <td colspan="2">{info.country}</td>
                 </tr>
               </tbody>
             </table>
