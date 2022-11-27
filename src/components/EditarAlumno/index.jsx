@@ -36,7 +36,7 @@ export const EditarAlumno = (props) => {
 
   return (
     <div className={props.open ? "abicuaso" : "closecuaso"}>
-      {info.name ? (
+      {info && info.name ? (
         <div className="conatinerFormEditAlumno">
           <form
             onSubmit={(e) => updateAlumno(e)}

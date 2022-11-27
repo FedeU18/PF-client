@@ -4,6 +4,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 import image from "./concluido.png";
 import "./alumnoPerfil.css";
+import deleteFirestoreUser from "../../Authentication/functions/deleteFirestoreUser"
+import deleteCurrentUser from "../../Authentication/functions/deleteCurretUser"
+import logOut from "../../Authentication/functions/logOut"
 
 export const AlumnoPerfil = (props) => {
   console.log("desde alumno perfil ", props.id);
@@ -13,17 +16,26 @@ export const AlumnoPerfil = (props) => {
   useEffect(() => {
     dispach(actions.getAlumnoFromAPI(props.id));
   }, []);
+
   let info = useSelector((state) => state.alumnos.alumno);
-  const deleteAlumno = () => {
-    alert("esta seguro de eliminar su cuenta de alumno");
-    dispach(actions.deleteAlumno(props.id));
-    
-    navigate("/");
+
+  const deleteAlumno = async () => {
+    const deleteAccount = window.confirm("esta seguro de eliminar su cuenta de alumno");
+    if (deleteAccount) {
+      const UID = props.id;
+      await deleteFirestoreUser(UID); // borra firestore
+      dispach(actions.deleteAlumno(UID)); // borra base de datos
+      deleteCurrentUser() // borra de firebase auth
+      logOut() // lo deslogea 
+      navigate("/"); // lo lleva al landing :)
+      // NO CAMBIAR EL ORDEN ,no comete errores pero si hace que se vea feo , primero eliminamos los datos para que 
+      // se podria arreglar con un loader pero ya veremos :)
+    }
   };
 
   return (
     <div>
-      {info.name ? (
+      {info && info.name ? (
         <div className="divPrincipal">
           <div>
             <h4 className="nameCountry">{info.country}</h4>
