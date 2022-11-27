@@ -12,15 +12,18 @@ import { ProfeCards } from "../../ProfeCards/ProfeCards";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { filterProfes } from "../../redux/Actions/Profesor";
 import { getAllAlumnos } from "../../redux/Actions/Alumno";
-import userAuthenticate from "../../Authentication/functions/user"
+import userAuthenticate from "../../Authentication/functions/user";
+import { auth } from "../../Authentication/firebase/credenciales";
 
 export const Home = () => {
   const [open, setOpen] = useState(false);
   const user = userAuthenticate();
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const idAlumno = 14; //este id para alumno es provisional, para probar la vista de el perfil de alumno se debe colocar el id de un alumno que este en 
+  // console.log(auth.isAuth.uid);
+  const idAlumno = 15; //este id para alumno es provisional, para probar la vista de el perfil de alumno se debe colocar el id de un alumno que este en
   // la tabla alumnos, "esto para probar"
+  //holaa
 
   const filtrosSeleccionados = useSelector(
     (state) => state.materias.filtrosSeleccionados
@@ -29,7 +32,7 @@ export const Home = () => {
   console.log(profes);
 
   useEffect(() => {
-    dispatch(getAllAlumnos())
+    dispatch(getAllAlumnos());
     dispatch(allProfes(filtrosSeleccionados));
   }, [dispatch]);
 
@@ -69,7 +72,6 @@ export const Home = () => {
       })
     );
   };
-
 
   return (
     <div>
@@ -132,10 +134,7 @@ export const Home = () => {
         <div className="foot">
           <hr />
           <footer>
-            <Link
-              to="/about"
-              className="aFootAbout"
-            >
+            <Link to="/about" className="aFootAbout">
               About
             </Link>
           </footer>
