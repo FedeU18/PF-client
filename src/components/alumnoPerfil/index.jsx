@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import * as actions from "../../redux/Actions/Alumno.js";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
-import image from "./concluido.png";
+import imag from "./default user.png";
 import "./alumnoPerfil.css";
 import deleteFirestoreUser from "../../Authentication/functions/deleteFirestoreUser"
 import deleteCurrentUser from "../../Authentication/functions/deleteCurretUser"
@@ -12,6 +12,10 @@ export const AlumnoPerfil = (props) => {
   console.log("desde alumno perfil ", props.id);
   const dispach = useDispatch();
   const navigate = useNavigate();
+  const [image, setImage] = useState(imag);
+
+
+
 
   useEffect(() => {
     dispach(actions.getAlumnoFromAPI(props.id));
@@ -33,6 +37,18 @@ export const AlumnoPerfil = (props) => {
     }
   };
 
+  function handleOpenWidget(){
+    var myWidget = window.cloudinary.createUploadWidget({
+        cloudName: 'dpeannw8c', 
+        uploadPreset: 'w5okfspz'}, (error, result) => { 
+          if (!error && result && result.event === "success") { 
+            setImage(result.info.url)
+          }
+        }
+      )
+      myWidget.open();
+};
+
   return (
     <div>
       {info && info.name ? (
@@ -45,6 +61,7 @@ export const AlumnoPerfil = (props) => {
               </div>
               <div className="containerBtns">
                 <div>
+                  <button id = "upload widget" className="cloudinary-button" onClick={()=>handleOpenWidget()}>Upload Profile Picture</button>
                   <button
                     onClick={() => props.open()}
                     type="button"
