@@ -9,6 +9,7 @@ import { Error } from "./view/Error/error";
 import {About} from "./view/About/About"
 import ProtectedRoute from "./Authentication/protection/ProtectedRoute";
 import PublicRoutes from "./Authentication/protection/PublicRoutes";
+import PerfilProfesor from './components/PerfilProfesor/PerfilProfesor';
 
 function App() {
   return (
@@ -25,7 +26,7 @@ function App() {
           <Route path="/profile/:id" element={<Perfil />} />
           <Route path='/about' element ={<About/> }/>
           <Route path="/profesores/:id" element={<Detalle/>} />
-
+          <Route path="/editar/:id" element={<PerfilProfesor/>}/>
         </Route>
 
         <Route path="*" element={<Error />} />

@@ -12,6 +12,7 @@ const initialState = {
   profesores: [],
   allProfesores: [],
   detail: []
+
 };
 
 import { FilterOrder } from "./filterHelper";

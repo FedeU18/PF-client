@@ -3,21 +3,28 @@ import Card from 'react-bootstrap/Card';
 import {MdOutlineFavoriteBorder} from "react-icons/md";
 import {MdOutlineFavorite} from "react-icons/md";
 import { AiFillStar } from "react-icons/ai";
+import { Link } from 'react-router-dom';
 
-
-export const ProfeCard=({nombre,descripcion,imagen,precio,materias,puntuacion,username,pais})=> {
+export const ProfeCard=({id,nombre,descripcion,imagen,precio,materias,puntuacion,username,pais})=> {
   var regexUrl = /[a-z0-9-\.]+\.[a-z]{2,4}\/?([^\s<>\#%"\,\{\}\\|\\\^\[\]`]+)?$/;
   const img='https://as01.epimg.net/epik/imagenes/2020/01/17/portada/1579264345_014526_1579264425_noticia_normal_recorte1.jpg'
   const [fav , setFav]=useState(false)
   return (
-    <Card style={{ width: '18rem' , margin:'16px' }}>
+   
+   <Card style={{ width: '18rem' , margin:'16px' }}>
+     
+     <Link to={"/profesores/"+ id }> 
      <img  src={imagen} className='cardAboutContImg' />
+     </Link>
+
       <Card.Body>
         <Card.Title>
           <div className='usuarioCont'>
             <div className='AvatarNameProf'>
               <div>{username?.length>0 && (<>{username[0].toUpperCase()}</>)}</div>
+              
             </div>
+            
             <div className='nameUsuarioC'>
               {username}
             </div>

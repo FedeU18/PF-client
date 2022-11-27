@@ -11,8 +11,9 @@ export const ProfeCards=({profes})=>{
                 <h4>profesor no encontrado</h4>
               ) : (
                 <div className="homeProfeCard col-md-3" key={e.id}>
-                 <Link to={"/profesores/"+ e.id }> 
+                 {/* <Link to={"/profesores/"+ e.id }>   cambie el link a el otro componente para usar la foto  */}
                   <ProfeCard
+                    id={e.id}
                     username={e.username}
                     nombre={e.nombre}
                     imagen={e.imagen}
@@ -23,7 +24,7 @@ export const ProfeCards=({profes})=>{
                     precio={e.precio}
                     
                   />
-                  </Link>
+                  {/* </Link> */}
                 </div>
               );
             })
