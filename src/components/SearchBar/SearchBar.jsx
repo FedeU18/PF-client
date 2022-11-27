@@ -1,79 +1,83 @@
 import { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import './SearchBar.css'
-import { useEffect } from 'react';
-const infoDemo= ['alan or','python','react','Lady Gaga', 'avigail','aveces']
+import { useNavigate } from 'react-router-dom';
 
 export const SearchBar =()=>{
-    const dispatch = useDispatch()
-    const history = useNavigate()
+    const navigate = useNavigate();
 
     const allTeachers = useSelector((state)=>state.profesores.profesores)
-    console.log("Soy los profesores", allTeachers)
-    
-    const[suggestions,setSuggestions]=useState([])
-    const [text,setText] = useState('')
+    //console.log("Soy los allprofesores", allTeachers)
+    //console.log("Soy los allprofesores[0].nombre:", allTeachers[0].nombre)
+    const arrProfesores = allTeachers.map(ele=>ele.nombre)
+    //console.log("Soy los arrProfesores-> ", arrProfesores)
+    const [ sugerencias, setSugerencias ] = useState([])
+    const [ text, setText] = useState('')
+    //console.log("soy sugerencias",sugerencias)
+//--------- FUNCION ------------------------------
+const handleComplete=(nameTeacher)=>{
+    let idTeach = allTeachers.find(el=>el.nombre==nameTeacher)
+    //console.log("id: ", idTeach)
+    let idLimpio = idTeach.id
+    //console.log("idLimpio: ",idLimpio)
+    navigate(`/profesores/${idLimpio}`)
 
-  
-
-    const handleKeyDown = (event) => {  
-        const im=suggestions.indexOf(text)
-        if (event.key === 'Enter') {          
+}
+//------------- MANIPULADOR  TECLA ARROW ↑ ↓ --------------------------------------------------------------
+    const handleKeyDown = (e) => {  
+        const posicion = sugerencias.indexOf(text)
+        //console.log("soy la posicion actual", posicion)
+        if( e.key === 'Enter' ) {            
           onSuggestHandler(text)
-          event.preventDefault(); 
+          e.preventDefault(); 
          }
-
-         if (event.key === "ArrowUp"){
-             
-            if(im>=0){
-                setText(suggestions[im-1])
+         if( e.key === "ArrowUp" ){
+             if(posicion>=0){
+                setText(sugerencias[posicion-1])
             }
             else{                
-                setText(suggestions[suggestions.length-1])
+                setText(sugerencias[sugerencias.length-1])
                 }
             }
+         if (e.key === "ArrowDown"){
             
-         
-         if (event.key === "ArrowDown"){
-            
-             if(im<suggestions.length){
-                setText(suggestions[im+1])               
+             if(posicion<sugerencias.length){
+                setText(sugerencias[posicion+1])               
             }
-            if(im===suggestions.length){
-                
-                setText(suggestions[im])
+            if(posicion===sugerencias.length){   
+                setText(sugerencias[posicion])
             }           
          }
        };
-    const onChangeInput=(text)=>{
-        let matches=[]
-        let short=[]
-        if(text.length>0){
-            matches=allTeachers.filter(name=>{
-                
-                const regex= new RegExp(`${text}`,"gi")
-                return name.match(regex)
+//-------------MANIPULADOR CAMBIAR INPUT--------------------------------------------------------------------------------------
+        const onChangeInput=(text)=>{
+            let matches = []
+            let short = []
+            if( text.length>0 ){
+                matches = arrProfesores.filter( (name) =>{
+                    const regex = new RegExp(`${text}`,"gi")
+                    return name.match(regex)
             })
         }
         matches.map((m,i)=>{if(i<5){short.push(m)}})
-        setSuggestions(short)
+        setSugerencias(short)
         setText(text)
-       
     }
+//---------------------------------------------------------------------------------------------------    
     const onSuggestHandler=(text)=>{       
-       if(text.length>0){
+       //deberia llevarme al detalle
+        if(text.length>0){
         setText(text)
+        handleComplete(text)
         console.log('va')
-        setSuggestions([])
-        
-        
+        setSugerencias([])        
        }       
     }
 
     const onSubmitHandler=(e)=>{
         e.preventDefault();
-        
+        // deberia llevarme al detalle
+        console.log("deberia llevarme al detalle")
         onSuggestHandler(text)
     }
    
@@ -83,9 +87,9 @@ export const SearchBar =()=>{
             <div className="searchInputWrapper">
                 <input className="searchInput" 
                         type="text" 
-                        placeholder='focus here to search'
+                        placeholder='Buscar Nombre del Profesor...'
                         value={text}
-                        onBlur={()=>{ setTimeout(()=>{setSuggestions([])},200)}}
+                        onBlur={()=>{ setTimeout(()=>{setSugerencias([])},200)}}
                         onChange={(e)=>{onChangeInput(e.target.value)}}
                         onKeyDown={(e)=>{handleKeyDown(e)}}
                         >                
@@ -95,15 +99,17 @@ export const SearchBar =()=>{
                 
             </div>
             <div className='sugCont'>
-                {suggestions && suggestions.map((sugName,i)=>(
-                        <div  key={i} 
-                                id={suggestions.length===i+1 ?'su':'else'}
-                                className={`suggestion ${text===sugName&& 'sugestiononKey'}`}
-                                onBlur={()=>{ setTimeout(()=>{setSuggestions([])},1)}}
-                                onClick={()=>onSuggestHandler(sugName)}
-                               
-                            >{sugName}
-                        </div> ))}
+                {sugerencias && sugerencias.map((sugName,i)=>(
+                    <div  
+                            key={sugName} 
+                            id={sugerencias.length===i+1 ?'su':'else'}
+                            className={`suggestion ${text===sugName&& 'sugestiononKey'}`}
+                            onBlur={()=>{ setTimeout(()=>{setSugerencias([])},1)}}
+                            onClick={()=>onSuggestHandler(sugName)}     
+                    >
+                        {sugName}
+                    </div> 
+                        ))}
             </div>
         </form>
         </>
