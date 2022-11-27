@@ -58,18 +58,22 @@ export const AlumnoPerfil = (props) => {
           <div>
             <h4 className="nameCountry">{info.country}</h4>
             <div className="containerImgPerfil">
-              <div className="containerPerfil">
-                <img src={image} alt={info.picture} />
+              <h1 className="titleContainerPerfil">
+                {info.name} {info.lastname}
+              </h1>
+              <div>
+                <div className="containerPerfil">
+                  <img src={image} alt={info.picture} />
+                  <div
+                    className="containerLoadingImg"
+                    onClick={() => handleOpenWidget()}
+                  >
+                    <img src={image} alt="" />
+                  </div>
+                </div>
               </div>
               <div className="containerBtns">
                 <div>
-                  <button
-                    id="upload widget"
-                    className="cloudinary-button"
-                    onClick={() => handleOpenWidget()}
-                  >
-                    Upload Profile Picture
-                  </button>
                   <button
                     onClick={() => props.open()}
                     type="button"
