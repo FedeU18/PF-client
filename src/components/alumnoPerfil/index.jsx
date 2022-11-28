@@ -113,15 +113,15 @@ export const AlumnoPerfil = (props) => {
                 </tr>
                 <tr>
                   <th scope="row">Edad</th>
-                  <td colspan="2">{info.age}</td>
+                  <td colSpan="2">{info.age}</td>
                 </tr>
                 <tr>
                   <th scope="row">Correo</th>
-                  <td colspan="2">{info.email}</td>
+                  <td colSpan="2">{info.email}</td>
                 </tr>
                 <tr>
                   <th scope="row">Pais</th>
-                  <td colspan="2">{info.country}</td>
+                  <td colSpan="2">{info.country}</td>
                 </tr>
               </tbody>
             </table>

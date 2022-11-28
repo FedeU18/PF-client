@@ -42,7 +42,7 @@ export const EditarAlumno = (props) => {
             onSubmit={(e) => updateAlumno(e)}
             className="formEditAlumno"
             action=""
-            autocomplete="off"
+            autoComplete="off"
           >
             <div className="container_inputs">
               <button

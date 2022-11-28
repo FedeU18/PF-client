@@ -103,3 +103,8 @@ export function filterProfes (filtros){
   };
 
 
+export function clear () {
+    return {
+        type: 'CLEAR'
+    }
+}

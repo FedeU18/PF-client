@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import "./Detalle.css";
 import img from "../../view/PerfilProfesor/img/1.jpg"
-import { getProfesorById } from "../../redux/Actions/Profesor";
+import { clear, getProfesorById } from "../../redux/Actions/Profesor";
 import { Link } from "react-router-dom";
 import {AiFillStar} from "react-icons/ai";
 import { NavBar } from "../../components/Nav/Nav"
@@ -17,6 +17,7 @@ export const Detalle = () => {
   
   useEffect(() => {
     dispatch(getProfesorById(id));
+    return ()=> dispatch(clear())
   }, []);
    
   

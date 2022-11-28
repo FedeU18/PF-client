@@ -13,9 +13,9 @@ export const ProfeCard=({id,nombre,descripcion,imagen,precio,materias,puntuacion
    
    <Card style={{ width: '18rem' , margin:'16px' }}>
      
-     <Link to={"/profesores/"+ id }> 
+
      <img  src={imagen} className='cardAboutContImg' />
-     </Link>
+
 
       <Card.Body>
         <Card.Title>
