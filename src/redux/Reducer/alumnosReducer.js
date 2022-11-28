@@ -2,6 +2,7 @@ import {
   GET_ALUMNO,
   DELETE_ALUMNO,
   GET_ALL_ALUMNOS,
+  VACIAR_ESTADO,
 } from "../types/typesAlumno";
 
 const initialState = {
@@ -34,6 +35,12 @@ const alumnosReducer = (state = initialState, action) => {
         ...state,
         alumnos: action.payload,
       };
+    case VACIAR_ESTADO:
+      return {
+        ...state,
+        alumno: action.payload,
+      };
+
     default:
       return {
         ...state,

@@ -21,12 +21,6 @@ export const Home = () => {
   const [open, setOpen] = useState(false);
   // const user = userAuthenticate();
   const dispatch = useDispatch();
-  const navigate = useNavigate();
-  let alumno = userAuthenticate();
-  console.log(alumno)
-
-  const idAlumno = alumno.userData.id;
-  // const idAlumno = undefined;
 
   const filtrosSeleccionados = useSelector(
     (state) => state.materias.filtrosSeleccionados
@@ -76,9 +70,9 @@ export const Home = () => {
 
   return (
     <div>
-      {idAlumno && filtrosSeleccionados && profes ? (
+      {id && filtrosSeleccionados && profes ? (
         <div>
-          <NavBar idAlumno={idAlumno} />
+          <NavBar id={id} />
           <button className="filtroBtn">
             <BsFillGrid3X3GapFill onClick={handleFiltros} />
           </button>
