@@ -23,6 +23,7 @@ export const EditarAlumno = (props) => {
       });
     } else {
       setActualizar({
+        ...actualizar,
         [e.target.name]: info[e.target.name],
       });
     }
@@ -33,6 +34,8 @@ export const EditarAlumno = (props) => {
     e.preventDefault();
     dispatch(actions.editAlumno(actualizar, info.id));
   };
+
+  ///funciona imput desde commit 12
 
   return (
     <div className={props.open ? "abicuaso" : "closecuaso"}>
