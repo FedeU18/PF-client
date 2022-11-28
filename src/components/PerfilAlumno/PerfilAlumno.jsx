@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-import { useParams } from "react-router-dom";
-import { NavBar } from "../Nav/Nav";
 import { AlumnoPerfil } from "../alumnoPerfil";
 import { EditarAlumno } from "../EditarAlumno";
 
@@ -12,7 +10,7 @@ function PerfilAlumno(props) {
   const openTrue = () => {
     setOpen(true);
   };
-  const OpenFalse = (close) => {
+  const OpenFalse = () => {
     setOpen(false);
   };
 

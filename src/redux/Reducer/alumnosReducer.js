@@ -8,15 +8,17 @@ const initialState = {
   alumno: [],
   alumnos: [],
 };
+console.log("soy el estado alumno---->", initialState.alumno);
 
 const alumnosReducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_ALUMNO:
-      console.log(state.alumno);
+      console.log("obj alumno desde reducer---->", state.alumno);
       return {
         ...state,
         alumno: action.payload,
       };
+
     case DELETE_ALUMNO:
       return {
         ...state,

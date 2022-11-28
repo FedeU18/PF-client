@@ -23,7 +23,7 @@ export const Home = () => {
   const navigate = useNavigate();
   let alumno = autentication();
 
-  console.log("hola soy userAuthenticate ---->", alumno.userData.id);
+  console.log("hola soy userAuthenticate ---->", alumno.userData);
   const idAlumno = alumno.userData.id; //este id para alumno es provisional, para probar la vista de el perfil de alumno se debe colocar el id de un alumno que este en
   // la tabla alumnos, "esto para probar"
 
