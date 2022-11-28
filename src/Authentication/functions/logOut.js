@@ -4,7 +4,9 @@ import { signOut } from "firebase/auth";
 
 export default async function logOut() {
   try {
+    localStorage.removeItem("userDataAuth")
     localStorage.removeItem("user");
+    localStorage.removeItem("userData");
     await signOut(auth);
   } catch (error) {
     console.log(error);

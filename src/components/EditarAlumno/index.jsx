@@ -36,7 +36,7 @@ export const EditarAlumno = (props) => {
 
   return (
     <div className={props.open ? "abicuaso" : "closecuaso"}>
-      {info.name ? (
+      {info && info.name ? (
         <div className="conatinerFormEditAlumno">
           <form
             onSubmit={(e) => updateAlumno(e)}
@@ -116,6 +116,7 @@ export const EditarAlumno = (props) => {
                   type="text"
                   name="email"
                   placeholder={info.email}
+                  value={info.email}
                   onChange={(e) => objActualizarAlumno(e)}
                   onBlur={(e) => objActualizarAlumno(e)}
                 />
@@ -128,7 +129,7 @@ export const EditarAlumno = (props) => {
                   className="input"
                   type="text"
                   name="country"
-                  placeholder={info.country.name}
+                  placeholder={info.country}
                   onChange={(e) => objActualizarAlumno(e)}
                   onBlur={(e) => objActualizarAlumno(e)}
                 />

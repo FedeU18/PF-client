@@ -1,8 +1,7 @@
+import "./Home.css";
 import { NavBar } from "../../components/Nav/Nav";
-import { useAuth } from "../../Authentication/context/AuthContext";
 import { Filtros } from "../../components/Filtros/Filtros";
 import { BsFillGrid3X3GapFill } from "react-icons/bs";
-import "./Home.css";
 import { useEffect, useState } from "react";
 import { getMaterias } from "../../redux/Actions/Materias";
 import { getPaises } from "../../redux/Actions/Paises";
@@ -10,19 +9,24 @@ import { addOPSelected } from "../../redux/Actions/Materias";
 import { useDispatch, useSelector } from "react-redux";
 import { allProfes } from "../../redux/Actions/Profesor";
 import { ProfeCards } from "../../ProfeCards/ProfeCards";
-import { useNavigate } from "react-router-dom";
-
-import * as actions from "../../redux/Actions/Alumno";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { filterProfes } from "../../redux/Actions/Profesor";
-
-import { Link } from "react-router-dom";
+import { getAllAlumnos } from "../../redux/Actions/Alumno";
+import userAuthenticate from "../../Authentication/functions/user";
+import { auth } from "../../Authentication/firebase/credenciales";
+import autentication from "../../Authentication/functions/user";
 
 export const Home = () => {
   const [open, setOpen] = useState(false);
-  const auth = useAuth();
+  // const user = userAuthenticate();
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const idAlumno = 14; //este id para alumno es provisional, para probar la vista de el perfil de alumno se debe colocar el id de un alumno que este en la tabla alumnos, "esto para probar"
+  let alumno = autentication();
+
+  console.log("hola soy userAuthenticate ---->", alumno.userData.id);
+  const idAlumno = alumno.userData.id; //este id para alumno es provisional, para probar la vista de el perfil de alumno se debe colocar el id de un alumno que este en
+  // la tabla alumnos, "esto para probar"
+
   const filtrosSeleccionados = useSelector(
     (state) => state.materias.filtrosSeleccionados
   );
@@ -30,6 +34,7 @@ export const Home = () => {
   console.log(profes);
 
   useEffect(() => {
+    dispatch(getAllAlumnos());
     dispatch(allProfes(filtrosSeleccionados));
   }, [dispatch]);
 
@@ -129,15 +134,11 @@ export const Home = () => {
         <ProfeCards profes={profes} />
 
         <div className="foot">
+          <hr />
           <footer>
-            <a
-              className="aFootAbout"
-              onClick={() => {
-                navigate("/about");
-              }}
-            >
+            <Link to="/about" className="aFootAbout">
               About
-            </a>
+            </Link>
           </footer>
         </div>
       </div>

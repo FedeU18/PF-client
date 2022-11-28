@@ -2,32 +2,75 @@ import React, { useEffect, useState } from "react";
 import * as actions from "../../redux/Actions/Alumno.js";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
-import image from "./concluido.png";
+import imag from "./default user.png";
 import "./alumnoPerfil.css";
+import deleteFirestoreUser from "../../Authentication/functions/deleteFirestoreUser";
+import deleteCurrentUser from "../../Authentication/functions/deleteCurretUser";
+import logOut from "../../Authentication/functions/logOut";
 
 export const AlumnoPerfil = (props) => {
   console.log("desde alumno perfil ", props.id);
   const dispach = useDispatch();
   const navigate = useNavigate();
+  const [image, setImage] = useState(imag);
 
   useEffect(() => {
     dispach(actions.getAlumnoFromAPI(props.id));
   }, []);
+
   let info = useSelector((state) => state.alumnos.alumno);
-  const deleteAlumno = () => {
-    alert("esta seguro de eliminar su cuenta de alumno");
-    dispach(actions.deleteAlumno(props.id));
-    navigate("/home");
+
+  const deleteAlumno = async () => {
+    const deleteAccount = window.confirm(
+      "esta seguro de eliminar su cuenta de alumno"
+    );
+    if (deleteAccount) {
+      const UID = props.id;
+      await deleteFirestoreUser(UID); // borra firestore
+      dispach(actions.deleteAlumno(UID)); // borra base de datos
+      deleteCurrentUser(); // borra de firebase auth
+      logOut(); // lo deslogea
+      navigate("/"); // lo lleva al landing :)
+      // NO CAMBIAR EL ORDEN ,no comete errores pero si hace que se vea feo , primero eliminamos los datos para que
+      // se podria arreglar con un loader pero ya veremos :)
+    }
   };
+
+  function handleOpenWidget() {
+    var myWidget = window.cloudinary.createUploadWidget(
+      {
+        cloudName: "dpeannw8c",
+        uploadPreset: "w5okfspz",
+      },
+      (error, result) => {
+        if (!error && result && result.event === "success") {
+          setImage(result.info.url);
+        }
+      }
+    );
+    myWidget.open();
+  }
+
   return (
     <div>
-      {info.name ? (
+      {info && info.name ? (
         <div className="divPrincipal">
           <div>
             <h4 className="nameCountry">{info.country}</h4>
             <div className="containerImgPerfil">
-              <div className="containerPerfil">
-                <img src={image} alt={info.picture} />
+              <h1 className="titleContainerPerfil">
+                {info.name} {info.lastname}
+              </h1>
+              <div>
+                <div className="containerPerfil">
+                  <img src={image} alt={info.picture} />
+                  <div
+                    className="containerLoadingImg"
+                    onClick={() => handleOpenWidget()}
+                  >
+                    <img src={image} alt="" />
+                  </div>
+                </div>
               </div>
               <div className="containerBtns">
                 <div>
@@ -58,7 +101,7 @@ export const AlumnoPerfil = (props) => {
 
           <div className="tbInfoAlumno">
             <h2>Informacion del Alumno</h2>
-            <table class="table">
+            <table className="table">
               <tbody>
                 <tr>
                   <th scope="row">Nombre</th>
@@ -78,7 +121,7 @@ export const AlumnoPerfil = (props) => {
                 </tr>
                 <tr>
                   <th scope="row">Pais</th>
-                  <td colspan="2">{info.country.name}</td>
+                  <td colspan="2">{info.country}</td>
                 </tr>
               </tbody>
             </table>

@@ -9,25 +9,35 @@ import { Link } from 'react-router-dom'
 import LoginWithEmailPassword from '../../Authentication/functions/loginWithEmailAndPassword'
 import { useNavigate } from 'react-router-dom'
 
-export const Landing =()=>{
+export const Landing = () => {
+    const [globalMessage, setGlobalMessage] = useState("")
     const navigate = useNavigate()
 
-    const [input,setInput] = useState({
+    const [input, setInput] = useState({
         email: "",
         password: ""
     })
 
-    const handleInput = (e)=>{
+    const handleInput = (e) => {
         setInput({
             ...input,
             [e.target.name]: e.target.value
         })
     }
 
-    const handleSubmit = async (e) =>{
+
+
+    const handleSubmit = async (e) => {
         e.preventDefault()
-        await LoginWithEmailPassword(input.email,input.password)
-        navigate('/home')
+        const register$ = await LoginWithEmailPassword(input.email, input.password)
+        if (typeof register$ === "string") {
+            setGlobalMessage(register$)
+            setTimeout(() => {
+                setGlobalMessage("")
+            }, 3000);
+        } else {
+            navigate('/home')
+        }
     }
     return (
         <div className="fondo">
@@ -50,14 +60,16 @@ export const Landing =()=>{
                                             Bienvenido
                                         </div>
                                         <form id="loginform">
-                                            <input onChange={(e)=>handleInput(e)} type="text" name="email" placeholder="Email" value={input.email} />
-                                            
-                                            <input onChange={(e)=>handleInput(e)} type="password" placeholder="Contraseña" name="password" value={input.password} />
-                                            
-                                            <button type="submit" onClick={(e)=>handleSubmit(e)} title="Ingresar" name="Ingresar">Login</button>
+                                            <input onChange={(e) => handleInput(e)} type="text" name="email" placeholder="Email" value={input.email} />
+
+                                            <input onChange={(e) => handleInput(e)} type="password" placeholder="Contraseña" name="password" value={input.password} />
+
+                                            <button type="submit" onClick={(e) => handleSubmit(e)} title="Ingresar" name="Ingresar">Login</button>
                                         </form>
+                                        {globalMessage && <p className='text-danger text-center fw-bold mt-2'>{globalMessage}</p>}
                                         <div className="pie-form">
-                                            <Link className='link'>¿Perdiste tu contraseña?</Link><br />
+                                            <Link to="/forgot-password"
+                                                className='link'>¿Perdiste tu contraseña?</Link><br />
                                             <Link to="/register" className='link'>¿No tienes Cuenta? Registrate</Link>
                                         </div>
                                     </div>

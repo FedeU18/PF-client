@@ -5,12 +5,15 @@ import getCurrentUser from "./getCurrentUser";
 const LoginWithEmailPassword = async (email, password) => {
   try {
     const usuario = await signInWithEmailAndPassword(auth, email, password);
-    getCurrentUser(usuario)
+    const getFirestoreData = await getCurrentUser(usuario.user.uid);
 
-    localStorage.setItem("user", "test");
+    const dataAuth = JSON.stringify(usuario.user); 
+    const dataFirestore = JSON.stringify(getFirestoreData);
+
+    localStorage.setItem("userDataAuth", dataAuth);
+    localStorage.setItem("userData", dataFirestore);
+    localStorage.setItem("user", "true");
   } catch (err) {
-    console.error(err.code);
-
     if (err.code === "auth/user-not-found") {
       return "this account does not exist";
     } else if (err.code === "auth/invalid-email") {
