@@ -15,7 +15,7 @@ import userAuthentication from "../../Authentication/functions/user"
 export const NavBar = (props) => {
   console.log("soy id de alumno ", props.idAlumno);
   const navigate = useNavigate();
-  const user = userAuthentication();
+  const {userData} = userAuthentication();
 
   const CloseMySesion = () => {
     logOut();
@@ -25,7 +25,7 @@ export const NavBar = (props) => {
   const handleProfile = () => {
     console.log()
     console.log("me ejcute");
-    navigate(`/profile/${props.idAlumno}`);
+    navigate(`/profile/${userData.id}`);
   };
 
   const handleGoHome = () => {
