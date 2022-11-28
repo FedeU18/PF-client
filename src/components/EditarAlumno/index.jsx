@@ -25,6 +25,7 @@ export const EditarAlumno = (props) => {
       });
     } else {
       setActualizar({
+        ...actualizar,
         [e.target.name]: info[e.target.name],
       });
     }
