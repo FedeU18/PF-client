@@ -11,7 +11,8 @@ import {
 const initialState = {
   profesores: [],
   allProfesores: [],
-  detail: []
+  detail: {}
+
 };
 
 import { FilterOrder } from "./filterHelper";
@@ -103,6 +104,11 @@ const profesoresReducer = (state = initialState, action) => {
                   profesores:filterPuntuacion
                 }
     }
+    case 'CLEAR':
+      return {
+        ...state,
+        detail:{}
+      }
     default:
       return {
         ...state,

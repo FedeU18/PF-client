@@ -10,6 +10,7 @@ import { About } from "./view/About/About"
 import ProtectedRoute from "./Authentication/protection/ProtectedRoute";
 import PublicRoutes from "./Authentication/protection/PublicRoutes";
 import ForgotPassword from './view/ForgotPassword/ForgotPassword';
+import PerfilProfesor from './components/PerfilProfesor/PerfilProfesor';
 
 function App() {
 
@@ -25,8 +26,9 @@ function App() {
         <Route path="/" element={<ProtectedRoute />}>
           <Route path="/home" element={<Home />} />
           <Route path="/profile/:id" element={<Perfil />} />
-          <Route path='/about' element={<About />} />
-          <Route path="/profesores/:id" element={<Detalle />} />
+          <Route path='/about' element ={<About/> }/>
+          <Route path="/profesores/:id" element={<Detalle/>} />
+          <Route path="/editar/:id" element={<PerfilProfesor/>}/>
         </Route>
 
         <Route path="*" element={<Error />} />

@@ -14,9 +14,11 @@ const ProfesorPerfil = ()=>{
         dispatch(getProfesorById(id))
     },[])
 
-    let info = useSelector((state)=> state.profesores.profesores)
+    let info = useSelector((state)=> state.profesores.detail)
     console.log(info)
-    const deleteAlumno = ()=>{
+    
+    
+    const DeleteProfesor = ()=>{
         alert("Esta seguro de eliminar su cuenta de profesor?")
         dispatch(deleteProfesor(id))
         navigate("/")
@@ -24,21 +26,50 @@ const ProfesorPerfil = ()=>{
 
     return(
         <div>
-            {info.name?(
-                <div>
+      {info.nombre ? (
+             <div>
                     <p>{info.id}</p>
-                    <div>
-                        <img src={info.image} alt={info.name} />
-                    </div>
-                    <br/>
-                    <br/>
-                    <div>
-                        <h2>Informacion del Profesor</h2>
+         
+                     <div>
+                        <img src="./concluido.png" alt={info.imagen} />
                     </div>
 
-                </div>
-            ):(<h1>cargando...</h1>)}
+          <br />
+          <br />
+          <div>
+            <h2>Informacion del Profesor</h2>
+            <table className="table">
+              <tbody>
+                <tr>
+                  <th scope="row">Nombre</th>
+                  <td>{info.nombre}</td>
+                </tr>
+                <tr>
+                  <th scope="row">Apellido</th>
+                  <td>{info.apellido}</td>
+                </tr>
+                <tr>
+                  <th scope="row">Edad</th>
+                  <td>{info.Edad}</td>
+                </tr>
+                 
+                <tr>
+                  <th scope="row">Correo</th>
+                  <td colSpan="2">{info.email}</td>
+                </tr>
+                <tr>
+                  <th scope="row">Pais</th>
+                  <td colSpan="2">{info.country.name}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <button onClick={DeleteProfesor}>Eliminar Cuenta</button>
         </div>
+      ) : (
+        <h1>Cargando...</h1>
+      )}
+    </div>
     )
 }
 
