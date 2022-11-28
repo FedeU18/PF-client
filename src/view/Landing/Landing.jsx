@@ -79,7 +79,15 @@ export const Landing = () => {
                         </Col>
                         <Col className='text'>
                             <h1 className='title'>Encuentra un profesor particular</h1>
-                            <div>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Vero, corrupti? Debitis assumenda odio ex itaque maxime quas cumque minus nobis. Exercitationem soluta et distinctio unde incidunt delectus laborum error ratione.</div>
+                            <div>
+                                Find your teacher fue creado como una manera 
+                                <br></br>
+                                de ayudar a conectar a profesores de toda Latinoamerica
+                                <br></br>
+                                con  aquellos alumnos en busca de reforzar sus conocimientos en 
+                                <br></br>
+                                las materias de la escuela.
+                            </div>
                         </Col>
                     </Row>
                 </Container>
