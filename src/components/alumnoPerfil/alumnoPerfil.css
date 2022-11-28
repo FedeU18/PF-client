@@ -74,6 +74,7 @@
   margin-left: 8vw;
   margin-bottom: 4vw;
   cursor: pointer;
+  transition: all 0.25s;
 }
 .containerLoadingImg:hover {
   background: rgb(85, 85, 131);

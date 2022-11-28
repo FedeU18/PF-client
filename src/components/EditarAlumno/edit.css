@@ -121,7 +121,7 @@
   margin-left: 3.5vw;
 }
 
-.input {
+.inputEditAlumno {
   background: rgb(204, 204, 240);
   border-bottom: 3px solid black;
   border-left: none;
@@ -137,40 +137,19 @@
   width: 80%;
 }
 
-.input::placeholder {
+.inputEditAlumno::placeholder {
   visibility: visible;
   color: black;
 }
 
-.input:focus {
+.inputEditAlumno:focus::placeholder {
+  visibility: hidden;
+  transition: all 0.1s;
+}
+
+.inputEditAlumno:focus {
   box-shadow: 0 1px 10px 1px rgb(215, 215, 242);
   outline: none;
-}
-
-.descriptionFormulario {
-  background: #2e1a06;
-  border-bottom: 3px solid white;
-  border-left: none;
-  border-right: none;
-  border-top: none;
-  box-sizing: border-box;
-  color: white;
-  font-family: cursive;
-  font-size: 1.3vw;
-  height: 7rem;
-  padding: 1.375rem 0.5rem 0.5rem;
-  width: 100%;
-}
-.descriptionFormulario::placeholder {
-  visibility: hidden;
-}
-
-.descriptionFormulario:focus {
-  box-shadow: 0 1px 10px 1px rgb(234, 124, 14);
-  outline: none;
-}
-.descriptionFormulario {
-  height: 10vw;
 }
 
 .textarea {
@@ -186,8 +165,8 @@
   top: 1.375rem;
   transition: all 0.25s;
 }
-.input:not(:placeholder-shown) + .nombre,
-.input + label {
+.inputEditAlumno:not(:placeholder-shown) + .nombre,
+.inputEditAlumno + label {
   font-size: 0.875rem;
   top: 0.25rem;
   transition: all 0.25s;
