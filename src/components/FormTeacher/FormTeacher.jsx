@@ -59,7 +59,7 @@ const FormTeacher = () => {
   const handleEstudios=(e)=>{
     setTeacher({
       ...teacher,
-      estudios: [...teacher.estudios, e.target.value]
+      estudios: [e.target.value]
     })
   }
 
