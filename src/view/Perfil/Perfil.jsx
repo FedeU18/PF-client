@@ -3,24 +3,25 @@ import PerfilAlumno from "../../components/PerfilAlumno/PerfilAlumno";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import * as actions from "../../redux/Actions/Alumno";
+import * as actionsAlumno from "../../redux/Actions/Alumno";
 
 export const Perfil = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
-  let info = useSelector((state) => state.alumnos.alumno);
+  let infoAlumno = useSelector((state) => state.alumnos.alumno);
+  let infoProfesor = "";
 
   useEffect(() => {
-    dispatch(actions.getAlumnoFromAPI(id));
+    dispatch(actionsAlumno.getAlumnoFromAPI(id));
   }, []);
 
-  console.log("hola soy el tipo de usuario----> ", info.tipo);
+  console.log("hola soy el tipo de usuario----> ", infoAlumno.tipo);
 
   return (
     <>
-      {info.tipo === "profesor" ? (
+      {infoProfesor.tipo === "profesor" ? (
         <PerfilProfesor id={id} />
-      ) : info.tipo === "estudiante" ? (
+      ) : infoAlumno.tipo === "estudiante" ? (
         <PerfilAlumno id={id} />
       ) : (
         <h1>Cargando...</h1>

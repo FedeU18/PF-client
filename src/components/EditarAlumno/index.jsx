@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
 import * as actions from "../../redux/Actions/Alumno.js";
 import { useDispatch, useSelector } from "react-redux";
+
 import "./edit.css";
+import { useNavigate } from "react-router-dom";
 
 export const EditarAlumno = (props) => {
   const [actualizar, setActualizar] = useState({});
   const dispatch = useDispatch();
-
+  const navigate = useNavigate();
   useEffect(() => {
     console.log("me monte al useEffect");
     dispatch(actions.getAlumnoFromAPI(props.id));
