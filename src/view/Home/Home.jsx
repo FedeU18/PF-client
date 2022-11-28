@@ -15,6 +15,7 @@ import { getAllAlumnos } from "../../redux/Actions/Alumno";
 import userAuthenticate from "../../Authentication/functions/user";
 import { auth } from "../../Authentication/firebase/credenciales";
 import autentication from "../../Authentication/functions/user";
+import logOut from "../../Authentication/functions/logOut";
 
 export const Home = () => {
   const [open, setOpen] = useState(false);
@@ -23,15 +24,13 @@ export const Home = () => {
   const navigate = useNavigate();
   let alumno = autentication();
 
-  console.log("hola soy userAuthenticate ---->", alumno.userData);
-  const idAlumno = alumno.userData.id; //este id para alumno es provisional, para probar la vista de el perfil de alumno se debe colocar el id de un alumno que este en
-  // la tabla alumnos, "esto para probar"
+  const idAlumno = alumno.userData.id;
+  // const idAlumno = undefined;
 
   const filtrosSeleccionados = useSelector(
     (state) => state.materias.filtrosSeleccionados
   );
   const profes = useSelector((state) => state.profesores.profesores); //todo el estado de profes
-  console.log(profes);
 
   useEffect(() => {
     dispatch(getAllAlumnos());
@@ -42,7 +41,6 @@ export const Home = () => {
     dispatch(filterProfes(filtrosSeleccionados));
   }, [filtrosSeleccionados]);
 
-  console.log(filtrosSeleccionados);
   const handleFiltros = () => {
     setOpen(true);
   };
@@ -77,71 +75,80 @@ export const Home = () => {
 
   return (
     <div>
-      <div>
-        <NavBar idAlumno={idAlumno} />
-        <button className="filtroBtn">
-          <BsFillGrid3X3GapFill onClick={handleFiltros} />
-        </button>
-        {filtrosSeleccionados.materias?.length > 0 ? (
-          filtrosSeleccionados.materias.map((f) => (
-            <button
-              className="btnListOpSelected"
-              name={f}
-              onClick={handleDeleteOpSelec}
-            >
-              X {f}
-            </button>
-          ))
-        ) : (
-          <button className="btnListOpSelected"> Todas las materias </button>
-        )}
-
-        {filtrosSeleccionados.pais && filtrosSeleccionados.pais !== "" ? (
-          <button
-            className="btnListOpSelected"
-            name="pais"
-            onClick={handleDelOp}
-          >
-            X {filtrosSeleccionados.pais}
+      {idAlumno && filtrosSeleccionados && profes ? (
+        <div>
+          <NavBar idAlumno={idAlumno} />
+          <button className="filtroBtn">
+            <BsFillGrid3X3GapFill onClick={handleFiltros} />
           </button>
-        ) : (
-          <button className="btnListOpSelected"> Todos los paises </button>
-        )}
+          {filtrosSeleccionados.materias?.length > 0 ? (
+            filtrosSeleccionados.materias.map((f) => (
+              <button
+                className="btnListOpSelected"
+                name={f}
+                onClick={handleDeleteOpSelec}
+              >
+                X {f}
+              </button>
+            ))
+          ) : (
+            <button className="btnListOpSelected"> Todas las materias </button>
+          )}
 
-        {filtrosSeleccionados.puntuacion &&
-          filtrosSeleccionados.puntuacion !== "" && (
+          {filtrosSeleccionados.pais && filtrosSeleccionados.pais !== "" ? (
             <button
               className="btnListOpSelected"
-              name="puntuacion"
+              name="pais"
               onClick={handleDelOp}
             >
-              X {filtrosSeleccionados.puntuacion}
+              X {filtrosSeleccionados.pais}
+            </button>
+          ) : (
+            <button className="btnListOpSelected"> Todos los paises </button>
+          )}
+
+          {filtrosSeleccionados.puntuacion &&
+            filtrosSeleccionados.puntuacion !== "" && (
+              <button
+                className="btnListOpSelected"
+                name="puntuacion"
+                onClick={handleDelOp}
+              >
+                X {filtrosSeleccionados.puntuacion}
+              </button>
+            )}
+          {filtrosSeleccionados.precio && filtrosSeleccionados.precio !== "" && (
+            <button
+              className="btnListOpSelected"
+              name="precio"
+              onClick={handleDelOp}
+            >
+              X {filtrosSeleccionados.precio}{" "}
             </button>
           )}
-        {filtrosSeleccionados.precio && filtrosSeleccionados.precio !== "" && (
-          <button
-            className="btnListOpSelected"
-            name="precio"
-            onClick={handleDelOp}
-          >
-            X {filtrosSeleccionados.precio}{" "}
-          </button>
-        )}
 
-        <Filtros open={open} close={handleCloseFiltros} />
-        <br></br>
+          <Filtros open={open} close={handleCloseFiltros} />
+          <br></br>
 
-        <ProfeCards profes={profes} />
+          <ProfeCards profes={profes} />
 
-        <div className="foot">
-          <hr />
-          <footer>
-            <Link to="/about" className="aFootAbout">
-              About
-            </Link>
-          </footer>
+          <div className="foot">
+            <hr />
+            <footer>
+              <Link to="/about" className="aFootAbout">
+                About
+              </Link>
+            </footer>
+          </div>
         </div>
-      </div>
+      ) : (
+        <div>
+          <h1>Error 404</h1>
+          <Link to="/">
+            <a onClick={() => logOut()}>inicio</a>
+          </Link>
+        </div>
+      )}
     </div>
   );
 };
