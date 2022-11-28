@@ -72,10 +72,21 @@ const FormTeacher = () => {
       setGlobalMessage(userLogin)
       setTimeout(() => {
         setGlobalMessage("")
-      }, 4000);
+      }, 10000);
       return;
     }
     navigate("/home")
+  }
+
+  const handleClose = (e) => {
+    e.preventDefault()
+    setTeacher({
+      ...teacher,
+      materias: teacher.materias.filter(m=>{
+        return m !== Number(e.target.value)
+      })
+    })
+    console.log(e.target)
   }
 
   return (
@@ -83,18 +94,43 @@ const FormTeacher = () => {
       <form className='form'>
         <h3>¡Registrate como profesor!</h3>
         {globalMessage && <p>{globalMessage}</p>}
-        <div>
+        <div className='label-input'>
+          <label>Nombre</label>
           <input onChange={(e)=>handleOnChange(e)} type="text" name='nombre' value={teacher.nombre} placeholder="Nombre"/>
-          <input onChange={(e)=>handleOnChange(e)} type="text" name='apellido' value={teacher.apellido} placeholder="Apellido"/>
         </div>
-        <input onChange={(e)=>handleOnChange(e)} type="email" name='email' value={teacher.email} placeholder='Email'/>
-        <input onChange={(e)=>handleOnChange(e)} type="password" name='contraseña' value={teacher.contraseña} placeholder="Contraseña" />
-        <input onChange={(e)=>handleOnChange(e)} type="text" name='username' value={teacher.username} placeholder='Username'/>
-        <input onChange={(e)=>handleOnChange(e)} type="text" name='imagen' value={teacher.imagen} placeholder="Foto de perfil(url)"/>
-        <textarea onChange={(e)=>handleOnChange(e)} type="text" name='descripcion' value={teacher.descripcion} placeholder="Descripcion"/>
-        <input onChange={(e)=>handleOnChange(e)} type="text" name='precio' value={teacher.precio} placeholder="Precio" />
-        <input onChange={(e)=>handleEstudios(e)} type="text" name='estudios' value={teacher.estudios} placeholder="estudios" />
-
+        <div className='label-input'>
+          <label>Apellido</label>
+          <input onChange={(e)=>handleOnChange(e)} type="text" name='apellido' value={teacher.apellido} placeholder="Apellido"/>
+        </div>        
+        <div className='label-input'>
+          <label>Email</label>
+          <input onChange={(e)=>handleOnChange(e)} type="email" name='email' value={teacher.email} placeholder='Email'/>
+        </div>
+        <div className='label-input'>
+          <label>Contraseña</label>
+          <input onChange={(e)=>handleOnChange(e)} type="password" name='contraseña' value={teacher.contraseña} placeholder="Contraseña" />
+        </div>
+        <div className='label-input'>
+          <label>Username</label>
+          <input onChange={(e)=>handleOnChange(e)} type="text" name='username' value={teacher.username} placeholder='Username'/>
+        </div>
+        <div className='label-input'>
+          <label>Foto de perfil</label>
+          <input onChange={(e)=>handleOnChange(e)} type="text" name='imagen' value={teacher.imagen} placeholder="Foto de perfil(url)"/>
+        </div>
+        <div className='label-input'>
+          <label>Descripción</label>
+          <textarea onChange={(e)=>handleOnChange(e)} type="text" name='descripcion' value={teacher.descripcion} placeholder="Descripcion"/>
+        </div>
+        <div className='label-input'>
+          <label>¿Cuanto cuestan tus clases?</label>
+          <input onChange={(e)=>handleOnChange(e)} type="text" name='precio' value={teacher.precio} placeholder="Precio(USD)" />
+        </div>
+        <div className='label-input'>
+          <label>Tus estudios</label>
+          <input onChange={(e)=>handleEstudios(e)} type="text" name='estudios' value={teacher.estudios} placeholder="estudios" />
+        </div>
+        <div>¿Que enseñas?</div>
         <select onChange={(e)=>handleSelectMaterias(e)}>
           {materias.length && materias.map(m=>{
             return(
@@ -104,6 +140,12 @@ const FormTeacher = () => {
 
           }
         </select>
+        {teacher.materias.length ? teacher.materias.map((m)=>{
+          return (
+            <button type='button' onClick={(e)=> handleClose(e)} value={m} key={m}>{m}</button>
+          )
+        }):<></>}
+        <div>Tu país</div>
           <select onChange={(e)=>handleSelectPaises(e)}>
             {paises.length && paises.map(p=>{
               return(

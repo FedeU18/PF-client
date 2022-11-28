@@ -15,3 +15,10 @@
 .buttons {
     margin-top: 1rem;
 }
+.chosen {
+    background-color: gray;
+    transition: .2s all ease-in-out;
+    transform: scale(1.1);
+    margin-right: 20px;
+    margin-left: 20px;
+}

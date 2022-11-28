@@ -6,7 +6,8 @@
     display: flex;
     flex-direction: column;
     border-radius: 3px;
-    background: linear-gradient(#bbe1fa, #3282b8);
+    background: black;
+    color: white;
 }
 
 textarea {
@@ -15,4 +16,10 @@ textarea {
 }
 input {
     margin: 2px;
+}
+
+.label-input {
+    display: flex;
+    justify-content: space-between;
+    margin: 1px;
 }
