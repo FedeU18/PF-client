@@ -22,7 +22,8 @@ export const Home = () => {
   // const user = userAuthenticate();
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  let alumno = autentication();
+  let alumno = userAuthenticate();
+  console.log(alumno)
 
   const idAlumno = alumno.userData.id;
   // const idAlumno = undefined;

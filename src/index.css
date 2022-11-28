@@ -1,9 +1,10 @@
-@import url('https://fonts.googleapis.com/css?family=Josefin+Sans');
-@import url('https://fonts.googleapis.com/css?family=Ropa+Sans');
+@import url("https://fonts.googleapis.com/css?family=Josefin+Sans");
+@import url("https://fonts.googleapis.com/css?family=Ropa+Sans");
+
 html {
   font-size: 16px;
   box-sizing: border-box;
-  overflow-x:hidden;  
+  overflow-x: hidden;
   width: 100%;
 }
 
@@ -16,8 +17,7 @@ html {
 
 body {
   margin: 0;
-  /* font-family: 'Josefin Sans', cursive; */
-  font-family: 'Ropa Sans';
+  font-family: "Ropa Sans";
 }
 
 a {
@@ -35,12 +35,3 @@ select,
 input.form-control:focus {
   box-shadow: none;
 }
-
-
-
-/* Colores Globales para la app */
-
-/* 
-:root {
-
-} */
