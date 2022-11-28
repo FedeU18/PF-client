@@ -1,5 +1,5 @@
 import "bootstrap/dist/css/bootstrap.css";
-import logOut  from '../../Authentication/functions/logOut'
+import logOut from "../../Authentication/functions/logOut";
 import Image from "react-bootstrap/Image";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
@@ -10,12 +10,13 @@ import Col from "react-bootstrap/Col";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import { useNavigate } from "react-router";
 import SearchBar from "../SearchBar/SearchBar";
-import userAuthentication from "../../Authentication/functions/user"
+import userAuthentication from "../../Authentication/functions/user";
 
-export const NavBar = (props) => {
-  console.log("soy id de alumno ", props.idAlumno);
+export const NavBar = () => {
   const navigate = useNavigate();
-  const user = userAuthentication();
+  const { userData } = userAuthentication();
+  console.log(userData.id);
+  let id = userData.id;
 
   const CloseMySesion = () => {
     logOut();
@@ -23,9 +24,9 @@ export const NavBar = (props) => {
   };
 
   const handleProfile = () => {
-    console.log()
+    console.log();
     console.log("me ejcute");
-    navigate(`/profile/${props.idAlumno}`);
+    navigate(`/profile/${id}`);
   };
 
   const handleGoHome = () => {
@@ -42,7 +43,7 @@ export const NavBar = (props) => {
         <Row>
           <Col>
             <span onClick={handleGoHome} className="logoNav">
-             <img src={'logoPF.png'} className={'logoProyecto'}/>
+              <img src={"logoPF.png"} className={"logoProyecto"} />
             </span>
           </Col>
 
@@ -63,7 +64,8 @@ export const NavBar = (props) => {
                 Mi Perfil
               </NavDropdown.Item>
               <NavDropdown.Item onClick={CloseMySesion}>
-                Cerrar Sesión</NavDropdown.Item>
+                Cerrar Sesión
+              </NavDropdown.Item>
               {/* <NavDropdown.Divider />
                         <NavDropdown.Item href="">
                             Separated link

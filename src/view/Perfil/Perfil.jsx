@@ -16,6 +16,9 @@ export const Perfil = () => {
   useEffect(() => {
     dispatch(actionsAlumno.getAlumnoFromAPI(id));
     dispatch(actionsProfesor.getProfesorById(id));
+    return () => {
+      dispatch({ type: "VACIAR_ESTADO", payload: {} });
+    };
   }, []);
 
   // console.log("hola soy el tipo de usuario----> ", infoAlumno.tipo);

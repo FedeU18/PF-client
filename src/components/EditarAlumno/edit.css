@@ -144,7 +144,7 @@
 
 .inputEditAlumno:focus::placeholder {
   visibility: hidden;
-  transition: all 0.1s;
+  transition: all 0.4s;
 }
 
 .inputEditAlumno:focus {
