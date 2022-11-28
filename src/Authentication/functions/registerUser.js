@@ -13,6 +13,7 @@ export default async function registerUser(email, password, form) {
       email,
       password
     );
+    
     await setUserData(userCreate.user.uid, {
       id: userCreate.user.uid,
       ...form,

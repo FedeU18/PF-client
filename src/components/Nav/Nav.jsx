@@ -10,10 +10,12 @@ import Col from "react-bootstrap/Col";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import { useNavigate } from "react-router";
 import SearchBar from "../SearchBar/SearchBar";
+import userAuthentication from "../../Authentication/functions/user"
 
 export const NavBar = (props) => {
   console.log("soy id de alumno ", props.idAlumno);
   const navigate = useNavigate();
+  const user = userAuthentication();
 
   const CloseMySesion = () => {
     logOut();
@@ -21,6 +23,7 @@ export const NavBar = (props) => {
   };
 
   const handleProfile = () => {
+    console.log()
     console.log("me ejcute");
     navigate(`/profile/${props.idAlumno}`);
   };
