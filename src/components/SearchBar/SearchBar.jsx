@@ -77,14 +77,14 @@ const handleComplete=(nameTeacher)=>{
     const onSubmitHandler=(e)=>{
         e.preventDefault();
         // deberia llevarme al detalle
-        console.log("deberia llevarme al detalle")
+        //console.log("deberia llevarme al detalle")
         onSuggestHandler(text)
     }
    
     return (
-        <>
-        <form className='searchform' onSubmit={(e)=>{onSubmitHandler(e)}}>
-            <div className="searchInputWrapper">
+        <div className='contenedorWrapper'>
+        <form className='wrapper' onSubmit={(e)=>{onSubmitHandler(e)}}>
+            <div className="search-input">
                 <input className="searchInput" 
                         type="text" 
                         placeholder='Buscar Nombre del Profesor...'
@@ -98,12 +98,11 @@ const handleComplete=(nameTeacher)=>{
                  <button type="submit" className="icon"><img className='lupa' src={'https://cdn-icons-png.flaticon.com/512/3917/3917754.png'} alt='search'/></button>
                 
             </div>
-            <div className='sugCont'>
-                {sugerencias && sugerencias.map((sugName,i)=>(
+            <div className='fila'>
+                {sugerencias && sugerencias.map((sugName)=>(
                     <div  
                             key={sugName} 
-                            id={sugerencias.length===i+1 ?'su':'else'}
-                            className={`suggestion ${text===sugName&& 'sugestiononKey'}`}
+                            //className={`fila`}
                             onBlur={()=>{ setTimeout(()=>{setSugerencias([])},1)}}
                             onClick={()=>onSuggestHandler(sugName)}     
                     >
@@ -112,7 +111,7 @@ const handleComplete=(nameTeacher)=>{
                         ))}
             </div>
         </form>
-        </>
+        </div>
     )
 
 }
