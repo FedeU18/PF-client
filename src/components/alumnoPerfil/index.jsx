@@ -13,12 +13,11 @@ export const AlumnoPerfil = (props) => {
   const dispach = useDispatch();
   const navigate = useNavigate();
   const [image, setImage] = useState(imag);
+  let info = useSelector((state) => state.alumnos.alumno);
 
   useEffect(() => {
     dispach(actions.getAlumnoFromAPI(props.id));
   }, []);
-
-  let info = useSelector((state) => state.alumnos.alumno);
 
   const deleteAlumno = async () => {
     const deleteAccount = window.confirm(

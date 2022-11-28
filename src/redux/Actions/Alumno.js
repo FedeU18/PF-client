@@ -11,8 +11,8 @@ export function getAlumnoFromAPI(id) {
     axios
       .get(`http://localhost:3001/alumnos/${id}`)
       .then((alumno) => {
-        console.log(alumno);
         dispatch(setAlumno(alumno.data));
+        console.log("el obj alumno desde creator-->", alumno.data);
       })
       .catch((error) => {
         console.log(error);
