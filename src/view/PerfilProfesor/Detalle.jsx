@@ -93,7 +93,7 @@ export const Detalle = () => {
         
         </div>
          
-           <div className="elegir"> 
+           {/* <div className="elegir"> 
             <h1 className="letra">por que elegirme?</h1>
             </div>
 
@@ -101,7 +101,7 @@ export const Detalle = () => {
             <div className="elegir-dos">
               <h5 className="letra-dos"> {details.descripcion} </h5>
             </div>
-           
+            */}
 
         
         
