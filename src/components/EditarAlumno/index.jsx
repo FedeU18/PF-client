@@ -63,7 +63,7 @@ export const EditarAlumno = (props) => {
               </h1>
               <div className="input-container">
                 <input
-                  className="input"
+                  className="inputEditAlumno"
                   type="string"
                   placeholder={info.picture}
                   name="picture"
@@ -76,7 +76,7 @@ export const EditarAlumno = (props) => {
               </div>
               <div className="input-container">
                 <input
-                  className="input"
+                  className="inputEditAlumno"
                   type="string"
                   placeholder={info.name}
                   name="name"
@@ -90,7 +90,7 @@ export const EditarAlumno = (props) => {
 
               <div className="input-container">
                 <input
-                  className="input"
+                  className="inputEditAlumno"
                   type="text"
                   placeholder={info.lastname}
                   name="lastname"
@@ -104,7 +104,7 @@ export const EditarAlumno = (props) => {
 
               <div className="input-container">
                 <input
-                  className="input"
+                  className="inputEditAlumno"
                   type="number"
                   name="age"
                   placeholder={info.age}
@@ -117,7 +117,7 @@ export const EditarAlumno = (props) => {
               </div>
               <div className="input-container">
                 <input
-                  className="input"
+                  className="inputEditAlumno"
                   type="text"
                   name="email"
                   placeholder={info.email}
@@ -131,7 +131,7 @@ export const EditarAlumno = (props) => {
               </div>
               <div className="input-container">
                 <input
-                  className="input"
+                  className="inputEditAlumno"
                   type="text"
                   name="country"
                   placeholder={info.country}
