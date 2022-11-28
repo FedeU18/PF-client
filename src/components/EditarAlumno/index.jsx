@@ -37,6 +37,8 @@ export const EditarAlumno = (props) => {
     dispatch(actions.editAlumno(actualizar, info.id));
   };
 
+  ///funciona imput desde commit 12
+
   return (
     <div className={props.open ? "abicuaso" : "closecuaso"}>
       {info && info.name ? (
