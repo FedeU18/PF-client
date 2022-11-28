@@ -18,8 +18,8 @@ const Registro = () => {
     <div className='fondo'>
       <div className='forms'>
         <div className='buttons'>
-          <button className='student' onClick={e=>handleTeacher(e)}>¿Querés enseñar?</button>
-          <button className='teacher' onClick={e=>handleStudent(e)}>¿Querés aprender?</button> 
+          <button className={form?'student':'chosen'} onClick={e=>handleTeacher(e)}>¿Querés enseñar?</button>
+          <button className={form?'chosen':'teacher'} onClick={e=>handleStudent(e)}>¿Querés aprender?</button> 
         </div>
           {form ?
           <FormStudent />
