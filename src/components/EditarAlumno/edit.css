@@ -17,7 +17,6 @@
   height: 3vw;
   margin-left: 35.5vw;
   margin-top: 0.3vw;
-  /* margin-bottom: 1vw; */
   border: none;
   background: rgb(148, 48, 48);
   font-size: 2vw;
@@ -31,7 +30,6 @@
   box-shadow: 0 1px 10px 1px rgb(148, 48, 48);
 }
 .closecuaso {
-  /* width: 0%; */
   display: none;
 }
 .formEditAlumno {
@@ -43,9 +41,6 @@
   border-radius: 25px;
   border: 0.5px solid white;
   margin-top: 5vw;
-}
-.input {
-  width: 2vw;
 }
 
 .conatinerFormEditAlumno {
@@ -59,17 +54,6 @@
 }
 
 /* ------------------------------------------------ */
-
-.sectionFormulario {
-  background: #2e1a06;
-  border-radius: 1vw;
-  box-shadow: 0 0 10px 2px rgb(234, 124, 14);
-  font-family: cursive;
-  margin-left: 22vw;
-  margin-top: 1vw;
-  padding: 1.7vw;
-  width: 50vw;
-}
 
 .tituloFormulario {
   color: black;
@@ -144,7 +128,7 @@
 
 .inputEditAlumno:focus::placeholder {
   visibility: hidden;
-  transition: all 0.4s;
+  transition: all 0.1s;
 }
 
 .inputEditAlumno:focus {
@@ -163,25 +147,25 @@
   left: 0.5rem;
   position: absolute;
   top: 1.375rem;
-  transition: all 0.25s;
+  transition: all 0.6s;
 }
 .inputEditAlumno:not(:placeholder-shown) + .nombre,
 .inputEditAlumno + label {
   font-size: 0.875rem;
   top: 0.25rem;
-  transition: all 0.25s;
+  transition: all 0.6s;
 }
 
-.selectDiets {
-  background: #2e1a06;
+.selectPais {
+  background: rgb(204, 204, 240);
   border-radius: 0.5vw;
-  color: white;
-  font-size: 1.3vw;
-  height: 2.5vw;
-  margin: 1vw 0 5vw 0;
+  color: black;
+  font-size: 1vw;
+  height: 3vw;
+  margin: 0.5vw 0 5vw 0;
   width: 15vw;
 }
-.selectDiets:focus {
+.selectPaises:focus {
   border-color: white;
 }
 
@@ -192,4 +176,14 @@
   display: flex;
   flex-wrap: wrap;
   width: 100%;
+}
+.containerInputPais {
+  display: flex;
+}
+
+.containerInputPais .input-container {
+  margin-left: 3.8vw;
+}
+.inputSelectPais {
+  margin-right: 4.5vw;
 }
