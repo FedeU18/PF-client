@@ -14,9 +14,11 @@ import userAuthentication from "../../Authentication/functions/user";
 
 export const NavBar = () => {
   const navigate = useNavigate();
+
   const { userData } = userAuthentication();
   console.log(userData.id);
   let id = userData.id;
+
 
   const CloseMySesion = () => {
     logOut();
@@ -26,7 +28,9 @@ export const NavBar = () => {
   const handleProfile = () => {
     console.log();
     console.log("me ejcute");
+
     navigate(`/profile/${id}`);
+
   };
 
   const handleGoHome = () => {
