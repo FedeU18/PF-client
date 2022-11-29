@@ -13,7 +13,7 @@ import {
 export function getProfesorById(id) {
   return async function (dispatch) {
     try {
-      const prof = await axios.get(`http://localhost:3001/profesores/${id}`);
+      const prof = await axios.get(`/profesores/${id}`);
       return dispatch({
         type: GET_PROFESOR_ID,
         payload: prof.data,
@@ -28,7 +28,7 @@ export function postProfesor(payload) {
   return async function (dispatch) {
     try {
       const prof = await axios.post(
-        `http://localhost:3001/profesores`,
+        `/profesores`,
         payload
       );
       return dispatch({
@@ -45,7 +45,7 @@ export function putProfesor(id, payload) {
   return async function (dispatch) {
     try {
       const prof = await axios.put(
-        `http://localhost:3001/profesores/${id}`,
+        `/profesores/${id}`,
         payload
       );
       return dispatch({
@@ -61,7 +61,7 @@ export function putProfesor(id, payload) {
 export function deleteProfesor(id) {
   return async function (dispatch) {
     try {
-      const prof = await axios.delete(`http://localhost:3001/profesores/${id}`);
+      const prof = await axios.delete(`/profesores/${id}`);
       return dispatch({
         type: DELETE_PROFESORES,
         payload: prof,
@@ -88,7 +88,7 @@ export function filterPuntuacion(payload) {
 
 export function allProfes() {
   return async function (dispatch) {
-    let info = await axios.get("http://localhost:3001/profesores");
+    let info = await axios.get("/profesores");
 
     return dispatch({
       type: GET_PROFESORES,

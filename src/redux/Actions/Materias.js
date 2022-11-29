@@ -8,7 +8,7 @@ import {
 export const getMaterias = () => (dispatch) => {
   console.log("entro en cations");
   return axios
-    .get(`http://localhost:3001/materias`)
+    .get(`/materias`)
     .then((d) => {
       console.log(d);
       dispatch({ type: GET_MATERIAS, payload: d.data });
