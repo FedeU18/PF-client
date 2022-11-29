@@ -70,9 +70,9 @@ export const Home = () => {
 
   return (
     <div>
-      {id && filtrosSeleccionados && profes ? (
+      {filtrosSeleccionados && profes ? (
         <div>
-          <NavBar id={id} />
+          <NavBar />
           <button className="filtroBtn">
             <BsFillGrid3X3GapFill onClick={handleFiltros} />
           </button>
