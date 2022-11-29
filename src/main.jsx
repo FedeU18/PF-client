@@ -9,9 +9,12 @@ import store from './redux/store/index';
 import AuthenticationProvider from './Authentication/context/AuthContext';
 import Aos from 'aos';
 import "aos/dist/aos.css"
+import axios from 'axios';
 Aos.init();
 
 
+
+axios.defaults.baseURL = import.meta.env.VITE_APP_API || "http://localhost:3001"
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <Provider store={store}>
