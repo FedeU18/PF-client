@@ -3,6 +3,7 @@ import * as actions from "../../redux/Actions/Alumno.js";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 import imag from "./default user.png";
+import cloud from "./upload-cloud.png";
 import "./alumnoPerfil.css";
 import deleteFirestoreUser from "../../Authentication/functions/deleteFirestoreUser";
 import deleteCurrentUser from "../../Authentication/functions/deleteCurretUser";
@@ -12,12 +13,14 @@ export const AlumnoPerfil = (props) => {
   console.log("desde alumno perfil ", props.id);
   const dispach = useDispatch();
   const navigate = useNavigate();
-  const [image, setImage] = useState(imag);
   let info = useSelector((state) => state.alumnos.alumno);
 
   useEffect(() => {
     dispach(actions.getAlumnoFromAPI(props.id));
   }, []);
+
+
+
 
   const deleteAlumno = async () => {
     const deleteAccount = window.confirm(
@@ -43,7 +46,8 @@ export const AlumnoPerfil = (props) => {
       },
       (error, result) => {
         if (!error && result && result.event === "success") {
-          setImage(result.info.url);
+          dispach(actions.editAlumno({picture:result.info.url},props.id));
+          
         }
       }
     );
@@ -62,12 +66,12 @@ export const AlumnoPerfil = (props) => {
               </h1>
               <div>
                 <div className="containerPerfil">
-                  <img src={image} alt={info.picture} />
+                  <img src={info.picture} alt={info.picture} />
                   <div
                     className="containerLoadingImg"
                     onClick={() => handleOpenWidget()}
                   >
-                    <img src={image} alt="" />
+                    <img src={cloud} alt="" />
                   </div>
                 </div>
               </div>
