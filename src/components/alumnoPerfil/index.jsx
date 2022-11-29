@@ -14,12 +14,13 @@ export const AlumnoPerfil = (props) => {
   const dispach = useDispatch();
   const navigate = useNavigate();
   let info = useSelector((state) => state.alumnos.alumno);
+  let valorImagen = "";
 
   useEffect(() => {
     dispach(actions.getAlumnoFromAPI(props.id));
   }, []);
 
-
+  const [pict, setPict] = useState ("")
 
 
   const deleteAlumno = async () => {
@@ -38,6 +39,15 @@ export const AlumnoPerfil = (props) => {
     }
   };
 
+  function valor() {
+    if(pict!=""){
+      valorImagen = pict;
+
+    }else{valorImagen = info.picture;
+
+    } return valorImagen;
+  }
+
   function handleOpenWidget() {
     var myWidget = window.cloudinary.createUploadWidget(
       {
@@ -47,6 +57,7 @@ export const AlumnoPerfil = (props) => {
       (error, result) => {
         if (!error && result && result.event === "success") {
           dispach(actions.editAlumno({picture:result.info.url},props.id));
+          setPict(result.info.url);
           
         }
       }
@@ -66,7 +77,7 @@ export const AlumnoPerfil = (props) => {
               </h1>
               <div>
                 <div className="containerPerfil">
-                  <img src={info.picture} alt={info.picture} />
+                  <img src={valor()} alt={info.picture} />
                   <div
                     className="containerLoadingImg"
                     onClick={() => handleOpenWidget()}
