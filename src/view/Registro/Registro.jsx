@@ -15,7 +15,7 @@ const Registro = () => {
     setForm(true)
   }
   return (
-    <div className='fondo'>
+    <div className='fondo-form'>
       <div className='forms'>
         <div className='buttons'>
           <button className={form?'student':'chosen'} onClick={e=>handleTeacher(e)}>¿Querés enseñar?</button>
