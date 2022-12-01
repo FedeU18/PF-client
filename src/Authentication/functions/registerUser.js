@@ -1,5 +1,5 @@
 import { auth } from "../firebase/credenciales";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import setUserData from "./setUserData";
 import getCurrentUser from "./getCurrentUser";
 
@@ -13,12 +13,8 @@ export default async function registerUser(email, password, form) {
       email,
       password
     );
-    
-    await setUserData(userCreate.user.uid, {
-      id: userCreate.user.uid,
-      ...form,
-    });
-    const getFirestoreData = await getCurrentUser(userCreate.user.uid)
+
+    const getFirestoreData = await getCurrentUser(userCreate.user.uid);
 
     const dataAuth = JSON.stringify(userCreate.user);
     const dataFirestore = JSON.stringify(getFirestoreData);
