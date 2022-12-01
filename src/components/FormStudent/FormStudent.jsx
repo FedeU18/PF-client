@@ -11,6 +11,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getAllAlumnos, postAlumno } from '../../redux/Actions/Alumno';
 
 const initialStudentForm = {
+  username: "",
   name: "",
   lastname: "",
   email: "",
@@ -29,6 +30,7 @@ const initialStudentErrors = {
   passwordErr: false,
   ageErr: false,
   countryErr: false,
+  usernameErr: false,
 }
 
 const FormStudent = () => {
@@ -38,11 +40,18 @@ const FormStudent = () => {
   const [globalMessage, setGlobalMessage] = useState("")
   const [login, setLogin] = useState(true)
   const [form, setForm] = useState(initialStudentForm)
-  const { name, lastname, email, password, passwordConfirm, age, rol, picture, country } = form;
+  const { name, lastname, email, password, passwordConfirm, age, rol, picture, country, username } = form;
   const countries = useSelector(state => state.paises.paises)
   const [errors, setErrors] = useState(initialStudentErrors)
-  const { nameErr, lastnameErr, emailErr, passwordErr, ageErr } = errors;
+  const { nameErr, lastnameErr, emailErr, passwordErr, ageErr, usernameErr } = errors;
   const [loaderRegister, setLoaderRegister] = useState(false)
+  const alumnos = useSelector(state => state.alumnos.alumnos)
+
+  useEffect(() => {
+    dispatch(getAllAlumnos())
+    return () => dispatch(getAllAlumnos())
+  }, [])
+
 
   const handleChangeStudent = (e) => {
     const username = e.target.name;
@@ -72,6 +81,15 @@ const FormStudent = () => {
 
   const handlerSubmitStudent = async (e) => {
     e.preventDefault();
+    
+    const noRepeatPlease = alumnos.find(student => student.username === username)
+    if (noRepeatPlease) {
+      setGlobalMessage("El nombre de usuario ya existe Elige otro porfavor")
+      setTimeout(() => {
+        setGlobalMessage("")
+      }, 4000);
+      return;
+    }
     console.log("aqui")
     setLoaderRegister(true)
     if (!country) {
@@ -120,7 +138,8 @@ const FormStudent = () => {
           picture,
           age,
           email,
-          country
+          country,
+          username
         }))
         setLoaderRegister(false);
         navigate("/home")
@@ -138,9 +157,27 @@ const FormStudent = () => {
         <h1 className='text-center fw-bolder' data-aos="flip-down">{login ? "Register Student" : "Login Student"}</h1>
 
         <form onSubmit={handlerSubmitStudent} className="p-3 pt-0">
-          <div className='row'>
+          <div>
+            <div data-aos="fade-right" className='col'>
+              <label htmlFor="username">Username </label>
+              <input
+                type="text"
+                id='username'
+                name='username'
+                onChange={handleChangeStudent}
+                className='form-control p-1 fs-6 rounded-1'
+                value={username.toLowerCase()} // todos en minuscula
+                placeholder="enter your name..."
+                autoComplete='off'
+              />
+
+              {username.length > 1 && usernameErr &&
+                <p data-aos="fade-down" className='text-center text-danger'>Invalid username</p>}
+            </div >
+          </div>
+          <div className='row mt-2'>
             {login && <div data-aos="fade-right" className='col'>
-              <label htmlFor="name">Username </label>
+              <label htmlFor="name">name </label>
               <input
                 type="text"
                 id='name'
