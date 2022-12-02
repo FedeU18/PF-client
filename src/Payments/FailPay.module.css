@@ -1,0 +1,21 @@
+.hover_boton {
+  background-color: aliceblue;
+  padding: 1rem;
+  border-radius: 0.4rem;
+  font-size: 1.2rem;
+  transition: background-color 0.1s ease, color 0.1s ease;
+}
+
+.hover_boton:hover {
+  background-color: rgb(20, 18, 18);
+  color: aliceblue !important;
+}
+
+.hover_boton_arrow {
+  margin-right: 0.5rem;
+  transition: transform 0.3s ease;
+}
+
+.hover_boton_arrow:hover {
+  transform: translateX(-13px);
+}

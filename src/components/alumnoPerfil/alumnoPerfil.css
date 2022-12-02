@@ -1,87 +1,248 @@
 .divPrincipal {
-  display: flex;
-  flex-direction: row;
+  
   height: 58vw;
-  background: #7f7fd5;
-  background: -webkit-linear-gradient(to bottom, #7f7fd5, #86a8e7, #91eae4);
-  background: linear-gradient(to bottom, #7f7fd5, #86a8e7, white);
-}
-.nameCountry {
-  font-weight: 600;
-  margin-left: 1.5vw;
-  margin-top: 0.5vw;
-}
-.containerImgPerfil {
-  background: rgb(155, 155, 213);
-  padding: 0.1vw 2.5vw 4vw 0;
-  margin-left: 2vw;
-  margin-top: 2vw;
-  border-radius: 1vw;
+  background-image: url('https://i.pinimg.com/originals/59/39/7e/59397e25c9a392b78c1528abc99e3cc0.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
-.containerPerfil {
-  height: 20vw;
-  width: 20vw;
-  background: rgb(118, 118, 190);
-  border-radius: 100%;
-  margin-bottom: 5vw;
-  margin-top: 4vw;
-  margin-left: 2.5vw;
+.ContMyPerfilFavorites{
+  display: grid;
+  grid-template-columns: 5%  53% 42%;
 }
-.tbInfoAlumno {
-  height: 25vw;
-  width: 60vw;
-  background: white;
-  margin-top: 7vw;
-  margin-left: 5vw;
-  border-radius: 1vw;
+
+.myperfilCont{
+  background-color: rgb(223, 233, 241);
+  width: 90% ;
+  height: 50vh;
+  margin-left: 5%;
+  margin-top: 2.5rem;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  display: grid;
+  grid-template-columns: 32% 68%;
+  border-radius: 5px;
 }
-.tbInfoAlumno h2 {
-  padding-top: 2vw;
+
+.myFavCont{
+  background-color: rgb(223, 233, 241);
+  width: 80% ;
+  height: 88vh;
+  margin-left: 5%;
+  margin-top: 2.5rem;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  border-radius: 5px;
+}
+
+.pendientesContperfAlum{
+  background-color: rgb(223, 233, 241);
+  width: 90% ;
+  height: 34vh;
+  margin-left: 5%;
+  margin-top: 2.5rem;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+ 
+  border-radius: 5px;
+}
+
+.InFoAlumnoPErfCont{
+
+}
+
+.FotoPerfilACont{
+
+border-radius: 5px 0px 5px 0px;
+
+
+}
+
+.AvatarNameAluPer{
+  width: 10rem;
+  height: 10rem;
+  border-radius: 50%;
+  background-color: rgb(255, 255, 255);
+  margin-left: 12%;
+  margin-top: 5%;
+  font-size: 5rem;
+  font-weight: bolder;
   text-align: center;
-  font-weight: 550;
-}
-.containerBtns {
-  display: flex;
-  flex-direction: column;
-}
-.btnEliminar {
-  margin-left: 2vw;
-}
-.btnEditarCuenta {
-  margin-left: 2vw;
-}
-.btnVolverInicio {
-  margin-top: 3vw;
-  width: 3vw;
-  height: 3vw;
-  font-size: 3.5vw;
-  border: none;
-  background: rgb(155, 155, 213);
-  margin-left: 9vw;
-  font-family: cursive;
-}
-.btnVolverInicio:hover {
-  font-size: 3.2vw;
+  color: #2d5c83;
+  padding-top: 1.2rem;
 }
 
-.containerLoadingImg {
-  background: rgb(118, 118, 190);
+.ProfilePictureAlum{
+  width: 10rem;
+  height: 10rem;
+  border-radius: 50%;
+  margin-left: 12%;
+  margin-top: 5%;
+  border: 3px solid white;
+}
 
-  border-radius: 100%;
-  height: 3vw;
-  width: 3vw;
-  margin-left: 8vw;
-  margin-bottom: 4vw;
+
+.button-17 {
+  align-items: center;
+  appearance: none;
+  background-color: #fff;
+  border-radius: 24px;
+  border-style: none;
+  box-shadow: rgba(0, 0, 0, .2) 0 3px 5px -1px,rgba(0, 0, 0, .14) 0 6px 10px 0,rgba(0, 0, 0, .12) 0 1px 18px 0;
+  box-sizing: border-box;
+  color: #3c4043;
   cursor: pointer;
-  transition: all 0.25s;
-}
-.containerLoadingImg:hover {
-  background: rgb(85, 85, 131);
-}
-.titleContainerPerfil {
-  margin-top: 2vw;
+  display: inline-flex;
+  fill: currentcolor;
+  font-family: "Google Sans",Roboto,Arial,sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  height: 48px;
+  justify-content: center;
+  letter-spacing: .25px;
+  line-height: normal;
+  max-width: 100%;
+  overflow: visible;
+  padding: 2px 24px;
+  position: relative;
   text-align: center;
-  font-size: 2vw;
-  font-weight: 600;
+  text-transform: none;
+  transition: box-shadow 280ms cubic-bezier(.4, 0, .2, 1),opacity 15ms linear 30ms,transform 270ms cubic-bezier(0, 0, .2, 1) 0ms;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  width: 9rem;
+  will-change: transform,opacity;
+  z-index: 0;
+  margin-top: 5%;
+  margin-left: 12%;
+}
+
+.button-17:hover {
+  background: #F6F9FE;
+  color: #174ea6;
+}
+
+.button-17:active {
+  box-shadow: 0 4px 4px 0 rgb(60 64 67 / 30%), 0 8px 12px 6px rgb(60 64 67 / 15%);
+  outline: none;
+}
+
+.button-17:focus {
+  outline: none;
+  border: 2px solid #42f4b9;
+}
+
+.button-17:not(:disabled) {
+  box-shadow: rgba(60, 64, 67, .3) 0 1px 3px 0, rgba(60, 64, 67, .15) 0 4px 8px 3px;
+}
+
+.button-17:not(:disabled):hover {
+  box-shadow: rgba(60, 64, 67, .3) 0 2px 3px 0, rgba(60, 64, 67, .15) 0 6px 10px 4px;
+}
+
+.button-17:not(:disabled):focus {
+  box-shadow: rgba(60, 64, 67, .3) 0 1px 3px 0, rgba(60, 64, 67, .15) 0 4px 8px 3px;
+}
+
+.button-17:not(:disabled):active {
+  box-shadow: rgba(60, 64, 67, .3) 0 4px 4px 0, rgba(60, 64, 67, .15) 0 8px 12px 6px;
+}
+
+.button-17:disabled {
+  box-shadow: rgba(60, 64, 67, .3) 0 1px 3px 0, rgba(60, 64, 67, .15) 0 4px 8px 3px;
+}
+
+.titleMyPRofile{
+  
+  display: grid;
+  grid-template-columns: 90% 10%;
+
+}
+
+.titleMyPRofile span{
+  margin-left: 2rem;
+  font-size: 34px;
+  font-weight: bold;
+}
+
+.btnEditProAlu{
+  all: unset;
+  cursor: pointer;
+  font-size: 24px;
+}
+.contInfoPErfAlum{
+
+}
+.flagalumPro{
+  width: 2rem;
+  margin-right: 5px;
+}
+.miniContinfoPErfAlu{
+  margin-top: 2%;
+  width: 94%;
+  margin-left: 6%;
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-template-rows: max-content max-content;
+}
+
+.nameInfoPErAlu{
+  color: rgb(151, 140, 140);
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 13px;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.lainfoPErAlu{
+  background-color: rgb(151, 140, 140,0.2);
+  width: 80%;
+  padding-left: 4%;
+  height: 2rem;
+  color: rgb(43, 43, 43);
+  padding-top: 0.3rem;
+}
+
+.eachInfoIputPErProfe{
+  margin-bottom: 1.6rem;
+}
+
+.plusnipa{
+  padding-left: 6%;
+}
+.plusnipa2{
+  margin-left: 6%;
+  background-color: rgb(151, 140, 140,0.2);
+  width:84%;
+  padding-left: 4%;
+  height: 2rem;
+  color: rgb(43, 43, 43);
+  padding-top: 0.3rem;
+}
+
+.myFavHeaderPerFal{
+ 
+  height: 4rem;
+  font-weight: bold;
+  font-size: 24px;
+  color: rgb(129, 126, 126,0.8);
+  text-align: center;
+  padding-top: 1.2rem;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px 0px;
+  
+}
+
+.myFavHeaderPerFal span{
+  margin-right: 3% ;
+}
+
+.myPEndHeaderPerFal{
+  height: 3rem;
+  font-weight: bold;
+  font-size: 24px;
+  color: rgb(129, 126, 126,0.8);
+  text-align: center;
+  padding-top: 1.2rem;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px 0px;
+}
+
+.mispenSpan{
+  margin-right: 3%;
 }

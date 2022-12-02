@@ -1,0 +1,59 @@
+.PuntajesCont{
+    width: 100%;
+    height: 15rem;
+    padding-top: 5%;
+}
+
+.starRese{
+    color: rgb(230, 203, 52);
+}
+
+.numbReviewCont{
+    margin-left: 25%;
+    width: 50%;
+    display: grid;
+    grid-template-columns: 50% 50%;
+}
+
+.numbReviewRe{
+    font-size: 25px;
+    font-weight: bolder;
+}
+
+.proNumvRe{
+    margin-top: 10px;
+    font-size: 20px;
+    margin-left: 10px;
+    font-size: bolder;
+
+}
+
+.progPuntRe{
+    width: 10rem;
+    
+    height: 10px;
+    border-radius: 5px;
+}
+
+.allPuntuactionNumbRe{
+    width: 50%;
+    margin-left: 25%;
+    
+    display: grid;
+    grid-template-columns: 50% 44% 6%;
+}
+
+.punctWithCont{
+    color:  rgb(230, 203, 52);
+    font-weight: bolder;
+}
+.punctWithNoCont{
+    color: rgb(150, 148, 148);
+}
+
+.progYes{
+    background-color:  rgb(230, 203, 52);
+}
+.progNo{
+    background-color:  rgb(170, 163, 163);
+}

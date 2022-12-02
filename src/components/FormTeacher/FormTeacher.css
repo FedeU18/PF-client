@@ -1,25 +1,88 @@
 
 .form {
-    margin: 1rem;
-    padding: 1rem;
-    box-shadow: 4px 4px 2px 4px rgba(0, 0, 0, .5);
+    width: 35rem;
+    height: 22rem;
+    margin: 3rem;
+    display: flex;
+    align-items: baseline;
+    border-radius: 15px;
+    background: white;
+    color: black;
+    box-shadow: 2px 0 20px 10px rgba(0, 42, 182, 0.5);
+}
+
+.formulario {
     display: flex;
     flex-direction: column;
-    border-radius: 3px;
-    background: black;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%;
+}
+
+.texto {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: linear-gradient(rgb(0, 234, 255),rgb(37, 175, 255),rgb(0, 42, 182));
+    width: 80%;
+    height: 100%;
+    border-radius: 0 15px 15px 0;
+}
+
+.contenido {
+    padding: 1rem;
+    text-align: center;
+    color:white;
+}
+
+.botones {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 10px;
+}
+
+.botones > button {
+    border: none;
+    background: linear-gradient(90deg , rgb(0, 234, 255),rgb(0, 42, 182));
+    padding: 5px 15px 5px 15px;
+    border-radius: 20px;
     color: white;
+}
+.botones > button:disabled {
+    cursor: not-allowed;
+    opacity: .6;
+}
+
+.parrafo {
+    margin-top: 3rem;
 }
 
 textarea {
     resize: none;
-    margin: 2px;
-}
-input {
-    margin: 2px;
+
 }
 
 .label-input {
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
-    margin: 1px;
+    margin-top: 5px;
+}
+.label-input > input, .label-input > textarea {
+    border: none;
+    padding: 2px 15px 2px 15px;
+    border-radius: 20px;
+    box-shadow: 0 0 5px 2px rgb(0, 234, 255);
+    
+}
+.label-input > input::-webkit-input-placeholder{
+    color: rgb(0, 181, 197);
+}
+
+.label-input > select {
+    border: none;
+    padding: 2px 15px 2px 15px;
+    border-radius: 20px;
+    box-shadow: 0 0 5px 2px rgb(0, 234, 255);
+
 }

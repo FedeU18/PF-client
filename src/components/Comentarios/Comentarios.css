@@ -1,0 +1,5 @@
+.ComentariosCont{
+    
+    max-height: 18rem;
+    overflow-y: scroll;
+}
