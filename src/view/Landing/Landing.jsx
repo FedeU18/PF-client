@@ -13,8 +13,8 @@ import { FaPencilAlt } from "react-icons/fa";
 import {FaGlobeAmericas} from "react-icons/fa";
 import {FaCheck} from "react-icons/fa";
 import logo from './img/1.png'
-import {Swiper , SwiperSlide} from "swiper/react";
-import 'swiper/css';
+
+
 import { Link } from 'react-router-dom'
 import LoginWithEmailPassword from '../../Authentication/functions/loginWithEmailAndPassword'
 import { useNavigate } from 'react-router-dom'
