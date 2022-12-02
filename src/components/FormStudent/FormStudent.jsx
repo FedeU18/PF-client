@@ -165,6 +165,10 @@ const FormStudent = ({setMostrarStudent}) => {
     setForm(initialStudentForm);
   };
 
+  const clickOutForm = (e) => {
+    console.log(e.target)
+  }
+
   return (
     <div className="p-2 mt-5">
       <div className={`p-3 ${styles.max_width} ${styles.form_student}`}>
