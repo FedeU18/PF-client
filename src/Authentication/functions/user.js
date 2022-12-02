@@ -1,16 +1,16 @@
 export default function userAuthenticate() {
   const uno = localStorage.getItem("userDataAuth");
   const dos = localStorage.getItem("userData");
-  const tres = localStorage.getItem("user");
+  //const tres = localStorage.getItem("user");
 
   const userDataAuth = JSON.parse(uno);
   const userData = JSON.parse(dos);
-  const user = JSON.parse(tres);
+  //const user = JSON.parse(tres);
 
   return {
     userDataAuth,
     userData,
-    user,
+    //user,
   };
 }
 

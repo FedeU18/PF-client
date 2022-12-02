@@ -9,6 +9,9 @@ import { Link } from 'react-router-dom'
 import LoginWithEmailPassword from '../../Authentication/functions/loginWithEmailAndPassword'
 import { useNavigate } from 'react-router-dom'
 
+
+
+
 export const Landing = () => {
     const [globalMessage, setGlobalMessage] = useState("")
     const navigate = useNavigate()
@@ -40,6 +43,7 @@ export const Landing = () => {
         }
     }
     return (
+        <div>
         <div className="fondo">
             <div className="custom-shape-divider-bottom-1669219916">
                 <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
@@ -91,7 +95,9 @@ export const Landing = () => {
                         </Col>
                     </Row>
                 </Container>
-            </div>
+            </div>    
+        </div>
+       
         </div>
     )
 }
