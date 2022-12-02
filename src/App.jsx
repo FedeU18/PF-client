@@ -10,6 +10,8 @@ import ProtectedRoute from "./Authentication/protection/ProtectedRoute";
 import PublicRoutes from "./Authentication/protection/PublicRoutes";
 import ForgotPassword from "./view/ForgotPassword/ForgotPassword";
 import PerfilProfesor from "./components/PerfilProfesor/PerfilProfesor";
+import StripePagos from "./Payments/StripePagos";
+import TypeOfProcessPay from "./Payments/TypeOfProcessPay";
 
 function App() {
   return (
@@ -27,6 +29,8 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route path="/profesores/:id" element={<Detalle />} />
           {/* <Route path="/editar/:id" element={<PerfilProfesor/>}/> */}
+          <Route path="/payments" element={<StripePagos />} />
+          <Route path="/payments/:type" element={<TypeOfProcessPay />} />
         </Route>
 
         <Route path="*" element={<Error />} />

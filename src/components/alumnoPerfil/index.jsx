@@ -19,13 +19,46 @@ export const AlumnoPerfil = (props) => {
   const dispach = useDispatch();
   const navigate = useNavigate();
   let info = useSelector((state) => state.alumnos.alumno);
+
   const [show, setShow] = useState(false);
+
+  let valorImagen = "";
+
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   useEffect(() => {
     dispach(actions.getAlumnoFromAPI(props.id));
   }, []);
+
+
+  const [pict, setPict] = useState ("")
+
+
+  const deleteAlumno = async () => {
+    const deleteAccount = window.confirm(
+      "esta seguro de eliminar su cuenta de alumno"
+    );
+    if (deleteAccount) {
+      const UID = props.id;
+      await deleteFirestoreUser(UID); // borra firestore
+      dispach(actions.deleteAlumno(UID)); // borra base de datos
+      deleteCurrentUser(); // borra de firebase auth
+      logOut(); // lo deslogea
+      navigate("/"); // lo lleva al landing :)
+      // NO CAMBIAR EL ORDEN ,no comete errores pero si hace que se vea feo , primero eliminamos los datos para que
+      // se podria arreglar con un loader pero ya veremos :)
+    }
+  };
+
+  function valor() {
+    if(pict!=""){
+      valorImagen = pict;
+
+    }else{valorImagen = info.picture;
+
+    } return valorImagen;
+  }
 
 
   function handleOpenWidget() {
@@ -37,6 +70,7 @@ export const AlumnoPerfil = (props) => {
       (error, result) => {
         if (!error && result && result.event === "success") {
           dispach(actions.editAlumno({picture:result.info.url},props.id));
+          setPict(result.info.url);
           
         }
       }
@@ -48,6 +82,7 @@ export const AlumnoPerfil = (props) => {
     <div>
       {info && info.name ? (
         <div className="divPrincipal">
+
             <EditarAlumno show={show} alumno={info}  handleClose={handleClose}/>
           <div className="ContMyPerfilFavorites">
               <Link to="/home">
@@ -123,6 +158,7 @@ export const AlumnoPerfil = (props) => {
                             </div> 
                       </div>
                       </div>
+
                   </div>
                 </div>
                 <div className="pendientesContperfAlum">

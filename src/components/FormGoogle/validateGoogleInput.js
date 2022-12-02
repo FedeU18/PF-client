@@ -1,4 +1,4 @@
-export const validateInput = (inputName, text, setErrors, errors) => {
+export const validateGoogleInput = (inputName, text, setErrors, errors) => {
   if (inputName === "email") {
     const emailRegex = /^\w+([.-_+ñ]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/;
 
@@ -25,10 +25,14 @@ export const validateInput = (inputName, text, setErrors, errors) => {
     }
   } else if (inputName === "age") {
     const isNumber$ = parseInt(text);
-    console.log(isNumber$);
+    let data = !isNaN(isNumber$);
 
-    if (isNumber$ && isNumber$ < 100) {
-      setErrors({ ...errors, ageErr: false });
+    if (typeof isNumber$ === "number" && data) {
+      if (isNumber$ && isNumber$ < 100) {
+        setErrors({ ...errors, ageErr: false });
+      } else {
+        setErrors({ ...errors, ageErr: true });
+      }
     } else {
       setErrors({ ...errors, ageErr: true });
     }
