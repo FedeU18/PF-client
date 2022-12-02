@@ -1,4 +1,3 @@
-import logo from "./img/1.png";
 import loginWithGoogle from "../../Authentication/functions/loginWithGoogle";
 import MessageError from "./MessageError";
 import { useState } from "react";
