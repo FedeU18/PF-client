@@ -40,6 +40,7 @@ export default async function loginWithGoogle(form, dispatch) {
       localStorage.setItem("userData", dataFirestoreJSON);
       localStorage.setItem("userDataAuth", currentUserJSON);
     } else if (form.rol === "teacher") {
+      
     }
   } catch (error) {
     console.error(error);
