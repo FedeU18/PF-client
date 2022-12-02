@@ -1,0 +1,20 @@
+.main-footer {
+    color: #00b7ff;
+    background-color: #dc3545;
+    padding-top: 3em;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+  }
+.footer-container{
+    background-color: #00b7ff;
+}
+  .footer{
+
+    display: flex;
+	justify-content: space-around;
+  }
+  .abajo{
+    
+    justify-content: center;
+  }
