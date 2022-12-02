@@ -1,13 +1,14 @@
 import { PerfilProfesor } from "../../components/PerfilProfesor/PerfilProfesor";
 import PerfilAlumno from "../../components/PerfilAlumno/PerfilAlumno";
-import { useParams } from "react-router-dom";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import * as actionsAlumno from "../../redux/Actions/Alumno";
 import * as actionsProfesor from "../../redux/Actions/Profesor";
+import userAuthentication from "../../Authentication/functions/user";
 
 export const Perfil = () => {
-  const { id } = useParams();
+  const { userData } = userAuthentication();
+  let id = userData.id;
   const dispatch = useDispatch();
   let infoAlumno = useSelector((state) => state.alumnos.alumno);
   let infoProfesor = useSelector((state) => state.profesores.detail);

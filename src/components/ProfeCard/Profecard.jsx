@@ -13,21 +13,23 @@ export const ProfeCard=({id,nombre,descripcion,imagen,precio,materias,puntuacion
    
    <Card style={{ width: '18rem' , margin:'16px' }}>
      
-
-     <img  src={imagen} className='cardAboutContImg' />
-
+     <Link to={"/profesores/" + id}>
+       <img  src={imagen} className='cardAboutContImg' />
+    </Link>
 
       <Card.Body>
         <Card.Title>
           <div className='usuarioCont'>
-            <div className='AvatarNameProf'>
-              <div>{username?.length>0 && (<>{username[0].toUpperCase()}</>)}</div>
-              
-            </div>
-            
+            <Link to={"/profesores/" + id}>
+              <div className='AvatarNameProf'>
+                <div>{username?.length>0 && (<>{username[0].toUpperCase()}</>)}</div>              
+              </div>
+            </Link>
+            <Link to={"/profesores/" + id}>
             <div className='nameUsuarioC'>
               {username}
             </div>
+            </Link>
             <div>
               <img className='flagcarProfe' src={pais}/>
             </div>

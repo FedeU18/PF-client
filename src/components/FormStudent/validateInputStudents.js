@@ -1,9 +1,4 @@
-export const validateInput = (
-  inputName,
-  text,
-  setErrors,
-  errors
-) => {
+export const validateInput = (inputName, text, setErrors, errors) => {
   if (inputName === "email") {
     const emailRegex = /^\w+([.-_+ñ]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/;
 
@@ -30,12 +25,20 @@ export const validateInput = (
     }
   } else if (inputName === "age") {
     const isNumber$ = parseInt(text);
-    console.log(isNumber$)
+    console.log(isNumber$);
 
     if (isNumber$ && isNumber$ < 100) {
       setErrors({ ...errors, ageErr: false });
     } else {
       setErrors({ ...errors, ageErr: true });
+    }
+  } else if (inputName === "username") {
+    const validateUser = /^[a-zA-Z0-9_-]+$/;
+
+    if (validateUser.test(text)) {
+      setErrors({ ...errors, usernameErr: false });
+    } else {
+      setErrors({ ...errors, usernameErr: true });
     }
   }
 };

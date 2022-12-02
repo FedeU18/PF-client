@@ -20,8 +20,19 @@
 }
 
 .form_student {
-  color: #f6f6f6;
-  background-color:hsl(0, 0%, 7%);
-  border-radius: 1rem;
+  color: #F5FBEF;
+  background-color: #35A7FF;
+  border-radius: .4rem;
   border-left: green;
 }
+
+.button {
+  margin: 0 1rem;
+}
+
+.ingresa {
+  color: #0D1821;
+}
+
+
+/* 001514  */

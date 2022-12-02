@@ -1,0 +1,225 @@
+.divPrincipalProf {
+    width: 100%; 
+    height: auto;
+   padding-bottom: 5rem;
+    background-image: url('https://i.redd.it/l6vt1dgs5h921.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+  
+  }
+  
+  .ContMyPerfilFavoritesProf{
+    display: grid;
+    grid-template-columns: 5%  60% 35%;
+    padding-top: 3%;
+  }
+  .SEcondcontProper{
+    margin-top: 3%;
+    display: grid;
+    grid-template-columns: 32% 68%;
+    
+  }
+  .myperfilContProf{
+    background-color: rgb(223, 233, 241);
+    width: 90% ;
+    height: 50vh;
+    margin-left: 5%;
+    margin-top: 2.5rem;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    display: grid;
+    grid-template-columns: 32% 68%;
+    border-radius: 5px;
+   
+  }
+  .myMAteriasProfper{
+    margin-top: 20%;
+    margin-left: 25%;
+    background-color: rgb(223, 233, 241);
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    width: 70%;
+    height: 40vh;
+    
+    border-radius: 5px;
+  }
+  .MisCertificadosPRofePEr{
+    background-color: rgb(223, 233, 241);
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    width: 80%;
+    height: 65vh;
+    margin-left: 10%;
+    border-radius: 5px;
+  }
+  
+  .myFavContProf{
+    background-color: rgb(223, 233, 241);
+    width: 80% ;
+    height: 40vh;
+    margin-left: 5%;
+    margin-top: 4.5rem;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    vertical-align: middle;
+    justify-content: center;
+    font-size: 28px;
+    color: rgb(59, 59, 59);
+    padding-left: 5%;
+    font-weight: bold;
+
+  }
+  
+  .pendientesContperfAlumProf{
+    background-color: rgb(223, 233, 241);
+    width: 90% ;
+    height: 34vh;
+    margin-left: 5%;
+    margin-top: 2.5rem;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+   
+    border-radius: 5px;
+  }
+  
+  
+  
+  .FotoPerfilAContProf{
+  
+  border-radius: 5px 0px 5px 0px;
+  
+  
+  }
+  
+  .AvatarNameAluPerProf{
+    width: 10rem;
+    height: 10rem;
+    border-radius: 50%;
+    background-color: rgb(255, 255, 255);
+    margin-left: 12%;
+    margin-top: 5%;
+    font-size: 5rem;
+    font-weight: bolder;
+    text-align: center;
+    color: #2d5c83;
+    padding-top: 1.2rem;
+  }
+  
+  .ProfilePictureAlumProf{
+    width: 10rem;
+    height: 10rem;
+    border-radius: 50%;
+    margin-left: 12%;
+    margin-top: 5%;
+    border: 3px solid white;
+  }
+  
+  
+  
+  
+  .titleMyPRofileProf{
+    
+    display: grid;
+    grid-template-columns: 90% 10%;
+  
+  }
+  
+  .titleMyPRofileProf span{
+    margin-left: 2rem;
+    font-size: 34px;
+    font-weight: bold;
+  }
+  
+  .btnEditProAluProf{
+    all: unset;
+    cursor: pointer;
+    font-size: 24px;
+    margin-left: 5%;
+  }
+  .contInfoPErfAlumProf{
+  
+  }
+  .flagalumPro{
+    width: 2rem;
+    margin-right: 5px;
+  }
+  .miniContinfoPErfAluProf{
+    margin-top: 2%;
+    width: 94%;
+    margin-left: 6%;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: max-content max-content;
+  }
+  
+  .nameInfoPErAluProf{
+    color: rgb(151, 140, 140);
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 13px;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  .lainfoPErAluProf{
+    background-color: rgb(151, 140, 140,0.2);
+    width: 80%;
+    padding-left: 4%;
+    height: 2rem;
+    color: rgb(43, 43, 43);
+    padding-top: 0.3rem;
+  }
+  
+  .eachInfoIputPErProfeProf{
+    margin-bottom: 1.6rem;
+  }
+  
+  .plusnipaProf{
+    padding-left: 6%;
+  }
+  .plusnipa2Prof{
+    margin-left: 6%;
+    background-color: rgb(151, 140, 140,0.2);
+    width:84%;
+    padding-left: 4%;
+    height: 2rem;
+    color: rgb(43, 43, 43);
+    padding-top: 0.3rem;
+  }
+  
+  .myFavHeaderPerFalProf{
+   
+    height: 4rem;
+    font-weight: bold;
+    font-size: 24px;
+    color: rgb(129, 126, 126,0.8);
+    text-align: center;
+    padding-top: 1.2rem;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px 0px;
+    
+  }
+  
+  .myFavHeaderPerFalProf span{
+    margin-right: 3% ;
+  }
+  
+  .myPEndHeaderPerFalProf{
+    height: 3rem;
+    font-weight: bold;
+    font-size: 24px;
+    color: rgb(129, 126, 126,0.8);
+    text-align: center;
+    padding-top: 1.2rem;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px 0px;
+  }
+  
+  .mispenSpanProf{
+    margin-right: 3%;
+  }
+
+  .materiasContProfPEr{
+  
+    margin-top: 10%;
+    margin-left: 10%;
+  }
+
+  .certiProPER{
+    height: 40vh;
+  }
