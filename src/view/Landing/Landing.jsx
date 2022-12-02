@@ -12,13 +12,16 @@ import imagen2 from "./img/img2.jpeg";
 import imagen3 from "./img/img3.jpeg";
 import dibujoo from "./img/dibujo.jpeg";
 import { FaPencilAlt } from "react-icons/fa";
-import { FaGlobeAmericas } from "react-icons/fa";
-import { FaCheck } from "react-icons/fa";
-import logo from "./img/1.png";
 
-import { Link } from "react-router-dom";
-import LoginWithEmailPassword from "../../Authentication/functions/loginWithEmailAndPassword";
-import { useNavigate } from "react-router-dom";
+import {FaGlobeAmericas} from "react-icons/fa";
+import {FaCheck} from "react-icons/fa";
+import logo from './img/1.png'
+
+
+import { Link } from 'react-router-dom'
+import LoginWithEmailPassword from '../../Authentication/functions/loginWithEmailAndPassword'
+import { useNavigate } from 'react-router-dom'
+
 
 export const Landing = () => {
   const [messageError, setMessageError] = useState(false);
