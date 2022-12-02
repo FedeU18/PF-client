@@ -1,0 +1,43 @@
+.ComentsOnComentsCont{
+    margin-bottom: 2rem;
+    width: 70%;
+    margin-left: 30%;
+}
+
+.ComentAvaNameFlagCont2{
+  
+    display: grid;
+    grid-template-columns: 30% 68% 2%;
+}
+
+.contComentCont2{
+    margin-top: 1.2rem;
+    margin-left: 1rem;
+}
+
+.AvatarNameProf2{
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+}
+
+.comContonComPlus{
+    margin-top: 1.2rem;
+    margin-bottom: 1.2 rem;
+}
+.showMorecoments{    
+    all: unset;
+    width: 100%;
+    cursor: pointer;
+    font-size: 25px;
+    font-weight: bolder;
+    text-align: center;
+    color:  rgb(49, 49, 49,0.4) ;
+    box-shadow: rgba(0, 0, 0, 0.08) 0px 4px 12px;
+    border-radius: 5px;
+}
+.showMorecoments:hover{
+    color: rgb(49, 49, 49,0.7) ; 
+    background-color: rgb(241, 231, 245);
+}
+

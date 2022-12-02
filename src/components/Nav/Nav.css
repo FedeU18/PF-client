@@ -17,8 +17,7 @@
 
 .imgAvatar {
   border: 2px solid rgb(230, 227, 227);
-  max-height: 42px;
-  /* max-width: 40px; */
+  height: 42px;
   width: 40px;
 }
 
