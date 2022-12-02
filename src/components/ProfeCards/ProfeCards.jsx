@@ -11,8 +11,9 @@ export const ProfeCards = ({ profes }) => {
             <h4 key={index}>profesor no encontrado</h4>
           ) : (
             <div className="homeProfeCard" key={index}>
-              <Link to={"/profesores/" + e.id}>
+             
                 <ProfeCard
+                  id={e.id}
                   username={e.username}
                   nombre={e.nombre}
                   imagen={e.imagen}
@@ -22,7 +23,7 @@ export const ProfeCards = ({ profes }) => {
                   puntuacion={e.puntuacion}
                   precio={e.precio}
                 />
-              </Link>
+              
             </div>
           );
         })

@@ -1,0 +1,78 @@
+.ComentarioCont{
+   margin-bottom: 3rem;
+    width: 60%;
+    margin-left: 20%;
+    display: grid;
+    grid-template-columns: 99% 1%;
+    box-shadow: rgba(17, 17, 26, 0.2) 0px 1px 0px;
+}
+
+.flagcarProfeComent{
+    width:1.5rem;
+}
+
+.ComentAvaNameFlagCont{
+    display: grid;
+    grid-template-columns: 12% 88%;
+}
+.contComentCont{
+    margin-bottom: 1rem;
+    margin-top: 1.4rem;
+}
+.btnLikeCoCont{
+  display: grid;
+  grid-template-columns: 80% 5% 15%;
+
+}
+.responderComent{
+    color: rgb(59, 59, 59);
+    margin-left: 75%;
+}
+.responderComent:hover{
+    color: rgb(44, 10, 53);
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.btnLikeComent{
+    all:unset;
+    font-size: 20px;
+   
+}
+.btnLikeComent:hover{
+    font-size: 21px;
+    animation: shake 0.5s;
+    animation-iteration-count: infinite;
+}
+.numbLikesCont{
+    font-weight: bolder;
+}
+.nameLAstnameBolder{
+    font-weight: bolder;
+}
+
+@keyframes shake {
+    0% { transform: translate(1px, 1px) rotate(0deg); }
+    10% { transform: translate(-1px, -2px) rotate(-1deg); }
+    20% { transform: translate(-3px, 0px) rotate(1deg); }
+    30% { transform: translate(3px, 2px) rotate(0deg); }
+    40% { transform: translate(1px, -1px) rotate(1deg); }
+    50% { transform: translate(-1px, 2px) rotate(-1deg); }
+    60% { transform: translate(-3px, 1px) rotate(0deg); }
+    70% { transform: translate(3px, 1px) rotate(-1deg); }
+    80% { transform: translate(-1px, -1px) rotate(1deg); }
+    90% { transform: translate(1px, 2px) rotate(0deg); }
+    100% { transform: translate(1px, -2px) rotate(-1deg); }
+  }
+
+  .AvatarNameProfImg{
+    background-color: rgb(7, 71, 71);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-self: center;
+    text-align: center;
+    vertical-align: middle;
+    color: white;}

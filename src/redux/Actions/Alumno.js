@@ -81,10 +81,10 @@ export function postAlumno(alumno) {
 
 export function editAlumno(obj, id) {
   return function (dispatch) {
-    axios
-      .patch(`/alumnos/${id}`, obj)
+    axios.patch(`/alumnos/${id}`, obj)
 
-      .then((res) => console.log("Alumno editado con exito"))
+      .then((res) => {console.log("Alumno editado con exito")
+                      dispatch(getAlumnoFromAPI(id))})
       .catch((error) => {
         console.log(error);
       });

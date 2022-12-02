@@ -1,0 +1,17 @@
+.btnSEndComment{
+    all:unset;
+    cursor: pointer;
+    font-size: 30px;
+}
+.btnSEndComment:hover{
+    font-size: 32px;
+}
+
+.textInputComent{
+    all:unset;
+    margin-left: 10%;
+    width: 80%;
+    height: 5rem;
+    font-size: 18px;
+    
+}
