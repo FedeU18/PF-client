@@ -4,8 +4,19 @@
 html {
   font-size: 16px;
   box-sizing: border-box;
-  overflow-x: hidden;
+  /* overflow-x: hidden; */
   width: 100%;
+}
+
+html::-webkit-scrollbar {
+  /* background-color: blue; */
+  width: 8px;
+}
+
+html::-webkit-scrollbar-thumb {
+  background-color: transparent;
+  background-color: rgb(70, 67, 67);
+  border-radius: 0.4rem;
 }
 
 *,

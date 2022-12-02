@@ -101,7 +101,7 @@ export const AlumnoPerfil = (props) => {
                           <div>{info.name[0].toUpperCase()}</div>                                
                       </div>
                     )  }
-                    <button class="button-17" role="button">Alumno</button>
+                    <button className="button-17" role="button">Alumno</button>
                   </div>
                   <div className="InFoAlumnoPErfCont">
                     <div className="titleMyPRofile">
