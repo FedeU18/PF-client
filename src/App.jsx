@@ -23,7 +23,7 @@ function App() {
 
         <Route path="/" element={<ProtectedRoute />}>
           <Route path="/home" element={<Home />} />
-          <Route path="/profile/:id" element={<Perfil />} />
+          <Route path="/profile" element={<Perfil />} />
           <Route path="/about" element={<About />} />
           <Route path="/profesores/:id" element={<Detalle />} />
           {/* <Route path="/editar/:id" element={<PerfilProfesor/>}/> */}

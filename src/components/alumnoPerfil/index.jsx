@@ -8,35 +8,25 @@ import "./alumnoPerfil.css";
 import deleteFirestoreUser from "../../Authentication/functions/deleteFirestoreUser";
 import deleteCurrentUser from "../../Authentication/functions/deleteCurretUser";
 import logOut from "../../Authentication/functions/logOut";
+import { AiOutlineEdit } from "react-icons/ai";
+import { Link } from "react-router-dom";
+import {MdOutlineFavorite} from "react-icons/md";
+import { MdOutlinePendingActions } from "react-icons/md";
+import { EditarAlumno} from "../EditarAlumno/EditarAlumno.jsx";
 
 export const AlumnoPerfil = (props) => {
   console.log("desde alumno perfil ", props.id);
   const dispach = useDispatch();
   const navigate = useNavigate();
   let info = useSelector((state) => state.alumnos.alumno);
+  const [show, setShow] = useState(false);
 
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
   useEffect(() => {
     dispach(actions.getAlumnoFromAPI(props.id));
   }, []);
 
-
-
-
-  const deleteAlumno = async () => {
-    const deleteAccount = window.confirm(
-      "esta seguro de eliminar su cuenta de alumno"
-    );
-    if (deleteAccount) {
-      const UID = props.id;
-      await deleteFirestoreUser(UID); // borra firestore
-      dispach(actions.deleteAlumno(UID)); // borra base de datos
-      deleteCurrentUser(); // borra de firebase auth
-      logOut(); // lo deslogea
-      navigate("/"); // lo lleva al landing :)
-      // NO CAMBIAR EL ORDEN ,no comete errores pero si hace que se vea feo , primero eliminamos los datos para que
-      // se podria arreglar con un loader pero ya veremos :)
-    }
-  };
 
   function handleOpenWidget() {
     var myWidget = window.cloudinary.createUploadWidget(
@@ -58,76 +48,103 @@ export const AlumnoPerfil = (props) => {
     <div>
       {info && info.name ? (
         <div className="divPrincipal">
-          <div>
-            <h4 className="nameCountry">{info.country}</h4>
-            <div className="containerImgPerfil">
-              <h1 className="titleContainerPerfil">
-                {info.name} {info.lastname}
-              </h1>
-              <div>
-                <div className="containerPerfil">
-                  <img src={info.picture} alt={info.picture} />
-                  <div
-                    className="containerLoadingImg"
-                    onClick={() => handleOpenWidget()}
-                  >
-                    <img src={cloud} alt="" />
+            <EditarAlumno show={show} alumno={info}  handleClose={handleClose}/>
+          <div className="ContMyPerfilFavorites">
+              <Link to="/home">
+                   <button className="goBackBtn">
+                    <img className="gobackArrow" src={'/retro.png'} />
+                  </button>              
+              </Link>
+
+            <div>
+                <div className="myperfilCont">
+                  <div className="FotoPerfilACont">
+                    {info.picture!=='sin foto' ?(
+                      <img src={info.picture} className='ProfilePictureAlum'/>
+                    ):(
+                      <div className='AvatarNameAluPer'>
+                          <div>{info.name[0].toUpperCase()}</div>                                
+                      </div>
+                    )  }
+                    <button class="button-17" role="button">Alumno</button>
+                  </div>
+                  <div className="InFoAlumnoPErfCont">
+                    <div className="titleMyPRofile">
+                      <span>
+                      Mi Perfil                  
+                      </span>
+                    <button className="btnEditProAlu">
+                    <AiOutlineEdit onClick={handleShow}/>
+                    </button>
+                    </div>
+
+                      <div className="contInfoPErfAlum">
+                        <div>
+                          <div className="miniContinfoPErfAlu">
+                            <div className="eachInfoIputPErProfe">
+                              <div className="nameInfoPErAlu">
+                                Nombre:
+                              </div> 
+                              <div className="lainfoPErAlu">
+                                {info.name}
+                            </div> 
+                          </div>
+                          <div className="eachInfoIputPErProfe">
+                              <div className="nameInfoPErAlu">
+                                Apellido:
+                              </div> 
+                              <div className="lainfoPErAlu">
+                                {info.lastname}
+                            </div> 
+                          </div>
+                          <div className="eachInfoIputPErProfe">
+                              <div className="nameInfoPErAlu">
+                                Edad:
+                              </div> 
+                              <div className="lainfoPErAlu">
+                                {info.age} años
+                            </div> 
+                          </div>
+                          <div className="eachInfoIputPErProfe">
+                              <div className="nameInfoPErAlu">
+                                Pais:
+                              </div> 
+                              <div className="lainfoPErAlu">
+                                <img src={info.country.flag} className='flagalumPro'/>
+                                {info.country.name}
+                            </div> 
+                          </div>
+                        </div>
+                        <div className="nameInfoPErAlu plusnipa">
+                                Email:
+                              </div> 
+                              <div className="plusnipa2">
+                                {info.email} 
+                            </div> 
+                      </div>
+                      </div>
                   </div>
                 </div>
-              </div>
-              <div className="containerBtns">
-                <div>
-                  <button
-                    onClick={() => props.open()}
-                    type="button"
-                    className="btnEditarCuenta btn btn-secondary"
-                  >
-                    Editar cuenta
-                  </button>
-                  <button
-                    type="button"
-                    className="btn btn-danger btnEliminar"
-                    onClick={deleteAlumno}
-                  >
-                    Eliminar Cuenta
-                  </button>
+                <div className="pendientesContperfAlum">
+                      <div className="myPEndHeaderPerFal">
+                         <spna className='mispenSpan'>
+                           Mis Pendientes 
+                          </spna>
+                         <MdOutlinePendingActions  style={{color:'rgb(151, 140, 140,0.8)' }} size={24}/>
+                      </div>
                 </div>
-                <button
-                  onClick={() => navigate("/home")}
-                  className="btnVolverInicio"
-                >
-                  ↖
-                </button>
-              </div>
             </div>
-          </div>
 
-          <div className="tbInfoAlumno">
-            <h2>Informacion del Alumno</h2>
-            <table className="table">
-              <tbody>
-                <tr>
-                  <th scope="row">Nombre</th>
-                  <td>{info.name}</td>
-                </tr>
-                <tr>
-                  <th scope="row">Apellido</th>
-                  <td>{info.lastname}</td>
-                </tr>
-                <tr>
-                  <th scope="row">Edad</th>
-                  <td colSpan="2">{info.age}</td>
-                </tr>
-                <tr>
-                  <th scope="row">Correo</th>
-                  <td colSpan="2">{info.email}</td>
-                </tr>
-                <tr>
-                  <th scope="row">Pais</th>
-                  <td colSpan="2">{info.country}</td>
-                </tr>
-              </tbody>
-            </table>
+
+            <div className="myFavCont">
+                 <div className="myFavHeaderPerFal"> 
+                  <span>
+                    Mis Favoritos
+                  </span>
+                  <MdOutlineFavorite size={30}             
+                  style={{color:'rgb(253, 17, 49)' }}/>
+                  </div>
+            </div>
           </div>
         </div>
       ) : (

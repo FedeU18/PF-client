@@ -1,0 +1,47 @@
+.fotoCarrusel{
+    max-width: 54%;
+    max-height: 70vh;
+}
+
+.CertiFotosContCarr{
+    
+    padding-top: 15vh;
+    display: flex;
+  align-items: center;
+  vertical-align: middle;
+  justify-content: center;
+  align-content: center;
+  text-align: center;
+}
+
+.descCertiCarru{
+    color: black;
+    backdrop-filter: blur(5px);
+}
+
+.descCertCarru{
+    display: none;
+}
+.carruIte:hover .descCertCarru{
+   display: block;
+   background-color: rgb(116, 124, 124,0.7);
+   height: 100%;
+   display: flex;
+   align-items: center;
+   vertical-align: middle;
+   justify-content: center;
+   align-content: center;
+   text-align: center;
+   color: white;
+   font-size: 20px;
+   text-shadow: 1px 1px 2px black;
+}
+
+.insideCaIte{
+    margin-left: 23% ;
+    width: 54%;
+    height: 70vh;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100% 100%;
+}

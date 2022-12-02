@@ -2,8 +2,6 @@ import "bootstrap/dist/css/bootstrap.css";
 import logOut from "../../Authentication/functions/logOut";
 import Image from "react-bootstrap/Image";
 import Container from "react-bootstrap/Container";
-import Nav from "react-bootstrap/Nav";
-import Navbar from "react-bootstrap/Navbar";
 import "./Nav.css";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -11,14 +9,48 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 import { useNavigate } from "react-router";
 import SearchBar from "../SearchBar/SearchBar";
 import userAuthentication from "../../Authentication/functions/user";
+import { useEffect, useState } from "react";
+import * as actionsAlumno from "../../redux/Actions/Alumno";
+import * as actionsProfesor from "../../redux/Actions/Profesor";
+import { useDispatch, useSelector } from "react-redux";
+
 
 export const NavBar = () => {
-  const navigate = useNavigate();
-
+  const navigate = useNavigate();  
+  const dispatch=useDispatch()
   const { userData } = userAuthentication();
-  console.log(userData.id);
+  let infoAlumno = useSelector((state) => state.alumnos.alumno);
+  let infoProfesor = useSelector((state) => state.profesores.detail);
+  const [useFoto ,SetUserFoto]=useState('')
   let id = userData.id;
+  useEffect(()=>{
+    dispatch(actionsAlumno.getAlumnoFromAPI(id));
+    dispatch(actionsProfesor.getProfesorById(id));
+  },[])
 
+  useEffect(()=>{
+    if(Object.entries(infoProfesor).length === 0 && Object.entries(infoAlumno).length===0){
+      SetUserFoto("https://thumbs.gfycat.com/BronzeSpryAlleycat-size_restricted.gif")
+      }
+    else{
+      if(infoAlumno.picture){
+        if(infoAlumno.picture==='sin foto'){
+          SetUserFoto("https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png")
+    
+        }else{
+          SetUserFoto(infoAlumno.picture)
+        }
+      }
+      if(infoProfesor.imagen){
+        if(infoProfesor.imagen===null){
+          SetUserFoto("https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png")
+    
+        }else{
+          SetUserFoto(infoProfesor.imagen)
+        }
+      }
+    }
+  },[])
 
   const CloseMySesion = () => {
     logOut();
@@ -29,7 +61,7 @@ export const NavBar = () => {
     console.log();
     console.log("me ejcute");
 
-    navigate(`/profile/${id}`);
+    navigate(`/profile`);
 
   };
 
@@ -60,7 +92,7 @@ export const NavBar = () => {
           <Col className="colAvatarDrop">
             <Image
               className="imgAvatar"
-              src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
+              src={useFoto}
               roundedCircle
             />
             <NavDropdown className="dro" id="basic-nav-dropdown">

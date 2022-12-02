@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { AlumnoPerfil } from "../alumnoPerfil";
-import { EditarAlumno } from "../EditarAlumno";
+
 
 function PerfilAlumno(props) {
   const id = props.id;
@@ -17,7 +17,7 @@ function PerfilAlumno(props) {
   return (
     <div>
       <AlumnoPerfil open={openTrue} id={id} />
-      <EditarAlumno open={open} close={OpenFalse} id={id} />
+      
     </div>
   );
 }
