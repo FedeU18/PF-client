@@ -10,6 +10,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllAlumnos, postAlumno } from "../../redux/Actions/Alumno";
 import { FcGoogle } from "react-icons/fc";
+import FormGoogle from "../FormGoogle/FormGoogle";
 
 const initialStudentForm = {
   username: "",
@@ -34,7 +35,7 @@ const initialStudentErrors = {
   usernameErr: false,
 };
 
-const FormStudent = () => {
+const FormStudent = ({setMostrarStudent}) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const passwordShow = useRef();
@@ -61,6 +62,7 @@ const FormStudent = () => {
   const [loaderRegister, setLoaderRegister] = useState(false);
   const alumnos = useSelector((state) => state.alumnos.alumnos);
 
+
   useEffect(() => {
     dispatch(getAllAlumnos());
     return () => dispatch(getAllAlumnos());
@@ -80,10 +82,11 @@ const FormStudent = () => {
 
   const enterWithGoogle = async () => {
     try {
-      await loginWithGoogle();
-      navigate("/home");
+      setMostrarStudent(true)
+      // await loginWithGoogle();
+      // navigate("/home");
     } catch (error) {
-      console.error(error);
+      // console.error(error);
     }
   };
 
@@ -262,7 +265,7 @@ const FormStudent = () => {
                 >
                   <label htmlFor="age">edad </label>
                   <input
-                    type="text"
+                    type="number"
                     id="age"
                     name="age"
                     onChange={handleChangeStudent}
@@ -400,7 +403,7 @@ const FormStudent = () => {
 
         <div>
           <p className="text-center">
-            <p>quiero aprender ya!!</p>
+            {/* <p>quiero aprender ya!!</p> */}
             <b className="fs-6">o</b>
           </p>
           <div
@@ -417,7 +420,8 @@ const FormStudent = () => {
 
         <div className="text-center mt-4">
           <p>
-            Ya tienes cuenta? <Link to="/" className={styles.ingresa}>Ingresa</Link>
+            Ya tienes cuenta? 
+            <Link to="/" className={styles.ingresa}>Ingresa</Link>
           </p>
         </div>
       </div>

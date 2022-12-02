@@ -17,7 +17,7 @@ export default async function registerUser(email, password, form) {
       id: userCreate.user.uid,
       ...form,
     });
-    const getFirestoreData = await getCurrentUser(userCreate.user.uid)
+    const getFirestoreData = await getCurrentUser(userCreate.user.uid);
 
     const dataAuth = JSON.stringify(userCreate.user);
     const dataFirestore = JSON.stringify(getFirestoreData);
