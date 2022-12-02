@@ -34,7 +34,8 @@
     padding: 5px;
 }
 .chosen {
-    background: linear-gradient(90deg , rgb(0, 234, 255),rgb(0, 42, 182));
+    background: linear-gradient(90deg ,rgb(85, 145, 197),
+    rgb(133, 159, 236));
     transition: .2s all ease-in-out;
     transform: scale(1.1);
     border-radius: 10px;
