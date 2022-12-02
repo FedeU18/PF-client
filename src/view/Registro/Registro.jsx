@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import FormGoogle from "../../components/FormGoogle/FormGoogle";
+import FormGoogleProfe from "../../components/FormGoogle/FormGoogleProfe";
 import FormStudent from "../../components/FormStudent/FormStudent";
 import FormTeacher from "../../components/FormTeacher/FormTeacher";
 import "./Registro.css";
 const Registro = () => {
+  const [mostrarProfe, setMostrarProfe] = useState(false);
   const [mostrarStudent, setMostrarStudent] = useState(false);
   const [form, setForm] = useState();
 
@@ -35,10 +37,22 @@ const Registro = () => {
         {form ? (
           <FormStudent setMostrarStudent={setMostrarStudent} />
         ) : (
-          <FormTeacher />
+          <FormTeacher setMostrarProfe={setMostrarProfe}/>
         )}
 
-        {mostrarStudent && <FormGoogle setMostrarStudent={setMostrarStudent}  mostrarStudent={mostrarStudent}/>}
+        {mostrarStudent && (
+          <FormGoogle
+            setMostrarStudent={setMostrarStudent}
+            mostrarStudent={mostrarStudent}
+          />
+        )}
+
+        {mostrarProfe && (
+          <FormGoogleProfe
+            setMostrarProfe={setMostrarProfe}
+            mostrarProfe={mostrarProfe}
+          />
+        )}
       </div>
     </div>
   );

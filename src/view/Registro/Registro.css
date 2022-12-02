@@ -4,7 +4,7 @@
     margin-left: 20px;
     padding: 5px 15px 5px 15px;
     border: none;
-    box-shadow: 0 0 2px 1px rgba(115, 92, 180, 0.8);
+    /* box-shadow: 0 0 2px 1px rgba(115, 92, 180, 0.8); */
 
 }
 
@@ -19,7 +19,7 @@
     margin-left: 20px;
     padding: 5px 15px 5px 15px;
     border: none;
-    box-shadow: 0 0 2px 1px rgba(115, 92, 180, 0.8);
+    /* box-shadow: 0 0 2px 1px rgba(115, 92, 180, 0.8); */
 
 }
 
@@ -41,6 +41,6 @@
     color: white;
     padding: 5px 15px 5px 15px;
     border: none;
-    box-shadow: 0 0 2px 1px rgba(115, 92, 180, 0.8);
+    /* box-shadow: 0 0 2px 1px rgba(115, 92, 180, 0.8); */
 
 }
