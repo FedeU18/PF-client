@@ -15,7 +15,6 @@ import { FaPencilAlt } from "react-icons/fa";
 
 import {FaGlobeAmericas} from "react-icons/fa";
 import {FaCheck} from "react-icons/fa";
-import logo from './img/1.png'
 
 
 import { Link } from 'react-router-dom'
