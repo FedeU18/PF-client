@@ -88,3 +88,18 @@ textarea {
     box-shadow: 0 0 5px 2px rgb(85, 145, 197);
 
 }
+
+.materias {
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    margin-top: 5px;
+}
+
+.materias > button {
+    border: none;
+    background: linear-gradient(90deg ,rgb(133, 159, 236),
+    rgb(85, 145, 197));
+    padding: 5px 10px 5px 10px;
+    border-radius: 20px;
+    color: white;
+}
