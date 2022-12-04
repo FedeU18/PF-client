@@ -21,7 +21,9 @@ export const PerfilProfesor=({id})=>{
     const [modalShow, setModalShow] = useState(false);
     const [modalShowEdit, setModalShowEdit] = useState(false);
     const [modalShowAdd, setModalShowAdd] = useState(false);
-    const [alert, setAlert]=useState(false)
+    const [alert, setAlert]=useState(false);
+    const [pict, setPict] = useState("");
+    let valorImagen = "";
 
     let info = useSelector((state) => state.profesores.detail);
     useEffect(() => {     
@@ -30,6 +32,31 @@ export const PerfilProfesor=({id})=>{
           dispatch(clear())
         }
       }, []);
+
+      function valor() {
+        if (pict != "") {
+          valorImagen = pict;
+        } else {
+          valorImagen = info.imagen;
+        }
+        return valorImagen;
+      }
+    
+      function handleOpenWidget() {
+        var myWidget = window.cloudinary.createUploadWidget(
+          {
+            cloudName: "dpeannw8c",
+            uploadPreset: "w5okfspz",
+          },
+          (error, result) => {
+            if (!error && result && result.event === "success") {
+              dispatch(actionsProfesor.putProfesor(id,{ imagen: result.info.url }));
+              setPict(result.info.url);
+            }
+          }
+        );
+        myWidget.open();
+      } 
 
 
 const handleShow = () => setShow(true);
@@ -60,15 +87,13 @@ const handleShow = () => setShow(true);
                 <div>
                     <div className="myperfilContProf">
                       <div className="FotoPerfilAContProf">
-                        {info.imagen!=='' ?(
-                          <img src={info.imagen} className='ProfilePictureAlumProf'/>
-                        ):(
-                          <div className='AvatarNameAluPerProf'>
-                              <div>{info.username[0].toUpperCase()}</div>                                
-                          </div>
-                        )  }
+                        
+                          <img src={valor()} className='ProfilePictureAlumProf'/>
+                        
+                          
+                        
                         <div className="usernameProfePEr"> {info.username} </div>
-                        <button class="button-17" role="button">Profesor</button>
+                        <button class="button-17" role="button" onClick={() => handleOpenWidget()}>Profesor</button>
 
                           <button class="button-62" role="button" onClick={handleOtherPer}>
                             Ir a Mi Perfil Comercial
