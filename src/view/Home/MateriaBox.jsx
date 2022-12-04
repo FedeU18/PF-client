@@ -6,7 +6,7 @@ function MateriaBox(props) {
     <div className="caja">
       <div className="icono">
         {/*Props imagen o icono*/}
-        {props.icono}
+       <img src={props.image} alt=""/>
       </div>
       
       <div className="materiatext">

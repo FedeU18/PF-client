@@ -2,7 +2,6 @@ import loginWithGoogle from "../../Authentication/functions/loginWithGoogle";
 import MessageError from "./MessageError";
 import { useState } from "react";
 import "./Landing.css";
-
 import img from "./img/google.png";
 import Carousel from 'react-bootstrap/Carousel';
 import Container from "react-bootstrap/Container";
@@ -14,7 +13,6 @@ import profe from "./img/profe1.png";
 import imagen from "./img/img1.jpeg";
 import imagen2 from "./img/img2.jpeg";
 import imagen3 from "./img/img3.jpeg";
-
 import perfil from "./img/perfil.jpg";
 import perfil2 from "./img/perfil2.jpg"
 import perfil3 from "./img/perfil3.jpg"
@@ -22,16 +20,18 @@ import {FcCheckmark} from "react-icons/fc";
 import {Link} from "react-router-dom"; //arreglar lo de link 
 import {Link as LinkS } from "react-scroll";
 import pizarron from "./img/pizarron.png";
-
 import Footer from "./Footer";
 import { FcGlobe } from "react-icons/fc"
 import { FaPencilAlt } from "react-icons/fa";
-
 import { FaCheck } from "react-icons/fa";
-
 import LoginWithEmailPassword from "../../Authentication/functions/loginWithEmailAndPassword";
 import { useNavigate } from "react-router-dom";
 import logo from './img/1.png'
+import logo from "./img/1.png";
+import Scroll1 from "./Scroll1.jsx"
+import Scroll2 from "./Scroll2.jsx"
+import Tarjetas from "./Tarjetas.jsx"
+import Contact from"./Contact.jsx"
 
 export const Landing = () => {
   const [messageError, setMessageError] = useState(false);
