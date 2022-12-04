@@ -112,7 +112,7 @@ border-radius: 5px 0px 5px 0px;
   will-change: transform,opacity;
   z-index: 0;
   margin-top: 5%;
-  margin-left: 12%;
+  margin-left: 17%;
 }
 
 .button-17:hover {
@@ -245,4 +245,21 @@ border-radius: 5px 0px 5px 0px;
 
 .mispenSpan{
   margin-right: 3%;
+}
+
+.aunnofavCont{
+  font-size: 16px;
+  color: rgb(134, 133, 133);
+  font-weight: bold;
+  margin-top: 40%;
+  display: flex;
+  text-align: center;
+  vertical-align:middle;
+  justify-content: center;
+  align-self: center;
+  align-content: center;
+}
+
+.centerProfCardsFavAL{
+  margin-left: 15%;
 }
