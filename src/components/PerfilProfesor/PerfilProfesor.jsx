@@ -176,7 +176,7 @@ const handleShow = () => setShow(true);
                   <span>
                     Mis Materias
                     <button className="btnEditProAluProf btnEditprofOTher ">
-                        <AiOutlineEdit />
+                        {/* <AiOutlineEdit /> */}
                         </button>
                   </span>
                   <div className="materiasContProfPEr">

@@ -10,10 +10,10 @@
     max-width: 100%;
   }
   
-  img:hover {
+  /* img:hover {
     border: 4px solid rgba(249, 249, 249, 0.8);
   }
-  
+   */
   .slick-dots li.slick-active button:before {
     color: #fff !important;
   }
