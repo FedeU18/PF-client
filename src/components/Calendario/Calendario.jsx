@@ -11,8 +11,8 @@ const Calendario = () => {
         fecha: "",
         hora: "",
         habilitado: false,
-        idProfesor,
-        idAlumno
+        idProfesor: "",
+        idAlumno:""
     })
 
     const dispatch = useDispatch()
