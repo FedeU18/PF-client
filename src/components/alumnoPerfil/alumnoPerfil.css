@@ -1,4 +1,6 @@
 .divPrincipal {
+
+
   height: 100vh;
   background-image: url('https://i.pinimg.com/originals/59/39/7e/59397e25c9a392b78c1528abc99e3cc0.jpg');
   background-repeat: no-repeat;
@@ -63,6 +65,7 @@ border-radius: 5px 0px 5px 0px;
   margin-top: 5%;
   font-size: 5rem;
   font-weight: bolder;
+
   text-align: center;
   color: #2d5c83;
   padding-top: 1.2rem;
@@ -259,6 +262,9 @@ border-radius: 5px 0px 5px 0px;
   align-content: center;
 }
 
+
+
 .centerProfCardsFavAL{
   margin-left: 15%;
 }
+

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import * as actions from "../../redux/Actions/Alumno.js";
+import * as actionsAlumno from "../../redux/Actions/Alumno.js";
+import * as actionsPaises from "../../redux/Actions/Paises.js";/*NUEVO*/
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 import imag from "./default user.png";
@@ -18,6 +19,7 @@ import { clearAlumno } from "../../redux/Actions/Alumno.js";
 import { ProfeCard } from "../ProfeCard/Profecard.jsx";
 
 export const AlumnoPerfil = (props) => {
+
   console.log("desde alumno perfil ", props.id);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -48,6 +50,7 @@ export const AlumnoPerfil = (props) => {
     return ()=> {
       dispatch(clearAlumno())
     }
+
   }, []);
   
   
@@ -62,7 +65,7 @@ export const AlumnoPerfil = (props) => {
     if (deleteAccount) {
       const UID = props.id;
       await deleteFirestoreUser(UID); // borra firestore
-      dispach(actions.deleteAlumno(UID)); // borra base de datos
+      dispach(actionsAlumno.deleteAlumno(UID)); // borra base de datos
       deleteCurrentUser(); // borra de firebase auth
       logOut(); // lo deslogea
       navigate("/"); // lo lleva al landing :)
@@ -100,8 +103,11 @@ export const AlumnoPerfil = (props) => {
 
   return (
     <div>
-      {info && info.name ? (
+      {info && info.name? (
         <div className="divPrincipal">
+
+       
+
 
             <EditarAlumno show={show} alumno={info}  handleClose={handleClose}/>
           <div className="ContMyPerfilFavorites">
@@ -179,6 +185,7 @@ export const AlumnoPerfil = (props) => {
                       </div>
                       </div>
 
+
                   </div>
                 </div>
                 <div className="pendientesContperfAlum">
@@ -190,6 +197,7 @@ export const AlumnoPerfil = (props) => {
                       </div>
                 </div>
             </div>
+
 
 
             <div className="myFavCont">
@@ -230,6 +238,7 @@ export const AlumnoPerfil = (props) => {
                     )}
                   </div>
             </div>
+
           </div>
         </div>
       ) : (

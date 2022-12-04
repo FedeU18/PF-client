@@ -26,11 +26,19 @@
     "react-icons": "^4.6.0",
     "react-redux": "^8.0.5",
     "react-router-dom": "^6.4.3",
+
+    "react-scroll-to-bottom": "^4.2.0",
+
+    "redux-devtools-extension": "^2.13.9",
+    
+    "socket.io-client": "^4.5.4"
+
     "react-slick": "^0.29.0",
     "redux": "^4.2.0",
-    "redux-devtools-extension": "^2.13.9",
+  
     "redux-thunk": "^2.4.2",
     "swiper": "^8.4.5"
+
   },
   "devDependencies": {
     "@types/react": "^18.0.24",
