@@ -1,13 +1,16 @@
 import { PerfilProfesor } from "../../components/PerfilProfesor/PerfilProfesor";
 import PerfilAlumno from "../../components/PerfilAlumno/PerfilAlumno";
-import { useParams } from "react-router-dom";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import * as actionsAlumno from "../../redux/Actions/Alumno";
 import * as actionsProfesor from "../../redux/Actions/Profesor";
+import userAuthentication from "../../Authentication/functions/user";
+import { clearAlumno } from "../../redux/Actions/Alumno";
+import { clear } from "../../redux/Actions/Profesor";
 
 export const Perfil = () => {
-  const { id } = useParams();
+  const { userData } = userAuthentication();
+  let id = userData.id;
   const dispatch = useDispatch();
   let infoAlumno = useSelector((state) => state.alumnos.alumno);
   let infoProfesor = useSelector((state) => state.profesores.detail);
@@ -17,7 +20,8 @@ export const Perfil = () => {
     dispatch(actionsAlumno.getAlumnoFromAPI(id));
     dispatch(actionsProfesor.getProfesorById(id));
     return () => {
-      dispatch({ type: "VACIAR_ESTADO", payload: {} });
+      dispatch(clear())
+      dispatch(clearAlumno())
     };
   }, []);
 

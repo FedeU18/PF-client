@@ -12,6 +12,7 @@
   width: 100%;
   display: block;
 }
+
 .btnVolver {
   width: 3vw;
   height: 3vw;
@@ -29,6 +30,9 @@
   font-size: 1.8vw;
   box-shadow: 0 1px 10px 1px rgb(148, 48, 48);
 }
+
+
+
 .closecuaso {
   display: none;
 }
@@ -55,76 +59,44 @@
 
 /* ------------------------------------------------ */
 
+
 .tituloFormulario {
   color: black;
   font-size: 1.8vw;
   margin-bottom: 2vw;
+
+.EditarOpCont{
+  display: grid;
+  grid-template-columns: 50% 50%;
+  
+}
+.EditOpEach{
+
   text-align: center;
-}
-
-.divBtn {
-  height: 10vw;
-  width: 10vw;
-  padding-bottom: 10vw;
-}
-
-.button {
-  background: #5c6272;
-  border: none;
-  border-radius: 1vw;
-  color: black;
-  font-family: cursive;
-  font-size: 1.5vw;
-  margin-left: 15vw;
-  padding: 1vw;
-  transition: all ease 0.2s;
-  width: 10vw;
-  font-weight: 500;
-  margin-bottom: 5vw;
-}
-
-.button:hover {
-  border-color: black;
-  box-shadow: 0 1px 10px 1px rgb(215, 215, 242);
   cursor: pointer;
-  font-size: 1.4vw;
+  height: 2.8rem;
+  padding-top: 0.6rem;
 }
 
-.input-container {
-  font-weight: 300;
-  margin-bottom: 2vw;
-  margin-left: 2vw;
-  position: relative;
-  width: 90%;
-  display: flex;
-  justify-content: center;
+.selectedOPEdi{
+  background-color: rgb(236, 245, 245);
+  border:0.3px solid rgb(78, 77, 77,0.4);
+  border-bottom: none;
+  border-radius: 5px 5px 0px 0px;
 }
-.input-container label {
-  color: black;
-  font-weight: 500;
-  margin-left: 3.5vw;
+.notSelOPEdi{
+  border-bottom: 0.3px solid rgb(78, 77, 77,0.4);
 }
 
-.inputEditAlumno {
-  background: rgb(204, 204, 240);
-  border-bottom: 3px solid black;
-  border-left: none;
+.ContEditSElA{
+  background-color:  rgb(236, 245, 245);
+  height: 50vh;
+  border:0.3px solid rgb(78, 77, 77,0.4);
   border-top: none;
-  border-right: none;
-  box-sizing: border-box;
-  font-weight: 450;
-  border-radius: 0.8vw;
-  color: black;
-  font-size: 1.2vw;
-  height: 3.25rem;
-  padding: 1.375rem 0.5rem 0.5rem;
-  width: 80%;
+  border-radius: 5px 5px 5px 5px;
+  padding-top: 2%;
 }
 
-.inputEditAlumno::placeholder {
-  visibility: visible;
-  color: black;
-}
 
 .inputEditAlumno:focus::placeholder {
   visibility: hidden;
@@ -138,7 +110,15 @@
 
 .textarea {
   height: 10vw;
+
+.nameAlumInptChangeCont{
+  display: grid;
+  grid-template-columns: 80% 20%; 
+
   width: 90%;
+  margin-left: 5%;
+  height: 2rem;
+  margin-bottom: 1%;
 }
 
 .nombre {
@@ -187,3 +167,8 @@
 .inputSelectPais {
   margin-right: 4.5vw;
 }
+
+.opEditarPErfContent{
+  padding-left: 2%;
+}
+

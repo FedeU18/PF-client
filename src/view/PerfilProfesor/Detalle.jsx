@@ -1,118 +1,250 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import "./Detalle.css";
-import img from "../../view/PerfilProfesor/img/1.jpg"
+import Button from 'react-bootstrap/Button';
 import { clear, getProfesorById } from "../../redux/Actions/Profesor";
 import { Link } from "react-router-dom";
 import {AiFillStar} from "react-icons/ai";
-import { NavBar } from "../../components/Nav/Nav"
+import { NavBar } from "../../components/Nav/Nav";
+import { Certificados } from "../../components/Certificados/Certificados";
+import { Reseñas } from "../../components/Reseñas/Reseñas";
+import { Comentarios } from "../../components/Comentarios/Comentarios";
+import { AddComent } from "../../components/AddComent/AddComent";
+
+import { GrAdd } from "react-icons/gr";
+import userAuthentication from "../../Authentication/functions/user";
+import * as actionsAlumno from "../../redux/Actions/Alumno";
+
+
 
 export const Detalle = () => {
   let { id } = useParams();
   let dispatch = useDispatch();
   let details = useSelector((state) => state.profesores.detail);
-  
-  console.log(details);
+  let infoAlumno = useSelector((state) => state.alumnos.alumno);
+
+  const [current, setCurrent]=useState('Información') 
+  const [openFotos, setOpenFotos]=useState(false)
+  const [show, setShow] = useState(false);
+  const { userData } = userAuthentication();
+  console.log(infoAlumno);
   
   useEffect(() => {
+    dispatch(actionsAlumno.getAlumnoFromAPI(userData.id));
+  
     dispatch(getProfesorById(id));
     return ()=> dispatch(clear())
   }, []);
    
-  
-   return (
-    <>
+  const handleChangeOp=(e)=>{
+    setCurrent(e.target.name)
+  }
 
-      <NavBar/>
+  const handleShow = () => setShow(true);
+  const handleClose = () => setShow(false);
+
+  const handleOpenFotos=()=>{
+    console.log('ulal')
+    setOpenFotos(true)
+  }
+
+  const handleCloseFotos=()=>{
+    setOpenFotos(false)
+  }
+   return (
+    <div className="detalleProfeContainer">
+      <Certificados fotos={details.certificados} close={handleCloseFotos} open={openFotos}/>
+     
            
-           <div className="back"> 
                <Link to="/home">
-                   <button> back </button>
+                   <button className="goBackBtn">
+                    <img className="gobackArrow" src={'/retro.png'} />
+                  </button>              
               </Link>
-            </div>
+            
               
 
-      <div className="firstContainer" key={details.id}>
-         
+      <div className="ContainerProfeDe" key={details.id}>
       
- 
-
-
-          <div className="overflow">
              
-              <img
-            className="profImg"
-            src={details.imagen ? details.imagen : img}
-            alt=""
-            width="200px"
-            height="200px"
-             />
-           </div> 
-       
-         <div className="detailContainer">
-         
-
-          <div className="nameeDetail">
-            <h1>{details.nombre} {details.apellido} </h1>
-             <br />
-            
-             <div className="detailemail">
-              <strong>Email: </strong> {details.email}{" "}
-            </div>
-            <br />
-            <p>
-              <strong>materias:</strong>
-              {details.materias?.map((e) => e.name).join(", ")}
-            </p>
-
-
-             <div className="descrip">
-               <strong>Sobre mi: </strong>
-                {
-                <p 
-                  dangerouslySetInnerHTML={{ __html: details.descripcion }}
-                ></p>
-              }
-               </div>
-
-
-            <div className="puntaje">
-              {" "}
-              <strong> puntaje:</strong>{" "}
-               <AiFillStar size={22} />
-              <p className="ratingDetails">{details.puntuacion},0</p>{" "}
-            </div>
+            <div className="opPerfilDesProfe">
+              <div className="profeUserna">
+                <span >{details.username}</span>
+              </div>
            
-            
-             
-            
-        
-           
-          </div>
-        
-        </div>
+             <div className="profeNameCont">
+             {details.imagen===''?(
+                <div className='AvatarNameAluPerProf'>
+                <div>{details.username[0].toUpperCase()}</div>                                
+                </div>):(
+                <img src={details.imagen} className={'perfilFotoDesc'}/>)
+              }              
+              <br></br>
+              <span className="nomApeDe">{details.nombre} {details.apellido}</span>
+              <br></br>
+              <span className="emailDe">{details.email}</span>
+              <br></br>
+              <span>{details.descripcion}</span>
+             </div>
+
+            <div className="opcContainer">
+                <button className={`${current==='Información' ? 'opcionEleDe':'opnoEleDe'}`}
+                        name={'Información'}
+                        onClick={handleChangeOp}>
+                  Información
+                </button>
+                <br></br>
+                <button className={`${current==='Calendario' ? 'opcionEleDe':'opnoEleDe'}`}
+                        name={'Calendario'}
+                        onClick={handleChangeOp}>
+                  Calendario
+                </button>
+                <br></br>
+                <button className={`${current==='Reseña' ? 'opcionEleDe':'opnoEleDe'}`}
+                        name={'Reseña'}
+                        onClick={handleChangeOp}>
+                  Reseñas
+                </button>
+                  <br></br>
+                <button className={`${current==='Chat' ? 'opcionEleDe':'opnoEleDe'}`}
+                        name={'Chat'}
+                        onClick={handleChangeOp}>
+                ...
+                </button>
+                <br></br>
+            </div>
+
+            </div>
+
+            <div className="infoConteiner">
+            {current==='Información' && (
+                <div className="subContDe">
+                  
+                  <div className="porqueEleContDes">
+                    <div className="porqueEleDes">
+                      <span className="subTitleDe">Por qué elegirme:</span>
+                      {details.descripcion2===null || details.descripcion2===''?(
+                        <div className="certiNoCont">
+                          <span className="">
+                            Este author aun no añade una descripción.
+                            </span>
+                        </div>
+                      ):(
+                        <div>
+                          {details.descripcion2}
+                        </div>
+                      )}
+                     
+                    </div>
+                    
+                    <div>
+                      <div className="precioboxDes"> 
+                        <div className="preporH">
+                        Precio por Hora
+                        </div>
+                                            
+                        {details.precio} $ 
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="certiMateCont">
+                    <div className="certiContDe">
+                      <span className="subTitleDe" >Estudios y Certificados:</span>
+                      {details.certificados?.length===0 &&(
+                          <div className="certiNoCont">
+                            <span className="">
+                            Este author aun no tiene certificados que mostrar.
+                            </span>
+                          </div>)}
+
+                      {details.certificados?.length>0 && details.certificados?.length<7 &&(
+                          <div className="certiSiCont">
+                            {details.certificados.map(c=>(
+                            <div className='fotoCertificadoDeco' onClick={handleOpenFotos}>
+                              <img src={c.foto} className='fotoCertificadoDe'/>
+                            </div>))}
+                          </div>)}
+                      {details.certificados?.length>6 && (
+                          <div className="certiSiCont">
+                            {details.certificados.map((c,i)=>(
+                                <>
+                                  {i<5 && (
+                                    <div className='fotoCertificadoDeco'
+                                    onClick={handleOpenFotos}>
+                                    <img src={c.foto} className='fotoCertificadoDe'/>
+                                    </div>
+                                  )}
+                                </>
+                            ))}
+                             <div className='fotoCertificadoDeco fcdcPlus' 
+                                  onClick={handleOpenFotos}>
+                                    +{details.certificados.length-5}
+                              </div>
+                          </div>)}
+                      
+                    </div>
+                    
+                    <div className="materiasContDe">
+                      <span className="subTitleDe">Materias:</span>
+                      {details.materias?.length>0 && details.materias.map(m=>(
+                        <div className="nameLogoMaDeCont">
+                          <div className="logoMaDeContDo">
+                            <div className="logoMaDeCont">
+                            <img src={`/${m.name}.png`} className='logoMaDe'/>
+                          </div>
+                          </div>
+                          <div className="nameMaDeCont">
+                            {m.name}
+                          </div>
+                        </div>
+                      )
+                      )}
+                    </div>
+                  </div>
+                  
+                </div>)}
+            {current==='Calendario' && (
+                <div className="subContDe">
+                  Calendario
+                </div>)}
+            {current==='Reseña' && (
+                <div className="subContDe">
+                  
+                  <Reseñas puntajes={details.puntuacions}/>
+                  <br></br>
+                  <div className="comentsBtnAddCont">
+                    <Comentarios myId={userData.id}
+                                profileOwner={details.id} 
+                                coments={details.coments} />
+                    {userData.id!== details.id && infoAlumno.tipo &&(
+                      <button className="btnAddComOp" onClick={handleShow}>
+                      +
+                    </button>
+                    )}
+                  </div>
+                  
+                  <AddComent  alumnoId={infoAlumno.id} 
+                              myId={userData.id}
+                              profesorId={details.id}
+                               show={show} 
+                               handleClose={handleClose}/>
+
+                </div>)}
+            {current==='Chat' && (
+                <div className="subContDe">
+                  Chat
+                </div>)}
+            </div>
+
+     </div>
+
          
-           {/* <div className="elegir"> 
-            <h1 className="letra">por que elegirme?</h1>
-            </div>
-
-
-            <div className="elegir-dos">
-              <h5 className="letra-dos"> {details.descripcion} </h5>
-            </div>
-            */}
-
-        
-        
-        <div className="boton">
-            <button>Pedir una clase</button>
-            </div>
-             
             
-        
-      </div>
+             
+   
       
-    </>
+    </div>
   );
 };

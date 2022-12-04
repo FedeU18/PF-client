@@ -8,7 +8,7 @@ import { getPaises } from "../../redux/Actions/Paises";
 import { addOPSelected } from "../../redux/Actions/Materias";
 import { useDispatch, useSelector } from "react-redux";
 import { allProfes } from "../../redux/Actions/Profesor";
-import { ProfeCards } from "../../ProfeCards/ProfeCards";
+import { ProfeCards } from "../../components/ProfeCards/ProfeCards";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { filterProfes } from "../../redux/Actions/Profesor";
 import { getAllAlumnos } from "../../redux/Actions/Alumno";
@@ -70,7 +70,8 @@ export const Home = () => {
 
   return (
     <div>
-      {filtrosSeleccionados && profes ? (
+       
+      {profes.length>0 ? (
         <div>
           <NavBar />
           <button className="filtroBtn">
@@ -138,7 +139,7 @@ export const Home = () => {
         </div>
       ) : (
         <div>
-          <h1>Error 404</h1>
+          <h1>cargando</h1>
           <Link to="/">
             <a onClick={() => logOut()}>inicio</a>
           </Link>

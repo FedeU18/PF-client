@@ -5,11 +5,12 @@
 .NavColorCss {
   width: 100%;
   font-size: 22px;
-  background-image: linear-gradient(
+  /* background-image: linear-gradient(
     to right,
     rgb(39, 7, 185),
     rgb(133, 159, 236)
-  );
+  ); */
+  background-image: linear-gradient(rgb(85, 145, 197), rgb(133, 159, 236));
 
   color: aliceblue;
   padding: 1.2% 0% 1.2% 0%;
@@ -17,8 +18,7 @@
 
 .imgAvatar {
   border: 2px solid rgb(230, 227, 227);
-  max-height: 42px;
-  /* max-width: 40px; */
+  height: 42px;
   width: 40px;
 }
 

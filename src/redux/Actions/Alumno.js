@@ -9,7 +9,7 @@ export function getAlumnoFromAPI(id) {
   console.log("ME EJECUTE CREATOR");
   return function (dispatch) {
     axios
-      .get(`http://localhost:3001/alumnos/${id}`)
+      .get(`/alumnos/${id}`)
       .then((alumno) => {
         dispatch(setAlumno(alumno.data));
         console.log("el obj alumno desde creator-->", alumno.data);
@@ -30,7 +30,7 @@ function setAlumno(payload) {
 export function getAllAlumnos() {
   return function (dispatch) {
     axios
-      .get("http://localhost:3001/alumnos")
+      .get("/alumnos")
       .then((alumnos) => {
         dispatch(setAlumnos(alumnos.data));
       })
@@ -50,7 +50,7 @@ function setAlumnos(payload) {
 export function deleteAlumno(id) {
   return function (dispatch) {
     axios
-      .delete(`http://localhost:3001/alumnos/${id}`)
+      .delete(`/alumnos/${id}`)
       .then(() => {
         dispatch(destroyAlumno());
       })
@@ -69,7 +69,7 @@ function destroyAlumno() {
 export function postAlumno(alumno) {
   return function (dispatch) {
     axios
-      .post("http://localhost:3001/alumnos", alumno)
+      .post("/alumnos", alumno)
       .then(() => {
         dispatch(getAlumnoFromAPI());
       })
@@ -81,12 +81,18 @@ export function postAlumno(alumno) {
 
 export function editAlumno(obj, id) {
   return function (dispatch) {
-    axios
-      .patch(`http://localhost:3001/alumnos/${id}`, obj)
+    axios.patch(`/alumnos/${id}`, obj)
 
-      .then((res) => console.log("Alumno editado con exito"))
+      .then((res) => {console.log("Alumno editado con exito")
+                      dispatch(getAlumnoFromAPI(id))})
       .catch((error) => {
         console.log(error);
       });
+  };
+}
+
+export function clearAlumno() {
+  return {
+    type: "CLEAR",
   };
 }

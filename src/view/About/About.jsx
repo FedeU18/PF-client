@@ -1,6 +1,6 @@
 import './About.css'
-import { NavAbout } from '../../NavAbout/NavAbout'
-import { CardsAbout } from '../../CardsAbout/CardsAbout'
+import { NavAbout } from '../../components/NavAbout/NavAbout'
+import { CardsAbout } from '../../components/CardsAbout/CardsAbout'
 export const About =()=>{
     return(
         <div className='abtCont'>

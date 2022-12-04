@@ -20,8 +20,37 @@
 }
 
 .form_student {
-  color: #f6f6f6;
-  background-color:hsl(0, 0%, 7%);
-  border-radius: 1rem;
+  color: #f5fbef;
+  background: linear-gradient(rgb(85, 145, 197), rgb(133, 159, 236));
+  border-radius: 0.4rem;
   border-left: green;
 }
+
+.button {
+  margin: 0 1rem;
+  background: linear-gradient(rgb(85, 145, 197), rgb(133, 159, 236));
+  box-shadow: 0px 2px white;
+  transition: transform 7s ease, box-shadow .5s ease;
+}
+
+.button:active {
+  transform: translate(0px, 2px);
+  box-shadow: none;
+}
+
+.ingresa {
+  color: #0d1821;
+}
+
+.form_student a {
+  margin-left: 1rem;
+  color: #7c1578;
+}
+
+.form_student a:hover {
+}
+
+.ingresa:hover {
+  transform: scale(10px) !important;
+}
+/* 001514  */

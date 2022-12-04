@@ -4,22 +4,59 @@ import * as actionsPaises from "../../redux/Actions/Paises.js";/*NUEVO*/
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 import imag from "./default user.png";
+import cloud from "./upload-cloud.png";
 import "./alumnoPerfil.css";
 import deleteFirestoreUser from "../../Authentication/functions/deleteFirestoreUser";
 import deleteCurrentUser from "../../Authentication/functions/deleteCurretUser";
+import Carousel from 'react-bootstrap/Carousel';
 import logOut from "../../Authentication/functions/logOut";
+import { AiOutlineEdit } from "react-icons/ai";
+import { Link } from "react-router-dom";
+import {MdOutlineFavorite} from "react-icons/md";
+import { MdOutlinePendingActions } from "react-icons/md";
+import { EditarAlumno} from "../EditarAlumno/EditarAlumno.jsx";
+import { clearAlumno } from "../../redux/Actions/Alumno.js";
+import { ProfeCard } from "../ProfeCard/Profecard.jsx";
 
 export const AlumnoPerfil = (props) => {
-  const [image, setImage] = useState(imag);
-  const dispach = useDispatch();
+
+  console.log("desde alumno perfil ", props.id);
+  const dispatch = useDispatch();
   const navigate = useNavigate();
-  let infoAlumno = useSelector((state) => state.alumnos.alumno);
-  let infoPaises = useSelector((state) => state.paises.paises);/*NUEVO */
-  let flag = infoPaises.filter((e) => e.name === infoAlumno.country);/*NUEVO */
+  const [show, setShow] = useState(false);
+  const [pict, setPict] = useState ("")
+  const [myFavProfe ,setMyFavProfe]=useState([])
+  let valorImagen = "";
+  let info = useSelector((state) => state.alumnos.alumno);
+  const profes = useSelector((state) => state.profesores.profesores);
+
+  useEffect(()=>{
+    setMyFavProfe([])
+    if(info.favourites.length>0 && profes.length>0){
+      info.favourites.map((f)=>{
+        profes.map((p)=>{
+          if(p.id===f){
+            setMyFavProfe(prev=>[...prev,p])
+          }
+        })
+      })
+    }
+    console.log('aaaaaaa')
+    console.log(myFavProfe)
+  },[info ])
+
   useEffect(() => {
-    dispach(actionsAlumno.getAlumnoFromAPI(props.id));
-    dispach(actionsPaises.getPaises());/*NUEVO */
+    dispatch(actions.getAlumnoFromAPI(props.id));
+    return ()=> {
+      dispatch(clearAlumno())
+    }
+
   }, []);
+  
+  
+  
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   const deleteAlumno = async () => {
     const deleteAccount = window.confirm(
@@ -37,6 +74,16 @@ export const AlumnoPerfil = (props) => {
     }
   };
 
+  function valor() {
+    if(pict!=""){
+      valorImagen = pict;
+
+    }else{valorImagen = info.picture;
+
+    } return valorImagen;
+  }
+
+
   function handleOpenWidget() {
     var myWidget = window.cloudinary.createUploadWidget(
       {
@@ -45,7 +92,9 @@ export const AlumnoPerfil = (props) => {
       },
       (error, result) => {
         if (!error && result && result.event === "success") {
-          setImage(result.info.url);
+          dispach(actions.editAlumno({picture:result.info.url},props.id));
+          setPict(result.info.url);
+          
         }
       }
     );
@@ -54,82 +103,142 @@ export const AlumnoPerfil = (props) => {
 
   return (
     <div>
-      {flag.length && infoAlumno && infoAlumno.name ? (
+      {info && info.name? (
         <div className="divPrincipal">
-          <div>
-            <div className="containerTituloAndLogoPais">
-              {/* NUEVO */}
-              <img className="flagPais" src={flag[0].flag} alt="logo pais" /> 
-            </div>
 
-            <div className="containerImgPerfil">
-              <h1 className="titleContainerPerfil">
-                {infoAlumno.name} {infoAlumno.lastname}
-              </h1>
-              <div>
-                <div className="containerPerfil">
-                  <img src={image} alt={infoAlumno.picture} />
-                  <div
-                    className="containerLoadingImg"
-                    onClick={() => handleOpenWidget()}
-                  >
-                    <img src={image} alt="" />
+       
+
+
+            <EditarAlumno show={show} alumno={info}  handleClose={handleClose}/>
+          <div className="ContMyPerfilFavorites">
+              <Link to="/home">
+                   <button className="goBackBtn">
+                    <img className="gobackArrow" src={'/retro.png'} />
+                  </button>              
+              </Link>
+
+            <div>
+                <div className="myperfilCont">
+                  <div className="FotoPerfilACont">
+                    {info.picture!=='sin foto' ?(
+                      <img src={info.picture} className='ProfilePictureAlum'/>
+                    ):(
+                      <div className='AvatarNameAluPer'>
+                          <div>{info.name[0].toUpperCase()}</div>                                
+                      </div>
+                    )  }
+                    <button className="button-17" role="button">Alumno</button>
+                  </div>
+                  <div className="InFoAlumnoPErfCont">
+                    <div className="titleMyPRofile">
+                      <span>
+                      Mi Perfil                  
+                      </span>
+                    <button className="btnEditProAlu">
+                    <AiOutlineEdit onClick={handleShow}/>
+                    </button>
+                    </div>
+
+                      <div className="contInfoPErfAlum">
+                        <div>
+                          <div className="miniContinfoPErfAlu">
+                            <div className="eachInfoIputPErProfe">
+                              <div className="nameInfoPErAlu">
+                                Nombre:
+                              </div> 
+                              <div className="lainfoPErAlu">
+                                {info.name}
+                            </div> 
+                          </div>
+                          <div className="eachInfoIputPErProfe">
+                              <div className="nameInfoPErAlu">
+                                Apellido:
+                              </div> 
+                              <div className="lainfoPErAlu">
+                                {info.lastname}
+                            </div> 
+                          </div>
+                          <div className="eachInfoIputPErProfe">
+                              <div className="nameInfoPErAlu">
+                                Edad:
+                              </div> 
+                              <div className="lainfoPErAlu">
+                                {info.age} años
+                            </div> 
+                          </div>
+                          <div className="eachInfoIputPErProfe">
+                              <div className="nameInfoPErAlu">
+                                Pais:
+                              </div> 
+                              <div className="lainfoPErAlu">
+                                <img src={info.country.flag} className='flagalumPro'/>
+                                {info.country.name}
+                            </div> 
+                          </div>
+                        </div>
+                        <div className="nameInfoPErAlu plusnipa">
+                                Email:
+                              </div> 
+                              <div className="plusnipa2">
+                                {info.email} 
+                            </div> 
+                      </div>
+                      </div>
+
+
                   </div>
                 </div>
-              </div>
-              <div className="containerBtns">
-                <div>
-                  <button
-                    onClick={() => props.open()}
-                    type="button"
-                    className="btnEditarCuenta btn btn-secondary"
-                  >
-                    Editar cuenta
-                  </button>
-                  <button
-                    type="button"
-                    className="btn btn-danger btnEliminar"
-                    onClick={deleteAlumno}
-                  >
-                    Eliminar Cuenta
-                  </button>
+                <div className="pendientesContperfAlum">
+                      <div className="myPEndHeaderPerFal">
+                         <span className='mispenSpan'>
+                           Mis Pendientes 
+                          </span>
+                         <MdOutlinePendingActions  style={{color:'rgb(151, 140, 140,0.8)' }} size={24}/>
+                      </div>
                 </div>
-                <button
-                  onClick={() => navigate("/home")}
-                  className="btnVolverInicio"
-                >
-                  ↖
-                </button>
-              </div>
             </div>
-          </div>
 
-          <div className="tbInfoAlumno">
-            <h2>Informacion del Alumno</h2>
-            <table className="table">
-              <tbody>
-                <tr>
-                  <th scope="row">Nombre</th>
-                  <td>{infoAlumno.name}</td>
-                </tr>
-                <tr>
-                  <th scope="row">Apellido</th>
-                  <td>{infoAlumno.lastname}</td>
-                </tr>
-                <tr>
-                  <th scope="row">Edad</th>
-                  <td colSpan="2">{infoAlumno.age}</td>
-                </tr>
-                <tr>
-                  <th scope="row">Correo</th>
-                  <td colSpan="2">{infoAlumno.email}</td>
-                </tr>
-                <tr>
-                  <th scope="row">Pais</th>
-                  <td colSpan="2">{infoAlumno.country}</td>
-                </tr>
-              </tbody>
-            </table>
+
+
+            <div className="myFavCont">
+                 <div className="myFavHeaderPerFal"> 
+                  <span>
+                    Mis Favoritos
+                  </span>
+                  <MdOutlineFavorite size={30}             
+                  style={{color:'rgb(253, 17, 49)' }}/>
+                  </div>
+                  <div>
+                    {myFavProfe.length===0 ?(
+                      <div className="aunnofavCont">
+                        Aún no agregas nada a favoritos.
+                      </div>
+                    ):(
+                      <div>
+                            <Carousel>
+                              {myFavProfe.map((f)=>(
+                              <Carousel.Item>
+                                <div className="centerProfCardsFavAL">
+                                  <ProfeCard id={f.id}
+                                            username={f.username}
+                                            nombre={f.nombre}
+                                            imagen={f.imagen}
+                                            pais={f.country?.flag}
+                                            descripcion={f.descripcion}
+                                            materias={f.materias}
+                                            puntuacion={f.puntuacions}
+                                            precio={f.precio}/>
+                                </div>
+                              </Carousel.Item>
+                              ))}
+                              
+                            
+                            </Carousel>
+                      </div>
+                    )}
+                  </div>
+            </div>
+
           </div>
         </div>
       ) : (

@@ -13,7 +13,7 @@ import {
 export function getProfesorById(id) {
   return async function (dispatch) {
     try {
-      const prof = await axios.get(`http://localhost:3001/profesores/${id}`);
+      const prof = await axios.get(`/profesores/${id}`);
       return dispatch({
         type: GET_PROFESOR_ID,
         payload: prof.data,
@@ -25,43 +25,37 @@ export function getProfesorById(id) {
 }
 
 export function postProfesor(payload) {
-  return async function (dispatch) {
-    try {
-      const prof = await axios.post(
-        `http://localhost:3001/profesores`,
-        payload
-      );
-      return dispatch({
-        type: POST_PROFESORES,
-        payload: prof,
+  return function (dispatch) {
+    axios.post(`/profesores`,payload)
+    .then((res)=>{
+      dispatch({type: POST_PROFESORES,payload: prof, });
+      dispatch(allProfes())
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+      
+  }   
+}
+
+
+export function putProfesor(id, payload) {
+  return function (dispatch) {
+    axios.patch( `/profesores/${id}`, payload)
+
+      .then((res) => {console.log("Profesor editado con exito")
+                      dispatch(getProfesorById(id))})
+      .catch((error) => {
+        console.log(error);
       });
-    } catch (error) {
-      return error.message;
-    }
   };
 }
 
-export function putProfesor(id, payload) {
-  return async function (dispatch) {
-    try {
-      const prof = await axios.put(
-        `http://localhost:3001/profesores/${id}`,
-        payload
-      );
-      return dispatch({
-        type: PUT_PROFESORES,
-        payload: prof,
-      });
-    } catch (error) {
-      return error.message;
-    }
-  };
-}
 
 export function deleteProfesor(id) {
   return async function (dispatch) {
     try {
-      const prof = await axios.delete(`http://localhost:3001/profesores/${id}`);
+      const prof = await axios.delete(`/profesores/${id}`);
       return dispatch({
         type: DELETE_PROFESORES,
         payload: prof,
@@ -88,7 +82,7 @@ export function filterPuntuacion(payload) {
 
 export function allProfes() {
   return async function (dispatch) {
-    let info = await axios.get("http://localhost:3001/profesores");
+    let info = await axios.get("/profesores");
 
     return dispatch({
       type: GET_PROFESORES,

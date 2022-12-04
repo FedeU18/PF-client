@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import "./edit.css";
 import { useNavigate } from "react-router-dom";
 
-export const EditarAlumno = (props) => {
+export const EditaAlumno = (props) => {
   const [actualizar, setActualizar] = useState({});
   const [country, setCountry] = useState("");
   const dispatch = useDispatch();
@@ -131,10 +131,10 @@ export const EditarAlumno = (props) => {
               <div className="input-container">
                 <input
                   className="inputEditAlumno"
-                  type="number"
-                  name="age"
                   placeholder={info.age}
                   onBlur={(e) => objActualizarAlumno(e)}
+                  type="number"
+                  name="age"
                   onChange={(e) => objActualizarAlumno(e)}
                 />
                 <label className="nombre" htmlFor="health_score">
@@ -155,6 +155,7 @@ export const EditarAlumno = (props) => {
                   Correo
                 </label>
               </div>
+
               <div className="containerInputPais">
                 <div className="input-container">
                   <input
@@ -170,6 +171,7 @@ export const EditarAlumno = (props) => {
                     Pais
                   </label>
                 </div>
+
 
                 <div className="inputSelectPais">
                   <select className="selectPais" onChange={añadirPais}>

@@ -1,0 +1,16 @@
+.modal_form {
+  position: relative;
+  top: 0;
+  height: 100vh;
+}
+
+.color_fondo_transparente {
+  background-color: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(1px);
+}
+
+.formulario_width {
+  width: 100%;
+  max-width: 400px;
+  padding: 1rem;
+}
