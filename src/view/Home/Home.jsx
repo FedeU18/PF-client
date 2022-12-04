@@ -3,20 +3,26 @@ import { NavBar } from "../../components/Nav/Nav";
 import { Filtros } from "../../components/Filtros/Filtros";
 import { BsFillGrid3X3GapFill } from "react-icons/bs";
 import { useEffect, useState } from "react";
-import { getMaterias } from "../../redux/Actions/Materias";
+
 import { getPaises } from "../../redux/Actions/Paises";
-import { addOPSelected } from "../../redux/Actions/Materias";
+import { addOPSelected,} from "../../redux/Actions/Materias";
 import { useDispatch, useSelector } from "react-redux";
 import { allProfes } from "../../redux/Actions/Profesor";
 import { ProfeCards } from "../../components/ProfeCards/ProfeCards";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { filterProfes } from "../../redux/Actions/Profesor";
 import { getAllAlumnos } from "../../redux/Actions/Alumno";
+import { getMaterias } from "../../redux/Actions/Materias";
+
 import userAuthenticate from "../../Authentication/functions/user";
 import { auth } from "../../Authentication/firebase/credenciales";
 import autentication from "../../Authentication/functions/user";
 import logOut from "../../Authentication/functions/logOut";
+
+import MateriasBtn from "./MateriasBtn.jsx";
+
 import Loader from "../../components/Loader/Loader";
+
 
 export const Home = () => {
   const [open, setOpen] = useState(false);
@@ -27,13 +33,16 @@ export const Home = () => {
     (state) => state.materias.filtrosSeleccionados
   );
   const profes = useSelector((state) => state.profesores.profesores); //todo el estado de profes
+  const materias = useSelector((state)=>state.materias.filtrosSeleccionados)
 
   useEffect(() => {
     dispatch(getAllAlumnos());
     dispatch(allProfes(filtrosSeleccionados));
+
     dispatch(getMaterias());
     dispatch(getPaises());
   }, []);
+
 
   useEffect(() => {
     dispatch(filterProfes(filtrosSeleccionados));
@@ -67,10 +76,13 @@ export const Home = () => {
   };
 
   return (
+  
     <div>
+
       <NavBar />
 
       {profes.length > 0 ? (
+
         <div>
           <button className="filtroBtn">
             <BsFillGrid3X3GapFill onClick={handleFiltros} />
@@ -126,6 +138,14 @@ export const Home = () => {
           <br></br>
 
           <ProfeCards profes={profes} />
+
+          
+          
+         <MateriasBtn/>
+         
+          
+ 
+
         </div>
       ) : (
         <div
