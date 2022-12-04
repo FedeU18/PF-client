@@ -1,16 +1,17 @@
 import React, { Component } from "react";
 import Slider from "react-slick";
 
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
+//import "slick-carousel/slick/slick.css";
+//import "slick-carousel/slick/slick-theme.css";
 
 //inportar archivo css
+import "./Slicer.css";
 
 //importar imagenes
- import imagen1 from "./img-fab/imagen1"
- import imagen2 from "./img-fab/imagen2"
- import imagen3 from "./img-fab/imagen3"
- import imagen4 from "./img-fab/imagen4"
+ import imagen1 from "./img-fab/imagen1.jpg"
+ import imagen2 from "./img-fab/imagen2.jpg"
+ import imagen3 from "./img-fab/imagen3.jpg"
+ import imagen4 from "./img-fab/imagen4.jpg"
 export default class SimpleSlider extends Component {
     render() {
       const settings = {
