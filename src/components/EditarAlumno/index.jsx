@@ -43,7 +43,9 @@ export const EditarAlumno = (props) => {
     navigate("/home");
   };
 
-  const añadirPais = (e) => {
+
+/** AGREGUE FUNCION PARA TOMAR EL PAIS SEGUN EL QUE SELECCIONEN Y ESE PAIS SE GUARDE EN UN ESTADO. ESA VARIABLE DE ESTADO LA INSERTO COMO VALOR PARA EL INPUT DEL PAIS QUE TIENE AL LADO EL SELECT EN LA "PARTE VISUAL" */
+  const añadirPais = (e) => {  
     e.preventDefault();
     let select = e.target;
     let pais = select.options[select.selectedIndex].text;
@@ -160,7 +162,7 @@ export const EditarAlumno = (props) => {
                     type="text"
                     name="country"
                     placeholder={info.country}
-                    value={country}
+                    value={country !== "" ? country : info.country}
                     onChange={(e) => objActualizarAlumno(e)}
                     onBlur={(e) => objActualizarAlumno(e)}
                   />

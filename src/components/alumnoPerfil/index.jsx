@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import * as actions from "../../redux/Actions/Alumno.js";
+import * as actionsAlumno from "../../redux/Actions/Alumno.js";
+import * as actionsPaises from "../../redux/Actions/Paises.js";/*NUEVO*/
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 import imag from "./default user.png";
@@ -9,14 +10,15 @@ import deleteCurrentUser from "../../Authentication/functions/deleteCurretUser";
 import logOut from "../../Authentication/functions/logOut";
 
 export const AlumnoPerfil = (props) => {
-  console.log("desde alumno perfil ", props.id);
+  const [image, setImage] = useState(imag);
   const dispach = useDispatch();
   const navigate = useNavigate();
-  const [image, setImage] = useState(imag);
-  let info = useSelector((state) => state.alumnos.alumno);
-
+  let infoAlumno = useSelector((state) => state.alumnos.alumno);
+  let infoPaises = useSelector((state) => state.paises.paises);/*NUEVO */
+  let flag = infoPaises.filter((e) => e.name === infoAlumno.country);/*NUEVO */
   useEffect(() => {
-    dispach(actions.getAlumnoFromAPI(props.id));
+    dispach(actionsAlumno.getAlumnoFromAPI(props.id));
+    dispach(actionsPaises.getPaises());/*NUEVO */
   }, []);
 
   const deleteAlumno = async () => {
@@ -26,7 +28,7 @@ export const AlumnoPerfil = (props) => {
     if (deleteAccount) {
       const UID = props.id;
       await deleteFirestoreUser(UID); // borra firestore
-      dispach(actions.deleteAlumno(UID)); // borra base de datos
+      dispach(actionsAlumno.deleteAlumno(UID)); // borra base de datos
       deleteCurrentUser(); // borra de firebase auth
       logOut(); // lo deslogea
       navigate("/"); // lo lleva al landing :)
@@ -52,17 +54,21 @@ export const AlumnoPerfil = (props) => {
 
   return (
     <div>
-      {info && info.name ? (
+      {flag.length && infoAlumno && infoAlumno.name ? (
         <div className="divPrincipal">
           <div>
-            <h4 className="nameCountry">{info.country}</h4>
+            <div className="containerTituloAndLogoPais">
+              {/* NUEVO */}
+              <img className="flagPais" src={flag[0].flag} alt="logo pais" /> 
+            </div>
+
             <div className="containerImgPerfil">
               <h1 className="titleContainerPerfil">
-                {info.name} {info.lastname}
+                {infoAlumno.name} {infoAlumno.lastname}
               </h1>
               <div>
                 <div className="containerPerfil">
-                  <img src={image} alt={info.picture} />
+                  <img src={image} alt={infoAlumno.picture} />
                   <div
                     className="containerLoadingImg"
                     onClick={() => handleOpenWidget()}
@@ -104,23 +110,23 @@ export const AlumnoPerfil = (props) => {
               <tbody>
                 <tr>
                   <th scope="row">Nombre</th>
-                  <td>{info.name}</td>
+                  <td>{infoAlumno.name}</td>
                 </tr>
                 <tr>
                   <th scope="row">Apellido</th>
-                  <td>{info.lastname}</td>
+                  <td>{infoAlumno.lastname}</td>
                 </tr>
                 <tr>
                   <th scope="row">Edad</th>
-                  <td colSpan="2">{info.age}</td>
+                  <td colSpan="2">{infoAlumno.age}</td>
                 </tr>
                 <tr>
                   <th scope="row">Correo</th>
-                  <td colSpan="2">{info.email}</td>
+                  <td colSpan="2">{infoAlumno.email}</td>
                 </tr>
                 <tr>
                   <th scope="row">Pais</th>
-                  <td colSpan="2">{info.country}</td>
+                  <td colSpan="2">{infoAlumno.country}</td>
                 </tr>
               </tbody>
             </table>

@@ -10,6 +10,7 @@ import ProtectedRoute from "./Authentication/protection/ProtectedRoute";
 import PublicRoutes from "./Authentication/protection/PublicRoutes";
 import ForgotPassword from "./view/ForgotPassword/ForgotPassword";
 import PerfilProfesor from "./components/PerfilProfesor/PerfilProfesor";
+import { Chat } from "./components/chat/chat";
 
 function App() {
   return (
@@ -26,7 +27,7 @@ function App() {
           <Route path="/profile/:id" element={<Perfil />} />
           <Route path="/about" element={<About />} />
           <Route path="/profesores/:id" element={<Detalle />} />
-          {/* <Route path="/editar/:id" element={<PerfilProfesor/>}/> */}
+          <Route path="/chat" element={<Chat />} />
         </Route>
 
         <Route path="*" element={<Error />} />
