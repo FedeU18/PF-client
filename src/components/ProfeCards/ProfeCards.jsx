@@ -20,7 +20,7 @@ export const ProfeCards = ({ profes }) => {
                   pais={e.country?.flag}
                   descripcion={e.descripcion}
                   materias={e.materias}
-                  puntuacion={e.puntuacion}
+                  puntuacion={e.puntuacions}
                   precio={e.precio}
                 />
               

@@ -74,7 +74,12 @@ export const Detalle = () => {
               </div>
            
              <div className="profeNameCont">
-             <img src={details.imagen} className={'perfilFotoDesc'}/>              
+             {details.imagen===''?(
+                <div className='AvatarNameAluPerProf'>
+                <div>{details.username[0].toUpperCase()}</div>                                
+                </div>):(
+                <img src={details.imagen} className={'perfilFotoDesc'}/>)
+              }              
               <br></br>
               <span className="nomApeDe">{details.nombre} {details.apellido}</span>
               <br></br>
@@ -119,9 +124,18 @@ export const Detalle = () => {
                   <div className="porqueEleContDes">
                     <div className="porqueEleDes">
                       <span className="subTitleDe">Por qué elegirme:</span>
-                      <p>
-                       Hay algunos vendedores que le ofrecen diseños de aspecto moderno y futurista, pero no son fáciles de usar. Después de completar su proyecto, lo apoyaré 1 mes a partir de la fecha del pedido para cualquier cambio. Ofrezco una página de destino completa de 1 página para mi paquete básico de 30 $ porque servicio en calidad y la calidad siempre es importante.
-                      </p>
+                      {details.descripcion2===null || details.descripcion2===''?(
+                        <div className="certiNoCont">
+                          <span className="">
+                            Este author aun no añade una descripción.
+                            </span>
+                        </div>
+                      ):(
+                        <div>
+                          {details.descripcion2}
+                        </div>
+                      )}
+                     
                     </div>
                     
                     <div>
@@ -137,7 +151,7 @@ export const Detalle = () => {
 
                   <div className="certiMateCont">
                     <div className="certiContDe">
-                      <span className="subTitleDe" >EStudios y Certificados:</span>
+                      <span className="subTitleDe" >Estudios y Certificados:</span>
                       {details.certificados?.length===0 &&(
                           <div className="certiNoCont">
                             <span className="">
