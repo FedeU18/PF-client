@@ -1,4 +1,3 @@
-
 import loginWithGoogle from "../../Authentication/functions/loginWithGoogle";
 import MessageError from "./MessageError";
 import { useState } from "react";
@@ -30,22 +29,12 @@ import { FaPencilAlt } from "react-icons/fa";
 
 import { FaCheck } from "react-icons/fa";
 
-
-import { Link } from "react-router-dom";
-
 import LoginWithEmailPassword from "../../Authentication/functions/loginWithEmailAndPassword";
 import { useNavigate } from "react-router-dom";
-import logo from "./img/1.png";
-
-import Scroll1 from "./Scroll1.jsx"
-import Scroll2 from "./Scroll2.jsx"
-import Tarjetas from "./Tarjetas.jsx"
-import Contact from"./Contact.jsx"
-import Footer from "./Footer.jsx"
+import logo from './img/1.png'
 
 export const Landing = () => {
   const [messageError, setMessageError] = useState(false);
-
   const [globalMessage, setGlobalMessage] = useState("");
   const navigate = useNavigate();
 
@@ -60,7 +49,6 @@ export const Landing = () => {
       [e.target.name]: e.target.value,
     });
   };
-
 
   const loginGoogle = async (e) => {
     e.preventDefault();
@@ -436,7 +424,7 @@ export const Landing = () => {
 
 
 
-      <div className="testimonios-fondo w-100 vh-100 p-3 d-flex justify-content-center  " id="testimonios" >
+      <div className="d-flex gap-4 flex-wrap justify-content-center mt-5 " id="testimonios" >
          
   
               <div className="Globo"data-aos="fade-down-left">
@@ -533,7 +521,7 @@ export const Landing = () => {
                                                     <h2 className="name">David Bell</h2>
                                                     <p className="description"> Tarde solo cuatro minutos en encontrar un profesor que se adecuara a mis necesidades, me armo un Plan de estudios en menos de 1 dia y ya aprobe la materia!!   </p>
                                                     
-                                                    </div>      
+                                                  </div>      
 
 
                                         </div>
@@ -631,7 +619,6 @@ export const Landing = () => {
      </div>
 
  
-
 
     </>
   );

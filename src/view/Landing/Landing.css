@@ -300,16 +300,13 @@
 
 .quinto-fondo{
     min-height: 100vh;
-    /*background-color:rgb(85, 145, 197);*/
+    background-color:rgb(85, 145, 197);
     display: flex;
     margin-top: 3rem;
     position: relative;
     justify-content: center;
     text-align: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-image: url('./img-fab/fondo.png');
-    color: black;
+    
 }
 
 .nuestros{
@@ -339,7 +336,7 @@
 
 .paises h5{
     
-    color: black;
+    color: #ffffff;
    
 }    
    
@@ -380,10 +377,9 @@
     
 }
 .slide-container{
-  max-width: 1000px;
-  
-  background-color: rgb(255, 255, 255);
-  
+    display: flex;
+    flex-direction: row;
+    
 }
 
 .slide-content{
@@ -391,6 +387,8 @@
 }
 
 .card{
+    display: flex;
+    flex-direction: row;
     width: 320px;
     height: 250px;
     background-color: rgb(255, 255, 255);
@@ -602,9 +600,9 @@ border: 4px solid #4070F4;
     width: 600px;
     height: 400px;
 }
-.testimonios-fondo{
+/* .testimonios-fondo{
     position: relative;
-}
+} */
 
 
  /* ondas en queres enseñar */
