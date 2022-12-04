@@ -399,7 +399,7 @@ const FormStudent = ({setMostrarStudent}) => {
                     <span className="visually-hidden"></span>
                   </>
                 )}
-                Register
+                Registrate
               </button>
             )}
           </div>

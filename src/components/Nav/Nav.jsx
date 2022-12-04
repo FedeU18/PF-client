@@ -14,43 +14,48 @@ import * as actionsAlumno from "../../redux/Actions/Alumno";
 import * as actionsProfesor from "../../redux/Actions/Profesor";
 import { useDispatch, useSelector } from "react-redux";
 
-
 export const NavBar = () => {
-  const navigate = useNavigate();  
-  const dispatch=useDispatch()
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const { userData } = userAuthentication();
   let infoAlumno = useSelector((state) => state.alumnos.alumno);
   let infoProfesor = useSelector((state) => state.profesores.detail);
-  const [useFoto ,SetUserFoto]=useState('')
+  const [useFoto, SetUserFoto] = useState("");
   let id = userData.id;
-  useEffect(()=>{
+  useEffect(() => {
     dispatch(actionsAlumno.getAlumnoFromAPI(id));
     dispatch(actionsProfesor.getProfesorById(id));
-  },[])
+  }, []);
 
-  useEffect(()=>{
-    if(Object.entries(infoProfesor).length === 0 && Object.entries(infoAlumno).length===0){
-      SetUserFoto("https://thumbs.gfycat.com/BronzeSpryAlleycat-size_restricted.gif")
-      }
-    else{
-      if(infoAlumno.picture){
-        if(infoAlumno.picture==='sin foto'){
-          SetUserFoto("https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png")
-    
-        }else{
-          SetUserFoto(infoAlumno.picture)
+  useEffect(() => {
+    if (
+      Object.entries(infoProfesor).length === 0 &&
+      Object.entries(infoAlumno).length === 0
+    ) {
+      SetUserFoto(
+        "https://thumbs.gfycat.com/BronzeSpryAlleycat-size_restricted.gif"
+      );
+    } else {
+      if (infoAlumno.picture) {
+        if (infoAlumno.picture === "sin foto") {
+          SetUserFoto(
+            "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
+          );
+        } else {
+          SetUserFoto(infoAlumno.picture);
         }
       }
-      if(infoProfesor.imagen){
-        if(infoProfesor.imagen===null){
-          SetUserFoto("https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png")
-    
-        }else{
-          SetUserFoto(infoProfesor.imagen)
+      if (infoProfesor.imagen) {
+        if (infoProfesor.imagen === null) {
+          SetUserFoto(
+            "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
+          );
+        } else {
+          SetUserFoto(infoProfesor.imagen);
         }
       }
     }
-  },[])
+  }, []);
 
   const CloseMySesion = () => {
     logOut();
@@ -62,7 +67,6 @@ export const NavBar = () => {
     console.log("me ejcute");
 
     navigate(`/profile`);
-
   };
 
   const handleGoHome = () => {
@@ -76,39 +80,48 @@ export const NavBar = () => {
         className="NavColorCss shadow-lg  mb-4"
         variant="dark"
       >
-        <Row>
-          <Col>
-            <span onClick={handleGoHome} className="logoNav">
-              <img src={"logoPF.png"} className={"logoProyecto"} />
-            </span>
-          </Col>
+        <div className="d-flex justify-content-between gap-4 p-1 align-items-center">
+          <div>
+            <img
+              src={"logoPF.png"}
+              className={"logoProyecto d-block"}
+              style={{ width: "75px", height: "40px" }}
+            />
+          </div>
 
-          <Col xs={10}>
+          <div>
             <div>
               <SearchBar />
-            </div>{" "}
-          </Col>
+            </div>
+          </div>
 
-          <Col className="colAvatarDrop">
-            <Image
-              className="imgAvatar"
-              src={useFoto}
-              roundedCircle
-            />
-            <NavDropdown className="dro" id="basic-nav-dropdown">
-              <NavDropdown.Item onClick={handleProfile}>
-                Mi Perfil
-              </NavDropdown.Item>
-              <NavDropdown.Item onClick={CloseMySesion}>
-                Cerrar Sesión
-              </NavDropdown.Item>
-              {/* <NavDropdown.Divider />
-                        <NavDropdown.Item href="">
-                            Separated link
-                        </NavDropdown.Item> */}
-            </NavDropdown>
-          </Col>
-        </Row>
+          <div>
+            <div className="position-relative">
+              <img
+                className="imgAvatar rounded-5"
+                src={useFoto}
+                roundedCircle
+                style={{ objectFit: "cover", width: "40px", height: "40px" }}
+              />
+
+              <NavDropdown
+                className={`position-absolute top-0 start-0 p-1 rounded-5`}
+                id="basic-nav-dropdown"
+                style={{ width: "45px", height: "50px" }}
+              >
+                <div>
+
+                <NavDropdown.Item className="opacity-100" onClick={handleProfile}>
+                  Mi Perfil
+                </NavDropdown.Item>
+                <NavDropdown.Item onClick={CloseMySesion}>
+                  Cerrar Sesión
+                </NavDropdown.Item>
+                </div>
+              </NavDropdown>
+            </div>
+          </div>
+        </div>
       </Container>
     </div>
   );

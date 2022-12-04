@@ -163,9 +163,9 @@ export const AlumnoPerfil = (props) => {
                 </div>
                 <div className="pendientesContperfAlum">
                       <div className="myPEndHeaderPerFal">
-                         <spna className='mispenSpan'>
+                         <span className='mispenSpan'>
                            Mis Pendientes 
-                          </spna>
+                          </span>
                          <MdOutlinePendingActions  style={{color:'rgb(151, 140, 140,0.8)' }} size={24}/>
                       </div>
                 </div>

@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
-import './SearchBar.css'
+// import './SearchBar.css'
 import { useNavigate } from 'react-router-dom';
+import {FaSearch} from "react-icons/fa"
 
 export const SearchBar =()=>{
     const navigate = useNavigate();
@@ -85,17 +86,21 @@ const handleComplete=(nameTeacher)=>{
         <div className='contenedorWrapper'>
         <form className='wrapper' onSubmit={(e)=>{onSubmitHandler(e)}}>
             <div className="search-input">
-                <input className="searchInput" 
+                
+                <div className='position-relative bg-light rounded-5 p-1'>
+                <input className="searchInput form-control rounded-5 border-0 fs-5 p-1" 
                         type="text" 
-                        placeholder='Buscar Nombre del Profesor...'
+                        placeholder='buscar..'
                         value={text}
                         onBlur={()=>{ setTimeout(()=>{setSugerencias([])},200)}}
                         onChange={(e)=>{onChangeInput(e.target.value)}}
                         onKeyDown={(e)=>{handleKeyDown(e)}}
+                        style={{marginLeft: ".3rem"}}
                         >                
                 </input>
 
-                 <button type="submit" className="icon"><img className='lupa' src={'https://cdn-icons-png.flaticon.com/512/3917/3917754.png'} alt='search'/></button>
+                 <button type="submit" className='btn position-absolute' style={{top: "5px", right: "5px"}}><FaSearch className='text-primary fs-5'/></button>
+                </div>
                 
             </div>
             <div className='fila'>

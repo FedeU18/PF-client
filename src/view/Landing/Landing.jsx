@@ -16,7 +16,7 @@ import { FaCheck } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import LoginWithEmailPassword from "../../Authentication/functions/loginWithEmailAndPassword";
 import { useNavigate } from "react-router-dom";
-import logo from './img/1.png'
+import logo from "./img/1.png";
 
 export const Landing = () => {
   const [messageError, setMessageError] = useState(false);
