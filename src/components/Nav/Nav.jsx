@@ -106,7 +106,6 @@ export const NavBar = () => {
               <img
                 className="imgAvatar rounded-5"
                 src={useFoto}
-                roundedCircle
                 style={{ objectFit: "cover", width: "40px", height: "40px" }}
               />
 
