@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
-import * as actionsAlumno from "../../redux/Actions/Alumno.js";
-import * as actionsPaises from "../../redux/Actions/Paises";
+import * as actions from "../../redux/Actions/Alumno.js";
 import { useDispatch, useSelector } from "react-redux";
 
 import "./edit.css";
@@ -8,18 +7,14 @@ import { useNavigate } from "react-router-dom";
 
 export const EditaAlumno = (props) => {
   const [actualizar, setActualizar] = useState({});
-  const [country, setCountry] = useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
   useEffect(() => {
     console.log("me monte al useEffect");
-    dispatch(actionsAlumno.getAlumnoFromAPI(props.id));
-    dispatch(actionsPaises.getPaises());
+    dispatch(actions.getAlumnoFromAPI(props.id));
   }, []);
   const info = useSelector((state) => state.alumnos.alumno);
   console.log(info);
-  const infoPaises = useSelector((state) => state.paises.paises);
-  // console.log("informacion de paises ", infoPaises);
 
   const objActualizarAlumno = (e) => {
     e.preventDefault();
@@ -39,31 +34,10 @@ export const EditaAlumno = (props) => {
 
   const updateAlumno = (e) => {
     e.preventDefault();
-    dispatch(actionsAlumno.editAlumno(actualizar, info.id));
-    navigate("/home");
+    dispatch(actions.editAlumno(actualizar, info.id));
   };
 
-
-/** AGREGUE FUNCION PARA TOMAR EL PAIS SEGUN EL QUE SELECCIONEN Y ESE PAIS SE GUARDE EN UN ESTADO. ESA VARIABLE DE ESTADO LA INSERTO COMO VALOR PARA EL INPUT DEL PAIS QUE TIENE AL LADO EL SELECT EN LA "PARTE VISUAL" */
-  const añadirPais = (e) => {  
-    e.preventDefault();
-    let select = e.target;
-    let pais = select.options[select.selectedIndex].text;
-    setCountry(pais);
-    if (pais !== "------") {
-      setActualizar({
-        ...actualizar,
-        country: pais,
-      });
-    } else {
-      setActualizar({
-        ...actualizar,
-        country: info.country,
-      });
-    }
-
-    console.log(actualizar);
-  };
+  ///funciona imput desde commit 12
 
   return (
     <div className={props.open ? "abicuaso" : "closecuaso"}>
@@ -155,33 +129,38 @@ export const EditaAlumno = (props) => {
                   Correo
                 </label>
               </div>
-
-              <div className="containerInputPais">
-                <div className="input-container">
-                  <input
-                    className="inputEditAlumno"
-                    type="text"
-                    name="country"
-                    placeholder={info.country}
-                    value={country !== "" ? country : info.country}
-                    onChange={(e) => objActualizarAlumno(e)}
-                    onBlur={(e) => objActualizarAlumno(e)}
-                  />
-                  <label className="nombre" htmlFor="health_score">
-                    Pais
-                  </label>
-                </div>
-
-
-                <div className="inputSelectPais">
-                  <select className="selectPais" onChange={añadirPais}>
-                    <option value="">------</option>
-                    {infoPaises.map((e) => (
-                      <option value="">{e.name}</option>
-                    ))}
-                  </select>
-                </div>
+              <div className="input-container">
+                <input
+                  className="inputEditAlumno"
+                  type="text"
+                  name="country"
+                  onChange={(e) => objActualizarAlumno(e)}
+                  placeholder={info.country}
+                  onBlur={(e) => objActualizarAlumno(e)}
+                />
+                <label className="nombre" htmlFor="health_score">
+                  Pais
+                </label>
               </div>
+
+              {/* <div className="input-container">
+                <select
+                  className="selectDiets"
+                  onChange={(e) => añadirDieta(e)}
+                  name=""
+                  id=""
+                >
+                  <option value="">Select diets</option>
+                  {info.map((e) => (
+                    <option value="">{e}</option>
+                  ))}
+                </select>
+                <div className="contenedorDiets">
+                  {obj.diets.map((e) => (
+                    <Lista dieta={e} eliminarDieta={eliminarDieta} />
+                  ))}
+                </div>
+              </div> */}
             </div>
             <div className="divBtn">
               <button type="submit" className="button">
