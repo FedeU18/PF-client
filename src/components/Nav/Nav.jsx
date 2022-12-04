@@ -38,9 +38,6 @@ export const NavBar = () => {
       SetUserFoto("https://thumbs.gfycat.com/BronzeSpryAlleycat-size_restricted.gif")
       }
     else{
-      console.log('entra')
-      console.log('aqui: ',infoProfesor)
-      console.log('aq: ',infoAlumno)
       if(infoAlumno.picture){
         if(infoAlumno.picture==='sin foto'){
           SetUserFoto("https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png")

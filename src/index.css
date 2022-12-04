@@ -9,7 +9,7 @@ html {
 }
 
 html::-webkit-scrollbar {
-  /* background-color: blue; */
+  background-color: transparent;
   width: 8px;
 }
 
