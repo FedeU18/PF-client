@@ -18,7 +18,11 @@ import userAuthenticate from "../../Authentication/functions/user";
 import { auth } from "../../Authentication/firebase/credenciales";
 import autentication from "../../Authentication/functions/user";
 import logOut from "../../Authentication/functions/logOut";
+
 import MateriasBtn from "./MateriasBtn.jsx";
+
+import Loader from "../../components/Loader/Loader";
+
 
 export const Home = () => {
   const [open, setOpen] = useState(false);
@@ -34,8 +38,11 @@ export const Home = () => {
   useEffect(() => {
     dispatch(getAllAlumnos());
     dispatch(allProfes(filtrosSeleccionados));
-    dispatch(getMaterias())
-  }, [dispatch]);
+
+    dispatch(getMaterias());
+    dispatch(getPaises());
+  }, []);
+
 
   useEffect(() => {
     dispatch(filterProfes(filtrosSeleccionados));
@@ -47,11 +54,6 @@ export const Home = () => {
   const handleCloseFiltros = (set) => {
     setOpen(set);
   };
-
-  useEffect(() => {
-    dispatch(getMaterias());
-    dispatch(getPaises());
-  }, []);
 
   const handleDeleteOpSelec = (e) => {
     dispatch(
@@ -76,10 +78,12 @@ export const Home = () => {
   return (
   
     <div>
-     
-      {profes.length>0 ? (
+
+      <NavBar />
+
+      {profes.length > 0 ? (
+
         <div>
-          <NavBar />
           <button className="filtroBtn">
             <BsFillGrid3X3GapFill onClick={handleFiltros} />
           </button>
@@ -119,42 +123,51 @@ export const Home = () => {
                 X {filtrosSeleccionados.puntuacion}
               </button>
             )}
-          {filtrosSeleccionados.precio && filtrosSeleccionados.precio !== "" && (
-            <button
-              className="btnListOpSelected"
-              name="precio"
-              onClick={handleDelOp}
-            >
-              X {filtrosSeleccionados.precio}{" "}
-            </button>
-          )}
+          {filtrosSeleccionados.precio &&
+            filtrosSeleccionados.precio !== "" && (
+              <button
+                className="btnListOpSelected"
+                name="precio"
+                onClick={handleDelOp}
+              >
+                X {filtrosSeleccionados.precio}{" "}
+              </button>
+            )}
 
           <Filtros open={open} close={handleCloseFiltros} />
           <br></br>
 
           <ProfeCards profes={profes} />
+
           
           
          <MateriasBtn/>
          
           
-          <div className="foot">
-            <hr />
-            <footer>
-              <Link to="/about" className="aFootAbout">
-                About
-              </Link>
-            </footer>
-          </div>
+ 
+
         </div>
       ) : (
-        <div>
-          <h1>cargando</h1>
-          <Link to="/">
-            <a onClick={() => logOut()}>inicio</a>
-          </Link>
+        <div
+          className="d-flex justify-content-center align-items-center"
+          style={{ height: "75vh" }}
+        >
+          <Loader></Loader>
+          <h1>cargando...</h1>
         </div>
       )}
+
+      <div
+        className="d-flex flex-column align-items-center"
+        style={{ margin: "0 auto" }}
+      >
+        <hr />
+        <footer>
+          <Link to="/about" className="aFootAbout">
+            About
+          </Link>
+        </footer>
+      </div>
     </div>
   );
 };
