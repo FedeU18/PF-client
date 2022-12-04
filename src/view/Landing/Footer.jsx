@@ -1,5 +1,9 @@
 import React from "react";
 import "./Footer.css";
+import {FaInstagram} from "react-icons/fa";
+import {BsFacebook}from "react-icons/bs";
+import {AiFillTwitterCircle} from "react-icons/ai";
+import {IoLogoYoutube} from "react-icons/io";
 
 function Footer() {
   return (
@@ -29,10 +33,10 @@ function Footer() {
           <div className="col">
             <h4>Redes Sociales</h4>
             <ui className="list-unstyled">
-              <li>Facebook</li>
-              <li>Twitter</li>
-              <li>Youtube</li>
-              <li>Instagram</li>
+              <li><BsFacebook size={22}/> Facebook</li>
+              <li><AiFillTwitterCircle size={22}/> Twitter</li>
+              <li><IoLogoYoutube size={22}/> Youtube</li>
+              <li><FaInstagram size={22}/> Instagram</li>
             </ui>
           </div>
         </div>
