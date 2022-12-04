@@ -27,7 +27,6 @@ import { FaCheck } from "react-icons/fa";
 import LoginWithEmailPassword from "../../Authentication/functions/loginWithEmailAndPassword";
 import { useNavigate } from "react-router-dom";
 import logo from './img/1.png'
-import logo from "./img/1.png";
 import Scroll1 from "./Scroll1.jsx"
 import Scroll2 from "./Scroll2.jsx"
 import Tarjetas from "./Tarjetas.jsx"
@@ -424,7 +423,7 @@ export const Landing = () => {
 
 
 
-      <div className="d-flex gap-4 flex-wrap justify-content-center mt-5 " id="testimonios" >
+      {/* <div className="d-flex gap-4 flex-wrap justify-content-center mt-5 " id="testimonios" >
          
   
               <div className="Globo"data-aos="fade-down-left">
@@ -505,7 +504,7 @@ export const Landing = () => {
                      </div>
                     
                     <div data-aos="zoom-out-left card-conta">
-                           {/* card */}
+
                            <div className="slide-container">
                                <div className="slide-content">
                                      <div className="card-wrapper"></div>
@@ -533,7 +532,7 @@ export const Landing = () => {
             </div>
         </div>
       </div>
-     
+      */}
      
 
       {/* fondo 5 */}
