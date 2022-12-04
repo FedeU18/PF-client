@@ -8,14 +8,15 @@
   }
 .footer-container{
   background: linear-gradient(rgb(133, 159, 236),rgb(85, 145, 197),rgb(85, 145, 197));
-
+	justify-content: center;
     /*
     background: linear-gradient(rgb(85, 145, 197),rgb(85, 145, 197),rgb(133, 159, 236));*/
 }
   .footer{
 
     display: flex;
-	justify-content: space-around;
+    /*align-items: center;*/
+    justify-content: center;
   }
   .abajo{
     
