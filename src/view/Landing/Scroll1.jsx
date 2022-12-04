@@ -1,7 +1,7 @@
 import React from "react"
 import "./Scroll.css"
 
-import image from "./img-fab/imagen8.gif"
+import image from "./img-fab/imagen10.png"
 function Scroll1() {
     return (
         <div id="about">
