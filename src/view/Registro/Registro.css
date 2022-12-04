@@ -4,7 +4,7 @@
     margin-left: 20px;
     padding: 5px 15px 5px 15px;
     border: none;
-    box-shadow: 0 0 2px 1px rgba(115, 92, 180, 0.8);
+    /* box-shadow: 0 0 2px 1px rgba(115, 92, 180, 0.8); */
 
 }
 
@@ -19,7 +19,7 @@
     margin-left: 20px;
     padding: 5px 15px 5px 15px;
     border: none;
-    box-shadow: 0 0 2px 1px rgba(115, 92, 180, 0.8);
+    /* box-shadow: 0 0 2px 1px rgba(115, 92, 180, 0.8); */
 
 }
 
@@ -34,13 +34,14 @@
     padding: 5px;
 }
 .chosen {
-    background: linear-gradient(90deg , rgb(0, 234, 255),rgb(0, 42, 182));
+    background: linear-gradient(90deg ,rgb(85, 145, 197),
+    rgb(133, 159, 236));
     transition: .2s all ease-in-out;
     transform: scale(1.1);
     border-radius: 10px;
     color: white;
     padding: 5px 15px 5px 15px;
     border: none;
-    box-shadow: 0 0 2px 1px rgba(115, 92, 180, 0.8);
+    /* box-shadow: 0 0 2px 1px rgba(115, 92, 180, 0.8); */
 
 }

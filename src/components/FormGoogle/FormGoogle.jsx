@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import styles from "./FormGoogle.module.css";
 import { FcGoogle } from "react-icons/fc";
 import { useDispatch, useSelector } from "react-redux";
@@ -27,6 +27,7 @@ const initialGoogleErrors = {
 };
 
 const FormGoogle = ({ mostrarStudent, setMostrarStudent }) => {
+  const outForm = useRef();
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [repeat, setRepeat] = useState("");
@@ -92,21 +93,31 @@ const FormGoogle = ({ mostrarStudent, setMostrarStudent }) => {
     });
   };
 
+  const clickOutForm = (e) => {
+    if (e.target === outForm.current) {
+      setMostrarStudent(false);
+    }
+  };
+
   return (
     <div
+      onClick={clickOutForm}
+      ref={outForm}
       data-aos="fade-right"
       className={`position-absolute w-100 h-100 ${
         styles.color_fondo_transparente
       } ${!mostrarStudent && "d-none"}`}
     >
-      <div className="position-fixed top-50 start-50 translate-middle">
+      <div
+        className={`position-fixed top-50 start-50 translate-middle ${styles.formulario_width}`}
+      >
         <div className={styles.form_google_container}>
           <form
             onSubmit={handleSubmit}
-            className={`form-control mt-2 p-3 border-0 ${styles.max}`}
+            className={`form-control mt-2 p-3 border-0 ${styles.form_max_width}`}
           >
             <div className="text-center">
-              <FcGoogle className="fs-1" />
+              <FcGoogle className="fs-1" /> <h2>como Estudiante</h2>
             </div>
             <div className="mt-2">
               <label htmlFor="username">Username</label>

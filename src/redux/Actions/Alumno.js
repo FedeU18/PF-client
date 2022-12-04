@@ -90,3 +90,9 @@ export function editAlumno(obj, id) {
       });
   };
 }
+
+export function clearAlumno() {
+  return {
+    type: "CLEAR",
+  };
+}

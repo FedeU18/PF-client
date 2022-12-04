@@ -25,38 +25,32 @@ export function getProfesorById(id) {
 }
 
 export function postProfesor(payload) {
-  return async function (dispatch) {
-    try {
-      const prof = await axios.post(
-        `/profesores`,
-        payload
-      );
-      return dispatch({
-        type: POST_PROFESORES,
-        payload: prof,
+  return function (dispatch) {
+    axios.post(`/profesores`,payload)
+    .then((res)=>{
+      dispatch({type: POST_PROFESORES,payload: prof, });
+      dispatch(allProfes())
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+      
+  }   
+}
+
+
+export function putProfesor(id, payload) {
+  return function (dispatch) {
+    axios.patch( `/profesores/${id}`, payload)
+
+      .then((res) => {console.log("Profesor editado con exito")
+                      dispatch(getProfesorById(id))})
+      .catch((error) => {
+        console.log(error);
       });
-    } catch (error) {
-      return error.message;
-    }
   };
 }
 
-export function putProfesor(id, payload) {
-  return async function (dispatch) {
-    try {
-      const prof = await axios.put(
-        `/profesores/${id}`,
-        payload
-      );
-      return dispatch({
-        type: PUT_PROFESORES,
-        payload: prof,
-      });
-    } catch (error) {
-      return error.message;
-    }
-  };
-}
 
 export function deleteProfesor(id) {
   return async function (dispatch) {

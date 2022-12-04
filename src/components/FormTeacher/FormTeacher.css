@@ -8,7 +8,7 @@
     border-radius: 15px;
     background: white;
     color: black;
-    box-shadow: 2px 0 20px 10px rgba(0, 42, 182, 0.5);
+    box-shadow: 2px 0 20px 10px rgba(85, 145, 197, 0.5);
 }
 
 .formulario {
@@ -23,7 +23,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    background: linear-gradient(rgb(0, 234, 255),rgb(37, 175, 255),rgb(0, 42, 182));
+    background: linear-gradient(rgb(85, 145, 197),
+    rgb(133, 159, 236));
     width: 80%;
     height: 100%;
     border-radius: 0 15px 15px 0;
@@ -43,7 +44,8 @@
 
 .botones > button {
     border: none;
-    background: linear-gradient(90deg , rgb(0, 234, 255),rgb(0, 42, 182));
+    background: linear-gradient(90deg ,rgb(85, 145, 197),
+    rgb(133, 159, 236));
     padding: 5px 15px 5px 15px;
     border-radius: 20px;
     color: white;
@@ -72,17 +74,32 @@ textarea {
     border: none;
     padding: 2px 15px 2px 15px;
     border-radius: 20px;
-    box-shadow: 0 0 5px 2px rgb(0, 234, 255);
+    box-shadow: 0 0 5px 2px rgb(85, 145, 197);
     
 }
 .label-input > input::-webkit-input-placeholder{
-    color: rgb(0, 181, 197);
+    color: rgb(85, 145, 197);
 }
 
 .label-input > select {
     border: none;
     padding: 2px 15px 2px 15px;
     border-radius: 20px;
-    box-shadow: 0 0 5px 2px rgb(0, 234, 255);
+    box-shadow: 0 0 5px 2px rgb(85, 145, 197);
 
+}
+
+.materias {
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    margin-top: 5px;
+}
+
+.materias > button {
+    border: none;
+    background: linear-gradient(90deg ,rgb(133, 159, 236),
+    rgb(85, 145, 197));
+    padding: 5px 10px 5px 10px;
+    border-radius: 20px;
+    color: white;
 }

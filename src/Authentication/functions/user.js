@@ -1,7 +1,7 @@
 export default function userAuthenticate() {
   const uno = localStorage.getItem("userDataAuth");
   const dos = localStorage.getItem("userData");
-  //const tres = localStorage.getItem("user");
+  const tres = localStorage.getItem("user");
 
 
   if(uno && dos && tres) {

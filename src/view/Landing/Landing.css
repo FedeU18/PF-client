@@ -287,8 +287,7 @@
     min-height: 100vh;
     /*background-color:rgb(85, 145, 197);*/
     display: flex;
-    
-    margin-top: 20rem;
+    margin-top: 3rem;
     position: relative;
     justify-content: center;
     text-align: center;
@@ -461,9 +460,71 @@ border: 4px solid #4070F4;
 }
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ESTILOS DE MICHAEL */
+
+
+
+.foto-fondo-2 {
+    max-width: 300px;
+    border-radius: .6rem;
+}
+
+
+.bg-image-fondo-3 {
+    background-image: url("./img/dibujo.jpeg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    /* background-attachment: fixed; */
+}
+
+.foto-del-tipo-pensando {
+    max-width: 400px;
+}
+
+.como-dar-clases-particulares {
+    max-width: 400px;
+}
     
-    
-    
-    
-    
-   
+.altura {
+    height: 1rem;
+}
+
+.mucho-margin {
+    margin-top: 15rem;
+}
+
+.altura-paises {
+    height: 50vh;
+}
+
+.maximo-ancho {
+    padding: 1rem;
+    max-width: 800px;
+}
+
+
+@media screen and (max-width: 640px) {
+    .none {
+        display: none;
+    }
+
+    .img-de-la-seño-con-laptop {
+        height: 500px;
+        object-fit: cover;
+    }
+}
