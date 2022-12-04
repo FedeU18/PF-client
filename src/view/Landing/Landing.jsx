@@ -26,6 +26,7 @@ import Scroll2 from "./Scroll2.jsx"
 import Tarjetas from "./Tarjetas.jsx"
 import Contact from"./Contact.jsx"
 import Footer from "./Footer.jsx"
+import SimpleSlider from "./SimpleSlider";
 
 export const Landing = () => {
   const [messageError, setMessageError] = useState(false);
@@ -360,6 +361,7 @@ export const Landing = () => {
       <div>
         <div className=""></div>
       </div>
+      
       <Scroll1/>
       <Scroll2/>
       <Tarjetas/>
