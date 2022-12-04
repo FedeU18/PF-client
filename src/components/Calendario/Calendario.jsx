@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import Calendar from 'react-calendar'
 import './Calendario.css'
-import { getFecha, postFecha } from '../../redux/Actions/Fecha'
+import { postFecha } from '../../redux/Actions/Fecha'
 import { useDispatch } from 'react-redux'
 
 
@@ -10,7 +10,9 @@ const Calendario = () => {
     const [reserva, setReserva] = useState({
         fecha: "",
         hora: "",
-        habilitado: false
+        habilitado: false,
+        idProfesor,
+        idAlumno
     })
 
     const dispatch = useDispatch()
@@ -31,7 +33,6 @@ const Calendario = () => {
         console.log(reserva.fecha)
     }
 
-    const fecha = date.getDate()+ "-" +( date.getMonth() + 1 )+ "-" + date.getFullYear()
 
     const handleSubmitFecha = (e) => {
         e.preventDefault;
