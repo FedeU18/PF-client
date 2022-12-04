@@ -285,14 +285,17 @@
 
 .quinto-fondo{
     min-height: 100vh;
-    background-color:rgb(85, 145, 197);
+    /*background-color:rgb(85, 145, 197);*/
     display: flex;
     
     margin-top: 20rem;
     position: relative;
     justify-content: center;
     text-align: center;
-    
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-image: url('./img-fab/fondo.png');
+    color: black;
 }
 
 .nuestros{
@@ -322,7 +325,7 @@
 
 .paises h5{
     
-    color: #ffffff;
+    color: black;
    
 }    
    
