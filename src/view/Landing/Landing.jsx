@@ -19,7 +19,7 @@ import { FaCheck } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import LoginWithEmailPassword from "../../Authentication/functions/loginWithEmailAndPassword";
 import { useNavigate } from "react-router-dom";
-import logo from './img/1.png'
+import logo from "./img/1.png";
 
 import Scroll1 from "./Scroll1.jsx"
 import Scroll2 from "./Scroll2.jsx"
