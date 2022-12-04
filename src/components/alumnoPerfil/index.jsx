@@ -85,7 +85,7 @@ export const AlumnoPerfil = (props) => {
       },
       (error, result) => {
         if (!error && result && result.event === "success") {
-          dispatch(actions.editAlumno({ picture: result.info.url }, props.id));
+          dispatch(actionsAlumno.editAlumno({ picture: result.info.url }, props.id));
           setPict(result.info.url);
         }
       }
@@ -108,14 +108,12 @@ export const AlumnoPerfil = (props) => {
             <div>
               <div className="myperfilCont">
                 <div className="FotoPerfilACont">
-                  {info.picture !== "sin foto" ? (
-                    <img src={info.picture} className="ProfilePictureAlum" />
-                  ) : (
-                    <div className="AvatarNameAluPer">
-                      <div>{info.name[0].toUpperCase()}</div>
-                    </div>
-                  )}
-                  <button className="button-17" role="button">
+                  
+                    <img src={valor()} className="ProfilePictureAlum" />
+                   
+                    
+              
+                  <button className="button-17" role="button" onClick={() => handleOpenWidget()}>
                     Alumno
                   </button>
                 </div>
