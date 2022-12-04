@@ -136,13 +136,15 @@ export const Home = () => {
 
           <Filtros open={open} close={handleCloseFiltros} />
           <br></br>
-
-          <ProfeCards profes={profes} />
-
           
-          
-         <MateriasBtn/>
+          <MateriasBtn/>
          
+          <ProfeCards profes={profes} />
+       
+          
+       
+         
+       
           
  
 

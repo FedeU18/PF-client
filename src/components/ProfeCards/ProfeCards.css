@@ -1,7 +1,8 @@
 .ProfeCardsCont{
+    
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: flex-end;
     /* margin-left: 2%; */
     /* display: grid; */
     /* grid-template-columns: max-content max-content max-content max-content ; */
