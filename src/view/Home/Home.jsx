@@ -3,19 +3,26 @@ import { NavBar } from "../../components/Nav/Nav";
 import { Filtros } from "../../components/Filtros/Filtros";
 import { BsFillGrid3X3GapFill } from "react-icons/bs";
 import { useEffect, useState } from "react";
-import { getMaterias } from "../../redux/Actions/Materias";
+
 import { getPaises } from "../../redux/Actions/Paises";
-import { addOPSelected } from "../../redux/Actions/Materias";
+import { addOPSelected,} from "../../redux/Actions/Materias";
 import { useDispatch, useSelector } from "react-redux";
 import { allProfes } from "../../redux/Actions/Profesor";
 import { ProfeCards } from "../../components/ProfeCards/ProfeCards";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { filterProfes } from "../../redux/Actions/Profesor";
 import { getAllAlumnos } from "../../redux/Actions/Alumno";
+import { getMaterias } from "../../redux/Actions/Materias";
+
 import userAuthenticate from "../../Authentication/functions/user";
 import { auth } from "../../Authentication/firebase/credenciales";
 import autentication from "../../Authentication/functions/user";
 import logOut from "../../Authentication/functions/logOut";
+
+import MateriasBtn from "./MateriasBtn.jsx";
+
+import Loader from "../../components/Loader/Loader";
+
 
 export const Home = () => {
   const [open, setOpen] = useState(false);
@@ -26,11 +33,16 @@ export const Home = () => {
     (state) => state.materias.filtrosSeleccionados
   );
   const profes = useSelector((state) => state.profesores.profesores); //todo el estado de profes
+  const materias = useSelector((state)=>state.materias.filtrosSeleccionados)
 
   useEffect(() => {
     dispatch(getAllAlumnos());
     dispatch(allProfes(filtrosSeleccionados));
-  }, [dispatch]);
+
+    dispatch(getMaterias());
+    dispatch(getPaises());
+  }, []);
+
 
   useEffect(() => {
     dispatch(filterProfes(filtrosSeleccionados));
@@ -42,11 +54,6 @@ export const Home = () => {
   const handleCloseFiltros = (set) => {
     setOpen(set);
   };
-
-  useEffect(() => {
-    dispatch(getMaterias());
-    dispatch(getPaises());
-  }, []);
 
   const handleDeleteOpSelec = (e) => {
     dispatch(
@@ -69,11 +76,14 @@ export const Home = () => {
   };
 
   return (
+  
     <div>
-       
-      {filtrosSeleccionados && profes ? (
+
+      <NavBar />
+
+      {profes.length > 0 ? (
+
         <div>
-          <NavBar />
           <button className="filtroBtn">
             <BsFillGrid3X3GapFill onClick={handleFiltros} />
           </button>
@@ -113,38 +123,51 @@ export const Home = () => {
                 X {filtrosSeleccionados.puntuacion}
               </button>
             )}
-          {filtrosSeleccionados.precio && filtrosSeleccionados.precio !== "" && (
-            <button
-              className="btnListOpSelected"
-              name="precio"
-              onClick={handleDelOp}
-            >
-              X {filtrosSeleccionados.precio}{" "}
-            </button>
-          )}
+          {filtrosSeleccionados.precio &&
+            filtrosSeleccionados.precio !== "" && (
+              <button
+                className="btnListOpSelected"
+                name="precio"
+                onClick={handleDelOp}
+              >
+                X {filtrosSeleccionados.precio}{" "}
+              </button>
+            )}
 
           <Filtros open={open} close={handleCloseFiltros} />
           <br></br>
 
           <ProfeCards profes={profes} />
 
-          <div className="foot">
-            <hr />
-            <footer>
-              <Link to="/about" className="aFootAbout">
-                About
-              </Link>
-            </footer>
-          </div>
+          
+          
+         <MateriasBtn/>
+         
+          
+ 
+
         </div>
       ) : (
-        <div>
-          <h1>Error 404</h1>
-          <Link to="/">
-            <a onClick={() => logOut()}>inicio</a>
-          </Link>
+        <div
+          className="d-flex justify-content-center align-items-center"
+          style={{ height: "75vh" }}
+        >
+          <Loader></Loader>
+          <h1>cargando...</h1>
         </div>
       )}
+
+      <div
+        className="d-flex flex-column align-items-center"
+        style={{ margin: "0 auto" }}
+      >
+        <hr />
+        <footer>
+          <Link to="/about" className="aFootAbout">
+            About
+          </Link>
+        </footer>
+      </div>
     </div>
   );
 };

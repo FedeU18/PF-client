@@ -121,11 +121,17 @@ padding-top: 4%;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   font-size: 28px;
   height: 6rem;
+  background-color: rgba(108, 79, 134, 0.6);
+  color: rgb(255, 255, 249);
+  font-weight: bolder;
+  border-radius: 2px;
+  text-shadow: 2px 2px #747474;
+
 }
 
 .preporH{
   font-size: 20px;
-  padding-top: 0.5rem; 
+  padding-top: 0.2rem; 
   width: 100%;
   box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
   height: 2rem;
@@ -194,7 +200,7 @@ padding-top: 4%;
   position: absolute;
 }
  .nameLogoMaDeCont{
-  
+  margin-top: 0.5rem;
   display: grid;
   grid-template-columns: 20% 80%;
 } 
@@ -204,9 +210,9 @@ padding-top: 4%;
   vertical-align: middle;
   justify-content: center;
   align-content: center;
-  margin-top: 0.5rem;
-  margin-left: 3rem;
-  height: 2.5rem;
+  margin-top: 0.2rem;
+  margin-left: 2rem;
+  height: 3rem;
  width: 10rem;
   background-color: black;
   color: white;
@@ -255,7 +261,7 @@ padding-top: 4%;
   all:unset;
   position: relative;
   cursor: pointer;
-  background-color:rgb(53, 43, 90) ;
+  background-color:rgb(61, 51, 100) ;
   width: 4rem;
   height: 4rem;
   box-shadow: rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px, rgba(17, 17, 26, 0.1) 0px 24px 80px;
@@ -274,3 +280,4 @@ padding-top: 4%;
   display: grid ;
   grid-template-columns: 100% 1%;
 }
+

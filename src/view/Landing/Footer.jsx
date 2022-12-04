@@ -22,22 +22,26 @@ function Footer() {
           {/* Column2 */}
           <div className="col">
             <h4>Paises</h4>
-            <ui className="list-unstyled">
+            <ul className="list-unstyled">
               <li>Peru</li>
               <li>Argentina</li>
               <li>Colombia</li>
               <li>etc...</li>
-            </ui>
+            </ul>
           </div>
           {/* Column3 */}
           <div className="col">
             <h4>Redes Sociales</h4>
+
             <ui className="list-unstyled">
               <li><BsFacebook size={22}/> Facebook</li>
               <li><AiFillTwitterCircle size={22}/> Twitter</li>
               <li><IoLogoYoutube size={22}/> Youtube</li>
               <li><FaInstagram size={22}/> Instagram</li>
             </ui>
+
+            
+
           </div>
         </div>
         <hr />

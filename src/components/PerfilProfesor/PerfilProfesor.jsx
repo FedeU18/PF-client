@@ -2,31 +2,54 @@ import React, {useEffect, useState} from "react";
 import EditarProfesor from "../editarProfesor/editarProfesor"
 import { AiOutlineEdit } from "react-icons/ai";
 import * as actionsProfesor from "../../redux/Actions/Profesor";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import './PerfilProfesor.css'
 import Carousel from 'react-bootstrap/Carousel';
+import { clear } from "../../redux/Actions/Profesor";
+import { EditarProfeCerti } from "../EditarProfesorCertificados/EditarProfeCerti";
+import { AñadirCerificado } from "../AñadirCertificado/AñadirCertificado";
+import { IoMdAddCircleOutline } from "react-icons/io";
+import { RiDeleteBin6Line } from "react-icons/ri";
+import Alert from 'react-bootstrap/Alert';
+import { deleteCertificado} from '../../redux/Actions/Certificado';
 
 export const PerfilProfesor=({id})=>{
+    const navigate=useNavigate()
     const dispatch = useDispatch(); 
     const [show, setShow] = useState(false);
+    const [modalShow, setModalShow] = useState(false);
+    const [modalShowEdit, setModalShowEdit] = useState(false);
+    const [modalShowAdd, setModalShowAdd] = useState(false);
+    const [alert, setAlert]=useState(false)
+
     let info = useSelector((state) => state.profesores.detail);
     useEffect(() => {     
         dispatch(actionsProfesor.getProfesorById(id));       
+        return ()=> {
+          dispatch(clear())
+        }
       }, []);
 
 
 const handleShow = () => setShow(true);
   const handleClose = () => setShow(false);
 
-  
+  const handleOtherPer=()=>{
+    navigate(`/profesores/${id}`)
+  }
 
-
+  const handleDeleteCertificado=(id)=>{
+    dispatch(deleteCertificado(id,info.id))
+  }
     return (
         <div>
           {Object.entries(info).length > 0? (
             <div className="divPrincipalProf">
                 <EditarProfesor show={show} profesor={info}  handleClose={handleClose}/>
+                <AñadirCerificado show={modalShow}  profesorId={info.id} onHide={() => setModalShow(false)}/>
+               
+
               <div className="ContMyPerfilFavoritesProf">
                   <Link to="/home">
                        <button className="goBackBtn">
@@ -37,14 +60,22 @@ const handleShow = () => setShow(true);
                 <div>
                     <div className="myperfilContProf">
                       <div className="FotoPerfilAContProf">
-                        {info.picture!==null ?(
+                        {info.imagen!=='' ?(
                           <img src={info.imagen} className='ProfilePictureAlumProf'/>
                         ):(
                           <div className='AvatarNameAluPerProf'>
-                              <div>{info.nombre[0].toUpperCase()}</div>                                
+                              <div>{info.username[0].toUpperCase()}</div>                                
                           </div>
                         )  }
+                        <div className="usernameProfePEr"> {info.username} </div>
                         <button class="button-17" role="button">Profesor</button>
+
+                          <button class="button-62" role="button" onClick={handleOtherPer}>
+                            Ir a Mi Perfil Comercial
+                          </button>
+                       
+
+
                       </div>
                       <div className="InFoAlumnoPErfContProf">
                         <div className="titleMyPRofileProf">
@@ -99,7 +130,15 @@ const handleShow = () => setShow(true);
                                   <div className="plusnipa2Prof">
                                     {info.email} 
                                 </div> 
+                                  <br></br>
+                                <div className="nameInfoPErAluProf plusnipaProf">
+                                    Descripción:
+                                  </div> 
+                                  <div className="plusnipa2Prof">
+                                    {info.descripcion} 
+                                </div> 
                           </div>
+                          
                           </div>
                       </div>
                     </div>
@@ -107,7 +146,27 @@ const handleShow = () => setShow(true);
                 </div>    
     
                 <div className="myFavContProf">                    
-                       ¿Porque deberian elegirme?                   
+                  {info.descripcion2===null || info.descripcion2===''?(
+                    <div className="justPorqueDEbEleg">
+                      ¿Porque deberian elegirme?  
+                      <button className="btnEditProAluProf btnEditprofOTher "
+                              onClick={handleShow}>
+                        <AiOutlineEdit />
+                        </button>
+                    </div>
+                  ):(
+                    <div className="siporquDEvEle">
+                      <div className="myFavHeaderPerFal">
+                        <span>
+                        ¿Porque deberian elegirme? 
+                        
+                        </span>
+                      </div>
+                      <div className="desc2profPEr">
+                        {info.descripcion2}
+                      </div>
+                    </div>
+                  ) }                 
                 </div>
               </div>
 
@@ -116,8 +175,8 @@ const handleShow = () => setShow(true);
                 <div className="myFavHeaderPerFal"> 
                   <span>
                     Mis Materias
-                    <button className="btnEditProAluProf ">
-                        <AiOutlineEdit />
+                    <button className="btnEditProAluProf btnEditprofOTher ">
+                        {/* <AiOutlineEdit /> */}
                         </button>
                   </span>
                   <div className="materiasContProfPEr">
@@ -142,29 +201,43 @@ const handleShow = () => setShow(true);
                 <div className="myFavHeaderPerFal"> 
                   <span>
                     Mis Certificados 
-                    <button className="btnEditProAluProf ">
-                        <AiOutlineEdit />
+                    <button className="btnEditProAluProf btnEditprofOTher"
+                              >
+                        
                         </button>
                   </span>
                   {info.certificados.length===0?(
-                    <div>
+                    <div className='aunNoCertBanner'>
                         Aun no añades ningún Certificado.
+                        <div className="centeraddbtn">
+                          <IoMdAddCircleOutline onClick={() => setModalShow(true)}  size={80}/>
+                        </div>
                     </div>):(                    
-                    <div>
-                        <Carousel style={{marginTop:'5%', color:'black'}} >
-                            {info.certificados.map((f,i)=>(
-                                <Carousel.Item className='carruIte'>
-                            <div className='insideCaIte certiProPER' style={{backgroundImage:`url(${f.foto})`}}>
-                                    <div className={'descCertCarru'}>
-                                        {f.nombre}
+                    <div className="fotoContProPro">
+
+                        {info.certificados.map(c=>(
+                            <div className='fotoCertificadoDeco fotoCertificadoDecoplus'
+                              style={{backgroundImage:`url(${c.foto})`}} >
+                                <EditarProfeCerti show={modalShowEdit}  
+                                                  onShowalert={()=>setAlert(true)}
+                                                  profesorId={info.id} 
+                                                  certificadoId={c.id}
+                                                  nombre={c.nombre}
+                                                  foto={c.foto}
+                                                  onHide={() => setModalShowEdit(false)}/>
+
+                                  <div className="btnsCertisProfePErf">
+                                    <div className="btnEditEliCErti" onClick={() => setModalShowEdit(true)}>
+                                      <AiOutlineEdit />                                  
                                     </div>
-                            </div>
-                            </Carousel.Item>
-                 )
-                
-                )} 
-      
-            </Carousel>
+                                    <div className="btnEditEliCErti" onClick={()=>{handleDeleteCertificado(c.id)}}>
+                                      <RiDeleteBin6Line/>
+                                    </div>
+                                  </div>
+                            </div>))}
+                        <div className="centeraddbtn">
+                          <IoMdAddCircleOutline onClick={() => setModalShow(true)}  size={80}/>
+                        </div>
                     </div>
                     )}
 

@@ -9,7 +9,7 @@ html {
 }
 
 html::-webkit-scrollbar {
-  /* background-color: blue; */
+  background-color: transparent;
   width: 8px;
 }
 
@@ -51,4 +51,9 @@ input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
+}
+
+.dropdown-toggle::after {
+  color: transparent;
+  margin-bottom: 1rem;
 }

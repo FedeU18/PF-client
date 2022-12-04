@@ -9,23 +9,22 @@
   text-align: center;
 }
 .footer-container{
-background:rgb(85, 145, 197);
 
-  /*
-  background: linear-gradient(rgb(85, 145, 197),rgb(85, 145, 197),rgb(133, 159, 236));*/
+  background: linear-gradient(rgb(133, 159, 236),rgb(85, 145, 197),rgb(85, 145, 197));
+	justify-content: center;
+    /*
+    background: linear-gradient(rgb(85, 145, 197),rgb(85, 145, 197),rgb(133, 159, 236));*/
+
 }
 .footer{
 
-  display: flex;
-justify-content: space-around;
-}
-.footer h4{
-  color: white;
-}
-.abajo{
-  
-  justify-content: center;
-}
-.col li{
-  color: white;
-}
+
+    display: flex;
+    /*align-items: center;*/
+    justify-content: center;
+  }
+  .abajo{
+    
+    justify-content: center;
+  }
+
