@@ -1,11 +1,11 @@
 import React, { Component } from "react";
-import Slider from "react-slick";
+//import Slider from "react-slick";
 
 //import "slick-carousel/slick/slick.css";
 //import "slick-carousel/slick/slick-theme.css";
 
 //inportar archivo css
-import "./Slicer.css";
+//import "./Slicer.css";
 
 //importar imagenes
  import imagen1 from "./img-fab/imagen11.jpg"

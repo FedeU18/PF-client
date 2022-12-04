@@ -31,7 +31,7 @@ import { FaPencilAlt } from "react-icons/fa";
 import { FaCheck } from "react-icons/fa";
 
 
-import { Link } from "react-router-dom";
+
 
 import LoginWithEmailPassword from "../../Authentication/functions/loginWithEmailAndPassword";
 import { useNavigate } from "react-router-dom";
@@ -41,7 +41,7 @@ import Scroll1 from "./Scroll1.jsx"
 import Scroll2 from "./Scroll2.jsx"
 import Tarjetas from "./Tarjetas.jsx"
 import Contact from"./Contact.jsx"
-import Footer from "./Footer.jsx"
+
 
 export const Landing = () => {
   const [messageError, setMessageError] = useState(false);
