@@ -5,18 +5,34 @@ import { useState } from "react";
 import "./Landing.css";
 
 import img from "./img/google.png";
+import Carousel from 'react-bootstrap/Carousel';
 import Container from "react-bootstrap/Container";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
+import profe3 from "./img/profe3.png";
+import profe2 from "./img/profe2.png";
+import profe from "./img/profe1.png";
 import imagen from "./img/img1.jpeg";
 import imagen2 from "./img/img2.jpeg";
 import imagen3 from "./img/img3.jpeg";
-import dibujoo from "./img/dibujo.jpeg";
+
+import perfil from "./img/perfil.jpg";
+import perfil2 from "./img/perfil2.jpg"
+import perfil3 from "./img/perfil3.jpg"
+import {FcCheckmark} from "react-icons/fc";
+import {Link} from "react-router-dom"; //arreglar lo de link 
+import {Link as LinkS } from "react-scroll";
+import pizarron from "./img/pizarron.png";
+
+import Footer from "./Footer";
+import { FcGlobe } from "react-icons/fc"
 import { FaPencilAlt } from "react-icons/fa";
-import { FaGlobeAmericas } from "react-icons/fa";
+
 import { FaCheck } from "react-icons/fa";
 
+
 import { Link } from "react-router-dom";
+
 import LoginWithEmailPassword from "../../Authentication/functions/loginWithEmailAndPassword";
 import { useNavigate } from "react-router-dom";
 import logo from "./img/1.png";
@@ -81,6 +97,23 @@ export const Landing = () => {
   return (
     <>
       <div className="fondo position-relative">
+       
+        <div className="nav-scroll gap-4" >
+        <LinkS to="materias" spy={true} smooth={true} offset={50} duration={500} className="uno">
+        Materias
+        </LinkS>
+        <LinkS to="paises" spy={true} smooth={true} offset={50} duration={500} className="dos">
+        Paises
+        </LinkS>
+        <LinkS to="profesores" spy={true} smooth={true} offset={50} duration={500} className="tres">
+        Profesores
+        </LinkS>
+        <LinkS to="testimonios" spy={true} smooth={true} offset={50} duration={500} className="cuatro">
+        Testimonios
+        </LinkS>
+        </div>
+
+
         <div>
           {messageError && <MessageError />}
           <div className="custom-shape-divider-bottom-1669219916">
@@ -164,7 +197,7 @@ export const Landing = () => {
                   </div>
                 </Col>
                 <Col className="text">
-                  <h1 className="title">Encuentra un profesor particular</h1>
+                  <h1 className="title fw-bolder">Encuentra un profesor particular</h1>
                   <div>
                     Find your teacher fue creado como una manera
                     <br></br>
@@ -225,48 +258,170 @@ export const Landing = () => {
       {/* Michael -------- */}
 
       {/* fondo-3  bg-image-fondo-3*/}
-      <div className="w-100 vh-100">
-        <div className="">
-          <div
+      <div className="w-80 vh-80 d-flex justify-content-center fondo-3" id="materias">
+           
+
+            <div className="display-flex justify-content.">
+               <div
             data-aos="fade-down"
             data-aos-easing="linear"
             data-aos-duration="1500"
             className="text-center"
-          >
-            <h1 className="fw-bolder">Nuestras Materias</h1>
-          </div>
-        </div>
+            >
+            <h1 className="fw-bolder d-flex justify-content-center text-aling-center">Nuestras Materias</h1>
+              </div>
+           
+             
+             <div className="d-flex justify-content-center flex-wrap gap-2 altura-paises align-content-center maximo-ancho">
+              <h5 className="">
+                <FcCheckmark/> Algebra
+              </h5>
+              <h5 className="">
+                <FcCheckmark/> Aritmetica
+              </h5>
+              <h5 className="">
+                <FcCheckmark/> Geometria
+              </h5>
+              <h5 className="">
+                <FcCheckmark/> Trigonometria
+              </h5>
+              <h5 className="">
+                <FcCheckmark/> Biologia
+              </h5>
+              <h5 className="">
+                <FcCheckmark/> Quimica
+              </h5>
+              <h5 className="">
+                <FcCheckmark/> Fisica
+              </h5>
+              <h5 className="">
+                <FcCheckmark/>
+                 Geografia
+              </h5>
+              <h5 className="">
+                <FcCheckmark/>
+                Guatemala
+              </h5>
+              <h5 className="">
+                <FcCheckmark/> Economia 
+              </h5>
+              <h5 className="">
+                <FcCheckmark/> Historia
+              </h5>
+              <h5 className="">
+                <FcCheckmark/>
+                Arte
+              </h5>
 
-        <div className="display-flex">
-          <div className=" text-center">
-            <h5 className="mt-4">
-              podras estudiar sin salir de tu casa
-              <br></br>
-              <br></br>
-              con aquellos alumnos en busca de reforzar sus conocimientos en
-              <br></br>
-              las materias de la escuela.
-            </h5>
-          </div>
-          <div data-aos="zoom-out-right">
-            <img className="img-de-la-seño-con-laptop" src={dibujoo} />
-          </div>
-        </div>
+              <h5 className="">
+                <FcCheckmark/>
+                Musica
+              </h5>
+              <h5 className="">
+                <FcCheckmark/>
+                Literatura
+              </h5>
+              <h5 className="">
+                <FcCheckmark/> Lenguaje
+              </h5>
+              <h5 className="">
+                <FcCheckmark/>
+                 Filosofia
+              </h5>
+              <h5 className="">
+                <FcCheckmark/>
+                Psicologia
+              </h5>
+              <h5 className="">
+                <FcCheckmark/> Ingles
+              </h5>
+              <h5 className="">
+                <FcCheckmark/> Computacion
+              </h5>
+           
+             </div>
+ 
+            </div>
+
+             <div data-aos="zoom-out-left" className="pizarron">
+            <img className="img-de-la-seño-con-laptop" src={pizarron} />
+             </div>
+
       </div>
 
+
+          
+      
+
+<div>
+    <br></br>
+</div>
+
+
       {/* fondo 4 */}
-      <div className="w-100 vh-100 p-3 d-flex justify-content-center">
+
+
+
+      <div className="cuarto-fondo w-100 vh-100 p-3 d-flex justify-content-center " id="profesores" >
+             
+      {/* <div class="custom-shape-divider-top-1670175764">
+         <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+         <path d="M1200 0L0 0 892.25 114.72 1200 0z" class="shape-fill"></path>
+        </svg>
+     </div> */}
+
         <div className="d-flex flex-column justify-content-center">
+   
+            <div className="forma" data-aos="zoom-out-left">
+            </div>
+            <div className="forma2" data-aos="zoom-out-left">
+            </div>
+            <div className="forma3" data-aos="zoom-out-left">
+            </div>
+
+
+           <div className="cuadrado"  data-aos="flip-left"
+               data-aos-easing="ease-out-cubic"
+               data-aos-duration="2000">
+            <img src={logo} alt="" />
+           </div>
+
+
           <div>
             <h1 className="text-center fw-bolder mb-5">
               ¿Cómo dar clases particulares?
             </h1>
           </div>
-          <div className="d-flex flex-wrap align-items-center justify-content-center gap-5">
+          <div className="d-flex flex-wrap align-items-center justify-content-center gap-4">
             <div data-aos="zoom-out-right">
-              <img className="foto-del-tipo-pensando rounded-4" src={imagen} />
+              
+              <Carousel className="carousel rounded-4 ">
+      <Carousel.Item>
+        <img
+          className="d-block w-100"
+          src={profe}
+          alt="First slide"
+        />
+        
+      </Carousel.Item>
+      <Carousel.Item>
+        <img
+          className="d-block w-100"
+          src={profe2}
+          alt="Second slide"
+        />
+      </Carousel.Item>
+      <Carousel.Item>
+        <img
+          className="d-block w-100"
+          src={profe3}
+          alt="Third slide"
+        />
+      </Carousel.Item>
+            </Carousel>
+            
             </div>
-            <div className="bg-dark text-light rounded-2 p-4 como-dar-clases-particulares">
+            <div className="text-light rounded-2 p-4 como-dar-clases-particulares">
               <h5>
                 Es fácil y ya has hecho la mitad del trabajo antes de llegar a
                 esta página. En 5 minutos puedes crear un anuncio para dar
@@ -278,6 +433,120 @@ export const Landing = () => {
           </div>
         </div>
       </div>
+
+
+
+      <div className="testimonios-fondo w-100 vh-100 p-3 d-flex justify-content-center  " id="testimonios" >
+         
+  
+              <div className="Globo"data-aos="fade-down-left">
+                </div>  
+                <div className="Globo2" data-aos="fade-down-right"
+                     data-aos-anchor-placement="center-bottom">
+                </div>    
+                <div className="Globo3" data-aos="fade-down-left">
+                </div>    
+                <div className="Globo4" data-aos="fade-down-right" >
+                </div>    
+                <div className="Globo5" data-aos="fade-down-right">
+                </div>    
+                <div className="Globo6" data-aos="fade-down-right">
+                </div>    
+
+
+             <div className="d-flex flex-column justify-content-center">
+                   <div>
+                     <h1 className="text-center fw-bolder mb-5">
+                      TESTIMONIOS
+                    </h1>
+                   </div>
+           
+           <div className="d-flex flex-wrap align-items-center justify-content-center gap-4">
+            
+                
+            
+                <div className="d-flex gap-5 flex-wrap justify-content-center mt-2">
+                     <div data-aos="zoom-out-right card-conta " className="cards-conta">
+                           
+                            <div className="slide-container">
+                               <div className="slide-content">
+                                     <div className="card-wrapper"></div>
+                                        <div className="card">
+                                           
+                                               <div className="image-content">
+                                                     <span className="overlay"></span>
+                                                        <div className="card-image">
+                                                            <img src={perfil} alt="" className="card-img" />
+                                                        </div>
+                                                  </div>
+                                                 <div className="card-content">
+                                                    <h2 className="name">Lucia Arenas</h2>
+                                                    <p className="description"> Fue muy facil encontrar a una profesora,le recominedo a todas las personas que se animen a usarla. ahora solo me tengo que concentrar en los horarios y en estudiar!    </p>
+                                                    
+                                                    </div>      
+                                        </div>
+                                 </div>
+                           </div>
+            </div>
+
+
+              
+                     <div data-aos="zoom-out-down card-conta">
+                    
+                       <div className="slide-container">
+                               <div className="slide-content">
+                                     <div className="card-wrapper"></div>
+                                        <div className="card">
+                                           
+                                               <div className="image-content">
+                                                     <span className="overlay"></span>
+                                                        <div className="card-image">
+                                                            <img src={perfil2} alt="" className="card-img" />
+                                                        </div>
+                                                  </div>
+                                                 <div className="card-content">
+                                                    <h2 className="name">Federico Gabrielli </h2>
+                                                    <p className="description"> Se me hacia muy dificil encotrar profesores , gracias a find pude retomar y terminar mis estudios.Siempre me senti acompañado ya se son tutorias en vivo y con personas muy calidas </p>
+                                                    
+                                                    </div>      
+
+
+                                        </div>
+                               </div>
+                           </div>
+                     </div>
+                    
+                    <div data-aos="zoom-out-left card-conta">
+                           {/* card */}
+                           <div className="slide-container">
+                               <div className="slide-content">
+                                     <div className="card-wrapper"></div>
+                                        <div className="card">
+                                           
+                                               <div className="image-content">
+                                                     <span className="overlay"></span>
+                                                        <div className="card-image">
+                                                            <img src={perfil3} alt="" className="card-img" />
+                                                        </div>
+                                                  </div>
+                                                 <div className="card-content">
+                                                    <h2 className="name">David Bell</h2>
+                                                    <p className="description"> Tarde solo cuatro minutos en encontrar un profesor que se adecuara a mis necesidades, me armo un Plan de estudios en menos de 1 dia y ya aprobe la materia!!   </p>
+                                                    
+                                                    </div>      
+
+
+                                        </div>
+                               </div>
+                           </div>
+
+                    </div>
+                 </div>
+            </div>
+        </div>
+      </div>
+     
+     
 
       {/* fondo 5 */}
       <div className="quinto-fondo vh-100 w-100">
@@ -295,9 +564,9 @@ export const Landing = () => {
           </svg>
         </div>
 
-        <div className="mucho-margin text-light">
+        <div className="mucho-margin text-light" id="paises">
           <h1 className="text-center mt-5">
-            <FaGlobeAmericas /> Nuestros Paises
+            <FcGlobe/> Nuestros Paises
           </h1>
           <div>
             <div className="d-flex justify-content-center flex-wrap gap-3 altura-paises align-content-center maximo-ancho">
@@ -356,15 +625,14 @@ export const Landing = () => {
           </div>
         </div>
       </div>
+     
+     <div className="">
+     <Footer/>
+     </div>
 
-      <div>
-        <div className=""></div>
-      </div>
-      <Scroll1/>
-      <Scroll2/>
-      <Tarjetas/>
-      <Contact/>
-      <Footer/>
+ 
+
+
     </>
   );
 };

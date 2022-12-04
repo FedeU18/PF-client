@@ -15,6 +15,7 @@ import { AddComent } from "../../components/AddComent/AddComent";
 import { GrAdd } from "react-icons/gr";
 import userAuthentication from "../../Authentication/functions/user";
 import * as actionsAlumno from "../../redux/Actions/Alumno";
+import Calendario from "../../components/Calendario/Calendario";
 
 
 
@@ -207,7 +208,7 @@ export const Detalle = () => {
                 </div>)}
             {current==='Calendario' && (
                 <div className="subContDe">
-                  Calendario
+                  <Calendario />
                 </div>)}
             {current==='Reseña' && (
                 <div className="subContDe">

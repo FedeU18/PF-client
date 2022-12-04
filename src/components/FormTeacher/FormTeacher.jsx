@@ -16,11 +16,13 @@ const FormTeacher = ({ setMostrarProfe }) => {
     contraseña: "",
     rol: "teacher",
     username: "",
+
     imagen: "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__480.png",
+
+
     descripcion: "",
     puntuacion: [1],
     precio: "",
-    estudios: [],
     materias: [],
     pais: [],
   });
@@ -78,13 +80,6 @@ const FormTeacher = ({ setMostrarProfe }) => {
     setTeacher({
       ...teacher,
       pais: [e.target.value],
-    });
-  };
-
-  const handleEstudios = (e) => {
-    setTeacher({
-      ...teacher,
-      estudios: [e.target.value],
     });
   };
 
@@ -202,16 +197,6 @@ const FormTeacher = ({ setMostrarProfe }) => {
                   name="apellido"
                   value={teacher.apellido}
                   placeholder="Apellido"
-                />
-              </div>
-              <div className="label-input">
-                <label>Tus estudios</label>
-                <input
-                  onChange={(e) => handleEstudios(e)}
-                  type="text"
-                  name="estudios"
-                  value={teacher.estudios}
-                  placeholder="estudios"
                 />
               </div>
               <div className="label-input">

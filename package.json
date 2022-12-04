@@ -22,14 +22,21 @@
     "path-browserify": "^1.0.1",
     "react": "^18.2.0",
     "react-bootstrap": "^2.6.0",
+    "react-calendar": "^4.0.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.6.0",
     "react-redux": "^8.0.5",
     "react-router-dom": "^6.4.3",
-    "react-slick": "^0.29.0",
+
+    "react-scroll": "^1.8.8",
+
+    "react-scroll-to-bottom": "^4.2.0",
+    
+
     "redux": "^4.2.0",
     "redux-devtools-extension": "^2.13.9",
     "redux-thunk": "^2.4.2",
+    "socket.io-client": "^4.5.4",
     "swiper": "^8.4.5"
   },
   "devDependencies": {

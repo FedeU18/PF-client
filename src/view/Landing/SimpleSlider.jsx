@@ -8,10 +8,10 @@ import Slider from "react-slick";
 import "./Slicer.css";
 
 //importar imagenes
- import imagen1 from "./img-fab/imagen1.jpg"
- import imagen2 from "./img-fab/imagen2.jpg"
- import imagen3 from "./img-fab/imagen3.jpg"
- import imagen4 from "./img-fab/imagen4.jpg"
+ import imagen1 from "./img-fab/imagen11.jpg"
+ import imagen2 from "./img-fab/imagen12.jpg"
+ import imagen3 from "./img-fab/imagen13.jpg"
+ import imagen4 from "./img-fab/imagen14.jpg"
 export default class SimpleSlider extends Component {
     render() {
       const settings = {
@@ -36,13 +36,7 @@ export default class SimpleSlider extends Component {
             </div>
             <div>
               <img className="img" src={imagen4} alt="" />
-            </div>
-            <div>
-              <img className="img" src={imagen1} alt="" />
-            </div>
-            <div>
-              <img className="img" src={imagen1} alt="" />
-            </div>
+            </div>      
           </Slider>
         </div>
       );
