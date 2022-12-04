@@ -1,0 +1,23 @@
+.textareaDescCErti{
+    all:unset;
+    width: 90%;
+    margin-bottom: 2%;
+
+}
+
+.descContEditCer{
+    margin-left: 5%;
+}
+
+.bolderinputdescEdit{
+    font-weight: bold;
+}
+
+.descContEditCerplus{
+    height: 54vh;
+    margin-bottom: 8%;
+}
+
+.editimgCertiImg{
+    width: 80%;
+}

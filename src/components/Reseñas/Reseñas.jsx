@@ -10,41 +10,33 @@ export const Reseñas =({puntajes})=>{
                                             p4:0,
                                             p5:0,
     })
+    const[p1,setp1]=useState(0)
+    const[p2,setp2]=useState(0)
+    const[p3,setp3]=useState(0)
+    const[p4,setp4]=useState(0)
+    const[p5,setp5]=useState(0)
+
    useEffect(()=>{
+    console.log('d:', puntajes)
     if(puntajes?.length>0){
         setPromedio(0)
         console.log('la',promedio)
         puntajes.map((p)=>{ 
-            setPromedio(promedio+p.puntaje)
+            setPromedio((prev)=>prev+p.puntaje)
             if(p.puntaje===5){
-                setNumeros({
-                    ...numeros,
-                    p5:numeros.p5+1
-                })
+                setp5((prev)=>prev+1)
             }
             if(p.puntaje===4){
-                setNumeros({
-                    ...numeros,
-                    p4:numeros.p4+1
-                })
+                setp4((prev)=>prev+1)
             }
             if(p.puntaje===3){
-                setNumeros({
-                    ...numeros,
-                    p3:numeros.p3+1
-                })
+                setp3((prev)=>prev+1)
             }
             if(p.puntaje===2){
-                setNumeros({
-                    ...numeros,
-                    p2:numeros.p2+1
-                })
+                setp2((prev)=>prev+1)
             }
             if(p.puntaje===1){
-                setNumeros({
-                    ...numeros,
-                    p1:numeros.p1+1
-                })
+                setp1((prev)=>prev+1)
             }
         })
        
@@ -71,35 +63,35 @@ export const Reseñas =({puntajes})=>{
                 </div>
             </div>
             <div>
-                <div className={`allPuntuactionNumbRe ${numeros.p5>0?'punctWithCont':'punctWithNoCont'}`}>
+                <div className={`allPuntuactionNumbRe ${p5>0?'punctWithCont':'punctWithNoCont'}`}>
                     5 estrellas 
-                    <div className={`progPuntRe ${numeros.p5>0 ?'progYes':'progNo'}`}>
+                    <div className={`progPuntRe ${p5>0 ?'progYes':'progNo'}`}>
                     </div> 
-                    ({numeros.p5})
+                    ({p5})
                 </div>
                 
-                <div className={`allPuntuactionNumbRe ${numeros.p4>0?'punctWithCont':'punctWithNoCont'}`}>
+                <div className={`allPuntuactionNumbRe ${p4>0?'punctWithCont':'punctWithNoCont'}`}>
                      4 estrellas 
-                     <div className={`progPuntRe ${numeros.p4>0 ?'progYes':'progNo'}`}>
-                        </div> ({numeros.p4})
+                     <div className={`progPuntRe ${p4>0 ?'progYes':'progNo'}`}>
+                        </div> ({p4})
                 </div>               
                 
-                <div className={`allPuntuactionNumbRe ${numeros.p3>0?'punctWithCont':'punctWithNoCont'}`}>
+                <div className={`allPuntuactionNumbRe ${p3>0?'punctWithCont':'punctWithNoCont'}`}>
                     3 estrellas 
-                    <div className={`progPuntRe ${numeros.p3>0 ?'progYes':'progNo'}`}>
-                        </div> ({numeros.p3})
+                    <div className={`progPuntRe ${p3>0 ?'progYes':'progNo'}`}>
+                        </div> ({p3})
                 </div>
                 
-                <div className={`allPuntuactionNumbRe ${numeros.p2>0?'punctWithCont':'punctWithNoCont'}`}>
+                <div className={`allPuntuactionNumbRe ${p2>0?'punctWithCont':'punctWithNoCont'}`}>
                     2 estrellas 
-                    <div className={`progPuntRe ${numeros.p2>0 ?'progYes':'progNo'}`}>
-                        </div> ({numeros.p2})
+                    <div className={`progPuntRe ${p2>0 ?'progYes':'progNo'}`}>
+                        </div> ({p2})
                 </div>
                 
-                <div className={`allPuntuactionNumbRe ${numeros.p1>0?'punctWithCont':'punctWithNoCont'}`}>
+                <div className={`allPuntuactionNumbRe ${p1>0?'punctWithCont':'punctWithNoCont'}`}>
                     1 estrellas 
-                    <div className={`progPuntRe ${numeros.p1>0 ?'progYes':'progNo'}`}>
-                        </div> ({numeros.p1})
+                    <div className={`progPuntRe ${p1>0 ?'progYes':'progNo'}`}>
+                        </div> ({p1})
                 </div>
             </div>
 

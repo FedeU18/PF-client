@@ -66,14 +66,18 @@ const FormTeacher = ({ setMostrarProfe }) => {
   const handleSelectMaterias = (e) => {
     setTeacher({
       ...teacher,
-      materias: [...teacher.materias, Number(e.target.value)],
+      materias: teacher.materias.includes(Number(e.target.value)) ?
+      [...teacher.materias]
+      : e.target.value !== "default" ?
+      [...teacher.materias, Number(e.target.value)]:
+      [...teacher.materias],
     });
   };
 
   const handleSelectPaises = (e) => {
     setTeacher({
       ...teacher,
-      pais: [...teacher.pais, e.target.value],
+      pais: [e.target.value],
     });
   };
 
@@ -111,18 +115,16 @@ const FormTeacher = ({ setMostrarProfe }) => {
         return m !== Number(e.target.value);
       }),
     });
+
   };
 
-  function disabled() {
-    if (teacher.contraseña !== confirm) {
-      setError("La contraseña no coincide");
-      return true;
-    }
-    return false;
+  const show = (mat)=> {
+    let materia = materias.find(m=> m.id === mat)
+    return materia.name
   }
 
   return (
-    <div>
+    <div data-aos="fade-right">
       <form className="form">
         <div className="formulario">
           <h3>Bienvenido</h3>
@@ -237,7 +239,7 @@ const FormTeacher = ({ setMostrarProfe }) => {
             <div>
               <div className="label-input">
                 <label>Descripción</label>
-                <textarea
+                <input
                   onChange={(e) => handleOnChange(e)}
                   type="text"
                   name="descripcion"
@@ -257,6 +259,7 @@ const FormTeacher = ({ setMostrarProfe }) => {
               <div className="label-input">
                 <label>¿Que enseñas?</label>
                 <select onChange={(e) => handleSelectMaterias(e)}>
+                  <option value="default">Elige una o más materias</option>
                   {materiasSort.length &&
                     materiasSort.map((m) => {
                       return (
@@ -267,22 +270,15 @@ const FormTeacher = ({ setMostrarProfe }) => {
                     })}
                 </select>
               </div>
-              {teacher.materias.length ? (
-                teacher.materias.map((m) => {
-                  return (
-                    <button
-                      type="button"
-                      onClick={(e) => handleClose(e)}
-                      value={m}
-                      key={m}
-                    >
-                      {m}
-                    </button>
-                  );
-                })
-              ) : (
-                <></>
-              )}
+              <div className="materias">
+                {
+                  teacher.materias?.map(id=>{
+                    return(
+                      <button onClick={(e)=>handleClose(e)} value={id} key={id}>{show(id)}</button>
+                    )
+                  })
+                }
+              </div>
               <div className="botones">
                 <button onClick={(e) => setParte("segunda")}>Atrás</button>
                 <button type="submit" onClick={(e) => handleOnClick(e)}>

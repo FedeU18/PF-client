@@ -1,7 +1,9 @@
+
 import loginWithGoogle from "../../Authentication/functions/loginWithGoogle";
 import MessageError from "./MessageError";
 import { useState } from "react";
 import "./Landing.css";
+
 import img from "./img/google.png";
 import Container from "react-bootstrap/Container";
 import Col from "react-bootstrap/Col";
@@ -13,13 +15,21 @@ import dibujoo from "./img/dibujo.jpeg";
 import { FaPencilAlt } from "react-icons/fa";
 import { FaGlobeAmericas } from "react-icons/fa";
 import { FaCheck } from "react-icons/fa";
+
 import { Link } from "react-router-dom";
 import LoginWithEmailPassword from "../../Authentication/functions/loginWithEmailAndPassword";
 import { useNavigate } from "react-router-dom";
 import logo from "./img/1.png";
 
+import Scroll1 from "./Scroll1.jsx"
+import Scroll2 from "./Scroll2.jsx"
+import Tarjetas from "./Tarjetas.jsx"
+import Contact from"./Contact.jsx"
+import Footer from "./Footer.jsx"
+
 export const Landing = () => {
   const [messageError, setMessageError] = useState(false);
+
   const [globalMessage, setGlobalMessage] = useState("");
   const navigate = useNavigate();
 
@@ -34,6 +44,7 @@ export const Landing = () => {
       [e.target.name]: e.target.value,
     });
   };
+
 
   const loginGoogle = async (e) => {
     e.preventDefault();
@@ -349,6 +360,11 @@ export const Landing = () => {
       <div>
         <div className=""></div>
       </div>
+      <Scroll1/>
+      <Scroll2/>
+      <Tarjetas/>
+      <Contact/>
+      <Footer/>
     </>
   );
 };

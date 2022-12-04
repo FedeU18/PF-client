@@ -9,6 +9,7 @@ import CajaInv from "./CajaInv.jsx"
 
 import AOS from "aos"
 import "aos/dist/aos.css"
+import "./tarjetas.css"
 
 function Tarjetas() {
     useEffect(()=>{
@@ -33,6 +34,7 @@ function Tarjetas() {
                 <Caja image={image5}  title="5." resumen="Comparte la App donde obtuviste tus nuevos aprendizajes, a tus amigos y familiares."/>
                 </div>
             </div>
+            
         </div>
     )
 }
