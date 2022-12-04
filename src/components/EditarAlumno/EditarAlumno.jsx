@@ -145,7 +145,7 @@ export const EditarAlumno = ({show, handleClose,alumno}) => {
               <div className="nameAlumInptChangeCont">
                 {userAlumno.picture===false?(
                     <div>
-                        {alumno.picture}
+                        Picture
                     </div>):(
                     <div>
                         

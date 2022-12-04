@@ -40,7 +40,11 @@ const alumnosReducer = (state = initialState, action) => {
         ...state,
         alumno: action.payload,
       };
-
+      case "CLEAR":
+        return {
+          ...state,
+          alumno: {},
+        };
     default:
       return {
         ...state,

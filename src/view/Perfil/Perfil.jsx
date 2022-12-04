@@ -5,6 +5,8 @@ import { useDispatch, useSelector } from "react-redux";
 import * as actionsAlumno from "../../redux/Actions/Alumno";
 import * as actionsProfesor from "../../redux/Actions/Profesor";
 import userAuthentication from "../../Authentication/functions/user";
+import { clearAlumno } from "../../redux/Actions/Alumno";
+import { clear } from "../../redux/Actions/Profesor";
 
 export const Perfil = () => {
   const { userData } = userAuthentication();
@@ -18,7 +20,8 @@ export const Perfil = () => {
     dispatch(actionsAlumno.getAlumnoFromAPI(id));
     dispatch(actionsProfesor.getProfesorById(id));
     return () => {
-      dispatch({ type: "VACIAR_ESTADO", payload: {} });
+      dispatch(clear())
+      dispatch(clearAlumno())
     };
   }, []);
 
