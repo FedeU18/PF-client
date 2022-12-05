@@ -108,3 +108,43 @@
 .react-calendar--selectRange .react-calendar__tile--hover {
     background-color: #e6e6e6;
 }
+
+.allHorarios {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.horarios {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.horarios > button {
+    width: 7.5rem;
+    padding: .5rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+
+    border: 1px solid #757575;
+}
+
+.reserva {
+    display: flex;
+    justify-content: center;
+}
+.reserva > button {
+    margin-top: 1rem;
+    padding: .5rem;
+    border-radius: 50px;
+    background: linear-gradient(90deg,rgb(85, 145, 197),
+    rgb(133, 159, 236));
+    color: white;
+}
+
+.reserva > button:disabled {
+    opacity: .5;
+}
