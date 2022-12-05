@@ -3,12 +3,14 @@ import ScrollToBottom from "react-scroll-to-bottom";
 
 import "./profesor.css";
 
-export const Profesor = ({ socket, userLogin, canal, setUserLogin }) => {
+export const ChatProfesor = ({ socket, userLogin, canal }) => {
   const [mensaje, setMensaje] = useState("");
   const [mensajes, setMensajes] = useState([]);
   const [remitente, setRemitente] = useState([]);
 
   let alumnosChat = [];
+  console.log("soy el canal", canal);
+  console.log("soy el userLogin", userLogin);
 
   const enviarMensaje = async (e) => {
     console.log("mensajes ", mensaje);
@@ -25,7 +27,6 @@ export const Profesor = ({ socket, userLogin, canal, setUserLogin }) => {
           new Date(Date.now()).getMinutes(),
       };
       await socket.emit("mensaje_privado", mensajeData);
-
       setMensaje("");
     }
   };
@@ -35,8 +36,10 @@ export const Profesor = ({ socket, userLogin, canal, setUserLogin }) => {
   });
 
   useEffect(() => {
+    socket.emit("join_room", canal);
+    console.log("me monte");
     socket.on("mensaje_privado", (res) => {
-      console.log("mensajes de profe", res);
+      console.log("mensajes", res);
       if (res.remitente == userLogin || res.recibido === userLogin) {
         setMensajes((data) => [...data, res]);
       }
@@ -56,10 +59,6 @@ export const Profesor = ({ socket, userLogin, canal, setUserLogin }) => {
       (e.remitente === userLogin && e.recibido === remitente) ||
       (e.remitente === remitente && e.recibido === userLogin)
   );
-  const salir = () => {
-    socket.emit("desconectar", userLogin);
-    setUserLogin("");
-  };
 
   return (
     <div id="wrapper">
@@ -87,7 +86,6 @@ export const Profesor = ({ socket, userLogin, canal, setUserLogin }) => {
         </div>
       </div>
       <Chat
-        salir={salir}
         socket={socket}
         setMensaje={setMensaje}
         enviarMensaje={enviarMensaje}
@@ -113,7 +111,6 @@ const MensajeAlumno = ({ nombre, setRemitente, active }) => {
 };
 
 const Chat = ({
-  salir,
   mensajesAlumno,
   setMensaje,
   enviarMensaje,
@@ -122,11 +119,8 @@ const Chat = ({
 }) => {
   return (
     <div className="col-8 containerChat">
-      <div id="main">
-        <button onClick={salir}>
-          <a href="/chat">SALIR</a>
-        </button>
-
+      <div>
+        <h5>Espera a que ellos te contacten...</h5>
         <ScrollToBottom className="containerMensajes " id="chat">
           {mensajesAlumno.map((e) => {
             return (

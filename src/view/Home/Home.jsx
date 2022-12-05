@@ -5,7 +5,7 @@ import { BsFillGrid3X3GapFill } from "react-icons/bs";
 import { useEffect, useState } from "react";
 
 import { getPaises } from "../../redux/Actions/Paises";
-import { addOPSelected,} from "../../redux/Actions/Materias";
+import { addOPSelected } from "../../redux/Actions/Materias";
 import { useDispatch, useSelector } from "react-redux";
 import { allProfes } from "../../redux/Actions/Profesor";
 import { ProfeCards } from "../../components/ProfeCards/ProfeCards";
@@ -23,7 +23,6 @@ import MateriasBtn from "./MateriasBtn.jsx";
 
 import Loader from "../../components/Loader/Loader";
 
-
 export const Home = () => {
   const [open, setOpen] = useState(false);
   // const user = userAuthenticate();
@@ -33,7 +32,7 @@ export const Home = () => {
     (state) => state.materias.filtrosSeleccionados
   );
   const profes = useSelector((state) => state.profesores.profesores); //todo el estado de profes
-  const materias = useSelector((state)=>state.materias.filtrosSeleccionados)
+  const materias = useSelector((state) => state.materias.filtrosSeleccionados);
 
   useEffect(() => {
     dispatch(getAllAlumnos());
@@ -42,7 +41,6 @@ export const Home = () => {
     dispatch(getMaterias());
     dispatch(getPaises());
   }, []);
-
 
   useEffect(() => {
     dispatch(filterProfes(filtrosSeleccionados));
@@ -76,13 +74,10 @@ export const Home = () => {
   };
 
   return (
-  
     <div>
-
       <NavBar />
 
       {profes.length > 0 ? (
-
         <div>
           <button className="filtroBtn">
             <BsFillGrid3X3GapFill onClick={handleFiltros} />
@@ -139,12 +134,8 @@ export const Home = () => {
 
           <ProfeCards profes={profes} />
 
-          
-          
-         {/* <MateriasBtn/> */}
-         
-          
- 
+
+          {/* <MateriasBtn/> */}
 
         </div>
       ) : (

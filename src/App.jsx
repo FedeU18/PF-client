@@ -12,8 +12,6 @@ import ForgotPassword from "./view/ForgotPassword/ForgotPassword";
 import PerfilProfesor from "./components/PerfilProfesor/PerfilProfesor";
 import StripePagos from "./Payments/StripePagos";
 import TypeOfProcessPay from "./Payments/TypeOfProcessPay";
-import { Chat } from "./components/Chat/Chat";
-
 
 function App() {
   return (
@@ -23,7 +21,6 @@ function App() {
           <Route path="/" element={<Landing />} />
           <Route path="/register" element={<Registro />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
-          <Route path="/chat" element={<Chat />} />
         </Route>
 
         <Route path="/" element={<ProtectedRoute />}>
