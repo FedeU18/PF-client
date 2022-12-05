@@ -26,6 +26,7 @@ export const Detalle = () => {
   let dispatch = useDispatch();
   let details = useSelector((state) => state.profesores.detail);
   let infoAlumno = useSelector((state) => state.alumnos.alumno);
+  // holaa nooooo
 
   const [current, setCurrent] = useState("Información");
   const [openFotos, setOpenFotos] = useState(false);
