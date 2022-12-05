@@ -12,6 +12,8 @@ export const EditarProfeCerti=(props)=>{
     const dispach=useDispatch()
     const [useCertificado ,setuseCertificado]=useState({    nombre:false,
                                                         foto:false  })
+                                                      
+    const [pict, setPict] = useState(props.foto);
 
     const handleOnChange=(e)=>{
         e.preventDefault();
@@ -22,6 +24,26 @@ export const EditarProfeCerti=(props)=>{
             });
        
     }
+
+    function handleOpenWidget() {
+        var myWidget = window.cloudinary.createUploadWidget(
+          {
+            cloudName: "dpeannw8c",
+            uploadPreset: "w5okfspz",
+          },
+          (error, result) => {
+            if (!error && result && result.event === "success") {
+              
+              setPict(result.info.url);
+              setCertificado({
+                ...certficado,
+                foto: result.info.url
+            });
+            }
+          }
+        );
+        myWidget.open();
+      }
 
     const handleSubmit=()=>{
         if(certficado.foto===''){
@@ -76,23 +98,15 @@ export const EditarProfeCerti=(props)=>{
                 <div className="nameAlumInptChangeCont">                
                 <div>
                     <span className='bolderinputdescEdit'>Foto:</span>
-                    {useCertificado.foto===false?(
+                    
                             <div>
-                                <img src={props.foto} className={'editimgCertiImg'}/>
-                            </div>):(
-                            <div>
-                                
-                                <input type='text'
-                                        placeholder={props.foto+'...'}
-                                        name="foto"
-                                        onChange={(e) => handleOnChange(e)}/>
-                                <img src={certficado.foto===''?props.foto:certficado.foto} className={'editimgCertiImg'}/>
-                            </div>)}
+                                <img src={pict} className={'editimgCertiImg'}/>
+                            </div>
+                            
 
                 </div>
-                    <button className="btnEditProAlu">
-                        <AiOutlineEdit onClick={()=>{setuseCertificado({...useCertificado,foto:!useCertificado.foto})}}/>
-                    </button> 
+                <button  onClick={() => handleOpenWidget()}>Subir Imagen</button>
+                    
                 </div>
 
             </div>
