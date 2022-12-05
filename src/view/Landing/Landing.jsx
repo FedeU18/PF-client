@@ -534,7 +534,7 @@ export const Landing = () => {
       </div>
       */}
      
-
+<Tarjetas/>
       {/* fondo 5 */}
       <div className="quinto-fondo vh-100 w-100">
         <div className="custom-shape-divider-top-1669860789">
