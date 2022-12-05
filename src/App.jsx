@@ -28,7 +28,7 @@ function App() {
           <Route path="/profile" element={<Perfil />} />
           <Route path="/about" element={<About />} />
           <Route path="/profesores/:id" element={<Detalle />} />
-          {/* <Route path="/editar/:id" element={<PerfilProfesor/>}/> */}
+          <Route path="/editar/:id" element={<PerfilProfesor />} />
           <Route path="/payments" element={<StripePagos />} />
           <Route path="/payments/:type" element={<TypeOfProcessPay />} />
         </Route>

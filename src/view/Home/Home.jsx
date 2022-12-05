@@ -9,7 +9,7 @@ import { addOPSelected } from "../../redux/Actions/Materias";
 import { useDispatch, useSelector } from "react-redux";
 import { allProfes } from "../../redux/Actions/Profesor";
 import { ProfeCards } from "../../components/ProfeCards/ProfeCards";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { filterProfes } from "../../redux/Actions/Profesor";
 import { getAllAlumnos } from "../../redux/Actions/Alumno";
 import { getMaterias } from "../../redux/Actions/Materias";
@@ -19,7 +19,7 @@ import { auth } from "../../Authentication/firebase/credenciales";
 import autentication from "../../Authentication/functions/user";
 import logOut from "../../Authentication/functions/logOut";
 
-import MateriasBtn from "./MateriasBtn.jsx";
+// import MateriasBtn from "./MateriasBtn.jsx";
 
 import Loader from "../../components/Loader/Loader";
 

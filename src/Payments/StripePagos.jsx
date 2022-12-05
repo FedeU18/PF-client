@@ -4,7 +4,7 @@ import { loadStripe } from "@stripe/stripe-js";
 const stripePromise = loadStripe("pk_test_51LDCAnHz183QdnFrZqtqGPkLkpDukWxoBnnlWoEqlUzDDhYjXObxH2Yi8S3mv5UpKxkPp4B9cLemexd1tfUXn2ln00gW4QNhrD");
 
 
-const StripePagos = () => {
+const StripePagos = ({profe}) => {
 
 
   const pagandoProfesor = async () => {
@@ -12,10 +12,10 @@ const StripePagos = () => {
       price_data: {
         currency: "usd",
         product_data: {
-          name: "Platanos",
-          images: ["https://www.quimicaysociedad.org/wp-content/uploads/2015/06/platano.jpg"],
+          name: profe.nombre,
+          images: [profe.imagen],
         },
-        unit_amount: "50000", // 1000 => 10 dolars // 4000 40 dollars
+        unit_amount: profe.precio, // 1000 => 10 dolars // 4000 40 dollars
       },
       quantity: 1,
     }
@@ -33,12 +33,7 @@ const StripePagos = () => {
     }
   }
 
-  return (
-    <div>
-      <h1>Hola Stripe</h1>
-      <button onClick={pagandoProfesor}>pagar Ahora</button>
-    </div>
-  )
+  return (<button onClick={pagandoProfesor}>pagar Ahora</button>)
 }
 
 export default StripePagos
