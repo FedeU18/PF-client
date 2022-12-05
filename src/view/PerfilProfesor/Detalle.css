@@ -12,10 +12,12 @@ padding-top: 4%;
 .goBackBtn{
   all:unset;
   margin-left: 1%;
-  background-color: rgb(152, 155, 155,0.2);
+  /* background-color: rgb(152, 155, 155,0.2); */
+  background-color: transparent;
   border-radius: 50%;
 }
 .gobackArrow{
+  background-color: transparent;
   width: 4rem;
 }
 .goBackBtn:hover{

@@ -1,4 +1,4 @@
-.caja{
+/* .caja{
     
     background-color: #cedaf2;
     width:300px;
@@ -36,7 +36,3 @@ display: grid;
 grid-template-columns: auto auto auto auto;
 grid-gap: 10px;
 /*background-color: #2196F3;*/
-padding: 10px;
-
-
-}
