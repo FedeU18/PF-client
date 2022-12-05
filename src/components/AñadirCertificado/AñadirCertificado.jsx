@@ -7,6 +7,7 @@ import { useDispatch } from 'react-redux';
 export const AñadirCerificado=(props)=>{
     const [certficado,setCertificado]=useState({nombre:'',foto:'', profesorId:props.profesorId})
     const dispach=useDispatch()
+    const [pict, setPict] = useState("");
 
     const handleOnChange=(e)=>{
         e.preventDefault();
@@ -21,6 +22,26 @@ export const AñadirCerificado=(props)=>{
         dispach(createCertificado(props.profesorId,certficado))
         setCertificado({nombre:'',foto:'', profesorId:props.profesorId})
         props.onHide()
+    }
+
+    function handleOpenWidget() {
+      var myWidget = window.cloudinary.createUploadWidget(
+        {
+          cloudName: "dpeannw8c",
+          uploadPreset: "w5okfspz",
+        },
+        (error, result) => {
+          if (!error && result && result.event === "success") {
+            
+            setPict(result.info.url);
+            setCertificado({
+              ...certficado,
+              foto: result.info.url
+          });
+          }
+        }
+      );
+      myWidget.open();
     }
 
     return (
@@ -45,8 +66,9 @@ export const AñadirCerificado=(props)=>{
                             className='textareaDescCErti'/>
                             
                 <br></br>
-                Subir imagen:
-                <input type={'text'} name='foto' onChange={handleOnChange}/>
+                
+                <button  onClick={() => handleOpenWidget()}>Subir Imagen</button>
+                
             </div>
           </Modal.Body>
           <Modal.Footer>

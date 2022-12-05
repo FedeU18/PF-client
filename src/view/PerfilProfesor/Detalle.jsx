@@ -17,8 +17,14 @@ import userAuthenticate from "../../Authentication/functions/user";
 import { GrAdd } from "react-icons/gr";
 import userAuthentication from "../../Authentication/functions/user";
 import * as actionsAlumno from "../../redux/Actions/Alumno";
+
 import { ChatProfesor } from "../../components/Chat/chatProfesor";
 import { ChatAlumno } from "../../components/Chat/chatAlumno";
+
+import Calendario from "../../components/Calendario/Calendario";
+
+
+
 
 export const Detalle = () => {
   let { id } = useParams();
@@ -162,26 +168,53 @@ export const Detalle = () => {
                 </div>
               </div>
 
-              <div className="certiMateCont">
-                <div className="certiContDe">
-                  <span className="subTitleDe">Estudios y Certificados:</span>
-                  {details.certificados?.length === 0 && (
-                    <div className="certiNoCont">
-                      <span className="">
-                        Este author aun no tiene certificados que mostrar.
-                      </span>
-                    </div>
-                  )}
 
-                  {details.certificados?.length > 0 &&
-                    details.certificados?.length < 7 && (
-                      <div className="certiSiCont">
-                        {details.certificados.map((c) => (
-                          <div
-                            className="fotoCertificadoDeco"
-                            onClick={handleOpenFotos}
-                          >
-                            <img src={c.foto} className="fotoCertificadoDe" />
+                  <div className="certiMateCont">
+                    <div className="certiContDe">
+                      <span className="subTitleDe" >Estudios y Certificados:</span>
+                      {details.certificados?.length===0 &&(
+                          <div className="certiNoCont">
+                            <span className="">
+                            Este author aun no tiene certificados que mostrar.
+                            </span>
+                          </div>)}
+
+                      {details.certificados?.length>0 && details.certificados?.length<7 &&(
+                          <div className="certiSiCont">
+                            {details.certificados.map(c=>(
+                            <div key={c} className='fotoCertificadoDeco' onClick={handleOpenFotos}>
+                              <img src={c.foto} className='fotoCertificadoDe'/>
+                            </div>))}
+                          </div>)}
+                      {details.certificados?.length>6 && (
+                          <div className="certiSiCont">
+                            {details.certificados.map((c,i)=>(
+                                <>
+                                  {i<5 && (
+                                    <div key={i} className='fotoCertificadoDeco'
+                                    onClick={handleOpenFotos}>
+                                    <img src={c.foto} className='fotoCertificadoDe'/>
+                                    </div>
+                                  )}
+                                </>
+                            ))}
+                             <div className='fotoCertificadoDeco fcdcPlus' 
+                                  onClick={handleOpenFotos}>
+                                    +{details.certificados.length-5}
+                              </div>
+                          </div>)}
+                      
+                    </div>
+                    
+                    <div className="materiasContDe">
+                      <span className="subTitleDe">Materias:</span>
+                      {details.materias?.length>0 && details.materias.map(m=>(
+                        <div key={m} className="nameLogoMaDeCont">
+                          <div className="logoMaDeContDo">
+                            <div className="logoMaDeCont">
+                            <img src={`/${m.name}.png`} className='logoMaDe'/>
+                          </div>
+
                           </div>
                         ))}
                       </div>
@@ -220,11 +253,51 @@ export const Detalle = () => {
                             <img src={`/${m.name}.png`} className="logoMaDe" />
                           </div>
                         </div>
+
                         <div className="nameMaDeCont">{m.name}</div>
                       </div>
                     ))}
                 </div>
               </div>
+
+                      )
+                      )}
+                    </div>
+                  </div>
+                  
+                </div>)}
+            {current==='Calendario' && (
+                <div className="subContDe">
+                  <Calendario profe={details} />
+                </div>)}
+            {current==='Reseña' && (
+                <div className="subContDe">
+                  
+                  <Reseñas puntajes={details.puntuacions}/>
+                  <br></br>
+                  <div className="comentsBtnAddCont">
+                    <Comentarios myId={userData.id}
+                                profileOwner={details.id} 
+                                coments={details.coments} />
+                    {userData.id!== details.id && infoAlumno.tipo &&(
+                      <button className="btnAddComOp" onClick={handleShow}>
+                      +
+                    </button>
+                    )}
+                  </div>
+                  
+                  <AddComent  alumnoId={infoAlumno.id} 
+                              myId={userData.id}
+                              profesorId={details.id}
+                               show={show} 
+                               handleClose={handleClose}/>
+
+                </div>)}
+            {current==='Chat' && (
+                <div className="subContDe">
+                  Chat
+                </div>)}
+
             </div>
           )}
           {current === "Calendario" && (
