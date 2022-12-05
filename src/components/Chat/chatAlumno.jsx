@@ -61,7 +61,6 @@ export const ChatAlumno = ({ canal, socket, userLogin, receptor }) => {
               <div className="container_titulo">
                 <h4>Chatea con el profe</h4>
               </div>
-
               <ScrollToBottom className="cardBody " id="chat">
                 {mensajes.map((e) => {
                   return (

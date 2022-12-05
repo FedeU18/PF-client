@@ -27,8 +27,6 @@ export const ChatProfesor = ({ socket, userLogin, canal }) => {
           new Date(Date.now()).getMinutes(),
       };
       await socket.emit("mensaje_privado", mensajeData);
-      // setMensajes((data) => [...data, mensajeData]);
-
       setMensaje("");
     }
   };
