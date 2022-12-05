@@ -11,6 +11,9 @@ import profe3 from "./img/profe3.png";
 import profe2 from "./img/profe2.png";
 import profe from "./img/profe1.png";
 import imagen from "./img/img1.jpeg";
+import arg from "./img/arge.jpg"
+import vene from "./img/vene.png";
+import peru from "./img/peru.png";
 import imagen2 from "./img/img2.jpeg";
 import imagen3 from "./img/img3.jpeg";
 import perfil from "./img/perfil.jpg";
@@ -420,6 +423,40 @@ export const Landing = () => {
           </div>
         </div>
       </div>
+               {/* ////testimonios */}
+
+ 
+        
+
+
+               <div className="w-100 vh-100 mt-5">
+        <div className="">
+             <div className="text-center">
+                <h1>TESTIMONIOS</h1>
+              </div>
+          <div className="d-flex gap-4 flex-wrap justify-content-center mt-5">
+            <div data-aos="zoom-out-right">
+              <img className="foto-fondo-2" src={arg} />
+            </div>
+            <div data-aos="zoom-out-down">
+              <img className="foto-fondo-2" src={vene} />
+            </div>
+            <div data-aos="zoom-out-left">
+              <img className="foto-fondo-2 none" src={peru} />
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+
+
+
+
+
+    
+      
 
 
 
