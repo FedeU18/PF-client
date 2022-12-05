@@ -37,7 +37,13 @@
     "redux-devtools-extension": "^2.13.9",
     "redux-thunk": "^2.4.2",
     "socket.io-client": "^4.5.4",
-    "swiper": "^8.4.5"
+    "swiper": "^8.4.5",
+    "@types/react": "^18.0.24",
+    "@types/react-dom": "^18.0.8",
+    "@vitejs/plugin-react": "^2.2.0",
+    "file-loader": "^6.2.0",
+    "url-loader": "^4.1.1",
+    "vite": "^3.2.3"
   },
   "devDependencies": {
     "@types/react": "^18.0.24",
