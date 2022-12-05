@@ -13,7 +13,7 @@ import { useEffect, useState } from "react";
 import * as actionsAlumno from "../../redux/Actions/Alumno";
 import * as actionsProfesor from "../../redux/Actions/Profesor";
 import { useDispatch, useSelector } from "react-redux";
-import {clearAlumno } from "../../redux/Actions/Alumno";
+import { clearAlumno } from "../../redux/Actions/Alumno";
 import { clear } from "../../redux/Actions/Profesor";
 
 export const NavBar = () => {
@@ -24,41 +24,48 @@ export const NavBar = () => {
   let infoProfesor = useSelector((state) => state.profesores.detail);
   const [useFoto, SetUserFoto] = useState("");
   let id = userData.id;
+  console.log("soy usuario logueado", userData);
   useEffect(() => {
     dispatch(actionsAlumno.getAlumnoFromAPI(id));
     dispatch(actionsProfesor.getProfesorById(id));
-    return ()=> {
-      dispatch(clear())
-      dispatch(clearAlumno())
-    }
-  },[])
+    return () => {
+      dispatch(clear());
+      dispatch(clearAlumno());
+    };
+  }, []);
 
-  useEffect(()=>{
-    if(Object.entries(infoProfesor).length === 0 && Object.entries(infoAlumno).length===0){
-      SetUserFoto("https://thumbs.gfycat.com/BronzeSpryAlleycat-size_restricted.gif")
-      }
-    else{
-      if(infoAlumno.picture){
-        if(infoAlumno.picture==='sin foto'){
-          SetUserFoto("https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png")
-    
-        }else{
-          console.log('aqui a')
-          SetUserFoto(infoAlumno.picture)
+  useEffect(() => {
+    if (
+      Object.entries(infoProfesor).length === 0 &&
+      Object.entries(infoAlumno).length === 0
+    ) {
+      SetUserFoto(
+        "https://thumbs.gfycat.com/BronzeSpryAlleycat-size_restricted.gif"
+      );
+    } else {
+      if (infoAlumno.picture) {
+        if (infoAlumno.picture === "sin foto") {
+          SetUserFoto(
+            "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
+          );
+        } else {
+          console.log("aqui a");
+          SetUserFoto(infoAlumno.picture);
         }
       }
-      if(infoProfesor.imagen){
-        if(infoProfesor.imagen===''){
-          console.log('aqui')
-          SetUserFoto("https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png")
-    
-        }else{
-          console.log('aqui 2')
-          SetUserFoto(infoProfesor.imagen)
+      if (infoProfesor.imagen) {
+        if (infoProfesor.imagen === "") {
+          console.log("aqui");
+          SetUserFoto(
+            "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
+          );
+        } else {
+          console.log("aqui 2");
+          SetUserFoto(infoProfesor.imagen);
         }
       }
     }
-  },[infoAlumno, infoProfesor])
+  }, [infoAlumno, infoProfesor]);
 
   const CloseMySesion = () => {
     logOut();
@@ -112,13 +119,15 @@ export const NavBar = () => {
                 style={{ width: "45px", height: "50px" }}
               >
                 <div>
-
-                <NavDropdown.Item className="opacity-100" onClick={handleProfile}>
-                  Mi Perfil
-                </NavDropdown.Item>
-                <NavDropdown.Item onClick={CloseMySesion}>
-                  Cerrar Sesión
-                </NavDropdown.Item>
+                  <NavDropdown.Item
+                    className="opacity-100"
+                    onClick={handleProfile}
+                  >
+                    Mi Perfil
+                  </NavDropdown.Item>
+                  <NavDropdown.Item onClick={CloseMySesion}>
+                    Cerrar Sesión
+                  </NavDropdown.Item>
                 </div>
               </NavDropdown>
             </div>
