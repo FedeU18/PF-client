@@ -1,22 +1,21 @@
 .pintado {
-    color: green;
-  }
-  .noPintado {
-    color: black;
-  }
-  .visible {
-    display: block;
-  }
-  .invisible {
-    display: none;
-  }
-  .containerUsuarios {
-    display: flex;
-  }
-  .ponerColor {
-    background: lightgreen;
-  }
-  .quitarColor {
-    background: lightgray;
-  }
-  
+  color: green;
+}
+.noPintado {
+  color: black;
+}
+.visible {
+  display: block;
+}
+.invisible {
+  display: none;
+}
+.containerUsuarios {
+  display: flex;
+}
+.ponerColor {
+  background: lightgreen;
+}
+.quitarColor {
+  background: lightgray;
+}
