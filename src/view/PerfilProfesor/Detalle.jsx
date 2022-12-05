@@ -163,7 +163,7 @@ export const Detalle = () => {
                       {details.certificados?.length>0 && details.certificados?.length<7 &&(
                           <div className="certiSiCont">
                             {details.certificados.map(c=>(
-                            <div className='fotoCertificadoDeco' onClick={handleOpenFotos}>
+                            <div key={c} className='fotoCertificadoDeco' onClick={handleOpenFotos}>
                               <img src={c.foto} className='fotoCertificadoDe'/>
                             </div>))}
                           </div>)}
@@ -172,7 +172,7 @@ export const Detalle = () => {
                             {details.certificados.map((c,i)=>(
                                 <>
                                   {i<5 && (
-                                    <div className='fotoCertificadoDeco'
+                                    <div key={i} className='fotoCertificadoDeco'
                                     onClick={handleOpenFotos}>
                                     <img src={c.foto} className='fotoCertificadoDe'/>
                                     </div>
@@ -190,7 +190,7 @@ export const Detalle = () => {
                     <div className="materiasContDe">
                       <span className="subTitleDe">Materias:</span>
                       {details.materias?.length>0 && details.materias.map(m=>(
-                        <div className="nameLogoMaDeCont">
+                        <div key={m} className="nameLogoMaDeCont">
                           <div className="logoMaDeContDo">
                             <div className="logoMaDeCont">
                             <img src={`/${m.name}.png`} className='logoMaDe'/>
@@ -208,7 +208,7 @@ export const Detalle = () => {
                 </div>)}
             {current==='Calendario' && (
                 <div className="subContDe">
-                  <Calendario />
+                  <Calendario profe={details} />
                 </div>)}
             {current==='Reseña' && (
                 <div className="subContDe">
