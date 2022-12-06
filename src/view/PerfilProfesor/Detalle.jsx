@@ -35,11 +35,12 @@ export const Detalle = () => {
   console.log(infoAlumno);
 
   useEffect(() => {
+ 
     dispatch(actionsAlumno.getAlumnoFromAPI(userData.id));
 
     dispatch(getProfesorById(id));
     return () => dispatch(clear());
-  }, []);
+  }, [dispatch]);
 
   const handleChangeOp = (e) => {
     setCurrent(e.target.name);
@@ -130,7 +131,7 @@ export const Detalle = () => {
               name={"Chat"}
               onClick={handleChangeOp}
             >
-              ...
+              Chat
             </button>
             <br></br>
           </div>
@@ -260,8 +261,10 @@ export const Detalle = () => {
               />
             </div>
           )}
+          
           {current === "Chat" && (
             <div className="subContDe">
+
               {userData.email === details.email ? (
                 <ChatProfesor
                   socket={socket}

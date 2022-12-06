@@ -26,7 +26,11 @@
 }
 
 #you .message-content {
+  background: rgb(247, 243, 243);
   justify-content: flex-start;
+  color: rgb(54, 49, 49);
+
+  font-family: cursive;
 }
 
 #you .message-meta {
@@ -40,7 +44,9 @@
 
 #other .message-content {
   justify-content: flex-end;
-  background-color: cornflowerblue;
+  background: rgb(146, 122, 146);
+  color: rgb(54, 49, 49);
+  font-family: cursive;
 }
 
 #other .message-meta {
