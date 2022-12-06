@@ -6,10 +6,16 @@ export const ChatAlumno = ({ canal, socket, userLogin, receptor }) => {
   const [mensaje, setMensaje] = useState("");
   const [mensajes, setMensajes] = useState([]);
 
-  console.log("soy el canal ", canal);
-  console.log("soy el receptor ", receptor);
-  console.log("soy el userLogin ", userLogin);
-  console.log("somos mensajes", mensajes);
+  
+   const mensajesAntiguos=()=>{
+    socket.emit("mensajes_antiguos", userLogin,receptor)
+   }
+     const mensajesProfe = mensajes.filter(
+    (e) =>
+      (e.remitente === userLogin && e.receptor === receptor) ||
+      (e.remitente === receptor && e.receptor === userLogin)
+  );
+
 
   const enviarMensaje = async (e) => {
     e.preventDefault();
@@ -17,27 +23,29 @@ export const ChatAlumno = ({ canal, socket, userLogin, receptor }) => {
       const mensajeData = {
         room: canal, //el canal lo paso para valirdar a donde enviar el msg
         remitente: userLogin,
-        recibido: receptor,
+        receptor: receptor,
         mensaje,
         time:
           new Date(Date.now()).getHours() +
           ":" +
           new Date(Date.now()).getMinutes(),
       };
-      await socket.emit("mensaje_privado", mensajeData);
-      // setMensajes((data) => [...data, mensajeData]);
+      await socket.emit("mensaje_privado", mensajeData);      
       setMensaje("");
     }
   };
 
   useEffect(() => {
-    socket.emit("join_room", canal);
 
+    socket.emit("join_room", canal);
+    socket.on("mensajes_antiguos", data=>{
+      setMensajes([...mensajes,...data])
+    })
     socket.on("mensaje_privado", (res) => {
       console.log("recibo mensajes desde alumno", res);
       if (
         res.remitente == userLogin || //validamos en que ocaciones mostrar los mensajes
-        res.recibido === userLogin
+        res.receptor === userLogin
       ) {
         setMensajes((data) => [...data, res]);
       }
@@ -45,7 +53,7 @@ export const ChatAlumno = ({ canal, socket, userLogin, receptor }) => {
     return () => {
       socket.off("mensaje_privado", (res) => {
         console.log("mensajes", res);
-        if (res.remitente == userLogin || res.recibido == userLogin) {
+        if (res.remitente == userLogin || res.receptor == userLogin) {
           setMensajes([...mensajes, res]);
         }
       });
@@ -60,9 +68,10 @@ export const ChatAlumno = ({ canal, socket, userLogin, receptor }) => {
             <div className="card">
               <div className="container_titulo">
                 <h4>Chatea con el profe</h4>
+                <button onClick={mensajesAntiguos}>mensajes</button>
               </div>
               <ScrollToBottom className="cardBody " id="chat">
-                {mensajes.map((e) => {
+                {mensajesProfe.map((e) => {
                   return (
                     <div
                       className="message"

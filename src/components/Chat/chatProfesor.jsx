@@ -6,20 +6,33 @@ import "./profesor.css";
 export const ChatProfesor = ({ socket, userLogin, canal }) => {
   const [mensaje, setMensaje] = useState("");
   const [mensajes, setMensajes] = useState([]);
-  const [remitente, setRemitente] = useState([]);
+  const [receptor, setReceptor] = useState([]);
+  const [usuariosChat, setUsuariosChat]=useState([])
 
-  let alumnosChat = [];
-  console.log("soy el canal", canal);
-  console.log("soy el userLogin", userLogin);
+   const traerUsuarios=()=>{   
+    console.log("me ejcute")
+    socket.emit("usuarios_chat")
+  }
 
-  const enviarMensaje = async (e) => {
-    console.log("mensajes ", mensaje);
+ const selectUser=(receptor)=>{
+  socket.emit("mensajes_antiguos", userLogin,receptor)
+   setReceptor(receptor)
+ }
+
+    const mensajesAlumno = mensajes.filter(
+    (e) =>
+      (e.remitente === userLogin && e.receptor === receptor) ||
+      (e.remitente === receptor && e.receptor === userLogin)
+  );
+
+
+  const enviarMensaje = async (e) => {   
     e.preventDefault();
     if (mensaje !== "") {
       const mensajeData = {
         room: canal, //el canal lo paso para valirdar a donde enviar el msg
         remitente: userLogin,
-        recibido: remitente, //picar primero el a quien le queremos enviar el msg
+        receptor: receptor, //picar primero el a quien le queremos enviar el msg
         mensaje,
         time:
           new Date(Date.now()).getHours() +
@@ -31,37 +44,36 @@ export const ChatProfesor = ({ socket, userLogin, canal }) => {
     }
   };
 
-  mensajes.forEach((e) => {
-    !alumnosChat.includes(e.remitente) ? alumnosChat.push(e.remitente) : "";
-  });
-
   useEffect(() => {
+    socket.on("mensajes_antiguos",data=>{
+      setMensajes([...mensajes, ...data])
+    })
+    socket.on("usuarios_chat", (info)=>{
+      console.log(info)
+       setUsuariosChat([...usuariosChat,...info])
+    })
     socket.emit("join_room", canal);
     console.log("me monte");
     socket.on("mensaje_privado", (res) => {
-      console.log("mensajes", res);
-      if (res.remitente == userLogin || res.recibido === userLogin) {
+      console.log("mensajes de el profe", res);
+      if (res.remitente == userLogin || res.receptor === userLogin) {
         setMensajes((data) => [...data, res]);
       }
     });
     return () => {
       socket.off("mensaje_privado", (res) => {
-        console.log("mensajes", res);
-        if (res.remitente == userLogin || res.recibido == userLogin) {
+        console.log("mensajes de el profe", res);
+        if (res.remitente == userLogin || res.receptor == userLogin) {
           setMensajes([...mensajes, res]);
         }
       });
     };
   }, [socket]);
 
-  const mensajesAlumno = mensajes.filter(
-    (e) =>
-      (e.remitente === userLogin && e.recibido === remitente) ||
-      (e.remitente === remitente && e.recibido === userLogin)
-  );
 
   return (
     <div id="wrapper">
+    <button onClick={traerUsuarios}>usuarios</button>
       <div className="col-4">
         <div className="user-info">
           {userLogin}&nbsp;
@@ -69,14 +81,15 @@ export const ChatProfesor = ({ socket, userLogin, canal }) => {
         </div>
         <div id="status-aside">
           <div id="user-online">
-            {alumnosChat.length &&
-              alumnosChat.map((item, index) => {
+            {usuariosChat.length &&
+              usuariosChat.map((item, index) => {
+
                 if (item === userLogin) return;
-                let active = item === remitente;
+                let active = item === receptor;
                 return (
                   <MensajeAlumno
                     nombre={item}
-                    setRemitente={setRemitente}
+                    selectUser={selectUser}
                     active={active}
                     key={index}
                   />
@@ -97,10 +110,10 @@ export const ChatProfesor = ({ socket, userLogin, canal }) => {
   );
 };
 
-const MensajeAlumno = ({ nombre, setRemitente, active }) => {
+const MensajeAlumno = ({ nombre, selectUser, active }) => {
   return (
     <div
-      onClick={() => setRemitente(nombre)}
+      onClick={() => selectUser(nombre)}
       className={active ? "list-user-item item-active" : "list-user-item"}
     >
       <div className="user-name">{nombre}</div>
