@@ -18,7 +18,7 @@ import { GrAdd } from "react-icons/gr";
 import userAuthentication from "../../Authentication/functions/user.js";
 import * as actionsAlumno from "../../redux/Actions/Alumno.js";
 import Calendario from "../../components/Calendario/Calendario.jsx";
-import { ChatAlumno } from "../../components/chat/chatAlumno.jsx";
+// import { ChatAlumno } from "../../components/chat/chatAlumno.jsx";
 import { ChatProfesor } from "../../components/chat/chatProfesor.jsx";
 
 export const Detalle = () => {
