@@ -1,17 +1,17 @@
-import { Detalle } from "./view/PerfilProfesor/Detalle";
-import Registro from "./view/Registro/Registro";
+import { Detalle } from "./view/PerfilProfesor/Detalle.jsx";
+import Registro from "./view/Registro/Registro.jsx";
 import { Routes, Route } from "react-router-dom";
-import { Home } from "./view/Home/Home";
-import { Landing } from "./view/Landing/Landing";
-import { Perfil } from "./view/Perfil/Perfil";
-import { Error } from "./view/Error/error";
-import { About } from "./view/About/About";
-import ProtectedRoute from "./Authentication/protection/ProtectedRoute";
-import PublicRoutes from "./Authentication/protection/PublicRoutes";
-import ForgotPassword from "./view/ForgotPassword/ForgotPassword";
-import PerfilProfesor from "./components/PerfilProfesor/PerfilProfesor";
-import StripePagos from "./Payments/StripePagos";
-import TypeOfProcessPay from "./Payments/TypeOfProcessPay";
+import { Home } from "./view/Home/Home.jsx";
+import { Landing } from "./view/Landing/Landing.jsx";
+import { Perfil } from "./view/Perfil/Perfil.jsx";
+import { Error } from "./view/Error/error.jsx";
+import { About } from "./view/About/About.jsx";
+import ProtectedRoute from "./Authentication/protection/ProtectedRoute.jsx";
+import PublicRoutes from "./Authentication/protection/PublicRoutes.jsx";
+import ForgotPassword from "./view/ForgotPassword/ForgotPassword.jsx";
+import PerfilProfesor from "./components/PerfilProfesor/PerfilProfesor.jsx";
+import StripePagos from "./Payments/StripePagos.jsx";
+import TypeOfProcessPay from "./Payments/TypeOfProcessPay.jsx";
 
 function App() {
   return (

@@ -1,12 +1,12 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import App from './App'
+import App from './App.jsx'
 import "bootstrap/dist/css/bootstrap.min.css";
 import './index.css'
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import store from './redux/Store/index.js';
-import AuthenticationProvider from './Authentication/context/AuthContext';
+import AuthenticationProvider from './Authentication/context/AuthContext.jsx';
 import Aos from 'aos';
 import "aos/dist/aos.css"
 import axios from 'axios';
