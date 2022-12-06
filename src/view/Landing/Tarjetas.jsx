@@ -17,7 +17,7 @@ function Tarjetas() {
         },[])
     return (
         <div id="features">
-       <div className="a-container" >
+       <div className="contenedor-atrjetas" >
                 <div data-aos="fade-down">
                 <Caja image={image}  title="1." resumen="Busca con toda libertad entre varios perfiles y contacta al profesor que más se acerque a tus necesidades."/>
                 </div>
