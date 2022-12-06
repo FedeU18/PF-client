@@ -1,25 +1,25 @@
 import io from "socket.io-client";
-const socket = io("http://localhost:3001");
+const socket = io("https://find-your-teacher-api.onrender.com/", {transports: ["websocket"]});
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import "./Detalle.css";
 import Button from "react-bootstrap/Button";
-import { clear, getProfesorById } from "../../redux/Actions/Profesor";
+import { clear, getProfesorById } from "../../redux/Actions/Profesor.js";
 import { Link } from "react-router-dom";
 import { AiFillStar } from "react-icons/ai";
-import { NavBar } from "../../components/Nav/Nav";
-import { Certificados } from "../../components/Certificados/Certificados";
-import { Reseñas } from "../../components/Reseñas/Reseñas";
-import { Comentarios } from "../../components/Comentarios/Comentarios";
-import { AddComent } from "../../components/AddComent/AddComent";
+import { NavBar } from "../../components/Nav/Nav.jsx";
+import { Certificados } from "../../components/Certificados/Certificados.jsx";
+import { Reseñas } from "../../components/Reseñas/Reseñas.jsx";
+import { Comentarios } from "../../components/Comentarios/Comentarios.jsx";
+import { AddComent } from "../../components/AddComent/AddComent.jsx";
 
 import { GrAdd } from "react-icons/gr";
-import userAuthentication from "../../Authentication/functions/user";
-import * as actionsAlumno from "../../redux/Actions/Alumno";
-import Calendario from "../../components/Calendario/Calendario";
-import { ChatAlumno } from "../../components/chat/chatAlumno";
-import { ChatProfesor } from "../../components/chat/chatProfesor";
+import userAuthentication from "../../Authentication/functions/user.js";
+import * as actionsAlumno from "../../redux/Actions/Alumno.js";
+import Calendario from "../../components/Calendario/Calendario.jsx";
+import { ChatAlumno } from "../../components/chat/chatAlumno.jsx";
+import { ChatProfesor } from "../../components/chat/chatProfesor.jsx";
 
 export const Detalle = () => {
   let { id } = useParams();
