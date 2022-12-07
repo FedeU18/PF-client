@@ -40,7 +40,7 @@ export const Detalle = () => {
 
     dispatch(getProfesorById(id));
     return () => dispatch(clear());
-  }, [dispatch]);
+  }, []);
 
   const handleChangeOp = (e) => {
     setCurrent(e.target.name);
@@ -228,6 +228,7 @@ export const Detalle = () => {
                     ))}
                 </div>
               </div>
+
             </div>
           )}
           {current === "Calendario" && (
@@ -261,7 +262,7 @@ export const Detalle = () => {
               />
             </div>
           )}
-          
+
           {current === "Chat" && (
             <div className="subContDe">
 
