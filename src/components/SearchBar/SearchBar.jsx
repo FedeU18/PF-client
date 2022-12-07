@@ -10,7 +10,7 @@ export const SearchBar = () => {
   const arrProfesores = allTeachers.map((ele) => ele.username);
   const [sugerencias, setSugerencias] = useState([]);
   const [text, setText] = useState("");
-  //--------- FUNCION ------------------------------
+
   const handleComplete = (nameTeacher) => {
     let idTeach = allTeachers.find((el) => el.username == nameTeacher);
     let idLimpio = idTeach.id;
