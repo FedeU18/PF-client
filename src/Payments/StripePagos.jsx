@@ -7,7 +7,6 @@ const stripePromise = loadStripe(
 
 const StripePagos = ({profe}) => {
   
-  const StripePagos = ({ profe }) => {
   const buttonStyle = {
     padding: ".5rem",
     display: "flex",
