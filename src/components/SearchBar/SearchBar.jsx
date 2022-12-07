@@ -69,8 +69,6 @@ export const SearchBar = () => {
 
   const onSubmitHandler = (e) => {
     e.preventDefault();
-    // deberia llevarme al detalle
-    //console.log("deberia llevarme al detalle")
     onSuggestHandler(text);
   };
 
