@@ -1,3 +1,5 @@
+import io from "socket.io-client";
+const socket = io("http://localhost:3001");
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
@@ -16,12 +18,15 @@ import { GrAdd } from "react-icons/gr";
 import userAuthentication from "../../Authentication/functions/user";
 import * as actionsAlumno from "../../redux/Actions/Alumno";
 import Calendario from "../../components/Calendario/Calendario";
+import { ChatAlumno } from "../../components/chat/chatAlumno";
+import { ChatProfesor } from "../../components/chat/chatProfesor";
 
 export const Detalle = () => {
   let { id } = useParams();
   let dispatch = useDispatch();
   let details = useSelector((state) => state.profesores.detail);
   let infoAlumno = useSelector((state) => state.alumnos.alumno);
+  // holaa nooooo
 
   const [current, setCurrent] = useState("Información");
   const [openFotos, setOpenFotos] = useState(false);
@@ -30,6 +35,7 @@ export const Detalle = () => {
   console.log(infoAlumno);
 
   useEffect(() => {
+ 
     dispatch(actionsAlumno.getAlumnoFromAPI(userData.id));
 
     dispatch(getProfesorById(id));
@@ -125,7 +131,7 @@ export const Detalle = () => {
               name={"Chat"}
               onClick={handleChangeOp}
             >
-              ...
+              Chat
             </button>
             <br></br>
           </div>
@@ -222,6 +228,7 @@ export const Detalle = () => {
                     ))}
                 </div>
               </div>
+
             </div>
           )}
           {current === "Calendario" && (
@@ -255,7 +262,28 @@ export const Detalle = () => {
               />
             </div>
           )}
-          {current === "Chat" && <div className="subContDe">Chat</div>}
+
+          {current === "Chat" && (
+            <div className="subContDe">
+
+              {userData.email === details.email ? (
+                <ChatProfesor
+                  socket={socket}
+                  userLogin={details.nombre}
+                  canal={details.id}
+                />
+              ) : userData.rol === "student" ? (
+                <ChatAlumno
+                  socket={socket}
+                  userLogin={userData.name}
+                  canal={details.id}
+                  receptor={details.nombre}
+                />
+              ) : (
+                <h1>holaaaa</h1>
+              )}
+            </div>
+          )}
         </div>
       </div>
     </div>

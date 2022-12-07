@@ -5,7 +5,9 @@ const stripePromise = loadStripe(
   "pk_test_51LDCAnHz183QdnFrZqtqGPkLkpDukWxoBnnlWoEqlUzDDhYjXObxH2Yi8S3mv5UpKxkPp4B9cLemexd1tfUXn2ln00gW4QNhrD"
 );
 
-const StripePagos = ({ profe }) => {
+const StripePagos = ({profe}) => {
+  
+  const StripePagos = ({ profe }) => {
   const buttonStyle = {
     padding: ".5rem",
     display: "flex",
@@ -23,6 +25,7 @@ const StripePagos = ({ profe }) => {
   }
 
   const pagandoProfesor = async () => {
+  const precio = Number(profe.precio + '00')
     const profesorCompra = {
       price_data: {
         currency: "usd",
@@ -30,7 +33,7 @@ const StripePagos = ({ profe }) => {
           name: profe.nombre,
           images: [profe.imagen],
         },
-        unit_amount: profe.precio, // 1000 => 10 dolars // 4000 40 dollars
+        unit_amount:precio, // 1000 => 10 dolars // 4000 40 dollars
       },
       quantity: 1,
     };

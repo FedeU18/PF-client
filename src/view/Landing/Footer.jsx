@@ -19,7 +19,7 @@ function Footer() {
             <li>Terminos del servicio</li>
             <li>Legal</li>
             <li>Acerca de nosotro</li>
-            <li>Find el medioambiente</li>
+            <li>findteacher2@gmail.com</li>
           </div>
           {/* Column2 */}
           <div>
@@ -37,10 +37,18 @@ function Footer() {
             <h4>Redes Sociales</h4>
 
             <ul className="list-unstyled">
+              <a>
               <li><BsFacebook size={22}/> Facebook</li>
+              </a>
+              <a>
               <li><AiFillTwitterCircle size={22}/> Twitter</li>
+              </a>
+              <a href="https://www.youtube.com/channel/UCsUXZoWZow_fXUi1ATVbsGg" target="_blank">
               <li><IoLogoYoutube size={22}/> Youtube</li>
+              </a>
+              <a href="https://www.instagram.com/findteacher2/" target="_blank">
               <li><FaInstagram size={22}/> Instagram</li>
+              </a>
             </ul>
 
             
