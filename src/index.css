@@ -77,9 +77,14 @@ input[type="number"]::-webkit-outer-spin-button {
   padding-left: 1.2rem;
   padding-right: 1.2rem;
   margin: 0;
-  margin-top: .5rem;
+  margin-top: .6rem;
 }
 
 .placeholder-lg {
-  min-height: 2em;
+  min-height: 2rem;
+}
+
+.certificadoLoader {
+  min-height: 6rem;
+  width: 50%;
 }

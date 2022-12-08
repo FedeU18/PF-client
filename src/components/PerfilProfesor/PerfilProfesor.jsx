@@ -278,7 +278,7 @@ export const PerfilProfesor = ({ id }) => {
           </div>
         </div>
       ) : (
-        <h1 className="2">Cargando...</h1>
+        <LoaderProfePerfil />
       )}
     </div>
   );

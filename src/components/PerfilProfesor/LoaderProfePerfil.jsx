@@ -5,17 +5,6 @@ import "./PerfilProfesor.css";
 const LoaderProfePerfil = () => {
   return (
     <div className="divPrincipalProf">
-      {/* <EditarProfesor
-            show={show}
-            profesor={info}
-            handleClose={handleClose}
-          /> */}
-      {/* <AñadirCerificado
-            show={modalShow}
-            profesorId={info.id}
-            onHide={() => setModalShow(false)}
-          /> */}
-
       <div className="ContMyPerfilFavoritesProf">
         <Link to="/home">
           <button className="goBackBtn">
@@ -26,7 +15,12 @@ const LoaderProfePerfil = () => {
         <div>
           <div className="myperfilContProf">
             <div className="FotoPerfilAContProf">
-              <img src={"https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__480.png"} className="ProfilePictureAlumProf" />
+              <img
+                src={
+                  "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__480.png"
+                }
+                className="ProfilePictureAlumProf"
+              />
 
               <div className="usernameProfePEr"></div>
               <button class="button-17" role="button">
@@ -90,12 +84,27 @@ const LoaderProfePerfil = () => {
           </div>
         </div>
 
-        <div className="myFavContProf">
-          <div className="siporquDEvEle">
-            <div className="myFavHeaderPerFal">
-              <span>¿Porque deberian elegirme?</span>
-            </div>
-            <div className="desc2profPEr"></div>
+        <div className="myFavContProf p-1">
+          <div className="siporquDEvEle mt-5">
+            <p className="placeholder-wave">
+              <span className="placeholder col-12 placeholder-lg rounded-1"></span>
+            </p>
+            <p className="placeholder-wave">
+              <span className="placeholder col-12 placeholder-lg rounded-1"></span>
+            </p>
+            <p className="placeholder-wave">
+              <span className="placeholder col-12 placeholder-lg rounded-1"></span>
+            </p>
+            <p className="placeholder-wave">
+              <span className="placeholder col-12 placeholder-lg rounded-1"></span>
+            </p>
+
+            <p className="placeholder-wave">
+              <span className="placeholder col-12 placeholder-lg rounded-1"></span>
+            </p>
+            <p className="placeholder-wave">
+              <span className="placeholder col-12 placeholder-lg rounded-1"></span>
+            </p>
           </div>
         </div>
       </div>
@@ -109,7 +118,26 @@ const LoaderProfePerfil = () => {
                 {/* <AiOutlineEdit /> */}
               </button>
             </span>
-            <div className="materiasContProfPEr"></div>
+            <div className="materiasContProfPEr">
+              <p className="placeholder-wave">
+                <span className="placeholder col-12 placeholder-lg rounded-1"></span>
+              </p>
+              <p className="placeholder-wave">
+                <span className="placeholder col-12 placeholder-lg rounded-1"></span>
+              </p>
+              <p className="placeholder-wave">
+                <span className="placeholder col-12 placeholder-lg rounded-1"></span>
+              </p>
+              <p className="placeholder-wave">
+                <span className="placeholder col-12 placeholder-lg rounded-1"></span>
+              </p>
+              <p className="placeholder-wave">
+                <span className="placeholder col-12 placeholder-lg rounded-1"></span>
+              </p>
+              <p className="placeholder-wave">
+                <span className="placeholder col-12 placeholder-lg rounded-1"></span>
+              </p>
+            </div>
           </div>
         </div>
 
@@ -119,6 +147,22 @@ const LoaderProfePerfil = () => {
               Mis Certificados
               <button className="btnEditProAluProf btnEditprofOTher"></button>
             </span>
+          </div>
+          <div className="">
+            <p className="placeholder-wave">
+              <span className="placeholder col-12 placeholder-lg rounded-1 certificadoLoader"></span>
+            </p>
+            <p className="placeholder-wave">
+              <span className="placeholder col-12 placeholder-lg rounded-1 certificadoLoader"></span>
+            </p>
+            <p className="placeholder-wave">
+              <span className="placeholder col-12 placeholder-lg rounded-1 certificadoLoader"></span>
+            </p>
+            <p className="placeholder-wave">
+              <span className="placeholder col-12 placeholder-lg rounded-1 certificadoLoader"></span>
+            </p>
+
+            
           </div>
         </div>
       </div>
