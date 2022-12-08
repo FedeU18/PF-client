@@ -27,8 +27,7 @@ export const Perfil = () => {
     };
   }, []);
 
-  if (
-   1 < 0 && Object.entries(infoProfesor).length > 0 &&
+  if (Object.entries(infoProfesor).length > 0 &&
     infoProfesor.tipo === "profesor"
   ) {
     return <PerfilProfesor id={id} />;
