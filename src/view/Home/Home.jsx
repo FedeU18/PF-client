@@ -144,7 +144,6 @@ export const Home = () => {
           style={{ height: "75vh" }}
         >
           <Loader></Loader>
-          <h1>cargando...</h1>
         </div>
       )}
 

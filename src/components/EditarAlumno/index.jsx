@@ -170,7 +170,7 @@ export const EditaAlumno = (props) => {
           </form>
         </div>
       ) : (
-        <h1>Cargando...</h1>
+        <h1 className="1">Cargando...</h1>
       )}
     </div>
   );

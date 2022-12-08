@@ -63,7 +63,7 @@ export const AlumnoPerfil = (props) => {
           <button onClick={deleteAlumno}>Eliminar Cuenta</button>
         </div>
       ) : (
-        <h1>Cargando...</h1>
+        <h1 className="4">Cargando...</h1>
       )}
     </div>
   );
