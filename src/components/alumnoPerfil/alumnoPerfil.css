@@ -42,10 +42,10 @@
  
   border-radius: 5px;
 }
-
+/* 
 .InFoAlumnoPErfCont{
 
-}
+} */
 
 .FotoPerfilACont{
 
@@ -167,9 +167,9 @@ border-radius: 5px 0px 5px 0px;
   cursor: pointer;
   font-size: 24px;
 }
-.contInfoPErfAlum{
+/* .contInfoPErfAlum{
 
-}
+} */
 .flagalumPro{
   width: 2rem;
   margin-right: 5px;
@@ -261,4 +261,23 @@ border-radius: 5px 0px 5px 0px;
 
 .centerProfCardsFavAL{
   margin-left: 15%;
+}
+
+
+
+
+
+/* 
+
+
+!!!!!!! LOADER STUDENT !!!!
+
+
+
+*/
+
+
+.email-student-loader {
+  width: 92% !important;
+  margin-left: 1rem;
 }

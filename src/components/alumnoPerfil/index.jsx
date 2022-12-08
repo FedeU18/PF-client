@@ -17,6 +17,7 @@ import { MdOutlinePendingActions } from "react-icons/md";
 import { EditarAlumno } from "../EditarAlumno/EditarAlumno.jsx";
 import { clearAlumno } from "../../redux/Actions/Alumno.js";
 import { ProfeCard } from "../ProfeCard/Profecard.jsx";
+import LoaderPerfilStudent from "./LoaderPerfilStudent.jsx";
 
 export const AlumnoPerfil = (props) => {
   console.log("desde alumno perfil ", props.id);
@@ -209,7 +210,7 @@ export const AlumnoPerfil = (props) => {
           </div>
         </div>
       ) : (
-        <h1>Cargando...</h1>
+        <LoaderPerfilStudent />
       )}
     </div>
   );
