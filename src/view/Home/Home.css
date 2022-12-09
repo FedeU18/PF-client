@@ -60,3 +60,10 @@ hr {
 .aFootAbout:hover {
   color: rgb(41, 40, 40);
 }
+
+/* -------------------------------------chat-------------- */
+.btnMensajes {
+  position: fixed;
+  bottom: 1vw;
+  left: 1vw;
+}

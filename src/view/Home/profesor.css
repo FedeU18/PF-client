@@ -1,3 +1,57 @@
+.list-user-item {
+  padding: 10px 20px;
+  color: #fff;
+  line-height: 25px;
+  cursor: pointer;
+}
+.list-user-item:hover {
+  background: rgb(161, 161, 161);
+}
+.item-active {
+  background: rgb(240, 238, 238);
+}
+.list-user-item .user-name {
+  font-size: 1.2vw;
+  color: rgb(48, 46, 46);
+  font-family: cursive;
+}
+.list-user-item .user-status {
+  font-size: 1vw;
+  color: black;
+}
+
+.containerUserChats {
+  margin-top: 3vw;
+  width: 100%;
+  height: 38vw;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  background: rgb(185, 182, 182);
+}
+.containerUserChats::-webkit-scrollbar {
+  background-color: transparent;
+  width: 0.5vw;
+  border-radius: 0.4rem;
+}
+
+.containerMensajes {
+  width: 100%;
+  height: 18vw;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  background: rgb(227, 225, 225);
+  overflow: auto;
+}
+.btn {
+  width: 6vw;
+}
+.divUsuariosChat {
+  width: 15vw;
+  height: 0vw;
+  position: fixed;
+  right: 0vw;
+  bottom: 41vw;
+}
 .message-content {
   width: auto;
   height: auto;
@@ -15,7 +69,7 @@
 }
 .message-content p {
   font-family: cursive;
-  font-size: 1.3vw;
+  font-size: 1.1vw;
 }
 .message {
   height: auto;
@@ -69,4 +123,12 @@
 }
 .card {
   margin-left: 17vw;
+}
+
+.divContainer {
+  width: 40vw;
+  height: 25vw;
+  position: fixed;
+  right: 25vw;
+  bottom: 6vw;
 }
