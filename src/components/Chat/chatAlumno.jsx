@@ -6,11 +6,10 @@ export const ChatAlumno = ({ canal, socket, userLogin, receptor }) => {
   const [mensaje, setMensaje] = useState("");
   const [mensajes, setMensajes] = useState([]);
 
-  
-   const mensajesAntiguos=()=>{
-    socket.emit("mensajes_antiguos", userLogin,receptor)
-   }
-     const mensajesProfe = mensajes.filter(
+  const mensajesAntiguos = () => {
+    socket.emit("mensajes_antiguos", userLogin, receptor);
+  };
+  const mensajesProfe = mensajes.filter(
     (e) =>
       (e.remitente === userLogin && e.receptor === receptor) ||
       (e.remitente === receptor && e.receptor === userLogin)
@@ -29,16 +28,16 @@ export const ChatAlumno = ({ canal, socket, userLogin, receptor }) => {
           ":" +
           new Date(Date.now()).getMinutes(),
       };
-      await socket.emit("mensaje_privado", mensajeData);      
+      await socket.emit("mensaje_privado", mensajeData);
       setMensaje("");
     }
   };
 
   useEffect(() => {
     socket.emit("join_room", canal);
-    socket.on("mensajes_antiguos", data=>{
-      setMensajes([...mensajes,...data])
-    })
+    socket.on("mensajes_antiguos", (data) => {
+      setMensajes([...mensajes, ...data]);
+    });
     socket.on("mensaje_privado", (res) => {
       console.log("recibo mensajes desde alumno", res);
       if (
