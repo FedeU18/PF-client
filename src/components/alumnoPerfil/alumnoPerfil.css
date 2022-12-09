@@ -5,6 +5,14 @@
   background-size: cover;
 }
 
+.tabla-reservas {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 95%;
+}
+
 .ContMyPerfilFavorites{
   display: grid;
   grid-template-columns: 5%  53% 42%;
@@ -33,6 +41,9 @@
 }
 
 .pendientesContperfAlum{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   background-color: rgb(223, 233, 241);
   width: 90% ;
   height: 34vh;
@@ -233,13 +244,23 @@ border-radius: 5px 0px 5px 0px;
 }
 
 .myPEndHeaderPerFal{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: .3rem;
+  width: 80%;
   height: 3rem;
   font-weight: bold;
   font-size: 24px;
   color: rgb(129, 126, 126,0.8);
   text-align: center;
   padding-top: 1.2rem;
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px 0px;
+  /* box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px 0px; */
+}
+
+.link-hacia-el-profe {
+  color: black;
 }
 
 .mispenSpan{
