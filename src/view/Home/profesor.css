@@ -42,9 +42,18 @@
   background: rgb(227, 225, 225);
   overflow: auto;
 }
+.btnSalirChat {
+  border: none;
+}
 .btn {
   width: 6vw;
 }
+.inputChat {
+  border: none;
+  width: 15vw;
+  outline: none;
+}
+
 .divUsuariosChat {
   width: 15vw;
   height: 0vw;

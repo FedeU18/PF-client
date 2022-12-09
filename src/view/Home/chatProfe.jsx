@@ -125,7 +125,9 @@ const Chat = ({
         <div className="row">
           <div className="col-md-4 mt-5">
             <div className="card">
-              <button onClick={() => setChat(!chat)}>chat</button>
+              <button className="btnSalirChat" onClick={() => setChat(!chat)}>
+                chat
+              </button>
               <ScrollToBottom className="containerMensajes ">
                 {mensajesAlumno.map((e) => {
                   return (
@@ -152,7 +154,7 @@ const Chat = ({
                   <form id="message-form" className="card-footer">
                     <div className="input-group">
                       <input
-                        className="inputChat"
+                        className="inputChat inputChat"
                         id="text-input"
                         placeholder="Type your message..."
                         onChange={(e) => setMensaje(e.target.value)}
