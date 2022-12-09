@@ -26,7 +26,8 @@
   height: 38vw;
   overflow-y: scroll;
   overflow-x: hidden;
-  background: rgb(185, 182, 182);
+  background: rgb(215, 209, 209);
+  border-top: 2px solid black;
 }
 .containerUserChats::-webkit-scrollbar {
   background-color: transparent;

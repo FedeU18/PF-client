@@ -164,7 +164,7 @@ const Chat = ({
                         <button
                           onClick={enviarMensaje}
                           type="submit"
-                          className="btn btn-success"
+                          className="btn btn-primary"
                           id="btnSubmit"
                           typeof="submit"
                         >

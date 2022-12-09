@@ -31,7 +31,6 @@ export const Detalle = () => {
   const [openFotos, setOpenFotos] = useState(false);
   const [show, setShow] = useState(false);
   const { userData } = userAuthentication();
-  console.log(infoAlumno);
 
   useEffect(() => {
     dispatch(actionsAlumno.getAlumnoFromAPI(userData.id));

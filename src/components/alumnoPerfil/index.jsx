@@ -18,9 +18,11 @@ import { EditarAlumno } from "../EditarAlumno/EditarAlumno.jsx";
 import { clearAlumno } from "../../redux/Actions/Alumno.js";
 import { ProfeCard } from "../ProfeCard/Profecard.jsx";
 import LoaderPerfilStudent from "./LoaderPerfilStudent.jsx";
+import Table from "react-bootstrap/Table";
+
 
 export const AlumnoPerfil = (props) => {
-  console.log("desde alumno perfil ", props.id);
+  console.log("desde alumno perfil ", props);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [show, setShow] = useState(false);
@@ -28,6 +30,8 @@ export const AlumnoPerfil = (props) => {
   const [myFavProfe, setMyFavProfe] = useState([]);
   let valorImagen = "";
   let info = useSelector((state) => state.alumnos.alumno);
+  console.log("INFOOOOOOO: " , info)
+
   const profes = useSelector((state) => state.profesores.profesores);
 
   useEffect(() => {
@@ -165,6 +169,37 @@ export const AlumnoPerfil = (props) => {
                     style={{ color: "rgb(151, 140, 140,0.8)" }}
                     size={24}
                   />
+                </div>
+                <div className="tabla-reservas">
+                  <Table striped  hover variant="light">
+                    <thead>
+                      <tr>
+                        <th>Día</th>
+                        <th>Hora</th>
+                        <th>Profesor</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {
+                        info.fechas.map(f=>{
+                          return f.profesors.map(p=>{
+                            return (
+                              <tr>
+                                <th>{f.fecha}</th>
+                                <th>{f.hora}</th>
+                                <th>
+                                  <Link className="link-hacia-el-profe" to={"/profesores/" + p.id}>
+                                    {p.nombre + " " + p.apellido}
+                                  </Link>
+                                </th>
+                              </tr>
+                            )
+                          })
+                        })
+                      }
+                    </tbody>
+                  </Table>
+
                 </div>
               </div>
             </div>

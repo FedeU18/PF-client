@@ -63,4 +63,5 @@ hr {
   position: fixed;
   bottom: 1vw;
   left: 1vw;
+  transition: all ease 1s;
 }
