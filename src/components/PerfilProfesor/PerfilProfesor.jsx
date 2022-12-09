@@ -99,7 +99,7 @@ export const PerfilProfesor = ({ id }) => {
 
                   <div className="usernameProfePEr"> {info.username} </div>
                   <button
-                    class="button-17"
+                    className="button-17"
                     role="button"
                     onClick={() => handleOpenWidget()}
                   >
@@ -107,7 +107,7 @@ export const PerfilProfesor = ({ id }) => {
                   </button>
 
                   <button
-                    class="button-62"
+                    className="button-62"
                     role="button"
                     onClick={handleOtherPer}
                   >
