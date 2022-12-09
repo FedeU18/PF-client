@@ -16,7 +16,6 @@ export const ChatAlumno = ({ canal, socket, userLogin, receptor }) => {
       (e.remitente === receptor && e.receptor === userLogin)
   );
 
-
   const enviarMensaje = async (e) => {
     e.preventDefault();
     if (mensaje !== "") {
@@ -36,7 +35,6 @@ export const ChatAlumno = ({ canal, socket, userLogin, receptor }) => {
   };
 
   useEffect(() => {
-
     socket.emit("join_room", canal);
     socket.on("mensajes_antiguos", data=>{
       setMensajes([...mensajes,...data])
