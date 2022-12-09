@@ -45,9 +45,7 @@
 .btnSalirChat {
   border: none;
 }
-.btn {
-  width: 6vw;
-}
+
 .inputChat {
   border: none;
   width: 15vw;
@@ -58,7 +56,7 @@
   width: 15vw;
   height: 0vw;
   position: fixed;
-  right: 0vw;
+  right: 0;
   bottom: 41vw;
 }
 .message-content {
@@ -130,9 +128,7 @@
   overflow-x: hidden;
   background: lightgray;
 }
-.card {
-  margin-left: 17vw;
-}
+
 
 .divContainer {
   width: 40vw;

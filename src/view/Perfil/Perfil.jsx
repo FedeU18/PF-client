@@ -27,11 +27,14 @@ export const Perfil = () => {
     };
   }, []);
 
-  if (Object.entries(infoProfesor).length > 0 &&
+  if (
+    infoProfesor &&
+    Object.entries(infoProfesor).length > 0 &&
     infoProfesor.tipo === "profesor"
   ) {
     return <PerfilProfesor id={id} />;
   } else if (
+    infoAlumno &&
     Object.entries(infoAlumno).length > 0 &&
     infoAlumno.tipo === "estudiante"
   ) {

@@ -26,31 +26,32 @@ export function getProfesorById(id) {
 
 export function postProfesor(payload) {
   return function (dispatch) {
-    axios.post(`/profesores`,payload)
-    .then((res)=>{
-      dispatch({type: POST_PROFESORES,payload: prof, });
-      dispatch(allProfes())
-    })
-    .catch((error) => {
-      console.log(error);
-    });
-      
-  }   
-}
-
-
-export function putProfesor(id, payload) {
-  return function (dispatch) {
-    axios.patch( `/profesores/${id}`, payload)
-
-      .then((res) => {console.log("Profesor editado con exito")
-                      dispatch(getProfesorById(id))})
+    axios
+      .post(`/profesores`, payload)
+      .then((res) => {
+        dispatch({ type: POST_PROFESORES, payload: prof });
+        dispatch(allProfes());
+      })
       .catch((error) => {
         console.log(error);
       });
   };
 }
 
+export function putProfesor(id, payload) {
+  return function (dispatch) {
+    axios
+      .patch(`/profesores/${id}`, payload)
+
+      .then((res) => {
+        console.log("Profesor editado con exito");
+        dispatch(getProfesorById(id));
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+}
 
 export function deleteProfesor(id) {
   return async function (dispatch) {
@@ -101,5 +102,11 @@ export function filterProfes(filtros) {
 export function clear() {
   return {
     type: "CLEAR",
+  };
+}
+
+export function desmontajeProfesores() {
+  return {
+    type: "DESMONTAJE",
   };
 }

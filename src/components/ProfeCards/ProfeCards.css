@@ -1,64 +1,58 @@
-.ProfeCardsCont{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    /* margin-left: 2%; */
-    /* display: grid; */
-    /* grid-template-columns: max-content max-content max-content max-content ; */
-    /* margin-bottom: 200px; */
+.ProfeCardsCont {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 1rem;
+  gap: 1.5rem;
 }
-.cardTempSoPO{
-    width: 200px;
-    background-color: brown;
-    border: 2px solid black;
+.cardTempSoPO {
+  width: 200px;
+  background-color: brown;
+  border: 2px solid black;
 }
-.AvatarNameProf{
-    background-color: rgb(7, 71, 71);
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-self: center;
-    text-align: center;
-    vertical-align: middle;
-    padding-top: 8px;
-    color: white;
+.AvatarNameProf {
+  background-color: rgb(7, 71, 71);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-self: center;
+  text-align: center;
+  vertical-align: middle;
+  padding-top: 8px;
+  color: white;
 }
 
-.usuarioCont{
-    display: grid;
-    grid-template-columns: 20% 60% 10%;
-  
+.usuarioCont {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
-.nameUsuarioC{
-    padding-top: 8px;
+.precioFavCont {
+  display: grid;
+  grid-template-columns: 50% 50%;
 }
 
-.precioFavCont{
-    display: grid;
-    grid-template-columns: 50% 50%;
+.puntProfCard {
+  margin-left: 2px;
 }
 
-.puntProfCard{
-    margin-left: 2px;
+.puncContCard {
+  color: rgb(168, 168, 16);
+  display: grid;
+  grid-template-columns: 15% 80%;
 }
 
-.puncContCard{
-    color: rgb(168, 168, 16);
-    display: grid;
-    grid-template-columns: 15% 80%;
+.flagcarProfe {
+  height: 20px;
 }
 
-.flagcarProfe{
-    height: 20px;
+.materiasNaCaPro {
+  margin-left: 3px;
 }
 
-.materiasNaCaPro{
-    margin-left: 3px;
-}
-
-.btnFavProfeCards{
-    all: unset;
+.btnFavProfeCards {
+  all: unset;
 }

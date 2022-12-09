@@ -10,7 +10,7 @@ import { useEffect, useState } from "react";
 import { getPaises } from "../../redux/Actions/Paises";
 import { addOPSelected } from "../../redux/Actions/Materias";
 import { useDispatch, useSelector } from "react-redux";
-import { allProfes } from "../../redux/Actions/Profesor";
+import { allProfes, desmontajeProfesores } from "../../redux/Actions/Profesor";
 import { ProfeCards } from "../../components/ProfeCards/ProfeCards";
 import { Link } from "react-router-dom";
 import { filterProfes } from "../../redux/Actions/Profesor";
@@ -63,6 +63,10 @@ export const Home = () => {
       console.log("spy info", info);
       setUsuariosChat([...info]);
     });
+
+    return () => {
+      dispatch(desmontajeProfesores());
+    };
   }, [dispatch, socket]);
 
   useEffect(() => {
@@ -128,7 +132,7 @@ export const Home = () => {
               X {filtrosSeleccionados.pais}
             </button>
           ) : (
-            <button className="btnListOpSelected"> Todos los paises </button>
+            <button className="btnListOpSelected">Todos los paises</button>
           )}
 
           {filtrosSeleccionados.puntuacion &&
@@ -157,9 +161,6 @@ export const Home = () => {
 
           <ProfeCards profes={profes} />
 
-          {/* <MateriasBtn/> */}
-          {/* { canal, socket, receptor, userLogin } */}
-
           {userData.rol === "teacher" && (
             <BotonChats mostrarChatUsers={mostrarChatUsers} />
           )}
@@ -186,13 +187,11 @@ export const Home = () => {
         className="d-flex flex-column align-items-center"
         style={{ margin: "0 auto" }}
       >
-        <hr />
-
-        <footer>
+        {/* <footer>
           <Link to="/about" className="aFootAbout">
             About
           </Link>
-        </footer>
+        </footer> */}
       </div>
     </div>
   );
@@ -207,7 +206,7 @@ function BotonChats({ mostrarChatUsers }) {
           width="16"
           height="16"
           fill="currentColor"
-          class="bi bi-chat-right-text-fill"
+          className="bi bi-chat-right-text-fill"
           viewBox="0 0 16 16"
         >
           <path d="M16 2a2 2 0 0 0-2-2H2a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h9.586a1 1 0 0 1 .707.293l2.853 2.853a.5.5 0 0 0 .854-.353V2zM3.5 3h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1 0-1zm0 2.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1 0-1zm0 2.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1 0-1z" />

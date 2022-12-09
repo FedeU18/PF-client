@@ -87,7 +87,7 @@ export const NavBar = () => {
       <Container
         fluid
         fixed="top"
-        className="NavColorCss shadow-lg  mb-4"
+        className="NavColorCss shadow-lg"
         variant="dark"
       >
         <div className="d-flex justify-content-between gap-4 p-1 align-items-center">

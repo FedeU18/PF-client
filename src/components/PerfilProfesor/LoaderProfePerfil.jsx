@@ -23,11 +23,11 @@ const LoaderProfePerfil = () => {
               />
 
               <div className="usernameProfePEr"></div>
-              <button class="button-17" role="button">
+              <button className="button-17" role="button">
                 Profesor
               </button>
 
-              <button class="button-62" role="button">
+              <button className="button-62" role="button">
                 Ir a Mi Perfil Comercial
               </button>
             </div>
