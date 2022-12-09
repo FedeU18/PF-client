@@ -9,10 +9,13 @@ import StripePagos from "../../Payments/StripePagos";
 import { setReservaProfe } from "../../redux/Actions/Mailer";
 
 const Calendario = ({ profe }) => {
+  const [error, setError] = useState(false)  
+  console.log("error: ", error)
   const dispatch = useDispatch();
   const [errorDays, setErrorDays] = useState(false);
   const alumno = useSelector((state) => state.alumnos.alumno);
   const fechas = useSelector((state) => state.fechas.fechas);
+  console.log("profe: " ,profe)
   const user = userAuthenticate();
   const [activate, setActivate] = useState(false);
   const [date, onChange] = useState(new Date());
@@ -33,6 +36,7 @@ const Calendario = ({ profe }) => {
     if (reserva.fecha && reserva.hora) {
       const reservaDate = reserva.fecha.split("-").join("/").split("/");
       const currentDay = new Date().toLocaleDateString().split("/");
+
       let day = Number(reservaDate[0]) > Number(currentDay[0]);
       // verifica que el dia sea mayor al actual
       let month = Number(reservaDate[1]) >= Number(currentDay[1]);
@@ -45,6 +49,7 @@ const Calendario = ({ profe }) => {
       } else {
         setErrorDays(true);
       }
+      
     }
     const data = {
       emailProfesor: profe.email,
@@ -56,6 +61,19 @@ const Calendario = ({ profe }) => {
     const DATAJSON = JSON.stringify(data);
     localStorage.setItem("data-payment", DATAJSON);
   }, [reserva.fecha, reserva.hora]);
+
+  useEffect(()=>{
+    let reservado= {};
+    Object.keys(profe).length !== 0 &&( reservado = profe.fechas.find(f=> f.fecha === reserva.fecha && f.hora === reserva.hora))
+  if(typeof(reservado) === "object"){
+    if(Object.keys(reservado).length !== 0){
+      setError(true)
+    }
+  } else {
+    setError(false)
+  }
+  
+  }, [reserva.fecha, reserva.hora])
 
   const handleHora = (e) => {
     e.preventDefault();
@@ -82,6 +100,7 @@ const Calendario = ({ profe }) => {
       setActivate(true);
     }
   };
+
 
   return (
     <div>
@@ -112,6 +131,7 @@ const Calendario = ({ profe }) => {
         </div>
       </div>
       <h2>Tu reserva: </h2>
+
       <Table striped bordered hover>
         <thead>
           <tr>
@@ -131,7 +151,7 @@ const Calendario = ({ profe }) => {
 
       <div className="reserva w-100 justify-content-evenly flex-column">
         <button
-          disabled={errorDays || reserva.fecha === "" || reserva.hora === ""}
+          disabled={error || errorDays || reserva.fecha === "" || reserva.hora === ""}
           onClick={(e) => handleSubmitFecha(e)}
         >
           Reservar
@@ -141,9 +161,12 @@ const Calendario = ({ profe }) => {
       <div>
         {errorDays && (
           <p className="text-center mt-3 p-2 text-danger">
-            la reserva no puede ser hoy ni un dia anterior al dia actual
+            La reserva no puede ser hoy ni un dia anterior al dia actual
           </p>
         )}
+      {
+        error && <p className="text-center mt-3 p-2 text-danger">Esta Fecha ya está reservada, elija otra</p>
+      }
       </div>
     </div>
   );
