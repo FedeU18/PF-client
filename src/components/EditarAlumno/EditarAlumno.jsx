@@ -178,6 +178,7 @@ export const EditarAlumno = ({ show, handleClose, alumno }) => {
                 </button>
               </div>
 
+
               <div className="nameAlumInptChangeCont">
                 {userAlumno.picture === false ? (
                   <div>Picture</div>

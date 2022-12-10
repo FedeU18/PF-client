@@ -114,6 +114,7 @@ const Calendario = ({ profe }) => {
           maxDetail="month"
         />
       </div>
+      <div className="reservasCont">
       <div className="all-horarios">
         <div>
           <h2>Horario: </h2>
@@ -130,6 +131,7 @@ const Calendario = ({ profe }) => {
           </button>
         </div>
       </div>
+
       <h2>Tu reserva: </h2>
 
       <Table striped bordered hover>
@@ -157,6 +159,9 @@ const Calendario = ({ profe }) => {
           Reservar
         </button>
         {activate && <StripePagos profe={profe} />}
+
+        </div>
+
       </div>
       <div>
         {errorDays && (
