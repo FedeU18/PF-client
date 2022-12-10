@@ -22,7 +22,8 @@ const initialStudentForm = {
   rol: "student",
   age: "",
   country: "",
-  picture: "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__480.png",
+  picture:
+    "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__480.png",
 };
 
 const initialStudentErrors = {
@@ -33,9 +34,10 @@ const initialStudentErrors = {
   ageErr: false,
   countryErr: false,
   usernameErr: false,
+  usernameExist: true,
 };
 
-const FormStudent = ({setMostrarStudent}) => {
+const FormStudent = ({ setMostrarStudent }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const passwordShow = useRef();
@@ -57,11 +59,18 @@ const FormStudent = ({setMostrarStudent}) => {
   } = form;
   const countries = useSelector((state) => state.paises.paises);
   const [errors, setErrors] = useState(initialStudentErrors);
-  const { nameErr, lastnameErr, emailErr, passwordErr, ageErr, usernameErr } =
-    errors;
+  const {
+    nameErr,
+    lastnameErr,
+    emailErr,
+    passwordErr,
+    ageErr,
+    usernameErr,
+    usernameExist,
+  } = errors;
   const [loaderRegister, setLoaderRegister] = useState(false);
   const alumnos = useSelector((state) => state.alumnos.alumnos);
-
+  const profesores = useSelector((state) => state.profesores.allProfesores);
 
   useEffect(() => {
     dispatch(getAllAlumnos());
@@ -74,6 +83,22 @@ const FormStudent = ({setMostrarStudent}) => {
 
     validateInput(username, valueInput, setErrors, errors);
 
+    if (username === "username") {
+      const allUsers = [...profesores, ...alumnos];
+      console.log(allUsers);
+
+      const noRepeatPlease = allUsers.find(
+        (user) => user.username === valueInput
+      );
+      console.log(noRepeatPlease);
+      if (noRepeatPlease) {
+        console.log("hola");
+        setErrors({ ...errors, usernameExist: true });
+      } else {
+        setErrors({ ...errors, usernameExist: false });
+      }
+    }
+
     setForm({
       ...form,
       [username]: valueInput,
@@ -82,9 +107,7 @@ const FormStudent = ({setMostrarStudent}) => {
 
   const enterWithGoogle = async () => {
     try {
-      setMostrarStudent(true)
-      // await loginWithGoogle();
-      // navigate("/home");
+      setMostrarStudent(true);
     } catch (error) {
       // console.error(error);
     }
@@ -92,19 +115,8 @@ const FormStudent = ({setMostrarStudent}) => {
 
   const handlerSubmitStudent = async (e) => {
     e.preventDefault();
-
-    const noRepeatPlease = alumnos.find(
-      (student) => student.username === username
-    );
-    if (noRepeatPlease) {
-      setGlobalMessage("El nombre de usuario ya existe Elige otro porfavor");
-      setTimeout(() => {
-        setGlobalMessage("");
-      }, 4000);
-      return;
-    }
-    console.log("aqui");
     setLoaderRegister(true);
+
     if (!country) {
       setLoaderRegister(false);
       setGlobalMessage("Please choose a country");
@@ -166,8 +178,8 @@ const FormStudent = ({setMostrarStudent}) => {
   };
 
   const clickOutForm = (e) => {
-    console.log(e.target)
-  }
+    console.log(e.target);
+  };
 
   return (
     <div className="p-2 mt-5">
@@ -181,7 +193,7 @@ const FormStudent = ({setMostrarStudent}) => {
             <>
               <div>
                 <div data-aos="fade-right" className="col">
-                  <label htmlFor="username">Username </label>
+                  <label htmlFor="username">Username: </label>
                   <input
                     type="text"
                     id="username"
@@ -192,11 +204,22 @@ const FormStudent = ({setMostrarStudent}) => {
                     placeholder="enter your name..."
                     autoComplete="off"
                   />
-
                   {username.length > 1 && usernameErr && (
-                    <p data-aos="fade-down" className="text-center text-danger">
+                    <span
+                      data-aos="fade-down"
+                      className="text-center text-danger d-block"
+                    >
                       Invalid username
-                    </p>
+                    </span>
+                  )}
+
+                  {usernameExist && username !== "" && (
+                    <span
+                      data-aos="fade-down"
+                      className="text-danger text-center d-block"
+                    >
+                      el nombre de usuario ya existe
+                    </span>
                   )}
                 </div>
               </div>
@@ -379,6 +402,7 @@ const FormStudent = ({setMostrarStudent}) => {
                   login
                     ? !country ||
                       nameErr ||
+                      usernameExist ||
                       lastnameErr ||
                       passwordErr ||
                       emailErr ||
@@ -390,14 +414,13 @@ const FormStudent = ({setMostrarStudent}) => {
                 }
               >
                 {loaderRegister && (
-                  <>
-                    <span
-                      className="spinner-border spinner-border-sm"
-                      role="status"
-                      aria-hidden="true"
-                    ></span>
-                    <span className="visually-hidden"></span>
-                  </>
+                  <div
+                    class="spinner-border spinner-border-sm text-light"
+                    role="status"
+                    style={{ marginRight: ".5rem" }}
+                  >
+                    <span class="visually-hidden"></span>
+                  </div>
                 )}
                 Registrate
               </button>
@@ -424,8 +447,10 @@ const FormStudent = ({setMostrarStudent}) => {
 
         <div className="text-center mt-4">
           <p>
-            Ya tienes cuenta? 
-            <Link to="/" className={styles.ingresa}>Ingresa</Link>
+            Ya tienes cuenta?
+            <Link to="/" className={styles.ingresa}>
+              Ingresa
+            </Link>
           </p>
         </div>
       </div>

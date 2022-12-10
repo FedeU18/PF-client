@@ -1,60 +1,3 @@
-.register-group {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 20px;
-  background: #fff;
-
-  border-radius: 30px;
-}
-
-.register-group .register-item input {
-  font-size: 20px;
-  padding-left: 10px;
-}
-.register-group .register-item button {
-  background: transparent;
-  cursor: pointer;
-}
-.register-group .register-item button i {
-  font-size: 20px;
-}
-
-#wrapper {
-  display: flex;
-  width: 750px;
-}
-.col-4 {
-  flex: 4;
-  margin-top: 5vw;
-}
-.col-8 {
-  flex: 8;
-  margin: 5vw 2vw;
-}
-#status-aside {
-  min-height: 28vw;
-  margin: 0 15px;
-  background: rgb(172, 156, 172);
-  border-radius: 20px;
-  padding: 30px 0;
-  box-sizing: border-box;
-}
-
-.user-info {
-  /* width: 100%; */
-  height: 50px;
-  background: rgb(139, 122, 139);
-  border-radius: 20px;
-  margin: 0 15px 10px;
-  padding: 0 10px;
-  line-height: 50px;
-  font-size: 20px;
-  font-weight: 700;
-  color: #fff;
-  text-transform: uppercase;
-  text-align: center;
-}
 .list-user-item {
   padding: 10px 20px;
   color: #fff;
@@ -62,105 +5,137 @@
   cursor: pointer;
 }
 .list-user-item:hover {
-  background: rgb(121, 97, 121);
+  background: rgb(161, 161, 161);
 }
 .item-active {
-  background: rgb(121, 97, 121);
+  background: rgb(240, 238, 238);
 }
 .list-user-item .user-name {
-  font-size: 20px;
+  font-size: 1.2vw;
+  color: rgb(48, 46, 46);
+  font-family: cursive;
 }
 .list-user-item .user-status {
-  font-size: 14px;
-}
-.text-green {
-  color: rgb(70, 184, 70);
-}
-.text-red {
-  color: rgb(184, 69, 69);
+  font-size: 1vw;
+  color: black;
 }
 
-#content {
-  flex: 1;
-  padding: 25px 15px;
-}
-#content li {
-  list-style: none;
-}
-
-#content .message {
-  display: inline-block;
-  padding: 10px;
-  border-radius: 20px;
-  margin: 5px 0;
-}
-.item-left {
-  background: rgb(130, 204, 221);
-}
-.item-right {
-  float: right;
-  background: rgb(120, 224, 143);
-}
-
-#chat-input .input-item {
-  flex: 85;
-  height: 100%;
-  border-right: 1px solid #ccc;
-  box-sizing: border-box;
-  font-family: Arial, Helvetica, sans-serif;
-  color: #fff;
-  padding: 10px;
-}
-#chat-input .input-item input {
-  display: block;
+.containerUserChats {
+  margin-top: 3vw;
   width: 100%;
-  background: transparent;
-  color: #fff;
-  font-size: 12px;
-  font-family: Arial, Helvetica, sans-serif;
+  height: 38vw;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  background: rgb(215, 209, 209);
+  border-top: 2px solid black;
 }
-
-#chat-input .input-item input::placeholder {
-  color: #fff;
-  font-size: 12px;
-  font-family: Arial, Helvetica, sans-serif;
-}
-#chat-input .input-item textarea {
-  display: block;
-  width: 100%;
-  height: 100%;
-  resize: none;
-  background: transparent;
-  color: #fff;
-  font-family: Arial, Helvetica, sans-serif;
-}
-#chat-input .input-item textarea::placeholder {
-  color: #fff;
-  font-size: 14px;
-  font-family: Arial, Helvetica, sans-serif;
-}
-
-#chat-input .button {
-  flex: 15;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-  background: transparent;
-  cursor: pointer;
-}
-
-#chat-input .button i {
-  color: #fff;
-  background: rgb(121, 97, 121);
-  font-size: 24px;
+.containerUserChats::-webkit-scrollbar {
+  background-color: transparent;
+  width: 0.5vw;
+  border-radius: 0.4rem;
 }
 
 .containerMensajes {
-  margin-top: 3vw;
   width: 100%;
-  height: 25vw;
+  height: 18vw;
   overflow-y: scroll;
   overflow-x: hidden;
-  background: rgb(212, 206, 212);
+  background: rgb(227, 225, 225);
+  overflow: auto;
 }
+.btnSalirChat {
+  border: none;
+}
+
+.inputChat {
+  border: none;
+  width: 15vw;
+  outline: none;
+}
+
+.divUsuariosChat {
+  width: 15vw;
+  height: 0vw;
+  position: fixed;
+  right: 0;
+  bottom: 41vw;
+}
+.message-content {
+  width: auto;
+  height: auto;
+  min-height: 20px;
+  max-width: 100px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  margin-right: 5px;
+  margin-left: 5px;
+  padding-right: 5px;
+  padding-left: 5px;
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+.message-content p {
+  font-family: cursive;
+  font-size: 1.1vw;
+}
+.message {
+  height: auto;
+  padding: 0.5vw;
+  display: flex;
+}
+#you {
+  justify-content: flex-start;
+}
+#you .message-content {
+  background: rgb(247, 243, 243);
+  justify-content: flex-start;
+  color: rgb(54, 49, 49);
+  font-family: cursive;
+}
+#you .message-meta {
+  justify-content: flex-start;
+  margin-left: 5px;
+}
+#other {
+  justify-content: flex-end;
+}
+#other .message-content {
+  justify-content: flex-end;
+  background: rgb(110, 182, 244);
+  color: rgb(54, 49, 49);
+  font-family: cursive;
+}
+#other .message-meta {
+  justify-content: flex-end;
+  margin-right: 5px;
+}
+.message-meta #author {
+  margin-left: 10px;
+  font-weight: bold;
+}
+.message-meta {
+  display: flex;
+  font-size: 12px;
+}
+.container_titulo {
+  background: rgb(167, 166, 166);
+  color: rgb(253, 250, 250);
+}
+.cardBody {
+  width: 100%;
+  height: 20vw;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  background: lightgray;
+}
+
+
+.divContainer {
+  width: 40vw;
+  height: 25vw;
+  position: fixed;
+  right: 25vw;
+  bottom: 6vw;
+}
+

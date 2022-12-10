@@ -34,9 +34,6 @@
   );
   margin: 1rem 0;
 }
-.homeProfeCard {
-  margin-top: 20px;
-}
 
 hr {
   width: 90%;
@@ -59,4 +56,12 @@ hr {
 
 .aFootAbout:hover {
   color: rgb(41, 40, 40);
+}
+
+/* -------------------------------------chat-------------- */
+.btnMensajes {
+  position: fixed;
+  bottom: 1vw;
+  left: 1vw;
+  transition: all ease 1s;
 }

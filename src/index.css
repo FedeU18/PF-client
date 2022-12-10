@@ -28,7 +28,7 @@ html::-webkit-scrollbar-thumb {
 
 body {
   margin: 0;
-  font-family: "Ropa Sans";
+  /* font-family: "Ropa Sans"; */
 }
 
 a {
@@ -57,3 +57,32 @@ input[type="number"]::-webkit-outer-spin-button {
   color: transparent;
   margin-bottom: 1rem;
 }
+
+@media screen and (max-width: 500px) {
+  .logo {
+    display: none;
+  }
+}
+
+.placeholder-wave {
+  padding-left: 1.2rem;
+  padding-right: 1.2rem;
+  margin: 0;
+  margin-top: 0.6rem;
+}
+
+.placeholder-lg {
+  min-height: 2rem;
+}
+
+.certificadoLoader {
+  min-height: 6rem;
+  width: 50%;
+}
+
+.card {
+  margin-left: 0 !important;
+}
+
+/* html {
+} */

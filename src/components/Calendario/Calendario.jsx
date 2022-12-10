@@ -6,10 +6,16 @@ import { useDispatch, useSelector } from "react-redux";
 import userAuthenticate from "../../Authentication/functions/user";
 import Table from "react-bootstrap/Table";
 import StripePagos from "../../Payments/StripePagos";
+import { setReservaProfe } from "../../redux/Actions/Mailer";
 
 const Calendario = ({ profe }) => {
+  const [error, setError] = useState(false)  
+  console.log("error: ", error)
   const dispatch = useDispatch();
+  const [errorDays, setErrorDays] = useState(false);
+  const alumno = useSelector((state) => state.alumnos.alumno);
   const fechas = useSelector((state) => state.fechas.fechas);
+  console.log("profe: " ,profe)
   const user = userAuthenticate();
   const [activate, setActivate] = useState(false);
   const [date, onChange] = useState(new Date());
@@ -20,12 +26,54 @@ const Calendario = ({ profe }) => {
     idProfesor: profe.id,
     idAlumno: "",
   });
+
   useEffect(() => {
-    console.log(profe);
     dispatch(getFecha());
   }, []);
 
-  console.log(reserva);
+  useEffect(() => {
+    setActivate(false);
+    if (reserva.fecha && reserva.hora) {
+      const reservaDate = reserva.fecha.split("-").join("/").split("/");
+      const currentDay = new Date().toLocaleDateString().split("/");
+
+      let day = Number(reservaDate[0]) > Number(currentDay[0]);
+      // verifica que el dia sea mayor al actual
+      let month = Number(reservaDate[1]) >= Number(currentDay[1]);
+      // verifica que el mes sea mayor o igual al actual
+      let year = Number(reservaDate[2]) >= Number(currentDay[2]);
+      // verifica queel año no sea menor sino que sea igual al actual y o mayor
+
+      if (day && month && year) {
+        setErrorDays(false);
+      } else {
+        setErrorDays(true);
+      }
+      
+    }
+    const data = {
+      emailProfesor: profe.email,
+      emailAlumno: alumno.email,
+      duration: reserva.hora,
+      day: reserva.fecha,
+    };
+    dispatch(setReservaProfe(data));
+    const DATAJSON = JSON.stringify(data);
+    localStorage.setItem("data-payment", DATAJSON);
+  }, [reserva.fecha, reserva.hora]);
+
+  useEffect(()=>{
+    let reservado= {};
+    Object.keys(profe).length !== 0 &&( reservado = profe.fechas.find(f=> f.fecha === reserva.fecha && f.hora === reserva.hora))
+  if(typeof(reservado) === "object"){
+    if(Object.keys(reservado).length !== 0){
+      setError(true)
+    }
+  } else {
+    setError(false)
+  }
+  
+  }, [reserva.fecha, reserva.hora])
 
   const handleHora = (e) => {
     e.preventDefault();
@@ -36,7 +84,7 @@ const Calendario = ({ profe }) => {
     });
   };
 
-  //   console.log(new Date("19-09-20").getMilliseconds());
+  // console.log(new Date("19-09-20").getMilliseconds());
 
   const handleFecha = (e) => {
     setReserva({
@@ -48,10 +96,11 @@ const Calendario = ({ profe }) => {
   const handleSubmitFecha = (e) => {
     e.preventDefault();
     dispatch(postFecha(reserva));
-    if (reserva.fecha && reserva.hora) {
+    if (!errorDays) {
       setActivate(true);
     }
   };
+
 
   return (
     <div>
@@ -82,6 +131,7 @@ const Calendario = ({ profe }) => {
         </div>
       </div>
       <h2>Tu reserva: </h2>
+
       <Table striped bordered hover>
         <thead>
           <tr>
@@ -101,12 +151,22 @@ const Calendario = ({ profe }) => {
 
       <div className="reserva w-100 justify-content-evenly flex-column">
         <button
-          disabled={reserva.fecha === "" || reserva.hora === ""}
+          disabled={error || errorDays || reserva.fecha === "" || reserva.hora === ""}
           onClick={(e) => handleSubmitFecha(e)}
         >
           Reservar
         </button>
         {activate && <StripePagos profe={profe} />}
+      </div>
+      <div>
+        {errorDays && (
+          <p className="text-center mt-3 p-2 text-danger">
+            La reserva no puede ser hoy ni un dia anterior al dia actual
+          </p>
+        )}
+      {
+        error && <p className="text-center mt-3 p-2 text-danger">Esta Fecha ya está reservada, elija otra</p>
+      }
       </div>
     </div>
   );

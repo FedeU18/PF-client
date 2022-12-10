@@ -17,9 +17,11 @@ import { MdOutlinePendingActions } from "react-icons/md";
 import { EditarAlumno } from "../EditarAlumno/EditarAlumno.jsx";
 import { clearAlumno } from "../../redux/Actions/Alumno.js";
 import { ProfeCard } from "../ProfeCard/Profecard.jsx";
+import LoaderPerfilStudent from "./LoaderPerfilStudent.jsx";
+import Table from "react-bootstrap/Table";
 
 export const AlumnoPerfil = (props) => {
-  console.log("desde alumno perfil ", props.id);
+  console.log("desde alumno perfil ", props);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [show, setShow] = useState(false);
@@ -27,12 +29,13 @@ export const AlumnoPerfil = (props) => {
   const [myFavProfe, setMyFavProfe] = useState([]);
   let valorImagen = "";
   let info = useSelector((state) => state.alumnos.alumno);
+
   const profes = useSelector((state) => state.profesores.profesores);
 
   useEffect(() => {
     setMyFavProfe([]);
     if (info.favourites && info.favourites.length > 0 && profes.length > 0) {
-      info.favourites.map((f) => {
+      info.favourites?.map((f) => {
         profes.map((p) => {
           if (p.id === f) {
             setMyFavProfe((prev) => [...prev, p]);
@@ -52,7 +55,7 @@ export const AlumnoPerfil = (props) => {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  const deleteAlumno = async () => {
+  const deleteOwnAlumno = async () => {
     const deleteAccount = window.confirm(
       "esta seguro de eliminar su cuenta de alumno"
     );
@@ -85,7 +88,9 @@ export const AlumnoPerfil = (props) => {
       },
       (error, result) => {
         if (!error && result && result.event === "success") {
-          dispatch(actionsAlumno.editAlumno({ picture: result.info.url }, props.id));
+          dispatch(
+            actionsAlumno.editAlumno({ picture: result.info.url }, props.id)
+          );
           setPict(result.info.url);
         }
       }
@@ -108,12 +113,13 @@ export const AlumnoPerfil = (props) => {
             <div>
               <div className="myperfilCont">
                 <div className="FotoPerfilACont">
-                  
-                    <img src={valor()} className="ProfilePictureAlum" />
-                   
-                    
-              
-                  <button className="button-17" role="button" onClick={() => handleOpenWidget()}>
+                  <img src={valor()} className="ProfilePictureAlum" />
+
+                  <button
+                    className="button-17"
+                    role="button"
+                    onClick={() => handleOpenWidget()}
+                  >
                     Alumno
                   </button>
                 </div>
@@ -165,6 +171,37 @@ export const AlumnoPerfil = (props) => {
                     size={24}
                   />
                 </div>
+                <div className="tabla-reservas">
+                  <Table striped hover variant="light">
+                    <thead>
+                      <tr>
+                        <th>Día</th>
+                        <th>Hora</th>
+                        <th>Profesor</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {info.fechas?.map((f) => {
+                        return f.profesors.map((p) => {
+                          return (
+                            <tr>
+                              <th>{f.fecha}</th>
+                              <th>{f.hora}</th>
+                              <th>
+                                <Link
+                                  className="link-hacia-el-profe"
+                                  to={"/profesores/" + p.id}
+                                >
+                                  {p.nombre + " " + p.apellido}
+                                </Link>
+                              </th>
+                            </tr>
+                          );
+                        });
+                      })}
+                    </tbody>
+                  </Table>
+                </div>
               </div>
             </div>
 
@@ -209,7 +246,7 @@ export const AlumnoPerfil = (props) => {
           </div>
         </div>
       ) : (
-        <h1>Cargando...</h1>
+        <LoaderPerfilStudent />
       )}
     </div>
   );
