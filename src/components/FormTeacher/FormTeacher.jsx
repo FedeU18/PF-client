@@ -386,8 +386,8 @@ const FormTeacher = ({ setMostrarProfe }) => {
                   }
                 >
                   {loader && (
-                    <div class="spinner-border spinner-border-sm" role="status" style={{marginRight:".4rem"}}>
-                      <span class="visually-hidden"></span>
+                    <div className="spinner-border spinner-border-sm" role="status" style={{marginRight:".4rem"}}>
+                      <span className="visually-hidden"></span>
                     </div>
                   )}
                   Registrate
