@@ -6,7 +6,6 @@ import {
 } from "firebase/auth";
 import setUserData from "./setUserData";
 import getCurrentUser from "./getCurrentUser";
-import { useDispatch } from "react-redux";
 import { postAlumno } from "../../redux/Actions/Alumno";
 import { postProfesor } from "../../redux/Actions/Profesor";
 import logOut from "./logOut";
@@ -72,7 +71,7 @@ export default async function loginWithGoogle(form, dispatch) {
       if (!dataFirestore) {
         await deleteCurrentUser();
         await logOut(auth);
-        return "user no existe"
+        return "user no existe";
       }
       if (dataFirestore) {
         const dataFirestoreJSON = JSON.stringify(dataFirestore);
