@@ -6,6 +6,7 @@ import { Landing } from "./view/Landing/Landing";
 import { Perfil } from "./view/Perfil/Perfil";
 import { Error } from "./view/Error/error";
 import { About } from "./view/About/About";
+import {TodasNotificaciones} from "./view/Notificaciones/Notificaciones"
 import ProtectedRoute from "./Authentication/protection/ProtectedRoute";
 import PublicRoutes from "./Authentication/protection/PublicRoutes";
 import ForgotPassword from "./view/ForgotPassword/ForgotPassword";
@@ -27,6 +28,7 @@ function App() {
           <Route path="/home" element={<Home />} />
           <Route path="/profile" element={<Perfil />} />
           <Route path="/about" element={<About />} />
+          <Route path="/notificaciones" element={<TodasNotificaciones/>}/>
           <Route path="/profesores/:id" element={<Detalle />} />
           <Route path="/editar/:id" element={<PerfilProfesor />} />
           <Route path="/payments" element={<StripePagos />} />

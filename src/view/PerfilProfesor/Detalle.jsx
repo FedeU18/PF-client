@@ -111,7 +111,7 @@ export const Detalle = () => {
               name={"Calendario"}
               onClick={handleChangeOp}
             >
-              Calendario
+              Reservar
             </button>
             <br></br>
             <button
@@ -124,13 +124,15 @@ export const Detalle = () => {
               Reseñas
             </button>
             <br></br>
-            <button
+            
+              <button
               className={`${current === "Chat" ? "opcionEleDe" : "opnoEleDe"}`}
               name={"Chat"}
               onClick={handleChangeOp}
             >
-              ...
+              Contactar
             </button>
+         
             <br></br>
           </div>
         </div>
@@ -260,7 +262,8 @@ export const Detalle = () => {
             </div>
           )}
           {current === "Chat" && (
-            <div className="subContDe">
+            <div className="subContDe subContDecontChats ">
+              <div className="subContDEChats">
               {userData.email === details.email ? (
                 <ChatProfesor
                   socket={socket}
@@ -275,8 +278,10 @@ export const Detalle = () => {
                   receptor={details.nombre}
                 />
               ) : (
-                <h1>holaaaa</h1>
+                <h1>No esta disponible</h1>
               )}
+
+              </div>
             </div>
           )}
         </div>

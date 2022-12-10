@@ -6,8 +6,9 @@ const stripePromise = loadStripe("pk_test_51LDCAnHz183QdnFrZqtqGPkLkpDukWxoBnnlW
 
 const StripePagos = ({profe}) => {
 
-
+  const precio = Number(profe.precio + '00')
   const pagandoProfesor = async () => {
+    
     const profesorCompra = {
       price_data: {
         currency: "usd",
@@ -15,7 +16,7 @@ const StripePagos = ({profe}) => {
           name: profe.nombre,
           images: [profe.imagen],
         },
-        unit_amount: profe.precio, // 1000 => 10 dolars // 4000 40 dollars
+        unit_amount: precio, // 1000 => 10 dolars // 4000 40 dollars
       },
       quantity: 1,
     }

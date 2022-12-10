@@ -6,6 +6,7 @@ import alumnosReducer from "./alumnosReducer";
 import comentariosReducer from "./comentariosReducer";
 import fechasReducer from "./fechaReducer";
 import certificadosReducer from "./certificadosReducer"
+import notificacionesReducer from "./notificacionesReducer";
 
 const rootReducer = combineReducers({
   profesores: profesoresReducer,
@@ -15,6 +16,7 @@ const rootReducer = combineReducers({
   comentarios:comentariosReducer,
   fechas: fechasReducer,
   certificados:certificadosReducer,
+  notificaciones:notificacionesReducer,
 });
 
 export default rootReducer;

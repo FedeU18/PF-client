@@ -145,30 +145,49 @@ const EditarProfesor= ({show, profesor,handleClose})=>{
                     </button> 
               </div>
 
-              <div className="nameAlumInptChangeCont">
-                {useProfesor.imagen===false?(
+                            <div className="nameAlumInptChangeCont">
+                {useProfesor.descripcion===false?(
                     <div>
-                       Picture
+                        {profesor.descripcion}
                     </div>):(
                     <div>
                         
-                        <input type='text' 
-                                placeholder={profesor.imagen+'...'}
-                                name="imagen"
-                                onChange={(e) => actualizarProfesor(e)}
-                                />
+                        <input type='text'
+                                 placeholder={profesor.descripcion+'...'}
+                                 name="descripcion"
+                                onChange={(e) => actualizarProfesor(e)}/>
                     </div>)} 
                     <button className="btnEditProAlu">
-                        <AiOutlineEdit onClick={()=>{setuseProfesor({...useProfesor,imagen:!useProfesor.imagen})}}/>
+                        <AiOutlineEdit onClick={()=>{setuseProfesor({...useProfesor,descripcion:!useProfesor.descripcion})}}/>
+                    </button> 
+              </div>
+              <div className="nameAlumInptChangeCont">
+                {useProfesor.descripcion2===false?(
+                    <div>
+                        
+                           ¿Porque deberian elegirme? 
+                        
+                    </div>):(
+                    <div>
+                        
+                        <textarea type='text'
+                                 placeholder={profesor.descripcion2+'...'}
+                                 name="descripcion2"
+                                onChange={(e) => actualizarProfesor(e)}/>
+                              
+                    </div>)} 
+                    <button className="btnEditProAlu">
+                        <AiOutlineEdit onClick={()=>{setuseProfesor({...useProfesor,descripcion2:!useProfesor.descripcion2})}}/>
                     </button> 
               </div>
 
               <div className="nameAlumInptChangeCont">
                 {useProfesor.country===false?(
                     <div>
+                      <br></br>
                         {profesor.country.name}
                     </div>):(
-                    <div>
+                    <div className="contareglarPsiases">
                         <div className="container mt-3  containerPaisInpt">
                     
 
@@ -193,41 +212,7 @@ const EditarProfesor= ({show, profesor,handleClose})=>{
                     </button> 
               </div>
 
-              <div className="nameAlumInptChangeCont">
-                {useProfesor.descripcion===false?(
-                    <div>
-                        {profesor.descripcion}
-                    </div>):(
-                    <div>
-                        
-                        <input type='text'
-                                 placeholder={profesor.descripcion+'...'}
-                                 name="descripcion"
-                                onChange={(e) => actualizarProfesor(e)}/>
-                    </div>)} 
-                    <button className="btnEditProAlu">
-                        <AiOutlineEdit onClick={()=>{setuseProfesor({...useProfesor,descripcion:!useProfesor.nombre})}}/>
-                    </button> 
-              </div>
-              <div className="nameAlumInptChangeCont">
-                {useProfesor.descripcion2===false?(
-                    <div>
-                        {profesor.descripcion2 ===null || profesor.descripcion===''?(
-                        <span>
-                           ¿Porque deberian elegirme? 
-                        </span>):(<>{profesor.descripcion2}</>)}
-                    </div>):(
-                    <div>
-                        
-                        <textarea type='text'
-                                 placeholder={profesor.descripcion2+'...'}
-                                 name="descripcion2"
-                                onChange={(e) => actualizarProfesor(e)}/>
-                    </div>)} 
-                    <button className="btnEditProAlu">
-                        <AiOutlineEdit onClick={()=>{setuseProfesor({...useProfesor,descripcion2:!useProfesor.descripcion2})}}/>
-                    </button> 
-              </div>
+
             </div>
           ):(
             <div className={`opEditarPErfContent ${opcionConf===2 ?'ContEditSElA':'contNoEditSElA'}`}>

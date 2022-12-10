@@ -65,6 +65,7 @@ const Calendario = ({ profe }) => {
           maxDetail="month"
         />
       </div>
+      <div className="reservasCont">
       <div className="all-horarios">
         <div>
           <h2>Horario: </h2>
@@ -81,32 +82,35 @@ const Calendario = ({ profe }) => {
           </button>
         </div>
       </div>
-      <h2>Tu reserva: </h2>
-      <Table striped bordered hover>
-        <thead>
-          <tr>
-            <td>Fecha</td>
-            <td>Hora</td>
-            <td>Precio</td>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>{reserva.fecha}</td>
-            <td>{reserva.hora}</td>
-            <td>{profe.precio + "$"}</td>
-          </tr>
-        </tbody>
-      </Table>
+      
 
-      <div className="reserva w-100 justify-content-evenly flex-column">
-        <button
-          disabled={reserva.fecha === "" || reserva.hora === ""}
-          onClick={(e) => handleSubmitFecha(e)}
-        >
-          Reservar
-        </button>
-        {activate && <StripePagos profe={profe} />}
+        <h2>Tu reserva: </h2>
+        <Table striped bordered hover>
+          <thead>
+            <tr>
+              <td>Fecha</td>
+              <td>Hora</td>
+              <td>Precio</td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>{reserva.fecha}</td>
+              <td>{reserva.hora}</td>
+              <td>{profe.precio + "$"}</td>
+            </tr>
+          </tbody>
+        </Table>
+
+        <div className="reserva w-100 justify-content-evenly flex-column">
+          <button
+            disabled={reserva.fecha === "" || reserva.hora === ""}
+            onClick={(e) => handleSubmitFecha(e)}
+          >
+            Reservar
+          </button>
+          {activate && <StripePagos profe={profe} />}
+        </div>
       </div>
     </div>
   );

@@ -60,7 +60,7 @@ export const ProfeCard=({id,nombre,descripcion,imagen,precio,materias,puntuacion
 
   return (
    
-   <Card style={{ width: '18rem' , margin:'16px' }}>
+   <Card style={{ width: '18rem' , margin:'16px' ,color:'black'}}>
      
      <Link to={"/profesores/" + id}>
        <img  src={imagen} className='cardAboutContImg' />

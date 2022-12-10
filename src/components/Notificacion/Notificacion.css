@@ -1,0 +1,105 @@
+.contComentOnDe{
+    width:34rem;
+    min-height: 14rem;  
+    padding-bottom: 5%;  
+}
+
+.btnoverlay{
+    all:unset;
+    width: 100%;
+}
+.tooltip-inner {
+    max-width: none; 
+}
+
+.denunciadpicComent{
+    height: 70px;    
+    width: 70px;
+    object-fit: cover;
+    border-radius:50% ;
+    border: 3px solid white;
+}
+
+.comentDemandado{
+    width: 80%;
+    min-height: 50%;
+    margin-left: 10%;
+    margin-top: 1%;
+    margin-bottom: 2rem;
+    display: grid;
+    grid-template-columns: 24% 76%;
+}
+
+.toupeerCSpan{
+    text-transform: capitalize;
+}
+
+.bolderSpan{
+    font-weight: bolder;
+    font-size: 16px;
+}
+
+.brigterSpa{
+    color: rgb(153, 153, 153);
+}
+
+.btnDeBanComent{
+    margin-left: 2%;
+  background: #5E5DF0;
+  border-radius: 999px;
+  box-shadow: #5E5DF0 0 10px 20px -10px;
+  box-sizing: border-box;
+  color: #FFFFFF;
+  cursor: pointer;
+  font-family: Inter,Helvetica,"Apple Color Emoji","Segoe UI Emoji",NotoColorEmoji,"Noto Color Emoji","Segoe UI Symbol","Android Emoji",EmojiSymbols,-apple-system,system-ui,"Segoe UI",Roboto,"Helvetica Neue","Noto Sans",sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 24px;
+  opacity: 1;
+  outline: 0 solid transparent;
+  padding: 8px 18px;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  width: 40%;
+  word-break: break-word;
+  border: 0;
+}
+
+.btnDeBanComentDis{
+    cursor: not-allowed;
+    background: #a0a0f8;
+    box-shadow: #9494e0 0 5px 10px -5px;
+}
+.btnsEliBanCont{
+    width: 100%;
+    margin-left: 8%;
+    margin-top: 2%;
+}
+.comentNotAba{
+    color: rgb(105, 104, 104);
+    font-style: italic;
+}
+
+.dropContNoti .dropdown-toggle::after {
+    color: transparent;
+  }
+
+  .dropContNoti{
+    padding-left: 90%;
+    font-size: 20px;
+    font-weight: bolder;
+    color: rgb(83, 83, 83);
+  }
+
+  .inptrazon{
+   border: 0.2px solid rgb(156, 154, 154);
+   border: 2px solid black;
+  }
+
+  .fechinpt{   
+    border: 2px solid black;
+    border-radius: 5px;
+    font-size: 20px;
+    text-align: center;
+  }

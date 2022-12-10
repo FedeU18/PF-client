@@ -142,23 +142,7 @@ export const EditarAlumno = ({show, handleClose,alumno}) => {
                     </button> 
               </div>
 
-              <div className="nameAlumInptChangeCont">
-                {userAlumno.picture===false?(
-                    <div>
-                        Picture
-                    </div>):(
-                    <div>
-                        
-                        <input type='text' 
-                                placeholder={alumno.picture+'...'}
-                                name="picture"
-                                onChange={(e) => objActualizarAlumno(e)}
-                                />
-                    </div>)} 
-                    <button className="btnEditProAlu">
-                        <AiOutlineEdit onClick={()=>{setUserAlumno({...userAlumno,picture:!userAlumno.picture})}}/>
-                    </button> 
-              </div>
+              
 
               <div className="nameAlumInptChangeCont">
                 {userAlumno.country===false?(

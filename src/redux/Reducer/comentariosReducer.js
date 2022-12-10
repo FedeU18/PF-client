@@ -8,11 +8,17 @@ import {GET_COMENT,
 
 const initialState = {
 comentarios: [],
-comentario:{}
+comentario:{},
+loading: false,
 };
 
 const comentariosReducer = (state = initialState, action) => {
 switch (action.type) {
+  case "LOADING":
+      return{
+        ...state,
+        loading: true
+      };
 case GET_COMENT:
   return {
     ...state,
@@ -41,6 +47,7 @@ case EDITAR_COMENT:
 case DELETE_COMENT:
   return{
     ...state,
+    loading: false
     
   }
 default:

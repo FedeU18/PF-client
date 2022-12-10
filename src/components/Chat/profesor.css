@@ -4,7 +4,6 @@
   align-items: center;
   padding: 20px;
   background: #fff;
-
   border-radius: 30px;
 }
 
@@ -22,7 +21,8 @@
 
 #wrapper {
   display: flex;
-  width: 750px;
+  width: 700px;
+  
 }
 .col-4 {
   flex: 4;

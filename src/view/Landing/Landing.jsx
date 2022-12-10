@@ -429,7 +429,7 @@ export const Landing = () => {
         
 
 
-               <div className="w-100 vh-100 mt-5">
+               <div id='testimonios' className="w-100 vh-100 mt-5">
         <div className="">
              <div className="text-center">
                 <h1>TESTIMONIOS</h1>
