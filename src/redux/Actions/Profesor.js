@@ -29,7 +29,8 @@ export function postProfesor(payload) {
     axios
       .post(`/profesores`, payload)
       .then((res) => {
-        dispatch({ type: POST_PROFESORES, payload: prof });
+        dispatch({ type: POST_PROFESORES, payload: res });
+        console.log(res)
         dispatch(allProfes());
       })
       .catch((error) => {

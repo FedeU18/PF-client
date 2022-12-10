@@ -33,7 +33,7 @@ const FormGoogle = ({ mostrarStudent, setMostrarStudent }) => {
   const [repeat, setRepeat] = useState("");
   const [loaderGoogle, setLoaderGoogle] = useState(false);
   const [formGoogle, setFormGoogle] = useState(initialGoogleForm);
-  const { username, name, lastname, age } = formGoogle;
+  const { username, name, lastname, age, country } = formGoogle;
   const [errors, setErrors] = useState(initialGoogleErrors);
   const { usernameErr, nameErr, lastnameErr, ageErr, emailErr, rolErr } =
     errors;
@@ -52,6 +52,7 @@ const FormGoogle = ({ mostrarStudent, setMostrarStudent }) => {
       setTimeout(() => {
         setRepeat("");
       }, 4000);
+      setLoaderGoogle(false)
       return;
     }
 
@@ -60,6 +61,7 @@ const FormGoogle = ({ mostrarStudent, setMostrarStudent }) => {
       setTimeout(() => {
         setRepeat("");
       }, 4000);
+      setLoaderGoogle(false)
       return;
     }
 
@@ -68,6 +70,7 @@ const FormGoogle = ({ mostrarStudent, setMostrarStudent }) => {
       setTimeout(() => {
         setRepeat("");
       }, 4000);
+      setLoaderGoogle(false)
       return;
     }
 
@@ -79,6 +82,7 @@ const FormGoogle = ({ mostrarStudent, setMostrarStudent }) => {
         console.error(error);
       }
     }
+    setLoaderGoogle(false)
   };
 
   const handleChange = (e) => {
