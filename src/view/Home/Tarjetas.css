@@ -1,4 +1,4 @@
-/* .caja{
+ .caja{
     
     background-color: #cedaf2;
     width:300px;
@@ -12,6 +12,7 @@
 
 }
 .caja:hover{
+background-color: #368abf;
 box-shadow: 2px 2px 12px rgba(0,0,0,0.1);
 cursor:pointer;
 }
@@ -31,8 +32,16 @@ font-size: 25px;
 
 
 .contenedorDecajas{
-position: relative;
-display: grid;
-grid-template-columns: auto auto auto auto;
-grid-gap: 10px;
+    position: relative;
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    grid-gap: 10px;
 /*background-color: #2196F3;*/
+}
+
+/*-----------------------------------------*/
+.fab-contenedor-botones-materias{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}

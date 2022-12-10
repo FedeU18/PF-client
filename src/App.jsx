@@ -6,6 +6,7 @@ import { Landing } from "./view/Landing/Landing";
 import { Perfil } from "./view/Perfil/Perfil";
 import { Error } from "./view/Error/error";
 import { About } from "./view/About/About";
+import  ProfesoresList  from "./view/Home/ProfesoresList"
 import ProtectedRoute from "./Authentication/protection/ProtectedRoute";
 import PublicRoutes from "./Authentication/protection/PublicRoutes";
 import ForgotPassword from "./view/ForgotPassword/ForgotPassword";
@@ -25,6 +26,7 @@ function App() {
 
         <Route path="/" element={<ProtectedRoute />}>
           <Route path="/home" element={<Home />} />
+          <Route path="/home/:id" element={<ProfesoresList/>}/>
           <Route path="/profile" element={<Perfil />} />
           <Route path="/about" element={<About />} />
           <Route path="/profesores/:id" element={<Detalle />} />

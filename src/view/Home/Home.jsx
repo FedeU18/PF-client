@@ -19,9 +19,13 @@ import { auth } from "../../Authentication/firebase/credenciales";
 import autentication from "../../Authentication/functions/user";
 import logOut from "../../Authentication/functions/logOut";
 
-// import MateriasBtn from "./MateriasBtn.jsx";
+
+
+import MateriasBtn from "./MateriasBtn.jsx";
 
 import Loader from "../../components/Loader/Loader";
+import FooterH from "./FooterH.jsx";
+
 
 export const Home = () => {
   const [open, setOpen] = useState(false);
@@ -135,8 +139,9 @@ export const Home = () => {
           <ProfeCards profes={profes} />
 
 
-          {/* <MateriasBtn/> */}
-
+          <MateriasBtn/>
+       
+          
         </div>
       ) : (
         <div
@@ -153,12 +158,15 @@ export const Home = () => {
         style={{ margin: "0 auto" }}
       >
         <hr />
-        <footer>
+        {/*<footer>
           <Link to="/about" className="aFootAbout">
             About
           </Link>
         </footer>
+      */}
       </div>
+      <FooterH/>
+   
     </div>
   );
 };
