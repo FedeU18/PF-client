@@ -3,7 +3,7 @@ import MessageError from "./MessageError";
 import { useState } from "react";
 import "./Landing.css";
 import img from "./img/google.png";
-import Carousel from 'react-bootstrap/Carousel';
+import Carousel from "react-bootstrap/Carousel";
 import Container from "react-bootstrap/Container";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
@@ -11,29 +11,29 @@ import profe3 from "./img/profe3.png";
 import profe2 from "./img/profe2.png";
 import profe from "./img/profe1.png";
 import imagen from "./img/img1.jpeg";
-import arg from "./img/arge.jpg"
+import arg from "./img/arge.jpg";
 import vene from "./img/vene.png";
 import peru from "./img/peru.png";
 import imagen2 from "./img/img2.jpeg";
 import imagen3 from "./img/img3.jpeg";
 import perfil from "./img/perfil.jpg";
-import perfil2 from "./img/perfil2.jpg"
-import perfil3 from "./img/perfil3.jpg"
-import {FcCheckmark} from "react-icons/fc";
-import {Link} from "react-router-dom"; //arreglar lo de link 
-import {Link as LinkS } from "react-scroll";
+import perfil2 from "./img/perfil2.jpg";
+import perfil3 from "./img/perfil3.jpg";
+import { FcCheckmark, FcGoogle } from "react-icons/fc";
+import { Link } from "react-router-dom"; //arreglar lo de link
+import { Link as LinkS } from "react-scroll";
 import pizarron from "./img/pizarron.png";
 import Footer from "./Footer";
-import { FcGlobe } from "react-icons/fc"
+import { FcGlobe } from "react-icons/fc";
 import { FaPencilAlt } from "react-icons/fa";
 import { FaCheck } from "react-icons/fa";
 import LoginWithEmailPassword from "../../Authentication/functions/loginWithEmailAndPassword";
 import { useNavigate } from "react-router-dom";
-import logo from './img/1.png'
-import Tarjetas from "./Tarjetas.jsx"
-
+import logo from "./img/1.png";
+import Tarjetas from "./Tarjetas.jsx";
 
 export const Landing = () => {
+  const [loader, setLoader] = useState(false);
   const [messageError, setMessageError] = useState(false);
   const [globalMessage, setGlobalMessage] = useState("");
   const navigate = useNavigate();
@@ -71,36 +71,66 @@ export const Landing = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoader(true);
     const register$ = await LoginWithEmailPassword(input.email, input.password);
     if (typeof register$ === "string") {
+      setLoader(false);
       setGlobalMessage(register$);
       setTimeout(() => {
         setGlobalMessage("");
       }, 3000);
+      return;
     } else {
       navigate("/home");
+      setLoader(false);
     }
   };
 
   return (
     <>
       <div className="fondo position-relative">
-       
-        <div className="nav-scroll gap-4" >
-        <LinkS to="materias" spy={true} smooth={true} offset={50} duration={500} className="uno">
-        Materias
-        </LinkS>
-        <LinkS to="paises" spy={true} smooth={true} offset={50} duration={500} className="dos">
-        Paises
-        </LinkS>
-        <LinkS to="profesores" spy={true} smooth={true} offset={50} duration={500} className="tres">
-        Profesores
-        </LinkS>
-        <LinkS to="testimonios" spy={true} smooth={true} offset={50} duration={500} className="cuatro">
-        Testimonios
-        </LinkS>
+        <div className="nav-scroll gap-4">
+          <LinkS
+            to="materias"
+            spy={true}
+            smooth={true}
+            offset={50}
+            duration={500}
+            className="uno"
+          >
+            Materias
+          </LinkS>
+          <LinkS
+            to="paises"
+            spy={true}
+            smooth={true}
+            offset={50}
+            duration={500}
+            className="dos"
+          >
+            Paises
+          </LinkS>
+          <LinkS
+            to="profesores"
+            spy={true}
+            smooth={true}
+            offset={50}
+            duration={500}
+            className="tres"
+          >
+            Profesores
+          </LinkS>
+          <LinkS
+            to="testimonios"
+            spy={true}
+            smooth={true}
+            offset={50}
+            duration={500}
+            className="cuatro"
+          >
+            Testimonios
+          </LinkS>
         </div>
-
 
         <div>
           {messageError && <MessageError />}
@@ -157,8 +187,18 @@ export const Landing = () => {
                             onClick={(e) => handleSubmit(e)}
                             title="Ingresar"
                             name="Ingresar"
+                            className="fw-bolder"
                           >
                             Login
+                            {loader && (
+                              <div
+                                class="spinner-border spinner-border-sm text-dark"
+                                role="status"
+                                style={{ marginLeft: "1rem" }}
+                              >
+                                <span class="visually-hidden"></span>
+                              </div>
+                            )}
                           </button>
                         </form>
                         {globalMessage && (
@@ -175,17 +215,25 @@ export const Landing = () => {
                             ¿No tienes Cuenta? Registrate
                           </Link>
                         </div>
-                        <div>
-                          <button type="button" onClick={loginGoogle}>
-                            google
-                          </button>
+                        <div className="d-flex justify-content-center">
+                          <div style={{ maxWidth: "50px" }}>
+                            <button
+                              type="button"
+                              onClick={loginGoogle}
+                              className="btn bg-light fs-5"
+                            >
+                              <FcGoogle style={{ fontSize: "1.8rem" }} />
+                            </button>
+                          </div>
                         </div>
                       </div>
                     </div>
                   </div>
                 </Col>
                 <Col className="text">
-                  <h1 className="title fw-bolder">Encuentra un profesor particular</h1>
+                  <h1 className="title fw-bolder">
+                    Encuentra un profesor particular
+                  </h1>
                   <div>
                     Find your teacher fue creado como una manera
                     <br></br>
@@ -246,134 +294,125 @@ export const Landing = () => {
       {/* Michael -------- */}
 
       {/* fondo-3  bg-image-fondo-3*/}
-      <div className="w-80 vh-80 d-flex justify-content-center fondo-3" id="materias">
-           
-
-            <div className="display-flex justify-content.">
-               <div
+      <div
+        className="w-80 vh-80 d-flex justify-content-center fondo-3"
+        id="materias"
+      >
+        <div className="display-flex justify-content.">
+          <div
             data-aos="fade-down"
             data-aos-easing="linear"
             data-aos-duration="1500"
             className="text-center"
-            >
-            <h1 className="fw-bolder d-flex justify-content-center text-aling-center">Nuestras Materias</h1>
-              </div>
-           
-             
-             <div className="d-flex justify-content-center flex-wrap gap-2 altura-paises align-content-center maximo-ancho">
-              <h5 className="">
-                <FcCheckmark/> Algebra
-              </h5>
-              <h5 className="">
-                <FcCheckmark/> Aritmetica
-              </h5>
-              <h5 className="">
-                <FcCheckmark/> Geometria
-              </h5>
-              <h5 className="">
-                <FcCheckmark/> Trigonometria
-              </h5>
-              <h5 className="">
-                <FcCheckmark/> Biologia
-              </h5>
-              <h5 className="">
-                <FcCheckmark/> Quimica
-              </h5>
-              <h5 className="">
-                <FcCheckmark/> Fisica
-              </h5>
-              <h5 className="">
-                <FcCheckmark/>
-                 Geografia
-              </h5>
-              <h5 className="">
-                <FcCheckmark/>
-                Guatemala
-              </h5>
-              <h5 className="">
-                <FcCheckmark/> Economia 
-              </h5>
-              <h5 className="">
-                <FcCheckmark/> Historia
-              </h5>
-              <h5 className="">
-                <FcCheckmark/>
-                Arte
-              </h5>
+          >
+            <h1 className="fw-bolder d-flex justify-content-center text-aling-center">
+              Nuestras Materias
+            </h1>
+          </div>
 
-              <h5 className="">
-                <FcCheckmark/>
-                Musica
-              </h5>
-              <h5 className="">
-                <FcCheckmark/>
-                Literatura
-              </h5>
-              <h5 className="">
-                <FcCheckmark/> Lenguaje
-              </h5>
-              <h5 className="">
-                <FcCheckmark/>
-                 Filosofia
-              </h5>
-              <h5 className="">
-                <FcCheckmark/>
-                Psicologia
-              </h5>
-              <h5 className="">
-                <FcCheckmark/> Ingles
-              </h5>
-              <h5 className="">
-                <FcCheckmark/> Computacion
-              </h5>
-           
-             </div>
- 
-            </div>
+          <div className="d-flex justify-content-center flex-wrap gap-2 altura-paises align-content-center maximo-ancho">
+            <h5 className="">
+              <FcCheckmark /> Algebra
+            </h5>
+            <h5 className="">
+              <FcCheckmark /> Aritmetica
+            </h5>
+            <h5 className="">
+              <FcCheckmark /> Geometria
+            </h5>
+            <h5 className="">
+              <FcCheckmark /> Trigonometria
+            </h5>
+            <h5 className="">
+              <FcCheckmark /> Biologia
+            </h5>
+            <h5 className="">
+              <FcCheckmark /> Quimica
+            </h5>
+            <h5 className="">
+              <FcCheckmark /> Fisica
+            </h5>
+            <h5 className="">
+              <FcCheckmark />
+              Geografia
+            </h5>
+            <h5 className="">
+              <FcCheckmark />
+              Guatemala
+            </h5>
+            <h5 className="">
+              <FcCheckmark /> Economia
+            </h5>
+            <h5 className="">
+              <FcCheckmark /> Historia
+            </h5>
+            <h5 className="">
+              <FcCheckmark />
+              Arte
+            </h5>
 
-             <div data-aos="zoom-out-left" className="pizarron">
-            <img className="img-de-la-seño-con-laptop" src={pizarron} />
-             </div>
+            <h5 className="">
+              <FcCheckmark />
+              Musica
+            </h5>
+            <h5 className="">
+              <FcCheckmark />
+              Literatura
+            </h5>
+            <h5 className="">
+              <FcCheckmark /> Lenguaje
+            </h5>
+            <h5 className="">
+              <FcCheckmark />
+              Filosofia
+            </h5>
+            <h5 className="">
+              <FcCheckmark />
+              Psicologia
+            </h5>
+            <h5 className="">
+              <FcCheckmark /> Ingles
+            </h5>
+            <h5 className="">
+              <FcCheckmark /> Computacion
+            </h5>
+          </div>
+        </div>
 
+        <div data-aos="zoom-out-left" className="pizarron">
+          <img className="img-de-la-seño-con-laptop" src={pizarron} />
+        </div>
       </div>
 
-
-          
-      
-
-<div>
-    <br></br>
-</div>
-
+      <div>
+        <br></br>
+      </div>
 
       {/* fondo 4 */}
 
-
-
-      <div className="cuarto-fondo w-100 vh-100 p-3 d-flex justify-content-center " id="profesores" >
-             
-      {/* <div class="custom-shape-divider-top-1670175764">
+      <div
+        className="cuarto-fondo w-100 vh-100 p-3 d-flex justify-content-center "
+        id="profesores"
+      >
+        {/* <div class="custom-shape-divider-top-1670175764">
          <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
          <path d="M1200 0L0 0 892.25 114.72 1200 0z" class="shape-fill"></path>
         </svg>
      </div> */}
 
         <div className="d-flex flex-column justify-content-center">
-   
-            <div className="forma" data-aos="zoom-out-left">
-            </div>
-            <div className="forma2" data-aos="zoom-out-left">
-            </div>
-            <div className="forma3" data-aos="zoom-out-left">
-            </div>
+          <div className="forma" data-aos="zoom-out-left"></div>
+          <div className="forma2" data-aos="zoom-out-left"></div>
+          <div className="forma3" data-aos="zoom-out-left"></div>
 
-
-           <div className="cuadrado"  data-aos="flip-left"
-               data-aos-easing="ease-out-cubic"
-               data-aos-duration="2000">
+          <div
+            className="cuadrado"
+            data-aos="flip-left"
+            data-aos-easing="ease-out-cubic"
+            data-aos-duration="2000"
+          >
             <img src={logo} alt="" />
-           </div>
-
+          </div>
 
           <div>
             <h1 className="text-center fw-bolder mb-5">
@@ -382,32 +421,29 @@ export const Landing = () => {
           </div>
           <div className="d-flex flex-wrap align-items-center justify-content-center gap-4">
             <div data-aos="zoom-out-right">
-              
               <Carousel className="carousel rounded-4 ">
-      <Carousel.Item>
-        <img
-          className="d-block w-100"
-          src={profe}
-          alt="First slide"
-        />
-        
-      </Carousel.Item>
-      <Carousel.Item>
-        <img
-          className="d-block w-100"
-          src={profe2}
-          alt="Second slide"
-        />
-      </Carousel.Item>
-      <Carousel.Item>
-        <img
-          className="d-block w-100"
-          src={profe3}
-          alt="Third slide"
-        />
-      </Carousel.Item>
-            </Carousel>
-            
+                <Carousel.Item>
+                  <img
+                    className="d-block w-100"
+                    src={profe}
+                    alt="First slide"
+                  />
+                </Carousel.Item>
+                <Carousel.Item>
+                  <img
+                    className="d-block w-100"
+                    src={profe2}
+                    alt="Second slide"
+                  />
+                </Carousel.Item>
+                <Carousel.Item>
+                  <img
+                    className="d-block w-100"
+                    src={profe3}
+                    alt="Third slide"
+                  />
+                </Carousel.Item>
+              </Carousel>
             </div>
             <div className="text-light rounded-2 p-4 como-dar-clases-particulares">
               <h5>
@@ -421,17 +457,15 @@ export const Landing = () => {
           </div>
         </div>
       </div>
-               {/* ////testimonios */}
-
- 
-        
+      {/* ////testimonios */}
 
 
-               <div id='testimonios' className="w-100 vh-100 mt-5">
+      <div className="w-100 vh-100 mt-5">
+
         <div className="">
-             <div className="text-center">
-                <h1>TESTIMONIOS</h1>
-              </div>
+          <div className="text-center">
+            <h1>TESTIMONIOS</h1>
+          </div>
           <div className="d-flex gap-4 flex-wrap justify-content-center mt-5">
             <div data-aos="zoom-out-right">
               <img className="foto-fondo-2" src={arg} />
@@ -445,18 +479,6 @@ export const Landing = () => {
           </div>
         </div>
       </div>
-
-
-
-
-
-
-
-
-    
-      
-
-
 
       {/* <div className="d-flex gap-4 flex-wrap justify-content-center mt-5 " id="testimonios" >
          
@@ -568,8 +590,8 @@ export const Landing = () => {
         </div>
       </div>
       */}
-     
-<Tarjetas/>
+
+      <Tarjetas />
       {/* fondo 5 */}
       <div className="quinto-fondo vh-100 w-100">
         <div className="custom-shape-divider-top-1669860789">
@@ -588,7 +610,7 @@ export const Landing = () => {
 
         <div className="mucho-margin text-light" id="paises">
           <h1 className="text-center mt-5">
-            <FcGlobe/> Nuestros Paises
+            <FcGlobe /> Nuestros Paises
           </h1>
           <div>
             <div className="d-flex justify-content-center flex-wrap gap-3 altura-paises align-content-center maximo-ancho">
@@ -647,13 +669,10 @@ export const Landing = () => {
           </div>
         </div>
       </div>
-     
-     <div className="">
-     <Footer/>
-     </div>
 
- 
-
+      <div className="">
+        <Footer />
+      </div>
     </>
   );
 };
