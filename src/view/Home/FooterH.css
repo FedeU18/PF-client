@@ -1,0 +1,21 @@
+.fab-footer-container{
+    background: #5591C5;
+  }
+  .fab-footer{
+    display: flex;
+      justify-content: space-around;
+  }
+  #fab-col{
+    /*background-color: red;*/
+    width: 5px;
+  }
+  .fab-h1{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .fab-img-footer{
+  height: 100px;
+    width:100px;
+  }
+  

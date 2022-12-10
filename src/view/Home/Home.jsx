@@ -25,9 +25,13 @@ import Badge from "react-bootstrap/Badge";
 import Button from "react-bootstrap/Button";
 import { ChatProfe } from "../../components/Chat/chatProfe";
 
-// import MateriasBtn from "./MateriasBtn.jsx";
+
+
+import MateriasBtn from "./MateriasBtn.jsx";
 
 import Loader from "../../components/Loader/Loader";
+import FooterH from "./FooterH.jsx";
+
 
 export const Home = () => {
   const { userData } = userAuthentication();
@@ -165,6 +169,11 @@ export const Home = () => {
             <BotonChats mostrarChatUsers={mostrarChatUsers} />
           )}
 
+
+          <MateriasBtn/>
+       
+          
+
           {chatUsers && (
             <ChatProfe
               usuariosChat={usuariosChat}
@@ -173,6 +182,7 @@ export const Home = () => {
               canal={profesor.id}
             />
           )}
+
         </div>
       ) : (
         <div
@@ -187,12 +197,18 @@ export const Home = () => {
         className="d-flex flex-column align-items-center"
         style={{ margin: "0 auto" }}
       >
-        {/* <footer>
+
+        <hr />
+        {/*<footer>
           <Link to="/about" className="aFootAbout">
             About
           </Link>
-        </footer> */}
+        </footer>
+      */}
+
       </div>
+      <FooterH/>
+   
     </div>
   );
 };
