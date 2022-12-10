@@ -85,14 +85,11 @@ const FormStudent = ({ setMostrarStudent }) => {
 
     if (username === "username") {
       const allUsers = [...profesores, ...alumnos];
-      console.log(allUsers);
 
       const noRepeatPlease = allUsers.find(
         (user) => user.username === valueInput
       );
-      console.log(noRepeatPlease);
       if (noRepeatPlease) {
-        console.log("hola");
         setErrors({ ...errors, usernameExist: true });
       } else {
         setErrors({ ...errors, usernameExist: false });
