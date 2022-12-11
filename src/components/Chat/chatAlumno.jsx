@@ -59,7 +59,7 @@ export const ChatAlumno = ({ canal, socket, userLogin, receptor }) => {
 
   return (
     <div>
-      <div className="container">
+      <div>
         <div className="row">
           <div className="col-md-7 mt-5">
             <div className="card">

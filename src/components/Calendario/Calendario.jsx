@@ -115,57 +115,55 @@ const Calendario = ({ profe }) => {
         />
       </div>
       <div className="reservasCont">
-      <div className="all-horarios">
-        <div>
-          <h2>Horario: </h2>
-        </div>
-        <div className="horarios">
-          <button onClick={(e) => handleHora(e)} value="12:00-13:00">
-            12:00-13:00
-          </button>
-          <button onClick={(e) => handleHora(e)} value="15:00-16:00">
-            15:00-16:00
-          </button>
-          <button onClick={(e) => handleHora(e)} value="17:00-18:00">
-            17:00-18:00
-          </button>
-        </div>
-      </div>
-
-      <h2>Tu reserva: </h2>
-
-      <Table striped bordered hover>
-        <thead>
-          <tr>
-            <td>Fecha</td>
-            <td>Hora</td>
-            <td>Precio</td>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>{reserva.fecha}</td>
-            <td>{reserva.hora}</td>
-            <td>{profe.precio + "$"}</td>
-          </tr>
-        </tbody>
-      </Table>
-
-      <div className="reserva w-100 justify-content-evenly align-items-center flex-column">
-        <button
-          disabled={
-            error || errorDays || reserva.fecha === "" || reserva.hora === ""
-          }
-          onClick={(e) => handleSubmitFecha(e)}
-          style={{ maxWidth: "200px" }}
-          className="border-0 rounded-1 fs-5"
-        >
-          reservar
-        </button>
-        {activate && <StripePagos profe={profe} />}
-
+        <div className="all-horarios">
+          <div>
+            <h2>Horario: </h2>
+          </div>
+          <div className="horarios">
+            <button onClick={(e) => handleHora(e)} value="12:00-13:00">
+              12:00-13:00
+            </button>
+            <button onClick={(e) => handleHora(e)} value="15:00-16:00">
+              15:00-16:00
+            </button>
+            <button onClick={(e) => handleHora(e)} value="17:00-18:00">
+              17:00-18:00
+            </button>
+          </div>
         </div>
 
+        <h2>Tu reserva: </h2>
+
+        <Table striped bordered hover>
+          <thead>
+            <tr>
+              <td>Fecha</td>
+              <td>Hora</td>
+              <td>Precio</td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>{reserva.fecha}</td>
+              <td>{reserva.hora}</td>
+              <td>{profe.precio + "$"}</td>
+            </tr>
+          </tbody>
+        </Table>
+
+        <div className="reserva w-100 justify-content-evenly align-items-center flex-column">
+          <button
+            disabled={
+              error || errorDays || reserva.fecha === "" || reserva.hora === ""
+            }
+            onClick={(e) => handleSubmitFecha(e)}
+            style={{ maxWidth: "200px" }}
+            className="border-0 rounded-1 fs-5"
+          >
+            reservar
+          </button>
+          {activate && <StripePagos profe={profe} />}
+        </div>
       </div>
       <div>
         {errorDays && (
