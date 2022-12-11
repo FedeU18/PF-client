@@ -161,7 +161,6 @@
   position: relative;
 }
 
-/* estilos segundo contenedor */
 
 .segundo-fondo {
   display: flex;
@@ -206,11 +205,14 @@
 
 /* aca tercer fondo  */
 
+
 .tercer-fondo {
   background-color: #ffffff;
   display: flex;
   flex-direction: column;
 }
+
+
 
 .fotoo-dos {
   width: 70rem;
@@ -327,7 +329,6 @@
   fill: #ffffff;
 }
 
-/* ///card// */
 
 .card-conta {
   min-height: 100vh;
@@ -420,7 +421,7 @@
   margin: 14px;
 }
 
-/* ////////final card////////// */
+
 
 .nav-scroll {
   display: flex;
@@ -459,7 +460,9 @@
   margin: 20px;
 }
 
+
 /* ESTILOS DE MICHAEL */
+
 
 .foto-fondo-2 {
   max-width: 300px;
@@ -474,8 +477,8 @@
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-
   /* background-attachment: fixed; */
+
 }
 
 .foto-del-tipo-pensando {
@@ -524,9 +527,6 @@
   height: 400px;
 }
 
-/* .testimonios-fondo{
-    position: relative;
-} */
 
 /* ondas en queres enseñar */
 .Globo {
@@ -537,6 +537,7 @@
   top: 17%;
   right: 20vh;
   border-radius: 50%;
+
 }
 .Globo2 {
   position: absolute;

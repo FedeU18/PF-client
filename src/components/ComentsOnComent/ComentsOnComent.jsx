@@ -4,11 +4,14 @@ import './ComentsOnComent.css'
 import { deleteComent, EditComent } from '../../redux/Actions/Comentarios';
 import { useDispatch } from 'react-redux';
 import { EditarComent } from '../EditarComent/EditarComent';
-
+import { Denuncia } from '../Denunciar/Denunciar';
 export const ComentsOnComent=({comentarios , myId,profileOwner})=>{
     const dispatch=useDispatch()
     const [min , setMin]=useState(1)
     const [show2, setShow2] = useState(false);
+    const [show3, setShow3] = useState(false);
+    const [denunciado,setDenunciado]=useState('')
+    const [comentarioId, setComentarioId]=useState('')
     const handleShowMore=()=>{
         setMin(comentarios.length+1)
     }
@@ -18,14 +21,28 @@ export const ComentsOnComent=({comentarios , myId,profileOwner})=>{
     const handleEditarComent=()=>{
         setShow2(true)
     }
+
+    const handleDenunciar=(id, comentarioID)=>{
+        setComentarioId(comentarioID)
+        setDenunciado(id)
+        setShow3(true)
+    }
     const handleClose2 = () => setShow2(false);
+    const handleClose3 = () => setShow3(false);
     return(
         <>
+        
+
         {comentarios!==null &&(
             <div className='ComentsOnComentsCont'>
                 
                {comentarios?.map((c,i)=>(
                     <>
+                    <Denuncia show={show3}
+                                handleClose={handleClose3}
+                                comentarioId={comentarioId}
+                                denunciadoId={denunciado}
+                                denuncianteId={myId}/>
                     {i<min ? (
                         <div className=' comContonComPlus'> 
           
@@ -54,7 +71,7 @@ export const ComentsOnComent=({comentarios , myId,profileOwner})=>{
                                             </div>
                                             <div>
                                                 
-                                                    {myId === profileOwner && (
+                                                    {myId === profileOwner ? (
                                                         <NavDropdown className="dro" id="basic-nav-dropdown">
                                                             <NavDropdown.Item onClick={()=>{handleEliminarComent(c.id)}}>
                                                                 Eliminar
@@ -64,25 +81,23 @@ export const ComentsOnComent=({comentarios , myId,profileOwner})=>{
                                                             </NavDropdown.Item>
                                                         
                                                         </NavDropdown>
+                                                    ):(
+                                                        <NavDropdown className="dro" id="basic-nav-dropdown">
+                                                            
+                                                            <NavDropdown.Item onClick={()=>{handleDenunciar(c.profesor.id,c.id)}}>
+                                                                Denunciar
+                                                            </NavDropdown.Item>
+                                                        
+                                                        </NavDropdown>
                                                     )}
-                                                     {/* {c.profesor.id === myId &&(
-                                                    <NavDropdown className="dro" id="basic-nav-dropdown">
-                                                        <NavDropdown.Item onClick={()=>{handleEliminarComent(c.id)}}>
-                                                            Eliminar
-                                                        </NavDropdown.Item>
-                                                        <NavDropdown.Item onClick={handleEditarComent}>
-                                                            Editar
-                                                        </NavDropdown.Item>
                                                     
-                                                    </NavDropdown>
-                                                )} */}
                                                     
                                                 </div>  
                                         </div>
 
                                         ):(
                                             <div className='ComentAvaNameFlagCont2'>
-                                                 
+                                               
                                             <div>
                                                 {c.alumno?.picture==='sin foto' ? (
                                                     <div className='AvatarNameProf'>
@@ -109,8 +124,8 @@ export const ComentsOnComent=({comentarios , myId,profileOwner})=>{
                                                                 <NavDropdown.Item onClick={()=>{handleEliminarComent(c.id)}}>
                                                                     Eliminar
                                                                 </NavDropdown.Item>
-                                                                <NavDropdown.Item onClick={handleEditarComent}>
-                                                                    Editar
+                                                                <NavDropdown.Item onClick={()=>{handleDenunciar(c.alumno.id ,c.id)}}>
+                                                                    Denunciar
                                                                 </NavDropdown.Item>
                                                             
                                                             </NavDropdown>
@@ -130,7 +145,7 @@ export const ComentsOnComent=({comentarios , myId,profileOwner})=>{
                                                 {c.alumno?.id !== myId && myId!==profileOwner && (
                                                     <NavDropdown className="dro" id="basic-nav-dropdown">
                                                         
-                                                        <NavDropdown.Item onClick={console.log('')}>
+                                                        <NavDropdown.Item onClick={()=>{handleDenunciar(c.alumno.id ,c.id)}}>
                                                             Denunciar
                                                         </NavDropdown.Item>
                                                     
@@ -146,6 +161,7 @@ export const ComentsOnComent=({comentarios , myId,profileOwner})=>{
                                                     comentId={c.id} 
                                                     handleClose={handleClose2} 
                                                     profileOwner={profileOwner}/>
+                                        
                                         <div className='contComentCont2'>
                                             {c.contenido}
                                         </div> 

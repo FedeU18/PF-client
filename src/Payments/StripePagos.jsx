@@ -24,6 +24,7 @@ const StripePagos = ({ profe }) => {
 
   const pagandoProfesor = async () => {
     const precio = Number(profe.precio + "00");
+
     const profesorCompra = {
       price_data: {
         currency: "usd",

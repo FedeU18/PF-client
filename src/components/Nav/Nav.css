@@ -28,12 +28,25 @@
   cursor: pointer;
 }
 
+
 /* .colAvatarDrop {
   width: 50%;
   display: grid;
   grid-template-columns: 56% 5%;
 } */
 
+
 .dro {
   margin-top: 6px;
 }
+.btnBellNoti{
+  all:unset;
+  cursor: pointer;
+  color: antiquewhite;
+  width: 50%;
+}
+
+/* .dropdown-toggle::after {
+  color: transparent;
+  margin-bottom: 1rem;
+} */

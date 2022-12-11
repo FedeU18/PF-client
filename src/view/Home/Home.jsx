@@ -6,7 +6,7 @@ import { NavBar } from "../../components/Nav/Nav";
 import { Filtros } from "../../components/Filtros/Filtros";
 import { BsFillGrid3X3GapFill } from "react-icons/bs";
 import { useEffect, useState } from "react";
-
+import { editAlumno } from "../../redux/Actions/Alumno";
 import { getPaises } from "../../redux/Actions/Paises";
 import { addOPSelected } from "../../redux/Actions/Materias";
 import { useDispatch, useSelector } from "react-redux";
@@ -24,9 +24,6 @@ import logOut from "../../Authentication/functions/logOut";
 import Badge from "react-bootstrap/Badge";
 import Button from "react-bootstrap/Button";
 import { ChatProfe } from "../../components/Chat/chatProfe";
-
-
-
 import MateriasBtn from "./MateriasBtn.jsx";
 
 import Loader from "../../components/Loader/Loader";
@@ -34,8 +31,17 @@ import FooterH from "./FooterH.jsx";
 
 
 export const Home = () => {
+
   const { userData } = userAuthentication();
+
+  const [ban ,setBan]=useState(false)
+
   const dispatch = useDispatch();
+  let today = new Date();
+        const dd = String(today.getDate()).padStart(2, '0');
+        const mm = String(today.getMonth() + 1).padStart(2, '0');
+        const yyyy = today.getFullYear().toString();
+
 
   const [open, setOpen] = useState(false);
   const [chatUsers, setChatUsers] = useState(false);
@@ -55,7 +61,29 @@ export const Home = () => {
     (state) => state.materias.filtrosSeleccionados
   );
   const profes = useSelector((state) => state.profesores.profesores); //todo el estado de profes
+  const infoAlumno = useSelector((state) => state.alumnos.alumno);
+  
   const materias = useSelector((state) => state.materias.filtrosSeleccionados);
+
+  useEffect(()=>{
+
+    if( Object.entries(infoAlumno).length > 0 && infoAlumno.baneado===true ){
+      const array=infoAlumno.fechaLimiteBan.split('-')
+      
+      console.log(array[0],' ',yyyy,' ', array[1],' ',mm ,' ',array[2],' ',dd)
+      if(array[0]<=yyyy && array[1]<=mm && array[2]<=dd){
+        console.log('aaaaa')
+        dispatch(editAlumno({baneado:false,
+          },infoAlumno.id))
+      }
+    }
+   },[infoAlumno.fechaLimiteBan])
+
+  useEffect(()=>{
+    if( Object.entries(infoAlumno).length > 0 && infoAlumno.baneado===true ){
+      setBan(true)
+    }
+   },[infoAlumno])
 
   useEffect(() => {
     dispatch(getProfesorById(id));
@@ -105,8 +133,10 @@ export const Home = () => {
   };
 
   return (
-    <div>
-      <NavBar />
+  
+      <>
+          <NavBar />
+
 
       {profes.length > 0 ? (
         <div>
@@ -209,9 +239,11 @@ export const Home = () => {
       </div>
       <FooterH/>
    
-    </div>
-  );
-};
+
+
+    </>
+  )
+}
 
 function BotonChats({ mostrarChatUsers }) {
   return (

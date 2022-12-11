@@ -82,10 +82,12 @@ export const ProfeCard = ({
   };
 
   return (
+
     <Card>
       <Link to={"/profesores/" + id}>
         <img src={imagen} className="cardAboutContImg" />
       </Link>
+
 
       <Card.Body>
         <Card.Title>

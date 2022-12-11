@@ -45,3 +45,13 @@
     background-position: center;
     background-size: 100% 100%;
 }
+
+.carruselID{
+    all:unset;
+    width: 60%;
+    height: 100px;
+    margin-left: 100px;
+    margin-top: 400px;
+   
+}
+

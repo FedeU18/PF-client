@@ -158,6 +158,7 @@ const EditarProfesor = ({ show, profesor, handleClose }) => {
                 </button>
               </div>
 
+
               <div className="nameAlumInptChangeCont">
                 {useProfesor.precio === false ? (
                   <div>{profesor.precio}</div>
@@ -209,96 +210,73 @@ const EditarProfesor = ({ show, profesor, handleClose }) => {
               </div>
 
               <div className="nameAlumInptChangeCont">
-                {useProfesor.country === false ? (
-                  <div>{profesor.country.name}</div>
-                ) : (
-                  <div>
-                    <div className="container mt-3  containerPaisInpt">
-                      <br></br>
-                      <input
-                        onChange={(e) => actualizarProfesor(e)}
-                        list="browsers"
-                        type="text"
-                        placeholder={profesor.country.name + "..."}
-                        name="country"
-                        id="browser"
-                      />
-                      <datalist id="browsers">
-                        {paises.length > 0 &&
-                          paises.map((p, index) => (
-                            <option value={p.name} key={index}></option>
-                          ))}
-                      </datalist>
-                    </div>
-                  </div>
-                )}
-                <button className="btnEditProAlu">
-                  <AiOutlineEdit
-                    onClick={() => {
-                      setuseProfesor({
-                        ...useProfesor,
-                        country: !useProfesor.country,
-                      });
-                    }}
-                  />
-                </button>
+                {useProfesor.descripcion===false?(
+                    <div>
+                        {profesor.descripcion}
+                    </div>):(
+                    <div>
+                        
+                        <input type='text'
+                                 placeholder={profesor.descripcion+'...'}
+                                 name="descripcion"
+                                onChange={(e) => actualizarProfesor(e)}/>
+                    </div>)} 
+                    <button className="btnEditProAlu">
+                        <AiOutlineEdit onClick={()=>{setuseProfesor({...useProfesor,descripcion:!useProfesor.descripcion})}}/>
+                    </button> 
+              </div>
+              <div className="nameAlumInptChangeCont">
+                {useProfesor.descripcion2===false?(
+                    <div>
+                        
+                           ¿Porque deberian elegirme? 
+                        
+                    </div>):(
+                    <div>
+                        
+                        <textarea type='text'
+                                 placeholder={profesor.descripcion2+'...'}
+                                 name="descripcion2"
+                                onChange={(e) => actualizarProfesor(e)}/>
+                              
+                    </div>)} 
+                    <button className="btnEditProAlu">
+                        <AiOutlineEdit onClick={()=>{setuseProfesor({...useProfesor,descripcion2:!useProfesor.descripcion2})}}/>
+                    </button> 
               </div>
 
               <div className="nameAlumInptChangeCont">
-                {useProfesor.descripcion === false ? (
-                  <div>{profesor.descripcion}</div>
-                ) : (
-                  <div>
-                    <input
-                      type="text"
-                      placeholder={profesor.descripcion + "..."}
-                      name="descripcion"
-                      onChange={(e) => actualizarProfesor(e)}
-                    />
-                  </div>
-                )}
-                <button className="btnEditProAlu">
-                  <AiOutlineEdit
-                    onClick={() => {
-                      setuseProfesor({
-                        ...useProfesor,
-                        descripcion: !useProfesor.nombre,
-                      });
-                    }}
-                  />
-                </button>
+                {useProfesor.country===false?(
+                    <div>
+                      <br></br>
+                        {profesor.country.name}
+                    </div>):(
+                    <div className="contareglarPsiases">
+                        <div className="container mt-3  containerPaisInpt">
+                    
+
+                    <br></br>
+                    <input onChange={(e) => actualizarProfesor(e)}  
+                            list="browsers"
+                            type='text' 
+                            placeholder={profesor.country.name+'...'} 
+                            name="country" 
+                            id="browser" />
+                    <datalist id="browsers">
+                        {paises.length > 0 && paises.map((p, index) => (
+                            <option value={p.name} key={index}></option>))}
+
+                    </datalist>
+
+                </div>
+                        
+                    </div>)} 
+                    <button className="btnEditProAlu">
+                        <AiOutlineEdit onClick={()=>{setuseProfesor({...useProfesor,country:!useProfesor.country})}}/>
+                    </button> 
               </div>
-              <div className="nameAlumInptChangeCont">
-                {useProfesor.descripcion2 === false ? (
-                  <div>
-                    {profesor.descripcion2 === null ||
-                    profesor.descripcion === "" ? (
-                      <span>¿Porque deberian elegirme?</span>
-                    ) : (
-                      <>{profesor.descripcion2}</>
-                    )}
-                  </div>
-                ) : (
-                  <div>
-                    <textarea
-                      type="text"
-                      placeholder={profesor.descripcion2 + "..."}
-                      name="descripcion2"
-                      onChange={(e) => actualizarProfesor(e)}
-                    />
-                  </div>
-                )}
-                <button className="btnEditProAlu">
-                  <AiOutlineEdit
-                    onClick={() => {
-                      setuseProfesor({
-                        ...useProfesor,
-                        descripcion2: !useProfesor.descripcion2,
-                      });
-                    }}
-                  />
-                </button>
-              </div>
+
+
             </div>
           ) : (
             <div

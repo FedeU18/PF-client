@@ -148,3 +148,9 @@
 .reserva > button:disabled {
     opacity: .5;
 }
+
+
+.reservasCont{
+    height: 40vh;
+    overflow-y: scroll;
+}
