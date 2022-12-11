@@ -9,13 +9,13 @@ import StripePagos from "../../Payments/StripePagos";
 import { setReservaProfe } from "../../redux/Actions/Mailer";
 
 const Calendario = ({ profe }) => {
-  const [error, setError] = useState(false)  
-  console.log("error: ", error)
+  const [error, setError] = useState(false);
+  console.log("error: ", error);
   const dispatch = useDispatch();
   const [errorDays, setErrorDays] = useState(false);
   const alumno = useSelector((state) => state.alumnos.alumno);
   const fechas = useSelector((state) => state.fechas.fechas);
-  console.log("profe: " ,profe)
+  console.log("profe: ", profe);
   const user = userAuthenticate();
   const [activate, setActivate] = useState(false);
   const [date, onChange] = useState(new Date());
@@ -49,7 +49,6 @@ const Calendario = ({ profe }) => {
       } else {
         setErrorDays(true);
       }
-      
     }
     const data = {
       emailProfesor: profe.email,
@@ -62,18 +61,20 @@ const Calendario = ({ profe }) => {
     localStorage.setItem("data-payment", DATAJSON);
   }, [reserva.fecha, reserva.hora]);
 
-  useEffect(()=>{
-    let reservado= {};
-    Object.keys(profe).length !== 0 &&( reservado = profe.fechas.find(f=> f.fecha === reserva.fecha && f.hora === reserva.hora))
-  if(typeof(reservado) === "object"){
-    if(Object.keys(reservado).length !== 0){
-      setError(true)
+  useEffect(() => {
+    let reservado = {};
+    Object.keys(profe).length !== 0 &&
+      (reservado = profe.fechas?.find(
+        (f) => f.fecha === reserva.fecha && f.hora === reserva.hora
+      ));
+    if (typeof reservado === "object") {
+      if (Object.keys(reservado).length !== 0) {
+        setError(true);
+      }
+    } else {
+      setError(false);
     }
-  } else {
-    setError(false)
-  }
-  
-  }, [reserva.fecha, reserva.hora])
+  }, [reserva.fecha, reserva.hora]);
 
   const handleHora = (e) => {
     e.preventDefault();
@@ -100,7 +101,6 @@ const Calendario = ({ profe }) => {
       setActivate(true);
     }
   };
-
 
   return (
     <div>
@@ -149,12 +149,16 @@ const Calendario = ({ profe }) => {
         </tbody>
       </Table>
 
-      <div className="reserva w-100 justify-content-evenly flex-column">
+      <div className="reserva w-100 justify-content-evenly align-items-center flex-column">
         <button
-          disabled={error || errorDays || reserva.fecha === "" || reserva.hora === ""}
+          disabled={
+            error || errorDays || reserva.fecha === "" || reserva.hora === ""
+          }
           onClick={(e) => handleSubmitFecha(e)}
+          style={{ maxWidth: "200px" }}
+          className="border-0 rounded-1 fs-5"
         >
-          Reservar
+          reservar
         </button>
         {activate && <StripePagos profe={profe} />}
       </div>
@@ -164,9 +168,11 @@ const Calendario = ({ profe }) => {
             La reserva no puede ser hoy ni un dia anterior al dia actual
           </p>
         )}
-      {
-        error && <p className="text-center mt-3 p-2 text-danger">Esta Fecha ya está reservada, elija otra</p>
-      }
+        {error && (
+          <p className="text-center mt-3 p-2 text-danger">
+            Esta Fecha ya está reservada, elija otra
+          </p>
+        )}
       </div>
     </div>
   );
