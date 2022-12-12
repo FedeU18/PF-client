@@ -110,7 +110,10 @@ export const SearchBar = () => {
             </button>
           </div>
         </div>
-        <div className="mt-1 position-absolute w-100 bg-light text-dark rounded-1">
+        <div
+          style={{ zIndex: "1000" }}
+          className="mt-1 position-absolute w-100 bg-light text-dark rounded-1"
+        >
           {sugerencias &&
             sugerencias.map((sugName) => (
               <div

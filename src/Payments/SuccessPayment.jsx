@@ -1,9 +1,19 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { BsPatchCheckFill } from "react-icons/bs";
 // import styles from "./FailPay.module.css";
 import Mailer from "./Mailer";
 
 const SuccessPayment = () => {
+  const [sender, setSender] = useState(false);
+
+  useEffect(() => {
+    const dataPayment = localStorage.getItem("data-payment");
+    if (dataPayment) {
+      setSender(true);
+    } else {
+      setSender(false);
+    }
+  }, []);
 
   return (
     <div>
@@ -22,9 +32,7 @@ const SuccessPayment = () => {
       </div>
       <BsPatchCheckFill className="fs-1" />
 
-      <div className="mt-5">
-        <Mailer />
-      </div>
+      <div className="mt-5">{sender && <Mailer />}</div>
     </div>
   );
 };

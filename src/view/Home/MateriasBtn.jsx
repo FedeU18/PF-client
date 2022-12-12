@@ -14,8 +14,9 @@ function MateriasBtn() {
   return (
     <div className="d-flex justify-content-center align-items-center flex-wrap gap-4 mt-4">
       {materias.length > 0 &&
-        materias.map((el) => (
+        materias.map((el, index) => (
           <MateriaBox
+            key={index}
             image={`/${el.name}.png`}
             name={el.name}
             myOnClick={() => handleMateria(el.name)}

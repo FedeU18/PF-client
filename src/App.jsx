@@ -7,16 +7,16 @@ import { Perfil } from "./view/Perfil/Perfil";
 import { Error } from "./view/Error/error";
 import { About } from "./view/About/About";
 
-import  ProfesoresList  from "./view/Home/ProfesoresList"
+import ProfesoresList from "./view/Home/ProfesoresList";
 
-import {TodasNotificaciones} from "./view/Notificaciones/Notificaciones"
+import { TodasNotificaciones } from "./view/Notificaciones/Notificaciones";
 
 import ProtectedRoute from "./Authentication/protection/ProtectedRoute";
 import PublicRoutes from "./Authentication/protection/PublicRoutes";
 import ForgotPassword from "./view/ForgotPassword/ForgotPassword";
 import PerfilProfesor from "./components/PerfilProfesor/PerfilProfesor";
-import StripePagos from "./Payments/StripePagos";
 import TypeOfProcessPay from "./Payments/TypeOfProcessPay";
+import ProtectedPayments from "./Authentication/protection/ProtectedPayments";
 
 function App() {
   return (
@@ -30,14 +30,21 @@ function App() {
 
         <Route path="/" element={<ProtectedRoute />}>
           <Route path="/home" element={<Home />} />
-          <Route path="/home/:id" element={<ProfesoresList/>}/>
+          <Route path="/home/:id" element={<ProfesoresList />} />
           <Route path="/profile" element={<Perfil />} />
           <Route path="/about" element={<About />} />
-          <Route path="/notificaciones" element={<TodasNotificaciones/>}/>
+          <Route path="/notificaciones" element={<TodasNotificaciones />} />
           <Route path="/profesores/:id" element={<Detalle />} />
           <Route path="/editar/:id" element={<PerfilProfesor />} />
-          <Route path="/payments" element={<StripePagos />} />
-          <Route path="/payments/:type" element={<TypeOfProcessPay />} />
+          {/* <Route path="/payments" element={<StripePagos />} /> */}
+          <Route
+            path="/payments/:type"
+            element={
+              <ProtectedPayments>
+                <TypeOfProcessPay />
+              </ProtectedPayments>
+            }
+          />
         </Route>
 
         <Route path="*" element={<Error />} />
