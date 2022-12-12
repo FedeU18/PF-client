@@ -142,23 +142,23 @@ export const NavBar = () => {
               infoProfesor.administrador === true && (
                 <button
                   type="button"
-                  class=" position-relative btnBellNoti"
+                  className="position-relative btnBellNoti"
                   onClick={handleNotis}
                 >
                   <BsFillBellFill size={30} />
                   {notis > 0 && (
-                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                    <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                       {notis}
                     </span>
                   )}
                 </button>
               )}
 
-            <div className="position-relative">
+            <div className="position-relative" style={{ marginRight: ".5rem" }}>
               <img
-                className="imgAvatar rounded-5"
+                className="imgAvatar rounded-5 border-0"
                 src={useFoto}
-                style={{ objectFit: "cover", width: "45px", height: "45px" }}
+                style={{ objectFit: "cover", width: "40px", height: "40px" }}
               />
 
               <NavDropdown

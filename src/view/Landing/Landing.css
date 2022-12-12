@@ -161,7 +161,6 @@
   position: relative;
 }
 
-
 .segundo-fondo {
   display: flex;
   flex-direction: column;
@@ -205,14 +204,11 @@
 
 /* aca tercer fondo  */
 
-
 .tercer-fondo {
   background-color: #ffffff;
   display: flex;
   flex-direction: column;
 }
-
-
 
 .fotoo-dos {
   width: 70rem;
@@ -329,7 +325,6 @@
   fill: #ffffff;
 }
 
-
 .card-conta {
   min-height: 100vh;
 
@@ -421,8 +416,6 @@
   margin: 14px;
 }
 
-
-
 .nav-scroll {
   display: flex;
   justify-content: end;
@@ -460,9 +453,7 @@
   margin: 20px;
 }
 
-
 /* ESTILOS DE MICHAEL */
-
 
 .foto-fondo-2 {
   max-width: 300px;
@@ -478,7 +469,6 @@
   background-position: center;
   background-repeat: no-repeat;
   /* background-attachment: fixed; */
-
 }
 
 .foto-del-tipo-pensando {
@@ -527,7 +517,6 @@
   height: 400px;
 }
 
-
 /* ondas en queres enseñar */
 .Globo {
   position: absolute;
@@ -537,7 +526,6 @@
   top: 17%;
   right: 20vh;
   border-radius: 50%;
-
 }
 .Globo2 {
   position: absolute;
@@ -614,4 +602,22 @@
   width: 40%;
   height: 40%;
   border-radius: 16% 84% 10% 81% / 49% 60% 66% 51%;
+}
+
+@keyframes rebotando {
+  0% {
+    transform: translateY(-40px);
+  }
+
+  70% {
+    transform: translateY(0px);
+  }
+
+  100% {
+    transform: translateY(-40px);
+  }
+}
+
+.rebotando-lapiz {
+  animation: rebotando 1.5s ease 0s infinite none;
 }

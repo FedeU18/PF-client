@@ -165,7 +165,9 @@ export const Landing = () => {
                   <div id="contenedor">
                     <div id="central">
                       <div id="login">
-                        <div className="titulo">Bienvenido</div>
+                        <div className="titulo">
+                          Bienvenido <FaPencilAlt className="rebotando-lapiz"/>
+                        </div>
                         <form id="loginform">
                           <input
                             onChange={(e) => handleInput(e)}
@@ -192,11 +194,11 @@ export const Landing = () => {
                             Login
                             {loader && (
                               <div
-                                class="spinner-border spinner-border-sm text-dark"
+                              className="spinner-border spinner-border-sm text-dark"
                                 role="status"
                                 style={{ marginLeft: "1rem" }}
                               >
-                                <span class="visually-hidden"></span>
+                                <span className="visually-hidden"></span>
                               </div>
                             )}
                           </button>
@@ -394,9 +396,9 @@ export const Landing = () => {
         className="cuarto-fondo w-100 vh-100 p-3 d-flex justify-content-center "
         id="profesores"
       >
-        {/* <div class="custom-shape-divider-top-1670175764">
+        {/* <div className="custom-shape-divider-top-1670175764">
          <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
-         <path d="M1200 0L0 0 892.25 114.72 1200 0z" class="shape-fill"></path>
+         <path d="M1200 0L0 0 892.25 114.72 1200 0z" className="shape-fill"></path>
         </svg>
      </div> */}
 
@@ -459,9 +461,7 @@ export const Landing = () => {
       </div>
       {/* ////testimonios */}
 
-
       <div className="w-100 vh-100 mt-5">
-
         <div className="">
           <div className="text-center">
             <h1>TESTIMONIOS</h1>
