@@ -6,6 +6,7 @@ import { AiFillStar } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { editAlumno } from "../../redux/Actions/Alumno";
+import styles from "./ProfeCard.module.css";
 
 export const ProfeCard = ({
   id,
@@ -82,12 +83,13 @@ export const ProfeCard = ({
   };
 
   return (
-
-    <Card>
+    <Card className={`rounded-5 ${styles.card_container}`}>
       <Link to={"/profesores/" + id}>
-        <img src={imagen} className="cardAboutContImg" />
+        <img
+          src={imagen}
+          className={`cardAboutContImg ${styles.border_cards}`}
+        />
       </Link>
-
 
       <Card.Body>
         <Card.Title>
@@ -110,7 +112,7 @@ export const ProfeCard = ({
         <Card.Text>
           {descripcion}
           <br></br>
-          Enseña:{" "}
+          <span className="fw-bolder">Enseña:</span>
           {materias?.length > 0 &&
             materias.map((m) => (
               <span key={m.name} className="materiasNaCaPro">
