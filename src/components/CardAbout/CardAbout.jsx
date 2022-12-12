@@ -6,7 +6,7 @@ import './CardAbout.css'
 export const CardAbout=({nombre, apellido, foto, posicion, linkedin, git})=>{
     return(
         <Card className='cardAboutCont' style={{ width: '15rem', margin:'20px' }}>
-        <img  src={foto} className='cardAboutContImg' />
+        <img  src={foto} className='cardAboutContImg ' />
         <Card.Body>
           <Card.Title style={{ textAlign:'center' }}>{nombre} {apellido}</Card.Title>
           <Card.Text  style={{ textAlign:'center' }}>

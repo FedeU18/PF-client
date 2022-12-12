@@ -10,7 +10,8 @@
     rgb(39, 7, 185),
     rgb(133, 159, 236)
   ); */
-  background-image: linear-gradient(rgb(85, 145, 197), rgb(133, 159, 236));
+  /* background-image: linear-gradient(rgb(85, 145, 197), rgb(133, 159, 236)); */
+  background-color: #368abf;
 
   color: aliceblue;
   padding-top: 0.4rem;
@@ -28,19 +29,17 @@
   cursor: pointer;
 }
 
-
 /* .colAvatarDrop {
   width: 50%;
   display: grid;
   grid-template-columns: 56% 5%;
 } */
 
-
 .dro {
   margin-top: 6px;
 }
-.btnBellNoti{
-  all:unset;
+.btnBellNoti {
+  all: unset;
   cursor: pointer;
   color: antiquewhite;
   width: 50%;
@@ -50,3 +49,8 @@
   color: transparent;
   margin-bottom: 1rem;
 } */
+
+.Ajuste-Icons {
+  margin-right: 0.4rem;
+  margin-bottom: 0.2rem;
+}
