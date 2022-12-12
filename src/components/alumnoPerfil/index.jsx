@@ -91,7 +91,7 @@ export const AlumnoPerfil = (props) => {
       (error, result) => {
         if (!error && result && result.event === "success") {
           dispatch(
-            actionsAlumno.editAlumno({ picture: result.info.url }, props.id)
+            actions.editAlumno({ picture: result.info.url }, props.id)
           );
 
           setPict(result.info.url);
