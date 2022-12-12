@@ -41,8 +41,8 @@ const StripePagos = ({ profe }) => {
       "http://localhost:3001/stripe/checkout-stripe",
       profesorCompra
     );
+    localStorage.setItem("in-process", true)
     const session = await response.data;
-
     const result = await stripe.redirectToCheckout({
       sessionId: session.id,
     });
