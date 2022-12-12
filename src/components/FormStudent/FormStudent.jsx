@@ -412,11 +412,11 @@ const FormStudent = ({ setMostrarStudent }) => {
               >
                 {loaderRegister && (
                   <div
-                    class="spinner-border spinner-border-sm text-light"
+                  className="spinner-border spinner-border-sm text-light"
                     role="status"
                     style={{ marginRight: ".5rem" }}
                   >
-                    <span class="visually-hidden"></span>
+                    <span className="visually-hidden"></span>
                   </div>
                 )}
                 Registrate

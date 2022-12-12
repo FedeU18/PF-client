@@ -185,7 +185,9 @@ const FormTeacher = ({ setMostrarProfe }) => {
     <div data-aos="fade-right">
       <form className="form">
         <div className="formulario">
-          <h3>Bienvenido</h3>
+          <h3>
+            Bienvenido
+          </h3>
 
           {parte === "primera" && (
             <div>
@@ -389,11 +391,11 @@ const FormTeacher = ({ setMostrarProfe }) => {
                 >
                   {loader && (
                     <div
-                      class="spinner-border spinner-border-sm"
+                      className="spinner-border spinner-border-sm"
                       role="status"
                       style={{ marginRight: ".4rem" }}
                     >
-                      <span class="visually-hidden"></span>
+                      <span className="visually-hidden"></span>
                     </div>
                   )}
                   Registrate

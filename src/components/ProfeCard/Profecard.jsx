@@ -83,7 +83,7 @@ export const ProfeCard = ({
   };
 
   return (
-    <Card className={`rounded-5 ${styles.card_container}`}>
+    <Card className={`rounded-4 position-relative ${styles.card_container}`}>
       <Link to={"/profesores/" + id}>
         <img
           src={imagen}
@@ -102,7 +102,11 @@ export const ProfeCard = ({
               </div>
             </Link>
             <Link to={"/profesores/" + id}>
-              <div className="nameUsuarioC">{username}</div>
+              <h5 className="nameUsuarioC">
+                {username.length > 10
+                  ? `${username.slice(0, 10)}...`
+                  : username}
+              </h5>
             </Link>
             <div>
               <img className="flagcarProfe" src={pais} />
@@ -110,39 +114,68 @@ export const ProfeCard = ({
           </div>
         </Card.Title>
         <Card.Text>
-          {descripcion}
+          <span>
+            {descripcion.length > 60
+              ? `${descripcion.slice(0, 50)}...`
+              : descripcion}
+          </span>
           <br></br>
           <span className="fw-bolder">Enseña:</span>
-          {materias?.length > 0 &&
-            materias.map((m) => (
-              <span key={m.name} className="materiasNaCaPro">
-                {" "}
-                {m.name}{" "}
-              </span>
-            ))}
+          <div>
+            {materias?.length > 0 &&
+              materias.map((m, index) => {
+                return index < 2 ? (
+                  <>
+                    <span
+                      key={m.name}
+                      className={`materiasNaCaPro ${styles.materias_profe} d-inline-block mt-1`}
+                    >
+                      {m.name}
+                    </span>
+                  </>
+                ) : null;
+              })}
+            <br />
+            <span className="fw-bolder">
+              {materias.length > 2 ? "..." : null}
+            </span>
+          </div>
         </Card.Text>
-        <div className="puncContCard">
-          <AiFillStar size={22} />
-          <div className="puntProfCard">
-            {puntuacion?.length > 0 ? promedio / puntuacion?.length : 0}
+        <div
+          className={`puncContCard position-absolute ${styles.estrella_puntuacion}`}
+        >
+          <div>
+            <AiFillStar className="fs-2 text-warning" />
+          </div>
+          <div className={`d-inline-block ${styles.puntuacion}`}>
+            <h5 className="puntProfCard text-warning">
+              {puntuacion?.length > 0 ? promedio / puntuacion?.length : 0}
+            </h5>
           </div>
         </div>
-        <hr></hr>
-        <div className="precioFavCont">
-          <button onClick={handleFav} className="btnFavProfeCards">
-            {fav ? (
-              <MdOutlineFavorite
-                size={26}
-                style={{ color: "rgb(253, 17, 49)", cursor: "pointer" }}
-              />
-            ) : (
-              <MdOutlineFavoriteBorder
-                size={26}
-                style={{ cursor: "pointer" }}
-              />
-            )}
-          </button>
-          <div>{precio} US$ por hora</div>
+        <hr className={`position-absolute ${styles.hr_card}`} />
+        <div
+          className={`precioFavCont position-absolute ${styles.precio_heart} d-flex justify-content-around w-100`}
+        >
+          <div>
+            <button onClick={handleFav} className="btnFavProfeCards">
+              {fav ? (
+                <MdOutlineFavorite
+                  size={26}
+                  style={{ color: "rgb(253, 17, 49)", cursor: "pointer" }}
+                />
+              ) : (
+                <MdOutlineFavoriteBorder
+                  className="text-danger"
+                  size={26}
+                  style={{ cursor: "pointer" }}
+                />
+              )}
+            </button>
+          </div>
+          <div className={styles.precio_por_hora}>
+            <span className="text-success"><b>{precio} US$</b> por hora</span>
+          </div>
         </div>
       </Card.Body>
     </Card>
