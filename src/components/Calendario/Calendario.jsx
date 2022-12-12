@@ -7,13 +7,19 @@ import userAuthenticate from "../../Authentication/functions/user";
 import Table from "react-bootstrap/Table";
 import StripePagos from "../../Payments/StripePagos";
 import { setReservaProfe } from "../../redux/Actions/Mailer";
+import { getAlumnoFromAPI } from "../../redux/Actions/Alumno";
+
+
 
 const Calendario = ({ profe }) => {
   const [error, setError] = useState(false);
-  console.log("error: ", error);
+  
   const dispatch = useDispatch();
   const [errorDays, setErrorDays] = useState(false);
   const alumno = useSelector((state) => state.alumnos.alumno);
+
+  console.log("pepe", alumno);
+
   const fechas = useSelector((state) => state.fechas.fechas);
   console.log("profe: ", profe);
   const user = userAuthenticate();
@@ -29,8 +35,10 @@ const Calendario = ({ profe }) => {
 
   useEffect(() => {
     dispatch(getFecha());
+    dispatch(getAlumnoFromAPI(user.userData.id))
   }, []);
 
+ 
   useEffect(() => {
     setActivate(false);
     if (reserva.fecha && reserva.hora) {
@@ -146,11 +154,16 @@ const Calendario = ({ profe }) => {
             <tr>
               <td>{reserva.fecha}</td>
               <td>{reserva.hora}</td>
-              <td>{profe.precio + "$"}</td>
+               {alumno.promo ? <td><strike>{profe.precio + "$" }</strike> {(profe.precio - (profe.precio * 20 ) /100 ) + "$"}</td>  : <td> {profe.precio + "$" } </td>}
+              
             </tr>
           </tbody>
+   
+          
+
         </Table>
 
+               
         <div className="reserva w-100 justify-content-evenly align-items-center flex-column">
           <button
             disabled={
