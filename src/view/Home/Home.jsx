@@ -25,7 +25,7 @@ import Badge from "react-bootstrap/Badge";
 import Button from "react-bootstrap/Button";
 import { ChatProfe } from "../../components/Chat/chatProfe";
 import MateriasBtn from "./MateriasBtn.jsx";
-
+import Caru from "./Caru";
 import Loader from "../../components/Loader/Loader";
 import FooterH from "./FooterH.jsx";
 
@@ -137,6 +137,7 @@ export const Home = () => {
       <>
           <NavBar />
 
+          <Caru />
 
       {profes.length > 0 ? (
         <div>
