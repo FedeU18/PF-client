@@ -7,7 +7,7 @@ import userAuthenticate from "../../Authentication/functions/user";
 import Table from "react-bootstrap/Table";
 import StripePagos from "../../Payments/StripePagos";
 import { setReservaProfe } from "../../redux/Actions/Mailer";
-import { getAlumnoFromAPI } from "../../redux/Actions/Alumno";
+import { getAlumnoFromAPI, editAlumno } from "../../redux/Actions/Alumno";
 
 
 
@@ -110,6 +110,8 @@ const Calendario = ({ profe }) => {
     }
   };
 
+  const precio = alumno.promo ? (profe.precio - (profe.precio * 20 ) /100 ) : profe.precio
+
   return (
     <div>
       <div>
@@ -154,7 +156,7 @@ const Calendario = ({ profe }) => {
             <tr>
               <td>{reserva.fecha}</td>
               <td>{reserva.hora}</td>
-               {alumno.promo ? <td><strike>{profe.precio + "$" }</strike> {(profe.precio - (profe.precio * 20 ) /100 ) + "$"}</td>  : <td> {profe.precio + "$" } </td>}
+               {alumno?.promo ? <td><strike>{profe.precio + "$" }</strike> {precio + "$"}</td>  : <td> {profe.precio + "$" } </td>}
               
             </tr>
           </tbody>
@@ -175,7 +177,7 @@ const Calendario = ({ profe }) => {
           >
             reservar
           </button>
-          {activate && <StripePagos profe={profe} />}
+          {activate && <StripePagos id={alumno.id} precio={precio} profe={profe} />}
         </div>
       </div>
       <div>

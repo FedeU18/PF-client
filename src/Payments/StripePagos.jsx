@@ -1,11 +1,14 @@
 import React from "react";
 import axios from "axios";
+import { useDispatch } from "react-redux";
+import { editAlumno } from "../redux/Actions/Alumno";
 import { loadStripe } from "@stripe/stripe-js";
 const stripePromise = loadStripe(
   "pk_test_51LDCAnHz183QdnFrZqtqGPkLkpDukWxoBnnlWoEqlUzDDhYjXObxH2Yi8S3mv5UpKxkPp4B9cLemexd1tfUXn2ln00gW4QNhrD"
 );
 
-const StripePagos = ({ profe }) => {
+const StripePagos = ({ profe, precio, id }) => {
+  console.log(id)
   const buttonStyle = {
     padding: ".5rem",
     display: "flex",
@@ -21,9 +24,10 @@ const StripePagos = ({ profe }) => {
     display: "flex",
     justifyContent: "center",
   };
+  const dispatch = useDispatch()
 
   const pagandoProfesor = async () => {
-    const precio = Number(profe.precio + "00");
+    const precios = Number(precio + "00");
 
     const profesorCompra = {
       price_data: {
@@ -32,13 +36,14 @@ const StripePagos = ({ profe }) => {
           name: profe.nombre,
           images: [profe.imagen],
         },
-        unit_amount: precio, // 1000 => 10 dolars // 4000 40 dollars
+        unit_amount: precios, // 1000 => 10 dolars // 4000 40 dollars
       },
       quantity: 1,
     };
+    dispatch(editAlumno({promo: false}, id))
     const stripe = await stripePromise;
     const response = await axios.post(
-      "http://localhost:3001/stripe/checkout-stripe",
+      "/stripe/checkout-stripe",
       profesorCompra
     );
     localStorage.setItem("in-process", true)
@@ -46,7 +51,7 @@ const StripePagos = ({ profe }) => {
     const result = await stripe.redirectToCheckout({
       sessionId: session.id,
     });
-
+    
     if (result.error) {
       console.log(result.error.message);
       return;
