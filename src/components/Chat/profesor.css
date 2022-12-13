@@ -120,7 +120,7 @@
 }
 
 .divUsuariosChat {
-  width: 17rem;
+  width: 16rem;
   height: 0;
   position: fixed;
   right: 0;
@@ -130,7 +130,7 @@
   width: auto;
   height: auto;
   min-height: 20px;
-  max-width: 100px;
+  max-width: 30rem;
   border-radius: 5px;
   display: flex;
   align-items: center;
@@ -197,11 +197,11 @@
 }
 
 .divContainer {
-  width: 20rem;
+  width: 16rem;
   height: 10vw;
   position: fixed;
   right: 25vw;
-  bottom: 17rem;
+  bottom: 17.5rem;
 }
 
 .numChats {
