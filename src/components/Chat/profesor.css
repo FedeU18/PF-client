@@ -1,4 +1,3 @@
-
 .register-group {
   display: flex;
   justify-content: center;
@@ -23,7 +22,6 @@
 #wrapper {
   display: flex;
   width: 700px;
-  
 }
 .col-4 {
   flex: 4;
@@ -117,16 +115,16 @@
 
 .inputChat {
   border: none;
-  width: 15vw;
+  width: 10rem;
   outline: none;
 }
 
 .divUsuariosChat {
-  width: 15vw;
-  height: 0vw;
+  width: 17rem;
+  height: 0;
   position: fixed;
   right: 0;
-  bottom: 41vw;
+  bottom: 31rem;
 }
 .message-content {
   width: auto;
@@ -198,15 +196,13 @@
   background: lightgray;
 }
 
-
 .divContainer {
-  width: 40vw;
-  height: 25vw;
+  width: 20rem;
+  height: 10vw;
   position: fixed;
   right: 25vw;
-  bottom: 6vw;
+  bottom: 17rem;
 }
-
 
 .numChats {
   color: rgb(199, 197, 221);
@@ -235,4 +231,3 @@
   font-weight: bold;
   width: 2rem;
 }
-
