@@ -8,6 +8,7 @@ import {
   DELETE_PROFESORES,
   FILTER_PRECIO,
   FILTER_PUNTUACION,
+  SET_PROFE_FILTERED,
 } from "../types/typesProfesor";
 
 export function getProfesorById(id) {
@@ -71,6 +72,13 @@ export function deleteProfesor(id) {
 export function filterPrecio(payload) {
   return {
     type: FILTER_PRECIO,
+    payload,
+  };
+}
+
+export function setProfeFiltered(payload) {
+  return {
+    type: SET_PROFE_FILTERED,
     payload,
   };
 }
