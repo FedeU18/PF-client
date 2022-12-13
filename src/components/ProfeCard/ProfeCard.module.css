@@ -44,3 +44,14 @@
   margin-left: 2rem;
   margin-top: 0;
 }
+
+
+
+/* DARK THEME */
+
+.dark_card {
+  background-color: #242529 !important;
+  color: whitesmoke !important;
+}
+
+/* #1A202C  #171923* #242529 #101011 */

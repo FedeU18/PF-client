@@ -19,6 +19,7 @@ export const ProfeCard = ({
   username,
   pais,
 }) => {
+  const theme = useSelector((state) => state.theme.theme);
   var regexUrl =
     /[a-z0-9-\.]+\.[a-z]{2,4}\/?([^\s<>\#%"\,\{\}\\|\\\^\[\]`]+)?$/;
   const img =
@@ -83,7 +84,11 @@ export const ProfeCard = ({
   };
 
   return (
-    <Card className={`rounded-4 position-relative ${styles.card_container}`}>
+    <Card
+      className={`rounded-4 position-relative ${styles.card_container} ${
+        theme === "dark" ? styles.dark_card : null
+      }`}
+    >
       <Link to={"/profesores/" + id}>
         <img
           src={imagen}
@@ -141,6 +146,7 @@ export const ProfeCard = ({
             </span>
           </div>
         </Card.Text>
+        {/* #1A202C  #171923* #242529 */}
         <div
           className={`puncContCard position-absolute ${styles.estrella_puntuacion}`}
         >
@@ -174,7 +180,9 @@ export const ProfeCard = ({
             </button>
           </div>
           <div className={styles.precio_por_hora}>
-            <span className="text-success"><b>{precio} US$</b> por hora</span>
+            <span>
+              <b>{precio} US$</b> por hora
+            </span>
           </div>
         </div>
       </Card.Body>
