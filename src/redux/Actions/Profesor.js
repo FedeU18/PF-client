@@ -8,7 +8,28 @@ import {
   DELETE_PROFESORES,
   FILTER_PRECIO,
   FILTER_PUNTUACION,
+  SET_PROFE_FILTERED,
 } from "../types/typesProfesor";
+
+export const getUsersByPais=()=>dispatch=>{
+    
+  return axios.get("/profesores/paises")
+  .then((d)=>{ 
+      dispatch({ type:"GET_USERBYPAIS", payload: d.data }) 
+     
+     })
+   .catch ((e) =>{console.log(e)})       
+  } 
+
+  export const getProfesorsBYMateria=()=>dispatch=>{
+    
+    return axios.get("/profesores/materias")
+    .then((d)=>{ 
+        dispatch({ type:"GET_PROFEBYMATERIA", payload: d.data }) 
+       
+       })
+     .catch ((e) =>{console.log(e)})       
+    } 
 
 export function getProfesorById(id) {
   return async function (dispatch) {
@@ -26,31 +47,33 @@ export function getProfesorById(id) {
 
 export function postProfesor(payload) {
   return function (dispatch) {
-    axios.post(`/profesores`,payload)
-    .then((res)=>{
-      dispatch({type: POST_PROFESORES,payload: prof, });
-      dispatch(allProfes())
-    })
-    .catch((error) => {
-      console.log(error);
-    });
-      
-  }   
-}
-
-
-export function putProfesor(id, payload) {
-  return function (dispatch) {
-    axios.patch( `/profesores/${id}`, payload)
-
-      .then((res) => {console.log("Profesor editado con exito")
-                      dispatch(getProfesorById(id))})
+    axios
+      .post(`/profesores`, payload)
+      .then((res) => {
+        dispatch({ type: POST_PROFESORES, payload: res });
+        console.log(res)
+        dispatch(allProfes());
+      })
       .catch((error) => {
         console.log(error);
       });
   };
 }
 
+export function putProfesor(id, payload) {
+  return function (dispatch) {
+    axios
+      .patch(`/profesores/${id}`, payload)
+
+      .then((res) => {
+        console.log("Profesor editado con exito");
+        dispatch(getProfesorById(id));
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+}
 
 export function deleteProfesor(id) {
   return async function (dispatch) {
@@ -69,6 +92,13 @@ export function deleteProfesor(id) {
 export function filterPrecio(payload) {
   return {
     type: FILTER_PRECIO,
+    payload,
+  };
+}
+
+export function setProfeFiltered(payload) {
+  return {
+    type: SET_PROFE_FILTERED,
     payload,
   };
 }
@@ -101,5 +131,11 @@ export function filterProfes(filtros) {
 export function clear() {
   return {
     type: "CLEAR",
+  };
+}
+
+export function desmontajeProfesores() {
+  return {
+    type: "DESMONTAJE",
   };
 }

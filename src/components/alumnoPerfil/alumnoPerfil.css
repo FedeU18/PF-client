@@ -5,6 +5,15 @@
   background-size: cover;
 }
 
+.tabla-reservas {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  top: 4rem;
+}
+
 .ContMyPerfilFavorites{
   display: grid;
   grid-template-columns: 5%  53% 42%;
@@ -23,6 +32,7 @@
 }
 
 .myFavCont{
+  position: relative;
   background-color: rgb(223, 233, 241);
   width: 80% ;
   height: 88vh;
@@ -33,6 +43,10 @@
 }
 
 .pendientesContperfAlum{
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   background-color: rgb(223, 233, 241);
   width: 90% ;
   height: 34vh;
@@ -42,10 +56,10 @@
  
   border-radius: 5px;
 }
-
+/* 
 .InFoAlumnoPErfCont{
 
-}
+} */
 
 .FotoPerfilACont{
 
@@ -167,9 +181,9 @@ border-radius: 5px 0px 5px 0px;
   cursor: pointer;
   font-size: 24px;
 }
-.contInfoPErfAlum{
+/* .contInfoPErfAlum{
 
-}
+} */
 .flagalumPro{
   width: 2rem;
   margin-right: 5px;
@@ -233,13 +247,23 @@ border-radius: 5px 0px 5px 0px;
 }
 
 .myPEndHeaderPerFal{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: .3rem;
+  width: 80%;
   height: 3rem;
   font-weight: bold;
   font-size: 24px;
   color: rgb(129, 126, 126,0.8);
   text-align: center;
   padding-top: 1.2rem;
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px 0px;
+  /* box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px 0px; */
+}
+
+.link-hacia-el-profe {
+  color: black;
 }
 
 .mispenSpan{
@@ -262,3 +286,33 @@ border-radius: 5px 0px 5px 0px;
 .centerProfCardsFavAL{
   margin-left: 15%;
 }
+
+
+
+
+
+/* 
+
+
+
+
+
+
+*/
+
+
+.email-student-loader {
+  width: 92% !important;
+  margin-left: 1rem;
+}
+
+.dark_mi_perfil_alumno {
+  background-color: #242529;
+}
+
+.info_student_dark{
+  color: aliceblue;
+  font-weight: bolder;
+}
+
+/* #1A202C  #171923* #242529 */

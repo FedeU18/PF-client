@@ -1,0 +1,55 @@
+.border_cards {
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
+  /* border-radius: .4rem !important; */
+}
+
+.card_container {
+  height: 500px !important;
+  transition: transform 0.2s ease;
+}
+
+.card_container:hover {
+  transform: scale(1.02);
+}
+
+.materias_profe {
+  border-radius: 0.2rem;
+  color: white;
+  padding: 0.2rem 0.3rem;
+  margin: 0 0.2rem;
+  background-color: #368abf;
+}
+
+.precio_heart {
+  bottom: 1rem;
+}
+
+.precio_por_hora {
+  margin-right: 1.5rem;
+}
+
+.hr_card {
+  left: 0;
+  width: 100%;
+  bottom: 2.5rem;
+}
+
+.estrella_puntuacion {
+  bottom: 4rem;
+}
+
+.puntuacion {
+  margin-left: 2rem;
+  margin-top: 0;
+}
+
+
+
+/* DARK THEME */
+.dark_card {
+  background-color: #242529 !important;
+  color: whitesmoke !important;
+}
+
+/* #1A202C  #171923* #242529 #101011 */

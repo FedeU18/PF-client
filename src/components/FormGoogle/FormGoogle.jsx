@@ -11,7 +11,8 @@ const initialGoogleForm = {
   name: "",
   lastname: "",
   age: "",
-  picture: "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__480.png",
+  picture:
+    "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__480.png",
   country: "",
   rol: "student",
 };
@@ -24,6 +25,7 @@ const initialGoogleErrors = {
   // pictureErr: false,
   emailErr: false,
   rolErr: false,
+  usernameExist: false,
 };
 
 const FormGoogle = ({ mostrarStudent, setMostrarStudent }) => {
@@ -33,33 +35,31 @@ const FormGoogle = ({ mostrarStudent, setMostrarStudent }) => {
   const [repeat, setRepeat] = useState("");
   const [loaderGoogle, setLoaderGoogle] = useState(false);
   const [formGoogle, setFormGoogle] = useState(initialGoogleForm);
-  const { username, name, lastname, age } = formGoogle;
+  const { username, name, lastname, age, country } = formGoogle;
   const [errors, setErrors] = useState(initialGoogleErrors);
-  const { usernameErr, nameErr, lastnameErr, ageErr, emailErr, rolErr } =
-    errors;
+  const {
+    usernameErr,
+    nameErr,
+    lastnameErr,
+    ageErr,
+    emailErr,
+    rolErr,
+    usernameExist,
+  } = errors;
   const paises = useSelector((state) => state.paises.paises);
   const alumnos = useSelector((state) => state.alumnos.alumnos);
+  const profesores = useSelector((state) => state.profesores.allProfesores);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoaderGoogle(true);
-    const noRepeatPlease = alumnos.find(
-      (alumno) => alumno.username === username
-    );
-
-    if (noRepeatPlease) {
-      setRepeat("username existente intente otro");
-      setTimeout(() => {
-        setRepeat("");
-      }, 4000);
-      return;
-    }
 
     if (!username || !name || !lastname || !age) {
       setRepeat("campos incompletos");
       setTimeout(() => {
         setRepeat("");
       }, 4000);
+      setLoaderGoogle(false);
       return;
     }
 
@@ -68,6 +68,7 @@ const FormGoogle = ({ mostrarStudent, setMostrarStudent }) => {
       setTimeout(() => {
         setRepeat("");
       }, 4000);
+      setLoaderGoogle(false);
       return;
     }
 
@@ -79,6 +80,7 @@ const FormGoogle = ({ mostrarStudent, setMostrarStudent }) => {
         console.error(error);
       }
     }
+    setLoaderGoogle(false);
   };
 
   const handleChange = (e) => {
@@ -86,6 +88,19 @@ const FormGoogle = ({ mostrarStudent, setMostrarStudent }) => {
     const inputValue = e.target.value;
 
     validateGoogleInput(inputName, inputValue, setErrors, errors);
+
+    if (inputName === "username") {
+      const allUsers = [...profesores, ...alumnos];
+      const noRepeatPlease = allUsers.find(
+        (user) => user.username === inputValue
+      );
+
+      if (noRepeatPlease) {
+        setErrors({ ...errors, usernameExist: true });
+      } else {
+        setErrors({ ...errors, usernameExist: false });
+      }
+    }
 
     setFormGoogle({
       ...formGoogle,
@@ -124,12 +139,16 @@ const FormGoogle = ({ mostrarStudent, setMostrarStudent }) => {
               <input
                 type="text"
                 onChange={handleChange}
-                value={username}
+                value={username.toLowerCase()}
                 name="username"
                 className="form-control mt-1"
                 id="username"
               />
-              {/* {usernameErr && <span></span>} */}
+              {usernameExist && username !== "" && (
+                <span className="text-danger text-center d-block">
+                  el usuario ya existe
+                </span>
+              )}
             </div>
             <div className="mt-2">
               <label htmlFor="name">nombre </label>
@@ -172,6 +191,8 @@ const FormGoogle = ({ mostrarStudent, setMostrarStudent }) => {
                   className="form-control"
                   value={age}
                   onChange={handleChange}
+                  min="10"
+                  max="100"
                 />
               </div>
               {age > 16 && ageErr && (

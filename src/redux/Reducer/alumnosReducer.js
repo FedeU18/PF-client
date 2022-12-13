@@ -9,12 +9,10 @@ const initialState = {
   alumno: [],
   alumnos: [],
 };
-console.log("soy el estado alumno---->", initialState.alumno);
 
 const alumnosReducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_ALUMNO:
-      console.log("obj alumno desde reducer---->", state.alumno);
       return {
         ...state,
         alumno: action.payload,

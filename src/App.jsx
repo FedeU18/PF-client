@@ -1,17 +1,20 @@
 import { Detalle } from "./view/PerfilProfesor/Detalle.jsx";
 import Registro from "./view/Registro/Registro.jsx";
 import { Routes, Route } from "react-router-dom";
-import { Home } from "./view/Home/Home.jsx";
-import { Landing } from "./view/Landing/Landing.jsx";
-import { Perfil } from "./view/Perfil/Perfil.jsx";
-import { Error } from "./view/Error/error.jsx";
-import { About } from "./view/About/About.jsx";
-import ProtectedRoute from "./Authentication/protection/ProtectedRoute.jsx";
-import PublicRoutes from "./Authentication/protection/PublicRoutes.jsx";
-import ForgotPassword from "./view/ForgotPassword/ForgotPassword.jsx";
-import PerfilProfesor from "./components/PerfilProfesor/PerfilProfesor.jsx";
-import StripePagos from "./Payments/StripePagos.jsx";
-import TypeOfProcessPay from "./Payments/TypeOfProcessPay.jsx";
+import { Home } from "./view/Home/Home";
+import { Landing } from "./view/Landing/Landing";
+import { Perfil } from "./view/Perfil/Perfil";
+import { Error } from "./view/Error/error";
+import { About } from "./view/About/About";
+import ProfesoresList from "./view/Home/ProfesoresList";
+import { TodasNotificaciones } from "./view/Notificaciones/Notificaciones";
+import ProtectedRoute from "./Authentication/protection/ProtectedRoute";
+import PublicRoutes from "./Authentication/protection/PublicRoutes";
+import ForgotPassword from "./view/ForgotPassword/ForgotPassword";
+import PerfilProfesor from "./components/PerfilProfesor/PerfilProfesor";
+import TypeOfProcessPay from "./Payments/TypeOfProcessPay";
+import ProtectedPayments from "./Authentication/protection/ProtectedPayments";
+
 
 function App() {
   return (
@@ -25,12 +28,21 @@ function App() {
 
         <Route path="/" element={<ProtectedRoute />}>
           <Route path="/home" element={<Home />} />
+          <Route path="/home/:id" element={<ProfesoresList />} />
           <Route path="/profile" element={<Perfil />} />
           <Route path="/about" element={<About />} />
+          <Route path="/notificaciones" element={<TodasNotificaciones />} />
           <Route path="/profesores/:id" element={<Detalle />} />
           <Route path="/editar/:id" element={<PerfilProfesor />} />
-          <Route path="/payments" element={<StripePagos />} />
-          <Route path="/payments/:type" element={<TypeOfProcessPay />} />
+          {/* <Route path="/payments" element={<StripePagos />} /> */}
+          <Route
+            path="/payments/:type"
+            element={
+              <ProtectedPayments>
+                <TypeOfProcessPay />
+              </ProtectedPayments>
+            }
+          />
         </Route>
 
         <Route path="*" element={<Error />} />

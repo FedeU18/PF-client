@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
-import * as actionsAlumno from "../../redux/Actions/Alumno.js";
-import * as actionsPaises from "../../redux/Actions/Paises.js"; /*NUEVO*/
+import * as actions from "../../redux/Actions/Alumno.js";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 import imag from "./default user.png";
@@ -17,9 +16,12 @@ import { MdOutlinePendingActions } from "react-icons/md";
 import { EditarAlumno } from "../EditarAlumno/EditarAlumno.jsx";
 import { clearAlumno } from "../../redux/Actions/Alumno.js";
 import { ProfeCard } from "../ProfeCard/Profecard.jsx";
+import LoaderPerfilStudent from "./LoaderPerfilStudent.jsx";
+import Table from "react-bootstrap/Table";
+import { allProfes } from "../../redux/Actions/Profesor.js";
 
 export const AlumnoPerfil = (props) => {
-  console.log("desde alumno perfil ", props.id);
+  const theme = useSelector((state) => state.theme.theme);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [show, setShow] = useState(false);
@@ -27,49 +29,63 @@ export const AlumnoPerfil = (props) => {
   const [myFavProfe, setMyFavProfe] = useState([]);
   let valorImagen = "";
   let info = useSelector((state) => state.alumnos.alumno);
-  const profes = useSelector((state) => state.profesores.profesores);
+  const profes = useSelector((state) => state.profesores.allProfesores);
 
   useEffect(() => {
-    setMyFavProfe([]);
-    if (info.favourites && info.favourites.length > 0 && profes.length > 0) {
-      info.favourites.map((f) => {
-        profes.map((p) => {
-          if (p.id === f) {
-            setMyFavProfe((prev) => [...prev, p]);
-          }
-        });
-      });
-    }
-  }, [info]);
-
-  useEffect(() => {
-    dispatch(actionsAlumno.getAlumnoFromAPI(props.id));
+    dispatch(allProfes());
+    dispatch(actions.getAlumnoFromAPI(props.id));
     return () => {
       dispatch(clearAlumno());
     };
   }, []);
 
+  useEffect(() => {
+    console.log(info.favourites);
+    console.log(profes);
+    if (info.favourites.length > 0 && profes.length > 0) {
+      // info.favourites?.map((f) => {
+      //   profes.map((p) => {
+      //     if (p.id === f) {
+      //       setMyFavProfe((prev) => [...prev, p]);
+      //     }
+      //   });
+      // });
+
+      const profesFavoritos = [];
+      if (profes.length > 0) {
+        for (const profesor of profes) {
+          if (info.favourites.includes(profesor.id)) {
+            profesFavoritos.push(profesor);
+          }
+        }
+        console.log(profesFavoritos);
+        setMyFavProfe(profesFavoritos);
+        console.log(myFavProfe)
+      }
+    }
+  }, [profes.length]);
+
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  const deleteAlumno = async () => {
-    const deleteAccount = window.confirm(
-      "esta seguro de eliminar su cuenta de alumno"
-    );
-    if (deleteAccount) {
-      const UID = props.id;
-      await deleteFirestoreUser(UID); // borra firestore
-      dispatch(actionsAlumno.deleteAlumno(UID)); // borra base de datos
-      deleteCurrentUser(); // borra de firebase auth
-      logOut(); // lo deslogea
-      navigate("/"); // lo lleva al landing :)
-      // NO CAMBIAR EL ORDEN ,no comete errores pero si hace que se vea feo , primero eliminamos los datos para que
-      // se podria arreglar con un loader pero ya veremos :)
-    }
-  };
+  // const deleteOwnAlumno = async () => {
+  //   const deleteAccount = window.confirm(
+  //     "esta seguro de eliminar su cuenta de alumno"
+  //   );
+  //   if (deleteAccount) {
+  //     const UID = props.id;
+  //     await deleteFirestoreUser(UID); // borra firestore
+  //     dispatch(actions.deleteAlumno(UID)); // borra base de datos
+  //     deleteCurrentUser(); // borra de firebase auth
+  //     logOut(); // lo deslogea
+  //     navigate("/"); // lo lleva al landing :)
+  //     // NO CAMBIAR EL ORDEN ,no comete errores pero si hace que se vea feo , primero eliminamos los datos para que
+  //     // se podria arreglar con un loader pero ya veremos :)
+  //   }
+  // };
 
   function valor() {
-    if (pict != "") {
+    if (pict !== "") {
       valorImagen = pict;
     } else {
       valorImagen = info.picture;
@@ -85,7 +101,8 @@ export const AlumnoPerfil = (props) => {
       },
       (error, result) => {
         if (!error && result && result.event === "success") {
-          dispatch(actionsAlumno.editAlumno({ picture: result.info.url }, props.id));
+          dispatch(actions.editAlumno({ picture: result.info.url }, props.id));
+
           setPict(result.info.url);
         }
       }
@@ -96,53 +113,87 @@ export const AlumnoPerfil = (props) => {
   return (
     <div>
       {info && info.name ? (
-        <div className="divPrincipal">
+        <div className={`divPrincipal`}>
           <EditarAlumno show={show} alumno={info} handleClose={handleClose} />
-          <div className="ContMyPerfilFavorites">
+          <div className={`ContMyPerfilFavorites`}>
             <Link to="/home">
               <button className="goBackBtn">
                 <img className="gobackArrow" src={"/retro.png"} />
               </button>
             </Link>
-
             <div>
-              <div className="myperfilCont">
+              <div
+                className={`myperfilCont  ${
+                  theme === "dark" ? "dark_mi_perfil_alumno" : null
+                }`}
+              >
                 <div className="FotoPerfilACont">
-                  
-                    <img src={valor()} className="ProfilePictureAlum" />
-                   
-                    
-              
-                  <button className="button-17" role="button" onClick={() => handleOpenWidget()}>
+                  <img src={valor()} className="ProfilePictureAlum" />
+
+                  <button
+                    className="button-17"
+                    role="button"
+                    onClick={() => handleOpenWidget()}
+                  >
                     Alumno
                   </button>
                 </div>
-                <div className="InFoAlumnoPErfCont">
+
+                <div className={`InFoAlumnoPErfCont`}>
                   <div className="titleMyPRofile">
-                    <span>Mi Perfil</span>
+                    <span
+                      className={theme === "dark" ? "info_student_dark" : null}
+                    >
+                      Mi Perfil
+                    </span>
                     <button className="btnEditProAlu">
                       <AiOutlineEdit onClick={handleShow} />
                     </button>
                   </div>
 
-                  <div className="contInfoPErfAlum">
+                  <div className={`contInfoPErfAlum`}>
                     <div>
                       <div className="miniContinfoPErfAlu">
                         <div className="eachInfoIputPErProfe">
                           <div className="nameInfoPErAlu">Nombre:</div>
-                          <div className="lainfoPErAlu">{info.name}</div>
+                          <div
+                            className={`lainfoPErAlu ${
+                              theme === "dark" ? "info_student_dark" : null
+                            }`}
+                          >
+                            {info.name}
+                          </div>
                         </div>
                         <div className="eachInfoIputPErProfe">
                           <div className="nameInfoPErAlu">Apellido:</div>
-                          <div className="lainfoPErAlu">{info.lastname}</div>
+
+                          <div
+                            className={`lainfoPErAlu ${
+                              theme === "dark" ? "info_student_dark" : null
+                            }`}
+                          >
+                            {info.lastname}
+                          </div>
                         </div>
                         <div className="eachInfoIputPErProfe">
                           <div className="nameInfoPErAlu">Edad:</div>
-                          <div className="lainfoPErAlu">{info.age} años</div>
+
+                          <div
+                            className={`lainfoPErAlu ${
+                              theme === "dark" ? "info_student_dark" : null
+                            }`}
+                          >
+                            {info.age} años
+                          </div>
                         </div>
                         <div className="eachInfoIputPErProfe">
                           <div className="nameInfoPErAlu">Pais:</div>
-                          <div className="lainfoPErAlu">
+
+                          <div
+                            className={`lainfoPErAlu ${
+                              theme === "dark" ? "info_student_dark" : null
+                            }`}
+                          >
                             <img
                               src={info.country.flag}
                               className="flagalumPro"
@@ -152,25 +203,78 @@ export const AlumnoPerfil = (props) => {
                         </div>
                       </div>
                       <div className="nameInfoPErAlu plusnipa">Email:</div>
-                      <div className="plusnipa2">{info.email}</div>
+                      <div
+                        className={`plusnipa2 ${
+                          theme === "dark" ? "info_student_dark" : null
+                        }`}
+                      >
+                        {info.email}
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-              <div className="pendientesContperfAlum">
+              <div
+                className={`pendientesContperfAlum ${
+                  theme === "dark" ? "dark_mi_perfil_alumno" : null
+                }`}
+              >
                 <div className="myPEndHeaderPerFal">
-                  <span className="mispenSpan">Mis Pendientes</span>
+                  <span
+                    className={`mispenSpan ${
+                      theme === "dark" ? "info_student_dark" : null
+                    }`}
+                  >
+                    Mis Pendientes
+                  </span>
                   <MdOutlinePendingActions
                     style={{ color: "rgb(151, 140, 140,0.8)" }}
                     size={24}
                   />
                 </div>
+                <div className="tabla-reservas position-absolute">
+                  <Table striped hover variant="light">
+                    <thead>
+                      <tr className="text-center">
+                        <th>Día</th>
+                        <th>Hora</th>
+                        <th>Profesor</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {info.fechas?.map((f) => {
+                        return f.profesors.map((p) => {
+                          return (
+                            <tr>
+                              <th>{f.fecha}</th>
+                              <th>{f.hora}</th>
+                              <th>
+                                <Link
+                                  className="link-hacia-el-profe"
+                                  to={"/profesores/" + p.id}
+                                >
+                                  {p.nombre + " " + p.apellido}
+                                </Link>
+                              </th>
+                            </tr>
+                          );
+                        });
+                      })}
+                    </tbody>
+                  </Table>
+                </div>
               </div>
             </div>
 
-            <div className="myFavCont">
+            <div
+              className={`myFavCont ${
+                theme === "dark" ? "dark_mi_perfil_alumno" : null
+              }`}
+            >
               <div className="myFavHeaderPerFal">
-                <span>Mis Favoritos</span>
+                <span className={theme === "dark" ? "info_student_dark" : null}>
+                  Mis Favoritos
+                </span>
                 <MdOutlineFavorite
                   size={30}
                   style={{ color: "rgb(253, 17, 49)" }}
@@ -184,8 +288,8 @@ export const AlumnoPerfil = (props) => {
                 ) : (
                   <div>
                     <Carousel>
-                      {myFavProfe.map((f) => (
-                        <Carousel.Item>
+                      {myFavProfe.map((f, index) => (
+                        <Carousel.Item key={index} style={{marginLeft: "4rem", paddingBottom:" 3rem", marginTop:"4rem"}}>
                           <div className="centerProfCardsFavAL">
                             <ProfeCard
                               id={f.id}
@@ -209,7 +313,7 @@ export const AlumnoPerfil = (props) => {
           </div>
         </div>
       ) : (
-        <h1>Cargando...</h1>
+        <LoaderPerfilStudent />
       )}
     </div>
   );

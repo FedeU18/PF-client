@@ -7,18 +7,32 @@ import {
   FILTER_PRECIO,
   FILTER_PUNTUACION,
   VACIAR_ESTADO,
+  SET_PROFE_FILTERED,
 } from "../types/typesProfesor";
 
 const initialState = {
+  profesoresBYMateria:[],
+  usuariosBYPais:[],
   profesores: [],
   allProfesores: [],
   detail: {},
+  profesFiltered: [],
 };
 
 import { FilterOrder } from "./filterHelper";
 
 const profesoresReducer = (state = initialState, action) => {
   switch (action.type) {
+    case 'GET_PROFEBYMATERIA':
+      return {
+        ...state,
+        profesoresBYMateria:action.payload,
+      }
+      case 'GET_USERBYPAIS':
+        return {
+          ...state,
+          usuariosBYPais:action.payload,
+        }
     case GET_PROFESORES:
       return {
         ...state,
@@ -79,6 +93,12 @@ const profesoresReducer = (state = initialState, action) => {
         profesores: filterPrecio,
       };
     }
+    case SET_PROFE_FILTERED:
+      return {
+        ...state,
+        profesFiltered: action.payload,
+        
+      };
     case FILTER_PUNTUACION: {
       let filterPuntuacion =
         action.payload === "mayorPuntuacion"
@@ -110,16 +130,14 @@ const profesoresReducer = (state = initialState, action) => {
         ...state,
         detail: {},
       };
-    // case "CLEAR2":
-    //     return {
-    //       ...state,
-    //       detail: {},
-    //     };
     case VACIAR_ESTADO:
       return {
         ...state,
         detail: action.payload,
       };
+    case "DESMONTAJE": {
+      return initialState;
+    }
     default:
       return {
         ...state,

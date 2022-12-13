@@ -4,35 +4,33 @@ import { deleteProfesor, getProfesorById } from "../../redux/Actions/Profesor";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
-const ProfesorPerfil = ()=>{
+const ProfesorPerfil = () => {
+  const { id } = useParams();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
-    const {id} = useParams()
-    const dispatch = useDispatch()
-    const navigate = useNavigate()
+  useEffect(() => {
+    dispatch(getProfesorById(id));
+  }, []);
 
-    useEffect(()=>{
-        dispatch(getProfesorById(id))
-    },[])
+  let info = useSelector((state) => state.profesores.detail);
+  console.log(info);
 
-    let info = useSelector((state)=> state.profesores.detail)
-    console.log(info)
-    
-    
-    const DeleteProfesor = ()=>{
-        alert("Esta seguro de eliminar su cuenta de profesor?")
-        dispatch(deleteProfesor(id))
-        navigate("/")
-    } 
+  const DeleteProfesor = () => {
+    alert("Esta seguro de eliminar su cuenta de profesor?");
+    dispatch(deleteProfesor(id));
+    navigate("/");
+  };
 
-    return(
-        <div>
+  return (
+    <div>
       {info.nombre ? (
-             <div>
-                    <p>{info.id}</p>
-         
-                     <div>
-                        <img src="./concluido.png" alt={info.imagen} />
-                    </div>
+        <div>
+          <p>{info.id}</p>
+
+          <div>
+            <img src="./concluido.png" alt={info.imagen} />
+          </div>
 
           <br />
           <br />
@@ -52,7 +50,7 @@ const ProfesorPerfil = ()=>{
                   <th scope="row">Edad</th>
                   <td>{info.Edad}</td>
                 </tr>
-                 
+
                 <tr>
                   <th scope="row">Correo</th>
                   <td colSpan="2">{info.email}</td>
@@ -67,10 +65,10 @@ const ProfesorPerfil = ()=>{
           <button onClick={DeleteProfesor}>Eliminar Cuenta</button>
         </div>
       ) : (
-        <h1>Cargando...</h1>
+        <h1 className="5">Cargando...</h1>
       )}
     </div>
-    )
-}
+  );
+};
 
-export default ProfesorPerfil
+export default ProfesorPerfil;

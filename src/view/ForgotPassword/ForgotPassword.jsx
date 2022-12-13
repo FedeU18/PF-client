@@ -18,7 +18,10 @@ const ForgotPassword = () => {
   };
 
   return (
-    <div className="vh-100 w-100 bg-primary d-flex justify-content-center align-items-center p-4">
+    <div
+      className="vh-100 w-100 d-flex justify-content-center text-light align-items-center p-4"
+      style={{ backgroundColor: "rgb(85, 145, 197)" }}
+    >
       <div className="mb-4">
         <div>
           <h1 className="fw-bolder text-center">¿Perdiste tu Contraseña?</h1>
@@ -28,7 +31,7 @@ const ForgotPassword = () => {
             <br />
           </p>
 
-          <h4 className="fw-bolder">Necesitamos tu email:</h4>
+          <h4 className="fw-bolder text-dark">Necesitamos tu email:</h4>
         </div>
         <div style={{ maxWidth: "300px" }}>
           <div>

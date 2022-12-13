@@ -4,6 +4,7 @@ import {FaInstagram} from "react-icons/fa";
 import {BsFacebook}from "react-icons/bs";
 import {AiFillTwitterCircle} from "react-icons/ai";
 import {IoLogoYoutube} from "react-icons/io";
+import { Link } from "react-router-dom";
 
 function Footer() {
   return (
@@ -19,28 +20,39 @@ function Footer() {
             <li>Terminos del servicio</li>
             <li>Legal</li>
             <li>Acerca de nosotro</li>
-            <li>Find el medioambiente</li>
+            <li>findteacher2@gmail.com</li>
           </div>
           {/* Column2 */}
           <div>
-            <h4>Paises</h4>
-            <ul className="list-unstyled">
-              <li>Peru</li>
-              <li>Argentina</li>
-              <li>Colombia</li>
+            <h4>Mas soporte</h4>
+            <li> <Link to="/about" className="aFootAbout">
+            About
+          </Link></li>
+              <li>accesibilidad</li>
+              <li>Como cuidamos tu privacidad</li>
+              <li>Ayuda</li>
               
               <li>etc...</li>
-            </ul>
+            
           </div>
           {/* Column3 */}
           <div>
             <h4>Redes Sociales</h4>
 
             <ul className="list-unstyled">
-              <li><BsFacebook size={22}/> Facebook</li>
-              <li><AiFillTwitterCircle size={22}/> Twitter</li>
+              <a href="https://www.youtube.com/channel/UCsUXZoWZow_fXUi1ATVbsGg" target="_blank">
               <li><IoLogoYoutube size={22}/> Youtube</li>
+              </a>
+              <a href="https://www.instagram.com/findteacher2/" target="_blank">
               <li><FaInstagram size={22}/> Instagram</li>
+              </a>
+              <a>
+              <li><BsFacebook size={22}/> Facebook</li>
+              </a>
+              <a>
+              <li><AiFillTwitterCircle size={22}/> Twitter</li>
+              </a>
+              
             </ul>
 
             

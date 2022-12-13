@@ -10,10 +10,12 @@
     rgb(39, 7, 185),
     rgb(133, 159, 236)
   ); */
-  background-image: linear-gradient(rgb(85, 145, 197), rgb(133, 159, 236));
+  /* background-image: linear-gradient(rgb(85, 145, 197), rgb(133, 159, 236)); */
+  background-color: #368abf;
 
   color: aliceblue;
-  padding: 1.2% 0% 1.2% 0%;
+  padding-top: 0.4rem;
+  padding-bottom: 0.4rem;
 }
 
 .imgAvatar {
@@ -27,12 +29,31 @@
   cursor: pointer;
 }
 
+
+
 .colAvatarDrop {
-  width: 50%;
+  width: 10%;
+
   display: grid;
-  grid-template-columns: 56% 5%;
+  grid-template-columns: 50% 50%;
 }
 
 .dro {
   margin-top: 6px;
+}
+.btnBellNoti {
+  all: unset;
+  cursor: pointer;
+  color: antiquewhite;
+  width: 50%;
+}
+
+/* .dropdown-toggle::after {
+  color: transparent;
+  margin-bottom: 1rem;
+} */
+
+.Ajuste-Icons {
+  margin-right: 0.4rem;
+  margin-bottom: 0.2rem;
 }

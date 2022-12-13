@@ -15,24 +15,58 @@ import * as actionsProfesor from "../../redux/Actions/Profesor";
 import { useDispatch, useSelector } from "react-redux";
 import { clearAlumno } from "../../redux/Actions/Alumno";
 import { clear } from "../../redux/Actions/Profesor";
+import { BsFillBellFill, BsFillMoonFill, BsFillSunFill } from "react-icons/bs";
+import {
+  getNotificaciones,
+  EditarNotificaciones,
+} from "../../redux/Actions/Notificacion";
+import { CgProfile, CgLogOff } from "react-icons/cg";
+import { setDarkTheme, setLightTheme } from "../../redux/Actions/Themes";
+import { verifyTheme } from "../../redux/Reducer/themeReducer";
+import styles from "./Nav.module.css"
 
 export const NavBar = () => {
+  const theme = useSelector(state => state.theme.theme)
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { userData } = userAuthentication();
   let infoAlumno = useSelector((state) => state.alumnos.alumno);
   let infoProfesor = useSelector((state) => state.profesores.detail);
+  let notificaciones = useSelector(
+    (state) => state.notificaciones.notificaciones
+  );
   const [useFoto, SetUserFoto] = useState("");
+  const [notis, setNotis] = useState(0);
   let id = userData.id;
-  console.log("soy usuario logueado", userData);
+
   useEffect(() => {
     dispatch(actionsAlumno.getAlumnoFromAPI(id));
     dispatch(actionsProfesor.getProfesorById(id));
+    dispatch(getNotificaciones());
     return () => {
       dispatch(clear());
       dispatch(clearAlumno());
     };
   }, []);
+
+  const setToDarkTheme = () => {
+    dispatch(setDarkTheme());
+  };
+
+  const setToLightTheme = () => {
+    dispatch(setLightTheme());
+  };
+
+  useEffect(() => {
+    setNotis(0);
+    if (notificaciones.length > 0) {
+      notificaciones.map((n) => {
+        if (n.visto1 === false) {
+          setNotis((prev) => prev + 1);
+        }
+      });
+    }
+  }, [notificaciones]);
 
   useEffect(() => {
     if (
@@ -67,6 +101,11 @@ export const NavBar = () => {
     }
   }, [infoAlumno, infoProfesor]);
 
+  const handleNotis = () => {
+    dispatch(EditarNotificaciones());
+    navigate("/notificaciones");
+  };
+
   const CloseMySesion = () => {
     logOut();
     navigate("/");
@@ -83,32 +122,53 @@ export const NavBar = () => {
     navigate("/home");
   };
   return (
-    <div className="nnnn">
+    <div className={`nnnn`}>
       <Container
         fluid
         fixed="top"
-        className="NavColorCss shadow-lg  mb-4"
+        className={`${theme === "dark" ? styles.dark_nav : null} NavColorCss shadow-lg`}
         variant="dark"
       >
         <div className="d-flex justify-content-between gap-4 p-1 align-items-center">
           <div>
             <img
-              src={"logoPF.png"}
+              onClick={handleGoHome}
+              src={"/logoPF.png"}
               className={"logoProyecto d-block"}
-              style={{ width: "75px", height: "40px" }}
+              style={{ width: "75px", height: "40px", cursor: "pointer" }}
             />
           </div>
 
           <div>
-            <div>
-              <SearchBar />
-            </div>
+            <SearchBar />
           </div>
 
-          <div>
-            <div className="position-relative">
+          <div
+            className={`${
+              Object.entries(infoProfesor).length > 0 &&
+              infoProfesor.administrador === true &&
+              "colAvatarDrop"
+            }`}
+          >
+            {Object.entries(infoProfesor).length > 0 &&
+              infoProfesor.administrador === true && (
+                <button
+                  type="button"
+                  className="position-relative btnBellNoti"
+                  onClick={handleNotis}
+                >
+                  <BsFillBellFill size={30} />
+                  {notis > 0 && (
+                    <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                      {notis}
+                    </span>
+                  )}
+                </button>
+              )}
+
+            <div className="position-relative" style={{ marginRight: ".5rem" }}>
               <img
-                className="imgAvatar rounded-5"
+                className="imgAvatar rounded-5 border-0"
                 src={useFoto}
                 style={{ objectFit: "cover", width: "40px", height: "40px" }}
               />
@@ -116,17 +176,43 @@ export const NavBar = () => {
               <NavDropdown
                 className={`position-absolute top-0 start-0 p-1 rounded-5`}
                 id="basic-nav-dropdown"
-                style={{ width: "45px", height: "50px" }}
+                style={{ width: "45px", height: "50px", color: "transparent" }}
               >
                 <div>
                   <NavDropdown.Item
-                    className="opacity-100"
+                    className="fw-bolder"
+                    style={{ width: "200px", marginBottom: ".5rem" }}
+                  >
+                    <div className="row">
+                      <div className="col-6">
+                        <button
+                          className="btn btn-dark"
+                          onClick={setToDarkTheme}
+                        >
+                          Dark <BsFillMoonFill />
+                        </button>
+                      </div>
+                      <div className="col-6">
+                        <button
+                          className="btn btn-light"
+                          onClick={setToLightTheme}
+                        >
+                          Light <BsFillSunFill />
+                        </button>
+                      </div>
+                    </div>
+                  </NavDropdown.Item>
+                  <NavDropdown.Item
+                    className="fw-bolder"
                     onClick={handleProfile}
                   >
-                    Mi Perfil
+                    <CgProfile className="fs-5 Ajuste-Icons" /> Mi Perfil
                   </NavDropdown.Item>
-                  <NavDropdown.Item onClick={CloseMySesion}>
-                    Cerrar Sesión
+                  <NavDropdown.Item
+                    className="fw-bolder"
+                    onClick={CloseMySesion}
+                  >
+                    <CgLogOff className="fs-5 Ajuste-Icons" /> Cerrar Sesión
                   </NavDropdown.Item>
                 </div>
               </NavDropdown>

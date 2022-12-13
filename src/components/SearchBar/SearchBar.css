@@ -1,7 +1,7 @@
 
 
     
-.icon {    
+/* .icon {    
   all:unset;
   height: 1.5rem;
   width: 1.5rem;    
@@ -54,7 +54,7 @@
 
 .sugestiononKey{
 background-color: rgb(201, 201, 201);
-}
+} */
 
 /*-----------------------------------------------*/
 
@@ -63,17 +63,17 @@ background-color: rgb(201, 201, 201);
   color: #fff;
   background: #664AFF;
 } */
-.wrapper{
-  /*width: 700px;*/
+/* .wrapper{
+  width: 700px;
   max-width: 450px;
   margin: -5px auto;
-  /*position: absolute;   
-  /*margin-left: 20%;
-  margin-right: 20%;*/
+  position: absolute;   
+  margin-left: 20%;
+  margin-right: 20%;
   color: black;
   background-color: #644bff;
-}
-.wrapper .search-input{
+} */
+/* .wrapper .search-input{
   background: red;
   width: 100%;
   border-radius: 5px;
@@ -109,18 +109,18 @@ background-color: rgb(201, 201, 201);
   list-style: none;
   padding: 8px 12px;
   /*display: none;*/
-  width: 100%;
+  /* width: 100%; */
   /*cursor: default;*/
   
-  color:black;
-  cursor: pointer;
-  position:absolute;
+  /* color:black;
+  cursor: pointer; */
+  /* position:absolute; */
   
-  width: 450px;
-  max-width: 450px;
+  /* width: 450px; */
+  /* max-width: 450px; */
   
-}
-.fila div{
+/* } */
+/* .fila div{
   background-color: #644bff;
   padding: 8px 12px;
   border: 1px solid #000000;
@@ -148,4 +148,18 @@ background-color: rgb(201, 201, 201);
   font-size: 20px;
   color: #644bff;
   cursor: pointer;
+}  */
+
+.hover-searchbar-options:hover {
+  border-radius: .2rem;
+  cursor: pointer;
+  padding: 1rem;
+  background-color: gray;
+  color: aliceblue;
 }
+
+/* .dark_sugerencias {
+  background-color: #171923 !important;
+  color: white;
+} */
+/* #1A202C  #171923* #242529 */

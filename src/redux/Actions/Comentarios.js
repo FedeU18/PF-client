@@ -7,6 +7,13 @@ import {GET_COMENT,
     DELETE_COMENT
 } from '../types/typesComentarios' 
 import { getProfesorById } from "./Profesor"
+import { getNotificaciones } from "./Notificacion"
+
+export function loadingComents () {
+  return {
+    type: "LOADING"
+  }
+}
 
 export const createComentProfe=(id,payload)=>dispatch=>{    
     return axios.post("/comentarios/coment/profesor ", payload)
@@ -28,6 +35,7 @@ export const createComentProfe=(id,payload)=>dispatch=>{
     }  
     
     export const createComentsonComent=(id,payload)=>dispatch=>{    
+      
       return axios.post("/comentarios/coment/", payload)
       .then((d)=>{ 
           dispatch({ type:POST_COMENT_ON_COMENT, payload: d.data }) 
@@ -37,11 +45,15 @@ export const createComentProfe=(id,payload)=>dispatch=>{
       } 
   
     export const deleteComent=(id , profeID)=>dispatch=>{
-      
+      dispatch(loadingComents())
       return axios.delete(`/comentarios/${id}`)
       .then((d)=> {
         dispatch({ type:DELETE_COMENT, payload:d.data })
-        dispatch(getProfesorById(profeID))
+        if(profeID){
+          dispatch(getProfesorById(profeID))
+        }else{
+          dispatch(getNotificaciones())
+        }
       }     
         )
       .catch((e)=> console.log(e))

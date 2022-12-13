@@ -2,14 +2,12 @@
     margin-top:100px ;
 	width:100%;
 	height: 120vh;
-	/*background-color:white;*/
 	box-sizing: border-box;
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
 	padding: 50px 5% 0px 5%;
 	position: relative;
-    /*background: linear-gradient(rgb(85, 145, 197),rgb(85, 145, 197), rgb(133, 159, 236));*/
     background-repeat: no-repeat;
     background-size: cover;
     background-image: url('./img-fab/fondo2.png');
