@@ -1,4 +1,4 @@
-/* .message-content {
+.contenedor_mensaje {
   width: auto;
   height: auto;
   max-width: 100px;
@@ -12,6 +12,19 @@
   overflow-wrap: break-word;
   word-break: break-word;
 }
+#you {
+  justify-content: flex-start;
+}
+#you .contenedor_mensaje {
+  background: rgb(247, 243, 243);
+  justify-content: flex-start;
+  color: rgb(54, 49, 49);
+  font-family: cursive;
+}
+#you .message-meta {
+  justify-content: flex-start;
+  margin-left: 7rem
+}
 .message-content p {
   font-family: cursive;
   font-size: 1.2rem;
@@ -20,31 +33,21 @@
   height: auto;
   display: flex;
 }
-#you {
-  justify-content: flex-start;
-}
-#you .message-content {
-  background: rgb(247, 243, 243);
-  justify-content: flex-start;
-  color: rgb(54, 49, 49);
-  font-family: cursive;
-}
-#you .message-meta {
-  justify-content: flex-start;
-  margin-left: 5px;
-}
+
+
+
 #other {
   justify-content: flex-end;
 }
-#other .message-content {
+#other .contenedor_mensaje {
   justify-content: flex-end;
-  background: rgb(110, 182, 244);
+  background: rgb(176, 156, 176);
   color: rgb(54, 49, 49);
   font-family: cursive;
 }
 #other .message-meta {
   justify-content: flex-end;
-  margin-right: 5px;
+  margin-right: 7rem;
 }
 .message-meta #author {
   margin-left: 10px;
@@ -65,3 +68,14 @@
   overflow-x: hidden;
   background: lightgray;
 } */
+
+.card {
+  margin-left: 20rem;
+}
+.chatContainer {
+  padding-left: 10rem;
+}
+.tituloChat{
+  color: black;
+}
+/*
