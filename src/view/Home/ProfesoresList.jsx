@@ -10,7 +10,7 @@ import { useEffect, useState } from "react";
 import { ProfeCards } from "../../components/ProfeCards/ProfeCards";
 import { useParams } from 'react-router-dom';
 import { setProfeFiltered } from "../../redux/Actions/Profesor";
-
+import Footer from ".././Landing/Footer.jsx"
 
 
 
@@ -74,7 +74,8 @@ function ProfesoresList() {
       <div className="fab-contenedor-imagenes">
         <img className="fab-img-nav-filtros" src={"/frase3.png"} alt="" />
       </div>
-      <FooterH />
+      {/*<FooterH />*/}
+      <Footer/>
     </div>
   );
 }
