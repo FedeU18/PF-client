@@ -1,18 +1,23 @@
 import { ProfeCard } from "../ProfeCard/Profecard";
 import "./ProfeCards.css";
 import { Link } from "react-router-dom";
-export const ProfeCards = ({ profes }) => {
-  console.log(profes);
+
+export const ProfeCards = ({ profes, msgUsuariosAlumno, socket }) => {
+  console.log(msgUsuariosAlumno);
   return (
     <div className="ProfeCardsCont">
       {profes && profes.length > 0 ? (
         profes?.map((e, index) => {
-          return e.error ? (
+          let active = msgUsuariosAlumno.includes(e.nombre);
+
+          return e.Error ? (
             <h4 key={index}>profesor no encontrado</h4>
           ) : (
             <div className="homeProfeCard" key={index}>
               <ProfeCard
                 id={e.id}
+                active={active}
+                msgUsuariosAlumno={msgUsuariosAlumno}
                 username={e.username}
                 nombre={e.nombre}
                 imagen={e.imagen}

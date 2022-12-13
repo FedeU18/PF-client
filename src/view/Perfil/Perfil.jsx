@@ -1,4 +1,5 @@
 import { PerfilProfesor } from "../../components/PerfilProfesor/PerfilProfesor";
+import { PerfilAdmi } from "../../components/PerfilAdministardor/PerfilAdministrador";
 import PerfilAlumno from "../../components/PerfilAlumno/PerfilAlumno";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -27,21 +28,27 @@ export const Perfil = () => {
     };
   }, []);
 
-  if (
-    infoProfesor &&
-    Object.entries(infoProfesor).length > 0 &&
-    infoProfesor.tipo === "profesor"
-  ) {
-    return <PerfilProfesor id={id} />;
-  } else if (
-    infoAlumno &&
-    Object.entries(infoAlumno).length > 0 &&
-    infoAlumno.tipo === "estudiante"
-  ) {
-    return <PerfilAlumno id={id} />;
-  } else if (userData.rol === "student") {
-    return <LoaderPerfilStudent />;
-  } else if (userData.rol === "teacher") {
-    return <LoaderProfePerfil />;
-  }
+  if(Object.entries(infoProfesor).length > 0 &&
+  infoProfesor.administrador===true ){
+    return <PerfilAdmi id={id}/>
+  }else{
+    
+    if (
+      infoProfesor &&
+      Object.entries(infoProfesor).length > 0 &&
+      infoProfesor.tipo === "profesor"
+      ) {
+        return <PerfilProfesor id={id} />;
+      } else if (
+        infoAlumno &&
+        Object.entries(infoAlumno).length > 0 &&
+        infoAlumno.tipo === "estudiante"
+        ) {
+          return <PerfilAlumno id={id} />;
+        } else if (userData.rol === "student") {
+          return <LoaderPerfilStudent />;
+        } else if (userData.rol === "teacher") {
+          return <LoaderProfePerfil />;
+        }
+      }
 };

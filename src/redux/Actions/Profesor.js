@@ -8,7 +8,28 @@ import {
   DELETE_PROFESORES,
   FILTER_PRECIO,
   FILTER_PUNTUACION,
+  SET_PROFE_FILTERED,
 } from "../types/typesProfesor";
+
+export const getUsersByPais=()=>dispatch=>{
+    
+  return axios.get("/profesores/paises")
+  .then((d)=>{ 
+      dispatch({ type:"GET_USERBYPAIS", payload: d.data }) 
+     
+     })
+   .catch ((e) =>{console.log(e)})       
+  } 
+
+  export const getProfesorsBYMateria=()=>dispatch=>{
+    
+    return axios.get("/profesores/materias")
+    .then((d)=>{ 
+        dispatch({ type:"GET_PROFEBYMATERIA", payload: d.data }) 
+       
+       })
+     .catch ((e) =>{console.log(e)})       
+    } 
 
 export function getProfesorById(id) {
   return async function (dispatch) {
@@ -71,6 +92,13 @@ export function deleteProfesor(id) {
 export function filterPrecio(payload) {
   return {
     type: FILTER_PRECIO,
+    payload,
+  };
+}
+
+export function setProfeFiltered(payload) {
+  return {
+    type: SET_PROFE_FILTERED,
     payload,
   };
 }

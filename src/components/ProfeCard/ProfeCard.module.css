@@ -35,7 +35,6 @@
   bottom: 2.5rem;
 }
 
-
 .estrella_puntuacion {
   bottom: 4rem;
 }
@@ -48,7 +47,6 @@
 
 
 /* DARK THEME */
-
 .dark_card {
   background-color: #242529 !important;
   color: whitesmoke !important;

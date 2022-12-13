@@ -3,6 +3,16 @@ import { NavBar } from "../../components/Nav/Nav";
 import { useNavigate } from "react-router-dom";
 import NavFiltros from "./NavFiltros.jsx";
 import FooterH from "./FooterH.jsx";
+import {usePagination} from '../../hooks/usePagination';
+import { searchProfesor } from "../../utils/api";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+import { ProfeCards } from "../../components/ProfeCards/ProfeCards";
+import { useParams } from 'react-router-dom';
+import { setProfeFiltered } from "../../redux/Actions/Profesor";
+
+
+
 
 function ProfesoresList() {
   const navigate = useNavigate();
@@ -10,6 +20,32 @@ function ProfesoresList() {
   const handlerVolver = () => {
     navigate("/home");
   };
+
+  const dispatch = useDispatch();
+
+  let { id } = useParams();
+
+
+  const profesFilt = useSelector((state) => state.profesores.profesFiltered);
+
+  const {results, nextPage, prevPage, canNextPage, canPrevPage} = usePagination(3,searchProfesor,id);
+
+
+
+
+  useEffect(()=>{
+
+    dispatch(setProfeFiltered(results));
+    
+   },[results])
+
+   
+
+
+  
+    
+    
+  
 
   return (
     <div>
@@ -21,7 +57,11 @@ function ProfesoresList() {
       </div>
       <NavFiltros />
 
-      <h1>deberia renderizarse todos los profesores.</h1>
+      <ProfeCards profes={profesFilt} />
+      <div>
+        <button onClick={prevPage} disabled={!canPrevPage()}>Prev</button>
+        <button onClick={nextPage} disabled={!canNextPage()}>Next</button>
+    </div>
 {/*imagen*/}
 <div className="fab-contenedor-imagenes">
         <img className="fab-img-nav-filtros" src={"/frase1.png"} alt="" />
