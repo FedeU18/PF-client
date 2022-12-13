@@ -40,14 +40,15 @@ function Footer() {
             <h4 className="fab-titulos-footer">Redes Sociales</h4>
 
             <ul className="list-unstyled">
-              <a  href="https://www.youtube.com/channel/UCsUXZoWZow_fXUi1ATVbsGg" target="_blank">
-              <li className="fab-subtitulos-footer"><IoLogoYoutube size={22}/> Youtube</li>
+              <a href="https://www.youtube.com/channel/UCsUXZoWZow_fXUi1ATVbsGg" target="_blank">
+              <li className="text-danger"><IoLogoYoutube size={22}/> Youtube</li>
+
               </a>
               <a href="https://www.instagram.com/findteacher2/" target="_blank">
               <li className="fab-subtitulos-footer"><FaInstagram size={22}/> Instagram</li>
               </a>
               <a>
-              <li className="fab-subtitulos-footer"><BsFacebook size={22}/> Facebook</li>
+              <li className="text-primary"><BsFacebook size={22}/> Facebook</li>
               </a>
               <a>
               <li className="fab-subtitulos-footer"><AiFillTwitterCircle size={22}/> Twitter</li>

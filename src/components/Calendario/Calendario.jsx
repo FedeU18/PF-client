@@ -9,11 +9,9 @@ import StripePagos from "../../Payments/StripePagos";
 import { setReservaProfe } from "../../redux/Actions/Mailer";
 import { getAlumnoFromAPI, editAlumno } from "../../redux/Actions/Alumno";
 
-
-
 const Calendario = ({ profe }) => {
   const [error, setError] = useState(false);
-  
+
   const dispatch = useDispatch();
   const [errorDays, setErrorDays] = useState(false);
   const alumno = useSelector((state) => state.alumnos.alumno);
@@ -21,6 +19,7 @@ const Calendario = ({ profe }) => {
   console.log("pepe", alumno);
 
   const fechas = useSelector((state) => state.fechas.fechas);
+  const theme = useSelector((state) => state.theme.theme);
   console.log("profe: ", profe);
   const user = userAuthenticate();
   const [activate, setActivate] = useState(false);
@@ -35,10 +34,9 @@ const Calendario = ({ profe }) => {
 
   useEffect(() => {
     dispatch(getFecha());
-    dispatch(getAlumnoFromAPI(user.userData.id))
+    dispatch(getAlumnoFromAPI(user.userData.id));
   }, []);
 
- 
   useEffect(() => {
     setActivate(false);
     if (reserva.fecha && reserva.hora) {
@@ -93,7 +91,6 @@ const Calendario = ({ profe }) => {
     });
   };
 
-  // console.log(new Date("19-09-20").getMilliseconds());
 
   const handleFecha = (e) => {
     setReserva({
@@ -110,7 +107,9 @@ const Calendario = ({ profe }) => {
     }
   };
 
-  const precio = alumno.promo ? (profe.precio - (profe.precio * 20 ) /100 ) : profe.precio
+  const precio = alumno.promo
+    ? profe.precio - (profe.precio * 20) / 100
+    : profe.precio;
 
   return (
     <div>
@@ -124,7 +123,9 @@ const Calendario = ({ profe }) => {
           maxDetail="month"
         />
       </div>
-      <div className="reservasCont">
+      <div
+        className={`reservasCont mt-3`}
+      >
         <div className="all-horarios">
           <div>
             <h2>Horario: </h2>
@@ -152,20 +153,21 @@ const Calendario = ({ profe }) => {
               <td>Precio</td>
             </tr>
           </thead>
-          <tbody>
+          <tbody >
             <tr>
               <td>{reserva.fecha}</td>
               <td>{reserva.hora}</td>
-               {alumno?.promo ? <td><strike>{profe.precio + "$" }</strike> {precio + "$"}</td>  : <td> {profe.precio + "$" } </td>}
-              
+              {alumno?.promo ? (
+                <td>
+                  <strike>{profe.precio + "$"}</strike> {precio + "$"}
+                </td>
+              ) : (
+                <td> {profe.precio + "$"} </td>
+              )}
             </tr>
           </tbody>
-   
-          
-
         </Table>
 
-               
         <div className="reserva w-100 justify-content-evenly align-items-center flex-column">
           <button
             disabled={
@@ -177,7 +179,9 @@ const Calendario = ({ profe }) => {
           >
             reservar
           </button>
-          {activate && <StripePagos id={alumno.id} precio={precio} profe={profe} />}
+          {activate && (
+            <StripePagos id={alumno.id} precio={precio} profe={profe} />
+          )}
         </div>
       </div>
       <div>

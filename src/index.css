@@ -9,14 +9,12 @@ html {
 }
 
 html::-webkit-scrollbar {
-  background-color: transparent;
   width: 8px;
 }
 
 html::-webkit-scrollbar-thumb {
   background-color: transparent;
   background-color: rgb(70, 67, 67);
-  border-radius: 0.4rem;
 }
 
 

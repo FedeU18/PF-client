@@ -15,6 +15,7 @@ import Alert from "react-bootstrap/Alert";
 import { deleteCertificado } from "../../redux/Actions/Certificado";
 
 export const PerfilProfesor = ({ id }) => {
+  const theme = useSelector((state) => state.theme.theme);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [show, setShow] = useState(false);
@@ -85,7 +86,7 @@ export const PerfilProfesor = ({ id }) => {
             onHide={() => setModalShow(false)}
           />
 
-          <div className="ContMyPerfilFavoritesProf">
+          <div className={`ContMyPerfilFavoritesProf`}>
             <Link to="/home">
               <button className="goBackBtn">
                 <img className="gobackArrowProf" src={"/retro.png"} />
@@ -93,7 +94,11 @@ export const PerfilProfesor = ({ id }) => {
             </Link>
 
             <div>
-              <div className="myperfilContProf">
+              <div
+                className={`myperfilContProf  ${
+                  theme === "dark" ? "mi_perfil_profe_dark" : null
+                }`}
+              >
                 <div className="FotoPerfilAContProf">
                   <img src={valor()} className="ProfilePictureAlumProf" />
 
@@ -127,23 +132,49 @@ export const PerfilProfesor = ({ id }) => {
                       <div className="miniContinfoPErfAluProf">
                         <div className="eachInfoIputPErProfe">
                           <div className="nameInfoPErAluProf">Nombre:</div>
-                          <div className="lainfoPErAluProf">{info.nombre}</div>
+                          <div
+                            className={`lainfoPErAluProf ${
+                              theme === "dark"
+                                ? "mi_perfil_profe_dark_words"
+                                : null
+                            }`}
+                          >
+                            {info.nombre}
+                          </div>
                         </div>
                         <div className="eachInfoIputPErProfe">
                           <div className="nameInfoPErAluProf">Apellido:</div>
-                          <div className="lainfoPErAluProf">
+                          <div
+                            className={`lainfoPErAluProf ${
+                              theme === "dark"
+                                ? "mi_perfil_profe_dark_words"
+                                : null
+                            }`}
+                          >
                             {info.apellido}
                           </div>
                         </div>
                         <div className="eachInfoIputPErProfe">
                           <div className="nameInfoPErAluProf">Precio:</div>
-                          <div className="lainfoPErAluProf">
+                          <div
+                            className={`lainfoPErAluProf ${
+                              theme === "dark"
+                                ? "mi_perfil_profe_dark_words"
+                                : null
+                            }`}
+                          >
                             {info.precio} $ por hora.
                           </div>
                         </div>
                         <div className="eachInfoIputPErProfe">
                           <div className="nameInfoPErAluProf">Pais:</div>
-                          <div className="lainfoPErAluProf">
+                          <div
+                            className={`lainfoPErAluProf ${
+                              theme === "dark"
+                                ? "mi_perfil_profe_dark_words"
+                                : null
+                            }`}
+                          >
                             <img
                               src={info.country.flag}
                               className="flagalumPro"
@@ -155,19 +186,35 @@ export const PerfilProfesor = ({ id }) => {
                       <div className="nameInfoPErAluProf plusnipaProf">
                         Email:
                       </div>
-                      <div className="plusnipa2Prof">{info.email}</div>
+                      <div
+                        className={`plusnipa2Prof ${
+                          theme === "dark" ? "mi_perfil_profe_dark_words" : null
+                        }`}
+                      >
+                        {info.email}
+                      </div>
                       <br></br>
                       <div className="nameInfoPErAluProf plusnipaProf">
                         Descripción:
                       </div>
-                      <div className="plusnipa2Prof">{info.descripcion}</div>
+                      <div
+                        className={`plusnipa2Prof ${
+                          theme === "dark" ? "mi_perfil_profe_dark_words" : null
+                        }`}
+                      >
+                        {info.descripcion}
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
 
-            <div className="myFavContProf">
+            <div
+              className={`myFavContProf ${
+                theme === "dark" ? "mi_perfil_profe_dark" : null
+              }`}
+            >
               {info.descripcion2 === null || info.descripcion2 === "" ? (
                 <div className="justPorqueDEbEleg">
                   ¿Porque deberian elegirme?
@@ -189,13 +236,18 @@ export const PerfilProfesor = ({ id }) => {
             </div>
           </div>
 
-          <div className="SEcondcontProper">
-            <div className="myMAteriasProfper">
+          <div className={`SEcondcontProper`}>
+            <div
+              className={`myMAteriasProfper ${
+                theme === "dark" ? "mi_perfil_profe_dark" : null
+              }`}
+            >
               <div className="myFavHeaderPerFal">
-                <span>
-                  Mis Materias
+                <span className={`${
+                theme === "dark" ? "mi_perfil_profe_dark" : null
+              }`}>
+                  Mis Materias 
                   <button className="btnEditProAluProf btnEditprofOTher ">
-                    {/* <AiOutlineEdit /> */}
                   </button>
                 </span>
                 <div className="materiasContProfPEr">
@@ -214,9 +266,17 @@ export const PerfilProfesor = ({ id }) => {
               </div>
             </div>
 
-            <div className="MisCertificadosPRofePEr">
-              <div className="myFavHeaderPerFal">
-                <span>
+            <div
+              className={`MisCertificadosPRofePEr ${
+                theme === "dark" ? "mi_perfil_profe_dark" : null
+              }`}
+            >
+              <div className={`myFavHeaderPerFal`}>
+                <span
+                  className={`${
+                    theme === "dark" ? "mi_perfil_profe_dark_words" : null
+                  }`}
+                >
                   Mis Certificados
                   <button className="btnEditProAluProf btnEditprofOTher"></button>
                 </span>
