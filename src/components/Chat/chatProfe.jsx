@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import ScrollToBottom from "react-scroll-to-bottom";
+import "animate.css";
 
 import "./profesor.css";
 
@@ -92,9 +93,13 @@ export const ChatProfe = ({
   }, [socket]);
 
   return (
-    <div id="" className="divUsuariosChat">
-      <div className="containerUserChats ">
-        {usersChat.length &&
+    <div className="divUsuariosChat">
+      <div
+        className="containerUserChats"
+        data-aos="fade-left"
+        data-aos-duration="500"
+      >
+        {usersChat.length ? (
           usersChat.map((item, index) => {
             if (item === userLogin) return;
             let chatPending = mensajesUsuarios.includes(item);
@@ -109,7 +114,17 @@ export const ChatProfe = ({
                 key={index}
               />
             );
-          })}
+          })
+        ) : (
+          <div>
+            <div class="spinner-border spinner-border-sm" role="status">
+              <span class="sr-only"></span>
+            </div>
+            <div class="spinner-grow spinner-grow-sm" role="status">
+              <span class="sr-only"></span>
+            </div>
+          </div>
+        )}
       </div>
       {chat && (
         <Chat
@@ -171,7 +186,7 @@ const Chat = ({
   chat,
 }) => {
   return (
-    <div className="divContainer">
+    <div className="divContainer" data-aos="fade-up" data-aos-duration="200">
       <div className="container">
         <div className="row">
           <div className="col-md-4 mt-5">
@@ -179,7 +194,7 @@ const Chat = ({
               <button className="btnSalirChat" onClick={() => setChat(!chat)}>
                 chat
               </button>
-              <ScrollToBottom className="containerMensajes ">
+              <ScrollToBottom className="containerMensajes">
                 {mensajesAlumno.map((e) => {
                   return (
                     <div

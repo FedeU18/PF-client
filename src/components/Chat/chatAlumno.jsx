@@ -1,20 +1,11 @@
 import React, { useEffect, useState } from "react";
 import "./componenteChat.css";
 import ScrollToBottom from "react-scroll-to-bottom";
+import img from "../Chat/concluido.png";
 
-export const ChatAlumno = ({
-  canal,
-  socket,
-  userLogin,
-  receptor,
-  mensajesAntiguos,
-}) => {
+export const ChatAlumno = ({ canal, socket, userLogin, receptor }) => {
   const [mensaje, setMensaje] = useState("");
   const [mensajes, setMensajes] = useState([]);
-
-  const mensajesOld = () => {
-    setMensajes([...mensajesAntiguos, ...mensajes]);
-  };
 
   const mensajesProfe = mensajes.filter(
     (e) =>
@@ -44,13 +35,10 @@ export const ChatAlumno = ({
 
   useEffect(() => {
     socket.emit("solicitarMSG_pendientes");
-
     socket.emit("join_room", canal);
-
-    socket.on("alerta_mensajes", (data) => {
-      console.log("soy alerta mensajes", data);
+    socket.on("mensajes_antiguos", (data) => {
+      setMensajes([...mensajes, ...data]);
     });
-
     socket.on("mensaje_privado", (res) => {
       console.log("recibo mensajes desde alumno", res);
       if (
@@ -72,10 +60,12 @@ export const ChatAlumno = ({
 
   return (
     <div>
-      <div>
+      <div className="containerChat">
         <div className="titulo">
           <h4 className="tituloChat">Chatea con el profe</h4>
-          <button onClick={mensajesOld}>☑</button>
+        </div>
+        <div className="containerImg">
+          <img src={img} alt="img" />
         </div>
         <ScrollToBottom className="cardBody " id="chat">
           {mensajesProfe.map((e) => {

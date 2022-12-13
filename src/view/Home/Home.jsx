@@ -28,13 +28,14 @@ import MateriasBtn from "./MateriasBtn.jsx";
 import Caru from "./Caru.jsx";
 import Loader from "../../components/Loader/Loader";
 import FooterH from "./FooterH.jsx";
+import Footer from ".././Landing/Footer.jsx"
 import { RiCloseCircleFill } from "react-icons/ri";
 
 export const Home = () => {
-const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const theme = useSelector((state) => state.theme.theme);
-let profesor = useSelector((state) => state.profesores.detail);
-const [ban, setBan] = useState(false);
+  let profesor = useSelector((state) => state.profesores.detail);
+  const [ban, setBan] = useState(false);
   const { userData } = userAuthentication();
   const id = userData.id;
 
@@ -195,7 +196,7 @@ const [ban, setBan] = useState(false);
                 name={f}
                 onClick={handleDeleteOpSelec}
               >
-                <RiCloseCircleFill className="fs-4 text-danger button_quit_materia"/> 
+                <RiCloseCircleFill className="fs-4 text-danger button_quit_materia" />
                 {f[0].toUpperCase() + f.slice(1, f.length)}
               </button>
             ))
@@ -218,9 +219,13 @@ const [ban, setBan] = useState(false);
               X {filtrosSeleccionados.pais}
             </button>
           ) : (
-            <button className={`btnListOpSelected ${
-              theme === "dark" ? "dark_filtros" : null
-            }`}>Todos los paises</button>
+            <button
+              className={`btnListOpSelected ${
+                theme === "dark" ? "dark_filtros" : null
+              }`}
+            >
+              Todos los paises
+            </button>
           )}
 
           {filtrosSeleccionados.puntuacion &&
@@ -294,13 +299,13 @@ const [ban, setBan] = useState(false);
         </footer>
       */}
       </div>
-      <FooterH />
+      {/*<FooterH />*/}
+      <Footer/>
     </>
   );
 };
 
 function BotonChats({ mostrarChatUsers, mensajesUsuarios, chatUsers }) {
-
   return (
     <div className="btnMensajes">
       <Button onClick={mostrarChatUsers}>

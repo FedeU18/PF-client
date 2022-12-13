@@ -76,12 +76,12 @@ hr {
 .dark_filtros {
   color: aliceblue !important;
   background-color: #242529;
-  border: none;  
+  border: none;
 }
 
 .button_quit_materia {
-  margin-bottom: .1rem;
-  margin-right: .5rem;
+  margin-bottom: 0.1rem;
+  margin-right: 0.5rem;
   /* background-color: #1A202C; */
 }
 
@@ -90,3 +90,4 @@ hr {
   background-color: #101011;
 }
 /* #1A202C  #171923* #242529  101011 */
+
