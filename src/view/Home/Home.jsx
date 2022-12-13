@@ -28,16 +28,15 @@ import MateriasBtn from "./MateriasBtn.jsx";
 import Caru from "./Caru.jsx";
 import Loader from "../../components/Loader/Loader";
 import FooterH from "./FooterH.jsx";
+import { RiCloseCircleFill } from "react-icons/ri";
 
 export const Home = () => {
+const dispatch = useDispatch();
+  const theme = useSelector((state) => state.theme.theme);
+let profesor = useSelector((state) => state.profesores.detail);
+const [ban, setBan] = useState(false);
   const { userData } = userAuthentication();
-
-  console.log("soy userData", userData);
-  const dispatch = useDispatch();
   const id = userData.id;
-  let profesor = useSelector((state) => state.profesores.detail);
-
-  const [ban, setBan] = useState(false);
 
   let today = new Date();
   const dd = String(today.getDate()).padStart(2, "0");
@@ -185,34 +184,45 @@ export const Home = () => {
       <Caru />
 
       {profes.length > 0 ? (
-        <div>
+        <div className={theme === "dark" ? "dark_home" : null}>
           <button className="filtroBtn">
             <BsFillGrid3X3GapFill onClick={handleFiltros} />
           </button>
           {filtrosSeleccionados.materias?.length > 0 ? (
             filtrosSeleccionados.materias.map((f) => (
               <button
-                className="btnListOpSelected"
+                className={`btnListOpSelected ${
+                  theme === "dark" ? "dark_filtros" : null
+                }`}
                 name={f}
                 onClick={handleDeleteOpSelec}
               >
-                X {f}
+                <RiCloseCircleFill className="fs-4 text-danger button_quit_materia"/> 
+                {f[0].toUpperCase() + f.slice(1, f.length)}
               </button>
             ))
           ) : (
-            <button className="btnListOpSelected"> Todas las materias </button>
+            <button
+              className={`btnListOpSelected ${
+                theme === "dark" ? "dark_filtros" : null
+              }`}
+            >
+              Todas las materias
+            </button>
           )}
 
           {filtrosSeleccionados.pais && filtrosSeleccionados.pais !== "" ? (
             <button
-              className="btnListOpSelected"
+              className={`btnListOpSelected`}
               name="pais"
               onClick={handleDelOp}
             >
               X {filtrosSeleccionados.pais}
             </button>
           ) : (
-            <button className="btnListOpSelected">Todos los paises</button>
+            <button className={`btnListOpSelected ${
+              theme === "dark" ? "dark_filtros" : null
+            }`}>Todos los paises</button>
           )}
 
           {filtrosSeleccionados.puntuacion &&
@@ -297,7 +307,7 @@ function BotonChats({ mostrarChatUsers, mensajesUsuarios, chatUsers }) {
     socket.on("alerta_mensajes", (data) => {
       console.log("soy data desde boton ", data);
     });
-  });
+  },[]);
 
   return (
     <div className="btnMensajes">

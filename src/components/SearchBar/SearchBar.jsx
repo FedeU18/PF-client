@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { FaSearch } from "react-icons/fa";
 
 export const SearchBar = () => {
+  const theme = useSelector(state => state.theme.theme)
   const navigate = useNavigate();
   const allTeachers = useSelector((state) => state.profesores.profesores);
   const arrProfesores = allTeachers.map((ele) => ele.username);
@@ -112,13 +113,13 @@ export const SearchBar = () => {
         </div>
         <div
           style={{ zIndex: "1000" }}
-          className="mt-1 position-absolute w-100 bg-light text-dark rounded-1"
+          className="mt-1 position-absolute w-100 bg-light text-dark rounded-1 dark_sugerencias"
         >
           {sugerencias &&
             sugerencias.map((sugName) => (
               <div
                 key={sugName}
-                className={`p-1 hover-searchbar-options`}
+                className={`p-1 hover-searchbar-options sugerencia_option`}
                 onBlur={() => {
                   setTimeout(() => {
                     setSugerencias([]);

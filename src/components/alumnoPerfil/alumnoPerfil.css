@@ -294,7 +294,7 @@ border-radius: 5px 0px 5px 0px;
 /* 
 
 
-!!!!!!! LOADER STUDENT !!!!
+
 
 
 
@@ -305,3 +305,14 @@ border-radius: 5px 0px 5px 0px;
   width: 92% !important;
   margin-left: 1rem;
 }
+
+.dark_mi_perfil_alumno {
+  background-color: #242529;
+}
+
+.info_student_dark{
+  color: aliceblue;
+  font-weight: bolder;
+}
+
+/* #1A202C  #171923* #242529 */

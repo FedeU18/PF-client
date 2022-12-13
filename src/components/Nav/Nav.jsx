@@ -15,14 +15,18 @@ import * as actionsProfesor from "../../redux/Actions/Profesor";
 import { useDispatch, useSelector } from "react-redux";
 import { clearAlumno } from "../../redux/Actions/Alumno";
 import { clear } from "../../redux/Actions/Profesor";
-import { BsFillBellFill } from "react-icons/bs";
+import { BsFillBellFill, BsFillMoonFill, BsFillSunFill } from "react-icons/bs";
 import {
   getNotificaciones,
   EditarNotificaciones,
 } from "../../redux/Actions/Notificacion";
 import { CgProfile, CgLogOff } from "react-icons/cg";
+import { setDarkTheme, setLightTheme } from "../../redux/Actions/Themes";
+import { verifyTheme } from "../../redux/Reducer/themeReducer";
+import styles from "./Nav.module.css"
 
 export const NavBar = () => {
+  const theme = useSelector(state => state.theme.theme)
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { userData } = userAuthentication();
@@ -44,6 +48,14 @@ export const NavBar = () => {
       dispatch(clearAlumno());
     };
   }, []);
+
+  const setToDarkTheme = () => {
+    dispatch(setDarkTheme());
+  };
+
+  const setToLightTheme = () => {
+    dispatch(setLightTheme());
+  };
 
   useEffect(() => {
     setNotis(0);
@@ -110,11 +122,11 @@ export const NavBar = () => {
     navigate("/home");
   };
   return (
-    <div className="nnnn">
+    <div className={`nnnn`}>
       <Container
         fluid
         fixed="top"
-        className="NavColorCss shadow-lg"
+        className={`${theme === "dark" ? styles.dark_nav : null} NavColorCss shadow-lg`}
         variant="dark"
       >
         <div className="d-flex justify-content-between gap-4 p-1 align-items-center">
@@ -167,6 +179,29 @@ export const NavBar = () => {
                 style={{ width: "45px", height: "50px", color: "transparent" }}
               >
                 <div>
+                  <NavDropdown.Item
+                    className="fw-bolder"
+                    style={{ width: "200px", marginBottom: ".5rem" }}
+                  >
+                    <div className="row">
+                      <div className="col-6">
+                        <button
+                          className="btn btn-dark"
+                          onClick={setToDarkTheme}
+                        >
+                          Dark <BsFillMoonFill />
+                        </button>
+                      </div>
+                      <div className="col-6">
+                        <button
+                          className="btn btn-light"
+                          onClick={setToLightTheme}
+                        >
+                          Light <BsFillSunFill />
+                        </button>
+                      </div>
+                    </div>
+                  </NavDropdown.Item>
                   <NavDropdown.Item
                     className="fw-bolder"
                     onClick={handleProfile}

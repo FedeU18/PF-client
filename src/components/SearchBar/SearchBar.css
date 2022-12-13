@@ -153,6 +153,13 @@ background-color: rgb(201, 201, 201);
 .hover-searchbar-options:hover {
   border-radius: .2rem;
   cursor: pointer;
+  padding: 1rem;
   background-color: gray;
   color: aliceblue;
 }
+
+/* .dark_sugerencias {
+  background-color: #171923 !important;
+  color: white;
+} */
+/* #1A202C  #171923* #242529 */
