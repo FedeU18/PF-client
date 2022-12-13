@@ -130,17 +130,15 @@ export const Home = () => {
     socket.on("alerta_mensajes", (data) => {
       setAlerta([...data]);
     });
+    socket.on("mensaje_privado", (res) => {
+      console.log("recibo mensajes desde home", res);
+    });
 
     dispatch(getProfesorById(id));
     dispatch(getAllAlumnos());
     dispatch(allProfes(filtrosSeleccionados));
     dispatch(getMaterias());
     dispatch(getPaises());
-
-    socket.on("usuarios_chat", (info) => {
-      console.log("spy info", info);
-      setUsuariosChat([...info]);
-    });
 
     return () => {
       dispatch(desmontajeProfesores());
@@ -292,13 +290,6 @@ export const Home = () => {
 };
 
 function BotonChats({ mostrarChatUsers, mensajesUsuarios, chatUsers }) {
-  console.log("soy usuarios de mensajes-->", mensajesUsuarios);
-  useEffect(() => {
-    socket.on("alerta_mensajes", (data) => {
-      console.log("soy data desde boton ", data);
-    });
-  });
-
   return (
     <div className="btnMensajes">
       <Button onClick={mostrarChatUsers}>

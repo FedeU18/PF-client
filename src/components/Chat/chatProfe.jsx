@@ -133,14 +133,30 @@ const MensajeAlumno = ({ nombre, selectUser, active, chatPending }) => {
       onClick={() => selectUser(nombre)}
       className={active ? "list-user-item item-active" : "list-user-item"}
     >
-      <div className={chatPending ? "userChatpendin" : "user-name"}>
-        {nombre}
+      <div>
+        <div className={chatPending ? "userChatpendin" : "user-name"}>
+          {nombre}
+        </div>
+        <i className="fas fa-circle text-green"></i>
+        <span className={chatPending ? "user-status-active" : "user-status"}>
+          {" "}
+          Alumno
+        </span>
       </div>
-      <i className="fas fa-circle text-green"></i>
-      <span className={chatPending ? "user-status-active" : "user-status"}>
-        {" "}
-        Alumno
-      </span>
+      {active && (
+        <div className="btnmsg">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="20"
+            height="20"
+            fill="currentColor"
+            class="bi bi-chat-right-text-fill"
+            viewBox="0 0 16 16"
+          >
+            <path d="M16 2a2 2 0 0 0-2-2H2a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h9.586a1 1 0 0 1 .707.293l2.853 2.853a.5.5 0 0 0 .854-.353V2zM3.5 3h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1 0-1zm0 2.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1 0-1zm0 2.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1 0-1z" />
+          </svg>
+        </div>
+      )}
     </div>
   );
 };

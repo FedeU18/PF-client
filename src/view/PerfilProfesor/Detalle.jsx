@@ -32,7 +32,10 @@ export const Detalle = () => {
   const [openFotos, setOpenFotos] = useState(false);
   const [show, setShow] = useState(false);
   const [alerta, setAlerta] = useState([]);
+  const [mensajesAntiguos, setMensajes] = useState([]);
   const { userData } = userAuthentication();
+
+  console.log("mensajes antiguos-->", mensajesAntiguos);
   let msgUsuariosAlumno = [];
 
   if (alerta.length) {
@@ -51,14 +54,14 @@ export const Detalle = () => {
 
   useEffect(() => {
     socket.emit("solicitarMSG_pendientes");
-
+    socket.on("mensajes_antiguos", (data) => {
+      setMensajes([...data]);
+    });
     dispatch(actionsAlumno.getAlumnoFromAPI(userData.id));
     dispatch(getProfesorById(id));
-
     socket.on("alerta_mensajes", (data) => {
       setAlerta([...data]);
     });
-
     return () => dispatch(clear());
   }, []);
 
@@ -68,7 +71,7 @@ export const Detalle = () => {
 
   const handleChatOp = (e) => {
     socket.emit("chat_abierto", details.nombre);
-
+    socket.emit("mensajes_antiguos", userData.name, details.nombre);
     setCurrent(e.target.name);
   };
 
@@ -307,6 +310,7 @@ export const Detalle = () => {
             <div className="subContDe">
               {userData.rol === "student" && (
                 <ChatAlumno
+                  mensajesAntiguos={mensajesAntiguos}
                   socket={socket}
                   userLogin={userData.name}
                   canal={details.id}
