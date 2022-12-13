@@ -26,20 +26,49 @@ export const Detalle = () => {
   let details = useSelector((state) => state.profesores.detail);
   let infoAlumno = useSelector((state) => state.alumnos.alumno);
   // holaa nooooo
+  console.log("soy detalles---->", details);
 
   const [current, setCurrent] = useState("Información");
   const [openFotos, setOpenFotos] = useState(false);
   const [show, setShow] = useState(false);
+  const [alerta, setAlerta] = useState([]);
   const { userData } = userAuthentication();
+  let msgUsuariosAlumno = [];
+
+  if (alerta.length) {
+    alerta.forEach((e) => {
+      if (
+        userData.rol === "student" &&
+        e.receptor === userData.name &&
+        !msgUsuariosAlumno.includes(e.remitente)
+      ) {
+        msgUsuariosAlumno.push(e.remitente);
+      }
+    });
+  }
+
+  console.log("soy alerta desde detalles", msgUsuariosAlumno);
 
   useEffect(() => {
-    dispatch(actionsAlumno.getAlumnoFromAPI(userData.id));
+    socket.emit("solicitarMSG_pendientes");
 
+    dispatch(actionsAlumno.getAlumnoFromAPI(userData.id));
     dispatch(getProfesorById(id));
+
+    socket.on("alerta_mensajes", (data) => {
+      setAlerta([...data]);
+    });
+
     return () => dispatch(clear());
   }, []);
 
   const handleChangeOp = (e) => {
+    setCurrent(e.target.name);
+  };
+
+  const handleChatOp = (e) => {
+    socket.emit("chat_abierto", details.nombre);
+
     setCurrent(e.target.name);
   };
 
@@ -126,9 +155,23 @@ export const Detalle = () => {
             <button
               className={`${current === "Chat" ? "opcionEleDe" : "opnoEleDe"}`}
               name={"Chat"}
-              onClick={handleChangeOp}
+              onClick={handleChatOp}
             >
-              Chat
+              Chatear
+              {msgUsuariosAlumno.includes(details.nombre) && (
+                <div className="btnmsg">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="12"
+                    height="12"
+                    fill="currentColor"
+                    class="bi bi-chat-right-text-fill"
+                    viewBox="0 0 16 16"
+                  >
+                    <path d="M16 2a2 2 0 0 0-2-2H2a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h9.586a1 1 0 0 1 .707.293l2.853 2.853a.5.5 0 0 0 .854-.353V2zM3.5 3h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1 0-1zm0 2.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1 0-1zm0 2.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1 0-1z" />
+                  </svg>
+                </div>
+              )}
             </button>
             <br></br>
           </div>
@@ -225,7 +268,6 @@ export const Detalle = () => {
                     ))}
                 </div>
               </div>
-
             </div>
           )}
           {current === "Calendario" && (

@@ -31,12 +31,40 @@ import Loader from "../../components/Loader/Loader";
 
 export const Home = () => {
   const { userData } = userAuthentication();
+  console.log("soy userData", userData);
   const dispatch = useDispatch();
+  const id = userData.id;
+  let profesor = useSelector((state) => state.profesores.detail);
 
   const [open, setOpen] = useState(false);
   const [chatUsers, setChatUsers] = useState(false);
   const [usuariosChat, setUsuariosChat] = useState([]);
-  console.log("soy usuarios del chat ", usuariosChat);
+  const [alerta, setAlerta] = useState([]);
+
+  let mensajesUsuarios = [];
+  let msgUsuariosAlumno = [];
+
+  if (alerta.length) {
+    alerta.forEach((e) => {
+      if (
+        userData.rol === "teacher" &&
+        e.receptor === userData.nombre &&
+        !mensajesUsuarios.includes(e.remitente)
+      ) {
+        mensajesUsuarios.push(e.remitente);
+      }
+      if (
+        userData.rol === "student" &&
+        e.receptor === userData.name &&
+        !msgUsuariosAlumno.includes(e.remitente)
+      ) {
+        msgUsuariosAlumno.push(e.remitente);
+      }
+    });
+  }
+
+  console.log("soy mensajeUsuarios-->", mensajesUsuarios);
+  console.log("soy msgUsuariosAlumno--->", msgUsuariosAlumno);
 
   const mostrarChatUsers = () => {
     socket.emit("usuarios_chat", userData.nombre);
@@ -44,9 +72,7 @@ export const Home = () => {
   };
 
   // const user = userAuthenticate();
-  const id = userData.id;
-  let profesor = useSelector((state) => state.profesores.detail);
-  console.log("soy profesor", profesor);
+
   const filtrosSeleccionados = useSelector(
     (state) => state.materias.filtrosSeleccionados
   );
@@ -54,16 +80,21 @@ export const Home = () => {
   const materias = useSelector((state) => state.materias.filtrosSeleccionados);
 
   useEffect(() => {
+    socket.emit("solicitarMSG_pendientes");
+
+    socket.on("usuarios_chat", (info) => {
+      setUsuariosChat([...info]);
+    });
+    socket.on("alerta_mensajes", (data) => {
+      setAlerta([...data]);
+    });
+
     dispatch(getProfesorById(id));
     dispatch(getAllAlumnos());
     dispatch(allProfes(filtrosSeleccionados));
     dispatch(getMaterias());
     dispatch(getPaises());
-    socket.on("usuarios_chat", (info) => {
-      console.log("spy info", info);
-      setUsuariosChat([...info]);
-    });
-  }, [dispatch, socket]);
+  }, []);
 
   useEffect(() => {
     dispatch(filterProfes(filtrosSeleccionados));
@@ -155,17 +186,26 @@ export const Home = () => {
           <Filtros open={open} close={handleCloseFiltros} />
           <br></br>
 
-          <ProfeCards profes={profes} />
+          <ProfeCards
+            socket={socket}
+            msgUsuariosAlumno={msgUsuariosAlumno}
+            profes={profes}
+          />
 
           {/* <MateriasBtn/> */}
           {/* { canal, socket, receptor, userLogin } */}
 
           {userData.rol === "teacher" && (
-            <BotonChats mostrarChatUsers={mostrarChatUsers} />
+            <BotonChats
+              chatUsers={chatUsers}
+              mensajesUsuarios={mensajesUsuarios}
+              mostrarChatUsers={mostrarChatUsers}
+            />
           )}
 
           {chatUsers && (
             <ChatProfe
+              setChatUsers={setChatUsers}
               usuariosChat={usuariosChat}
               socket={socket}
               userLogin={profesor.nombre}
@@ -198,22 +238,32 @@ export const Home = () => {
   );
 };
 
-function BotonChats({ mostrarChatUsers }) {
+function BotonChats({ mostrarChatUsers, mensajesUsuarios, chatUsers }) {
+  console.log("soy usuarios de mensajes-->", mensajesUsuarios);
+  useEffect(() => {
+    socket.on("alerta_mensajes", (data) => {
+      console.log("soy data desde boton ", data);
+    });
+  });
+
   return (
     <div className="btnMensajes">
       <Button onClick={mostrarChatUsers}>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="16"
-          height="16"
-          fill="currentColor"
-          class="bi bi-chat-right-text-fill"
-          viewBox="0 0 16 16"
-        >
-          <path d="M16 2a2 2 0 0 0-2-2H2a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h9.586a1 1 0 0 1 .707.293l2.853 2.853a.5.5 0 0 0 .854-.353V2zM3.5 3h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1 0-1zm0 2.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1 0-1zm0 2.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1 0-1z" />
-        </svg>
-        <Badge>9</Badge>
-        <span className="visually-hidden">unread messages</span>
+        <div className="btnmsg">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="20"
+            height="20"
+            fill="currentColor"
+            class="bi bi-chat-right-text-fill"
+            viewBox="0 0 16 16"
+          >
+            <path d="M16 2a2 2 0 0 0-2-2H2a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h9.586a1 1 0 0 1 .707.293l2.853 2.853a.5.5 0 0 0 .854-.353V2zM3.5 3h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1 0-1zm0 2.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1 0-1zm0 2.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1 0-1z" />
+          </svg>
+          <h5 className={chatUsers ? "noAlerta" : "alerta"}>
+            {mensajesUsuarios.length ? mensajesUsuarios.length : ""}
+          </h5>
+        </div>
       </Button>
     </div>
   );

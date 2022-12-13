@@ -3,16 +3,35 @@ import ScrollToBottom from "react-scroll-to-bottom";
 
 import "./profesor.css";
 
-export const ChatProfe = ({ socket, userLogin, canal, usuariosChat }) => {
+export const ChatProfe = ({
+  socket,
+  userLogin,
+  canal,
+  usuariosChat,
+  setChatUsers,
+}) => {
   const [mensaje, setMensaje] = useState("");
   const [mensajes, setMensajes] = useState([]);
   const [receptor, setReceptor] = useState([]);
   const [chat, setChat] = useState(false);
+  const [alerta, setAlerta] = useState([]);
+  console.log("soy alertMensajes", alerta);
 
   let usersChat = usuariosChat;
 
+  let mensajesUsuarios = [];
+  if (alerta.length) {
+    alerta.forEach((e) => {
+      if (e.receptor === userLogin && !mensajesUsuarios.includes(e.remitente)) {
+        mensajesUsuarios.push(e.remitente);
+      }
+    });
+  }
+  console.log("soy mensaje usuarios ", mensajesUsuarios);
+
   const selectUser = (receptor) => {
     socket.emit("mensajes_antiguos", userLogin, receptor);
+    socket.emit("chat_abierto", receptor);
     setReceptor(receptor);
     setChat(true);
   };
@@ -36,14 +55,22 @@ export const ChatProfe = ({ socket, userLogin, canal, usuariosChat }) => {
           ":" +
           new Date(Date.now()).getMinutes(),
       };
+      await socket.emit("alerta_mensajes", mensajeData);
+      await socket.emit("chat_abierto", receptor);
       await socket.emit("mensaje_privado", mensajeData);
+
       setMensaje("");
     }
   };
 
   useEffect(() => {
+    setChatUsers(true);
+    socket.emit("solicitarMSG_pendientes");
     socket.on("mensajes_antiguos", (data) => {
       setMensajes([...mensajes, ...data]);
+    });
+    socket.on("alerta_mensajes", (data) => {
+      setAlerta([...data]);
     });
 
     socket.emit("join_room", canal);
@@ -70,9 +97,12 @@ export const ChatProfe = ({ socket, userLogin, canal, usuariosChat }) => {
         {usersChat.length &&
           usersChat.map((item, index) => {
             if (item === userLogin) return;
+            let chatPending = mensajesUsuarios.includes(item);
             let active = item === receptor;
             return (
               <MensajeAlumno
+                chat={chat}
+                chatPending={chatPending}
                 nombre={item}
                 selectUser={selectUser}
                 active={active}
@@ -83,8 +113,8 @@ export const ChatProfe = ({ socket, userLogin, canal, usuariosChat }) => {
       </div>
       {chat && (
         <Chat
-          setChat={setChat}
           chat={chat}
+          setChat={setChat}
           socket={socket}
           setMensaje={setMensaje}
           enviarMensaje={enviarMensaje}
@@ -97,15 +127,20 @@ export const ChatProfe = ({ socket, userLogin, canal, usuariosChat }) => {
   );
 };
 
-const MensajeAlumno = ({ nombre, selectUser, active }) => {
+const MensajeAlumno = ({ nombre, selectUser, active, chatPending }) => {
   return (
     <div
       onClick={() => selectUser(nombre)}
       className={active ? "list-user-item item-active" : "list-user-item"}
     >
-      <div className="user-name">{nombre}</div>
+      <div className={chatPending ? "userChatpendin" : "user-name"}>
+        {nombre}
+      </div>
       <i className="fas fa-circle text-green"></i>
-      <span className="user-status"> Alumno</span>
+      <span className={chatPending ? "user-status-active" : "user-status"}>
+        {" "}
+        Alumno
+      </span>
     </div>
   );
 };

@@ -10,14 +10,23 @@
 .item-active {
   background: rgb(240, 238, 238);
 }
-.list-user-item .user-name {
+.user-name {
   font-size: 1.2vw;
   color: rgb(48, 46, 46);
   font-family: cursive;
 }
-.list-user-item .user-status {
+.userChatpendin {
+  font-size: 1.2vw;
+  color: rgb(71, 136, 193);
+  font-family: cursive;
+}
+.user-status {
   font-size: 1vw;
   color: black;
+}
+.user-status-active {
+  font-size: 1vw;
+  color: rgb(71, 136, 193);
 }
 
 .containerUserChats {
@@ -27,7 +36,7 @@
   overflow-y: scroll;
   overflow-x: hidden;
   background: rgb(215, 209, 209);
-  border-top: 2px solid black;
+  border-top: 2px solid rgb(110, 182, 244);
 }
 .containerUserChats::-webkit-scrollbar {
   background-color: transparent;
@@ -141,4 +150,32 @@
   position: fixed;
   right: 25vw;
   bottom: 6vw;
+}
+
+.numChats {
+  color: rgb(199, 197, 221);
+  font-weight: bold;
+}
+.chats0 {
+  color: white;
+}
+.btnMensajes {
+  height: 3vw;
+  width: 5vw;
+}
+.alerta {
+  color: white;
+  margin-left: 0.5rem;
+}
+
+.noAlerta {
+  display: none;
+}
+.btnmsg {
+  display: flex;
+  flex-direction: row;
+  margin: 0.3rem 1rem;
+  height: 1rem;
+  font-weight: bold;
+  width: 2rem;
 }
