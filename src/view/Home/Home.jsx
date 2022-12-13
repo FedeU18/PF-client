@@ -28,6 +28,7 @@ import MateriasBtn from "./MateriasBtn.jsx";
 import Caru from "./Caru.jsx";
 import Loader from "../../components/Loader/Loader";
 import FooterH from "./FooterH.jsx";
+import Footer from ".././Landing/Footer.jsx"
 import { RiCloseCircleFill } from "react-icons/ri";
 
 export const Home = () => {
@@ -298,7 +299,8 @@ export const Home = () => {
         </footer>
       */}
       </div>
-      <FooterH />
+      {/*<FooterH />*/}
+      <Footer/>
     </>
   );
 };

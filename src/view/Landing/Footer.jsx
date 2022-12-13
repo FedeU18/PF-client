@@ -5,6 +5,7 @@ import {BsFacebook}from "react-icons/bs";
 import {AiFillTwitterCircle} from "react-icons/ai";
 import {IoLogoYoutube} from "react-icons/io";
 import { Link } from "react-router-dom";
+
 function Footer() {
   return (
     
