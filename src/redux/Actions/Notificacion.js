@@ -8,7 +8,11 @@ import {
     DELETE_NOTIFICACION
 } from '../types/typesNotificacion' 
 
-
+export function loadingNoti () {
+  return {
+    type: "LOADING_NOTIS"
+  }
+}
 
 export const createNotificacion=(payload)=>dispatch=>{    
     return axios.post("/notificaciones", payload)
@@ -18,7 +22,8 @@ export const createNotificacion=(payload)=>dispatch=>{
        })
      .catch ((e) =>{console.log(e)})       
     }  
-export const getNotificaciones=()=>dispatch=>{    
+export const getNotificaciones=()=>dispatch=>{
+    
         return axios.get("/notificaciones")
         .then((d)=>{ 
             dispatch({ type:GET_NOTIFICACIONES, payload: d.data }) 

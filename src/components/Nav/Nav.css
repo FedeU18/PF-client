@@ -29,11 +29,14 @@
   cursor: pointer;
 }
 
-/* .colAvatarDrop {
-  width: 50%;
+
+
+.colAvatarDrop {
+  width: 10%;
+
   display: grid;
-  grid-template-columns: 56% 5%;
-} */
+  grid-template-columns: 50% 50%;
+}
 
 .dro {
   margin-top: 6px;

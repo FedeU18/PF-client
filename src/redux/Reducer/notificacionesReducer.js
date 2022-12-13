@@ -10,12 +10,16 @@ import {
 const initialState = {
     notificacion:{},
     notificaciones:[],
-
+    loadingNotis: false,
 };
 
     const notificacionesReducer = (state = initialState, action) => {
     switch (action.type) {
-        
+        case "LOADING_NOTIS":
+            return{
+              ...state,
+              loadingNotis: true
+            }; 
 
         case GET_NOTIFICACION:
         return{
@@ -27,7 +31,9 @@ const initialState = {
         case GET_NOTIFICACIONES:
         return{
         ...state,
-        notificaciones:action.payload
+        notificaciones:action.payload,
+        loadingNotis:false,
+
         }
 
         case DELETE_NOTIFICACION:
