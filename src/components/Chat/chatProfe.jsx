@@ -92,9 +92,9 @@ export const ChatProfe = ({
   }, [socket]);
 
   return (
-    <div id="" className="divUsuariosChat">
+    <div className="divUsuariosChat">
       <div className="containerUserChats ">
-        {usersChat.length &&
+        {usersChat.length ? (
           usersChat.map((item, index) => {
             if (item === userLogin) return;
             let chatPending = mensajesUsuarios.includes(item);
@@ -109,7 +109,17 @@ export const ChatProfe = ({
                 key={index}
               />
             );
-          })}
+          })
+        ) : (
+          <div>
+            <div class="spinner-border spinner-border-sm" role="status">
+              <span class="sr-only"></span>
+            </div>
+            <div class="spinner-grow spinner-grow-sm" role="status">
+              <span class="sr-only"></span>
+            </div>
+          </div>
+        )}
       </div>
       {chat && (
         <Chat

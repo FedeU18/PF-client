@@ -34,12 +34,10 @@ export const ChatAlumno = ({ canal, socket, userLogin, receptor }) => {
 
   useEffect(() => {
     socket.emit("solicitarMSG_pendientes");
-
     socket.emit("join_room", canal);
     socket.on("mensajes_antiguos", (data) => {
       setMensajes([...mensajes, ...data]);
     });
-
     socket.on("mensaje_privado", (res) => {
       console.log("recibo mensajes desde alumno", res);
       if (
