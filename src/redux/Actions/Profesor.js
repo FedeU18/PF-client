@@ -10,6 +10,26 @@ import {
   FILTER_PUNTUACION,
 } from "../types/typesProfesor";
 
+export const getUsersByPais=()=>dispatch=>{
+    
+  return axios.get("/profesores/paises")
+  .then((d)=>{ 
+      dispatch({ type:"GET_USERBYPAIS", payload: d.data }) 
+     
+     })
+   .catch ((e) =>{console.log(e)})       
+  } 
+
+  export const getProfesorsBYMateria=()=>dispatch=>{
+    
+    return axios.get("/profesores/materias")
+    .then((d)=>{ 
+        dispatch({ type:"GET_PROFEBYMATERIA", payload: d.data }) 
+       
+       })
+     .catch ((e) =>{console.log(e)})       
+    } 
+
 export function getProfesorById(id) {
   return async function (dispatch) {
     try {

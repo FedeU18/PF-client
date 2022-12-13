@@ -1,0 +1,51 @@
+.admiContData{
+    display: grid;
+    grid-template-columns: 50% 50%;
+}
+.dashDonut{
+    margin-top: 4rem;
+    margin-left: 1rem;
+   
+    border-radius: 12px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.contAdmiFirstRow{
+    display: grid;
+    grid-template-columns: 5% 95%;
+}
+
+.allADmiPErfil{
+    padding-top: 1rem;
+    width: 100%;
+    height: 100%;
+    background-image: url('https://png.pngtree.com/background/20210709/original/pngtree-technology-soft-lines-white-lines-border-line-picture-image_964846.jpg');
+    padding-bottom: 4rem;
+}
+
+.lastChartAdmi{
+    margin-top: 2rem;
+    width: 90%;
+    margin-left: 5%;
+    border-radius: 12px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.myperfilContPlus{
+        background-color: rgb(255, 255, 255);
+        width: 90% ;
+        height: 50vh;
+        margin-left: 5%;
+        margin-top: 2.5rem;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        display: grid;
+        grid-template-columns: 32% 68%;
+        border-radius: 5px;
+      }
+
+.profesByMateriaChart{
+    margin-left: 10%;
+    width: 78%;
+    border-radius: 12px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}

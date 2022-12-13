@@ -10,6 +10,8 @@ import {
 } from "../types/typesProfesor";
 
 const initialState = {
+  profesoresBYMateria:[],
+  usuariosBYPais:[],
   profesores: [],
   allProfesores: [],
   detail: {},
@@ -19,6 +21,16 @@ import { FilterOrder } from "./filterHelper";
 
 const profesoresReducer = (state = initialState, action) => {
   switch (action.type) {
+    case 'GET_PROFEBYMATERIA':
+      return {
+        ...state,
+        profesoresBYMateria:action.payload,
+      }
+      case 'GET_USERBYPAIS':
+        return {
+          ...state,
+          usuariosBYPais:action.payload,
+        }
     case GET_PROFESORES:
       return {
         ...state,
