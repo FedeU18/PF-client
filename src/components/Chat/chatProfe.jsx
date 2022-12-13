@@ -92,7 +92,7 @@ export const ChatProfe = ({
   }, [socket]);
 
   return (
-    <div id="status-aside" className="divUsuariosChat">
+    <div id="" className="divUsuariosChat">
       <div className="containerUserChats ">
         {usersChat.length &&
           usersChat.map((item, index) => {
@@ -189,7 +189,7 @@ const Chat = ({
                   <form id="message-form" className="card-footer">
                     <div className="input-group">
                       <input
-                        className="inputChat inputChat"
+                        className="inputChat "
                         id="text-input"
                         placeholder="Type your message..."
                         onChange={(e) => setMensaje(e.target.value)}
