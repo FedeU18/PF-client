@@ -275,10 +275,10 @@ const [ban, setBan] = useState(false);
         </div>
       ) : (
         <div
-          className="d-flex justify-content-center align-items-center"
+          className={`d-flex justify-content-center align-items-center ${theme === "dark" ? "dark_loader_eye" : null}`}
           style={{ height: "75vh" }}
         >
-          <Loader></Loader>
+          <Loader theme={theme}/>
         </div>
       )}
 

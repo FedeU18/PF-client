@@ -1,9 +1,9 @@
 import React from 'react'
 import style from "./Loader.module.css"
 
-const Loader = () => {
+const Loader = ({theme}) => {
   return (
-    <span className={style.loader}></span>
+    <span className={`${style.loader}`}></span>
   )
 }
 

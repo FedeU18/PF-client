@@ -40,13 +40,13 @@ function Footer() {
 
             <ul className="list-unstyled">
               <a href="https://www.youtube.com/channel/UCsUXZoWZow_fXUi1ATVbsGg" target="_blank">
-              <li><IoLogoYoutube size={22}/> Youtube</li>
+              <li className="text-danger"><IoLogoYoutube size={22}/> Youtube</li>
               </a>
               <a href="https://www.instagram.com/findteacher2/" target="_blank">
               <li><FaInstagram size={22}/> Instagram</li>
               </a>
               <a>
-              <li><BsFacebook size={22}/> Facebook</li>
+              <li className="text-primary"><BsFacebook size={22}/> Facebook</li>
               </a>
               <a>
               <li><AiFillTwitterCircle size={22}/> Twitter</li>

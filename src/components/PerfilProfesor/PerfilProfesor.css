@@ -333,3 +333,17 @@
 .notShowAlert {
   display: none;
 }
+
+
+
+/* DARK MODE */
+
+.mi_perfil_profe_dark {
+  background-color: #242529;
+  color: aliceblue;
+    /* #1A202C  #171923* #242529  101011 */
+}
+
+.mi_perfil_profe_dark_words {
+  color: aliceblue;
+  font-weight: bolder;}

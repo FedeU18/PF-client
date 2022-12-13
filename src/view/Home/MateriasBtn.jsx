@@ -12,7 +12,7 @@ function MateriasBtn() {
   };
 
   return (
-    <div className="d-flex justify-content-center align-items-center flex-wrap gap-4 mt-4">
+    <div className="d-flex justify-content-center align-items-center flex-wrap gap-4 mt-4 pb-5 pt-5">
       {materias.length > 0 &&
         materias.map((el, index) => (
           <MateriaBox
