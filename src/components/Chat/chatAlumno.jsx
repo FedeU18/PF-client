@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./componenteChat.css";
 import ScrollToBottom from "react-scroll-to-bottom";
+import img from "../Chat/concluido.png";
 
 export const ChatAlumno = ({ canal, socket, userLogin, receptor }) => {
   const [mensaje, setMensaje] = useState("");
@@ -59,9 +60,12 @@ export const ChatAlumno = ({ canal, socket, userLogin, receptor }) => {
 
   return (
     <div>
-      <div>
+      <div className="containerChat">
         <div className="titulo">
           <h4 className="tituloChat">Chatea con el profe</h4>
+        </div>
+        <div className="containerImg">
+          <img src={img} alt="img" />
         </div>
         <ScrollToBottom className="cardBody " id="chat">
           {mensajesProfe.map((e) => {
