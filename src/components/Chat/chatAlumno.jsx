@@ -2,10 +2,17 @@ import React, { useEffect, useState } from "react";
 import "./componenteChat.css";
 import ScrollToBottom from "react-scroll-to-bottom";
 
-export const ChatAlumno = ({ canal, socket, userLogin, receptor }) => {
+export const ChatAlumno = ({
+  canal,
+  socket,
+  userLogin,
+  receptor,
+  mensajesAntiguos,
+}) => {
   const [mensaje, setMensaje] = useState("");
   const [mensajes, setMensajes] = useState([]);
 
+  setMensajes([...mensajesAntiguos, ...mensajes]);
   const mensajesAntiguos = () => {
     socket.emit("mensajes_antiguos", userLogin, receptor);
   };
@@ -41,6 +48,9 @@ export const ChatAlumno = ({ canal, socket, userLogin, receptor }) => {
     socket.emit("join_room", canal);
     socket.on("mensajes_antiguos", (data) => {
       setMensajes([...mensajes, ...data]);
+    });
+    socket.on("alerta_mensajes", (data) => {
+      console.log("soy alerta mensajes", data);
     });
 
     socket.on("mensaje_privado", (res) => {

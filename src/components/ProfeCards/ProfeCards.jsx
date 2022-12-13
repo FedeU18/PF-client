@@ -1,15 +1,14 @@
 import { ProfeCard } from "../ProfeCard/Profecard";
 import "./ProfeCards.css";
 import { Link } from "react-router-dom";
+import { useEffect } from "react";
 
 export const ProfeCards = ({ profes, msgUsuariosAlumno, socket }) => {
-  console.log(msgUsuariosAlumno);
   return (
     <div className="ProfeCardsCont">
       {profes && profes.length > 0 ? (
         profes?.map((e, index) => {
           let active = msgUsuariosAlumno.includes(e.nombre);
-
           return e.Error ? (
             <h4 key={index}>profesor no encontrado</h4>
           ) : (
