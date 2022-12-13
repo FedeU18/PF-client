@@ -94,6 +94,7 @@
   overflow-x: hidden;
   background: rgb(215, 209, 209);
   border-top: 2px solid rgb(110, 182, 244);
+  transition: all ease 2s;
 }
 .containerUserChats::-webkit-scrollbar {
   background-color: transparent;
