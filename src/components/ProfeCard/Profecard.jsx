@@ -6,6 +6,9 @@ import { AiFillStar } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { editAlumno } from "../../redux/Actions/Alumno";
+
+import userAuthentication from "../../Authentication/functions/user";
+
 import styles from "./ProfeCard.module.css";
 
 export const ProfeCard = ({
@@ -18,17 +21,42 @@ export const ProfeCard = ({
   puntuacion,
   username,
   pais,
+
+  active,
+  socket,
 }) => {
+  const { userData } = userAuthentication();
+
+
   var regexUrl =
     /[a-z0-9-\.]+\.[a-z]{2,4}\/?([^\s<>\#%"\,\{\}\\|\\\^\[\]`]+)?$/;
   const img =
     "https://as01.epimg.net/epik/imagenes/2020/01/17/portada/1579264345_014526_1579264425_noticia_normal_recorte1.jpg";
   const [fav, setFav] = useState(false);
   const [promedio, setPromedio] = useState(0);
+
+  const [alerta, setAlerta] = useState([]);
+  console.log("alertaaaa->", alerta);
   const dispatch = useDispatch();
   let infoAlumno = useSelector((state) => state.alumnos.alumno);
 
+  let msgUsuariosAlumno = [];
+
+  if (alerta.length) {
+    alerta.forEach((e) => {
+      if (
+        userData.rol === "student" &&
+        e.receptor === userData.name &&
+        !msgUsuariosAlumno.includes(e.remitente)
+      ) {
+        msgUsuariosAlumno.push(e.remitente);
+      }
+    });
+  }
+
   useEffect(() => {
+    socket.emit("solicitarMSG_pendientes");
+
     console.log("use", id);
     if (infoAlumno.favourites?.find((l) => l === id)) {
       console.log("eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee");
@@ -38,6 +66,9 @@ export const ProfeCard = ({
   }, [infoAlumno]);
 
   useEffect(() => {
+    socket.on("alerta_mensajes", (data) => {
+      setAlerta([...data]);
+    });
     console.log("d:", puntuacion);
     console.log("cards", infoAlumno);
     if (puntuacion?.length > 0) {
@@ -50,6 +81,7 @@ export const ProfeCard = ({
       setPromedio(0);
     }
   }, []);
+
 
   const handleFav = () => {
     console.log("aquiiinnn");
@@ -83,12 +115,14 @@ export const ProfeCard = ({
   };
 
   return (
+
     <Card className={`rounded-4 position-relative ${styles.card_container}`}>
       <Link to={"/profesores/" + id}>
         <img
           src={imagen}
           className={`cardAboutContImg ${styles.border_cards}`}
         />
+
       </Link>
 
       <Card.Body>
@@ -102,17 +136,20 @@ export const ProfeCard = ({
               </div>
             </Link>
             <Link to={"/profesores/" + id}>
+
               <h5 className="nameUsuarioC">
                 {username.length > 10
                   ? `${username.slice(0, 10)}...`
                   : username}
               </h5>
+
             </Link>
             <div>
               <img className="flagcarProfe" src={pais} />
             </div>
           </div>
         </Card.Title>
+
         <Card.Text>
           <span>
             {descripcion.length > 60
@@ -120,6 +157,7 @@ export const ProfeCard = ({
               : descripcion}
           </span>
           <br></br>
+
           <span className="fw-bolder">Enseña:</span>
           <div>
             {materias?.length > 0 &&
@@ -176,6 +214,7 @@ export const ProfeCard = ({
           <div className={styles.precio_por_hora}>
             <span className="text-success"><b>{precio} US$</b> por hora</span>
           </div>
+
         </div>
       </Card.Body>
     </Card>
