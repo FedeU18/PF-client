@@ -7,6 +7,8 @@ import comentariosReducer from "./comentariosReducer";
 import fechasReducer from "./fechaReducer";
 import certificadosReducer from "./certificadosReducer"
 import sendEmailReducer from "./mailerReducer";
+import notificacionesReducer from "./notificacionesReducer";
+ 
 
 const rootReducer = combineReducers({
   email: sendEmailReducer,
@@ -17,6 +19,7 @@ const rootReducer = combineReducers({
   comentarios:comentariosReducer,
   fechas: fechasReducer,
   certificados:certificadosReducer,
+  notificaciones:notificacionesReducer,
 });
 
 export default rootReducer;

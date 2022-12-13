@@ -6,11 +6,11 @@ import { NavBar } from "../../components/Nav/Nav";
 import { Filtros } from "../../components/Filtros/Filtros";
 import { BsFillGrid3X3GapFill } from "react-icons/bs";
 import { useEffect, useState } from "react";
-
+import { editAlumno } from "../../redux/Actions/Alumno";
 import { getPaises } from "../../redux/Actions/Paises";
 import { addOPSelected } from "../../redux/Actions/Materias";
 import { useDispatch, useSelector } from "react-redux";
-import { allProfes } from "../../redux/Actions/Profesor";
+import { allProfes, desmontajeProfesores } from "../../redux/Actions/Profesor";
 import { ProfeCards } from "../../components/ProfeCards/ProfeCards";
 import { Link } from "react-router-dom";
 import { filterProfes } from "../../redux/Actions/Profesor";
@@ -24,17 +24,31 @@ import logOut from "../../Authentication/functions/logOut";
 import Badge from "react-bootstrap/Badge";
 import Button from "react-bootstrap/Button";
 import { ChatProfe } from "../../components/Chat/chatProfe";
-
-// import MateriasBtn from "./MateriasBtn.jsx";
-
+import MateriasBtn from "./MateriasBtn.jsx";
+import Caru from "./Caru.jsx";
 import Loader from "../../components/Loader/Loader";
+import FooterH from "./FooterH.jsx";
+
 
 export const Home = () => {
+
   const { userData } = userAuthentication();
+
   console.log("soy userData", userData);
   const dispatch = useDispatch();
   const id = userData.id;
   let profesor = useSelector((state) => state.profesores.detail);
+
+
+  const [ban ,setBan]=useState(false)
+
+
+  let today = new Date();
+        const dd = String(today.getDate()).padStart(2, '0');
+        const mm = String(today.getMonth() + 1).padStart(2, '0');
+        const yyyy = today.getFullYear().toString();
+
+
 
   const [open, setOpen] = useState(false);
   const [chatUsers, setChatUsers] = useState(false);
@@ -77,7 +91,29 @@ export const Home = () => {
     (state) => state.materias.filtrosSeleccionados
   );
   const profes = useSelector((state) => state.profesores.profesores); //todo el estado de profes
+  const infoAlumno = useSelector((state) => state.alumnos.alumno);
+  
   const materias = useSelector((state) => state.materias.filtrosSeleccionados);
+
+  useEffect(()=>{
+
+    if( Object.entries(infoAlumno).length > 0 && infoAlumno.baneado===true ){
+      const array=infoAlumno.fechaLimiteBan.split('-')
+      
+      console.log(array[0],' ',yyyy,' ', array[1],' ',mm ,' ',array[2],' ',dd)
+      if(array[0]<=yyyy && array[1]<=mm && array[2]<=dd){
+        console.log('aaaaa')
+        dispatch(editAlumno({baneado:false,
+          },infoAlumno.id))
+      }
+    }
+   },[infoAlumno.fechaLimiteBan])
+
+  useEffect(()=>{
+    if( Object.entries(infoAlumno).length > 0 && infoAlumno.baneado===true ){
+      setBan(true)
+    }
+   },[infoAlumno])
 
   useEffect(() => {
     socket.emit("solicitarMSG_pendientes");
@@ -94,7 +130,19 @@ export const Home = () => {
     dispatch(allProfes(filtrosSeleccionados));
     dispatch(getMaterias());
     dispatch(getPaises());
-  }, []);
+
+ 
+
+    socket.on("usuarios_chat", (info) => {
+      console.log("spy info", info);
+      setUsuariosChat([...info]);
+    });
+
+    return () => {
+      dispatch(desmontajeProfesores());
+    };
+  }, [dispatch, socket]);
+
 
   useEffect(() => {
     dispatch(filterProfes(filtrosSeleccionados));
@@ -128,8 +176,11 @@ export const Home = () => {
   };
 
   return (
-    <div>
-      <NavBar />
+  
+      <>
+          <NavBar />
+           
+            <Caru/>
 
       {profes.length > 0 ? (
         <div>
@@ -159,7 +210,7 @@ export const Home = () => {
               X {filtrosSeleccionados.pais}
             </button>
           ) : (
-            <button className="btnListOpSelected"> Todos los paises </button>
+            <button className="btnListOpSelected">Todos los paises</button>
           )}
 
           {filtrosSeleccionados.puntuacion &&
@@ -192,9 +243,6 @@ export const Home = () => {
             profes={profes}
           />
 
-          {/* <MateriasBtn/> */}
-          {/* { canal, socket, receptor, userLogin } */}
-
           {userData.rol === "teacher" && (
             <BotonChats
               chatUsers={chatUsers}
@@ -202,6 +250,11 @@ export const Home = () => {
               mostrarChatUsers={mostrarChatUsers}
             />
           )}
+
+
+          <MateriasBtn/>
+       
+          
 
           {chatUsers && (
             <ChatProfe
@@ -212,6 +265,7 @@ export const Home = () => {
               canal={profesor.id}
             />
           )}
+
         </div>
       ) : (
         <div
@@ -226,17 +280,23 @@ export const Home = () => {
         className="d-flex flex-column align-items-center"
         style={{ margin: "0 auto" }}
       >
-        <hr />
 
-        <footer>
+        <hr />
+        {/*<footer>
           <Link to="/about" className="aFootAbout">
             About
           </Link>
         </footer>
+      */}
+
       </div>
-    </div>
-  );
-};
+      <FooterH/>
+   
+
+
+    </>
+  )
+}
 
 function BotonChats({ mostrarChatUsers, mensajesUsuarios, chatUsers }) {
   console.log("soy usuarios de mensajes-->", mensajesUsuarios);
@@ -249,6 +309,7 @@ function BotonChats({ mostrarChatUsers, mensajesUsuarios, chatUsers }) {
   return (
     <div className="btnMensajes">
       <Button onClick={mostrarChatUsers}>
+
         <div className="btnmsg">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -264,6 +325,8 @@ function BotonChats({ mostrarChatUsers, mensajesUsuarios, chatUsers }) {
             {mensajesUsuarios.length ? mensajesUsuarios.length : ""}
           </h5>
         </div>
+
+    
       </Button>
     </div>
   );

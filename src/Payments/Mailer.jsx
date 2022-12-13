@@ -1,5 +1,4 @@
 import React from "react";
-import { IoMdArrowRoundBack } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
 import emailjs from "@emailjs/browser";
 
@@ -9,8 +8,7 @@ const Mailer = () => {
   const { day, duration, emailAlumno, emailProfesor } = DATAPARSE;
 
   const sendEmail = (event) => {
-    event.preventDefault()
-    console.log("a");
+    event.preventDefault();
 
     emailjs
       .sendForm(
@@ -31,16 +29,13 @@ const Mailer = () => {
       .then((res) => console.log(res))
       .catch((err) => console.log(err));
 
+    localStorage.removeItem("in-process")
     localStorage.removeItem("data-payment");
     navigate("/home");
   };
 
-  const styles = {
-    display: "flex",
-    justifyContent: "center",
-  };
   return (
-    <form style={styles} className="bg-success border-0" onSubmit={sendEmail}>
+    <form className="bg-success border-0 d-flex justify-content-center" onSubmit={sendEmail}>
       <div className="d-none">
         <h2>Email factura</h2>
         <div>

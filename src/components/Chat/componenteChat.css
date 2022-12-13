@@ -1,7 +1,6 @@
-.message-content {
+/* .message-content {
   width: auto;
   height: auto;
-  min-height: 20px;
   max-width: 100px;
   border-radius: 5px;
   display: flex;
@@ -15,11 +14,10 @@
 }
 .message-content p {
   font-family: cursive;
-  font-size: 1.3vw;
+  font-size: 1.2rem;
 }
 .message {
   height: auto;
-  padding: 0.5vw;
   display: flex;
 }
 #you {
@@ -66,7 +64,4 @@
   overflow-y: scroll;
   overflow-x: hidden;
   background: lightgray;
-}
-.card {
-  margin-left: 17vw;
-}
+} */

@@ -1,14 +1,42 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./FormTeacher.css";
-import { postProfesor } from "../../redux/Actions/Profesor";
+import { postProfesor, allProfes } from "../../redux/Actions/Profesor";
 import registerUser from "../../Authentication/functions/registerUser";
 import { useDispatch, useSelector } from "react-redux";
 import { getMaterias } from "../../redux/Actions/Materias";
 import { getPaises } from "../../redux/Actions/Paises";
 import { FcGoogle } from "react-icons/fc";
+import { getAllAlumnos } from "../../redux/Actions/Alumno";
+
+const initialErrors = {
+  nombreErr: false,
+  apellidoErr: false,
+  emailErr: false,
+  contraseñaErr: false,
+  usernameErr: false,
+  usernameErrExist: false,
+};
 
 const FormTeacher = ({ setMostrarProfe }) => {
+  const dispatch = useDispatch();
+  const [allErrors, setAllErrors] = useState(initialErrors);
+  const {
+    nombreErr,
+    apellidoErr,
+    emailErr,
+    contraseñaErr,
+    usernameErr,
+    usernameErrExist,
+  } = allErrors;
+
+  const allProfesores = useSelector((state) => state.profesores.allProfesores);
+  const allStudents = useSelector((state) => state.alumnos.alumnos);
+  const [loader, setLoader] = useState(false);
+  const [globalMessage, setGlobalMessage] = useState("");
+  const [confirm, setConfirm] = useState("");
+  const [parte, setParte] = useState("primera");
+  const [error, setError] = useState("");
   const [teacher, setTeacher] = useState({
     nombre: "",
     apellido: "",
@@ -16,9 +44,8 @@ const FormTeacher = ({ setMostrarProfe }) => {
     contraseña: "",
     rol: "teacher",
     username: "",
-
-    imagen: "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__480.png",
-
+    imagen:
+      "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__480.png",
 
     descripcion: "",
     puntuacion: [1],
@@ -29,50 +56,82 @@ const FormTeacher = ({ setMostrarProfe }) => {
   const navigate = useNavigate();
   const materias = useSelector((state) => state.materias.materias);
   const materiasSort = materias.sort((a, b) => {
-    if (a.name > b.name) {
-      return 1;
-    }
-    if (b.name > a.name) {
-      return -1;
-    }
+    if (a.name > b.name) return 1;
+    if (b.name > a.name) return -1;
     return 0;
   });
   const paises = useSelector((state) => state.paises.paises);
   const paisesSort = paises.sort((a, b) => {
-    if (a.name > b.name) {
-      return 1;
-    }
-    if (b.name > a.name) {
-      return -1;
-    }
+    if (a.name > b.name) return 1;
+    if (b.name > a.name) return -1;
     return 0;
   });
-  const dispatch = useDispatch();
-  const [globalMessage, setGlobalMessage] = useState("");
-  const [confirm, setConfirm] = useState("");
-  const [parte, setParte] = useState("primera");
-  const [error, setError] = useState("");
 
   useEffect(() => {
     dispatch(getPaises());
     dispatch(getMaterias());
+    dispatch(getAllAlumnos());
+    dispatch(allProfes());
   }, []);
 
   const handleOnChange = (e) => {
+    const key = e.target.name;
+    const value = e.target.value;
+
+    if (key === "username") {
+      const validateUser = /^[a-zA-Z0-9_-]+$/;
+      const allUsers = [...allProfesores, ...allStudents];
+      console.log(allUsers);
+      const noRepeatPlease = allUsers.find((user) => user.username === value);
+
+      // if (validateUser.test(value)) {
+      //   setAllErrors({ ...allErrors, usernameErr: false });
+      // } else {
+      //   setAllErrors({ ...allErrors, usernameErr: true });
+      // }
+
+      if (noRepeatPlease) {
+        setAllErrors({ ...allErrors, usernameErrExist: true });
+      } else {
+        setAllErrors({ ...allErrors, usernameErrExist: false });
+      }
+    } else if (key === "email") {
+      const emailVerify = /^\w+([.-_+ñ]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/;
+
+      if (emailVerify.test(value)) {
+        setAllErrors({ ...allErrors, emailErr: false });
+      } else setAllErrors({ ...allErrors, emailErr: true });
+    } else if (key === "nombre" || key === "apellido") {
+      const validateInfo = /^[a-zA-ZÑñÁáÉéÍíÓóÚúÜü\s]+$/;
+
+      if (validateInfo.test(value)) {
+        setAllErrors({ ...allErrors, [`${key}Err`]: false });
+      } else {
+        setAllErrors({ ...allErrors, [`${key}Err`]: true });
+      }
+    } else if (key === "contraseña") {
+      const validPassword = /^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,20}$/;
+      if (validPassword.test(value)) {
+        setAllErrors({ ...allErrors, contraseñaErr: false });
+      } else {
+        setAllErrors({ ...allErrors, contraseñaErr: true });
+      }
+    }
+
     setTeacher({
       ...teacher,
-      [e.target.name]: e.target.value,
+      [key]: value,
     });
   };
 
   const handleSelectMaterias = (e) => {
     setTeacher({
       ...teacher,
-      materias: teacher.materias.includes(Number(e.target.value)) ?
-      [...teacher.materias]
-      : e.target.value !== "default" ?
-      [...teacher.materias, Number(e.target.value)]:
-      [...teacher.materias],
+      materias: teacher.materias.includes(Number(e.target.value))
+        ? [...teacher.materias]
+        : e.target.value !== "default"
+        ? [...teacher.materias, Number(e.target.value)]
+        : [...teacher.materias],
     });
   };
 
@@ -85,21 +144,26 @@ const FormTeacher = ({ setMostrarProfe }) => {
 
   const handleOnClick = async (e) => {
     e.preventDefault();
+    setLoader(true);
     const userLogin = await registerUser(
       teacher.email,
       teacher.contraseña,
       teacher
     );
-    dispatch(postProfesor({ id: userLogin.user.uid, ...teacher }));
 
     if (typeof userLogin === "string") {
       setGlobalMessage(userLogin);
       setTimeout(() => {
         setGlobalMessage("");
-      }, 10000);
+      }, 5000);
+      setLoader(false);
       return;
     }
-    navigate("/home");
+    if (userLogin.user.uid) {
+      dispatch(postProfesor({ id: userLogin.user.uid, ...teacher }));
+      navigate("/home");
+    }
+    setLoader(false);
   };
 
   const handleClose = (e) => {
@@ -110,20 +174,20 @@ const FormTeacher = ({ setMostrarProfe }) => {
         return m !== Number(e.target.value);
       }),
     });
-
   };
 
-  const show = (mat)=> {
-    let materia = materias.find(m=> m.id === mat)
-    return materia.name
-  }
+  const show = (mat) => {
+    let materia = materias.find((m) => m.id === mat);
+    return materia.name;
+  };
 
   return (
     <div data-aos="fade-right">
       <form className="form">
         <div className="formulario">
-          <h3>Bienvenido</h3>
-          {globalMessage && <p>{globalMessage}</p>}
+          <h3>
+            Bienvenido
+          </h3>
 
           {parte === "primera" && (
             <div>
@@ -133,9 +197,19 @@ const FormTeacher = ({ setMostrarProfe }) => {
                   onChange={(e) => handleOnChange(e)}
                   type="text"
                   name="username"
-                  value={teacher.username}
+                  value={teacher.username.toLowerCase()}
                   placeholder="Username"
                 />
+                {usernameErrExist && (
+                  <span className="text-danger">
+                    el nombre de usuario ya existe
+                  </span>
+                )}
+                {usernameErr && teacher.username !== "" && (
+                  <span className="text-center text-danger">
+                    username incorrecto
+                  </span>
+                )}
               </div>
               <div className="label-input">
                 <label>Email</label>
@@ -146,6 +220,11 @@ const FormTeacher = ({ setMostrarProfe }) => {
                   value={teacher.email}
                   placeholder="Email"
                 />
+                {emailErr && teacher.email.length > 1 && (
+                  <span className="text-danger text-center">
+                    email incorrecto
+                  </span>
+                )}
               </div>
               <div className="label-input">
                 <label>Contraseña</label>
@@ -156,6 +235,11 @@ const FormTeacher = ({ setMostrarProfe }) => {
                   value={teacher.contraseña}
                   placeholder="Contraseña"
                 />
+                {teacher.contraseña !== "" && contraseñaErr && (
+                  <span className="text-center text-danger">
+                    debe tener numeros, mayusculas y minusculas (8-20)
+                  </span>
+                )}
               </div>
               <div className="label-input">
                 <label>Repetí tu contraseña</label>
@@ -165,6 +249,13 @@ const FormTeacher = ({ setMostrarProfe }) => {
                   name="confirm"
                   value={confirm}
                 />
+                {confirm !== "" &&
+                  teacher.contraseña !== confirm &&
+                  confirm && (
+                    <span className="text-center text-danger">
+                      las contraseñas no coinciden
+                    </span>
+                  )}
               </div>
               <div className="botones">
                 <button
@@ -188,6 +279,11 @@ const FormTeacher = ({ setMostrarProfe }) => {
                   value={teacher.nombre}
                   placeholder="Nombre"
                 />
+                {teacher.nombre !== "" && nombreErr && (
+                  <span className="text-danger">
+                    no numeros ni caracteres especiales
+                  </span>
+                )}
               </div>
               <div className="label-input">
                 <label>Apellido</label>
@@ -198,6 +294,11 @@ const FormTeacher = ({ setMostrarProfe }) => {
                   value={teacher.apellido}
                   placeholder="Apellido"
                 />
+                {teacher.apellido !== "" && apellidoErr && (
+                  <span className="text-danger">
+                    no numeros ni caracteres especiales
+                  </span>
+                )}
               </div>
               <div className="label-input">
                 <label>Tu país</label>
@@ -256,21 +357,54 @@ const FormTeacher = ({ setMostrarProfe }) => {
                 </select>
               </div>
               <div className="materias">
-                {
-                  teacher.materias?.map(id=>{
-                    return(
-                      <button onClick={(e)=>handleClose(e)} value={id} key={id}>{show(id)}</button>
-                    )
-                  })
-                }
+                {teacher.materias?.map((id) => {
+                  return (
+                    <button onClick={(e) => handleClose(e)} value={id} key={id}>
+                      {show(id)}
+                    </button>
+                  );
+                })}
               </div>
               <div className="botones">
                 <button onClick={(e) => setParte("segunda")}>Atrás</button>
-                <button type="submit" onClick={(e) => handleOnClick(e)}>
-                  Register
+                <button
+                  type="submit"
+                  onClick={(e) => handleOnClick(e)}
+                  disabled={
+                    !teacher.nombre ||
+                    !teacher.apellido ||
+                    !teacher.email ||
+                    !teacher.contraseña ||
+                    !teacher.username ||
+                    !teacher.descripcion ||
+                    !teacher.precio ||
+                    teacher.materias.length === 0 ||
+                    teacher.pais.length !== 1 ||
+                    teacher.pais[0] === "" ||
+                    nombreErr ||
+                    apellidoErr ||
+                    emailErr ||
+                    contraseñaErr ||
+                    usernameErr ||
+                    usernameErrExist
+                  }
+                >
+                  {loader && (
+                    <div
+                      className="spinner-border spinner-border-sm"
+                      role="status"
+                      style={{ marginRight: ".4rem" }}
+                    >
+                      <span className="visually-hidden"></span>
+                    </div>
+                  )}
+                  Registrate
                 </button>
               </div>
             </div>
+          )}
+          {globalMessage && (
+            <span className="text-danger mt-2">{globalMessage}</span>
           )}
         </div>
 

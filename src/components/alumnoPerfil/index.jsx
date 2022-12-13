@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
-import * as actionsAlumno from "../../redux/Actions/Alumno.js";
-import * as actionsPaises from "../../redux/Actions/Paises.js"; /*NUEVO*/
+import * as actions from "../../redux/Actions/Alumno.js";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 import imag from "./default user.png";
@@ -20,9 +19,9 @@ import { ProfeCard } from "../ProfeCard/Profecard.jsx";
 import LoaderPerfilStudent from "./LoaderPerfilStudent.jsx";
 import Table from "react-bootstrap/Table";
 
-
 export const AlumnoPerfil = (props) => {
-  console.log("desde alumno perfil ", props);
+  console.log("desde alumno perfil ", props.id);
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [show, setShow] = useState(false);
@@ -30,14 +29,13 @@ export const AlumnoPerfil = (props) => {
   const [myFavProfe, setMyFavProfe] = useState([]);
   let valorImagen = "";
   let info = useSelector((state) => state.alumnos.alumno);
-  console.log("INFOOOOOOO: " , info)
 
   const profes = useSelector((state) => state.profesores.profesores);
 
   useEffect(() => {
     setMyFavProfe([]);
     if (info.favourites && info.favourites.length > 0 && profes.length > 0) {
-      info.favourites.map((f) => {
+      info.favourites?.map((f) => {
         profes.map((p) => {
           if (p.id === f) {
             setMyFavProfe((prev) => [...prev, p]);
@@ -45,10 +43,12 @@ export const AlumnoPerfil = (props) => {
         });
       });
     }
+    console.log("aaaaaaa");
+    console.log(myFavProfe);
   }, [info]);
 
   useEffect(() => {
-    dispatch(actionsAlumno.getAlumnoFromAPI(props.id));
+    dispatch(actions.getAlumnoFromAPI(props.id));
     return () => {
       dispatch(clearAlumno());
     };
@@ -57,14 +57,14 @@ export const AlumnoPerfil = (props) => {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  const deleteAlumno = async () => {
+  const deleteOwnAlumno = async () => {
     const deleteAccount = window.confirm(
       "esta seguro de eliminar su cuenta de alumno"
     );
     if (deleteAccount) {
       const UID = props.id;
       await deleteFirestoreUser(UID); // borra firestore
-      dispatch(actionsAlumno.deleteAlumno(UID)); // borra base de datos
+      dispatch(actions.deleteAlumno(UID)); // borra base de datos
       deleteCurrentUser(); // borra de firebase auth
       logOut(); // lo deslogea
       navigate("/"); // lo lleva al landing :)
@@ -90,7 +90,10 @@ export const AlumnoPerfil = (props) => {
       },
       (error, result) => {
         if (!error && result && result.event === "success") {
-          dispatch(actionsAlumno.editAlumno({ picture: result.info.url }, props.id));
+          dispatch(
+            actions.editAlumno({ picture: result.info.url }, props.id)
+          );
+
           setPict(result.info.url);
         }
       }
@@ -109,19 +112,20 @@ export const AlumnoPerfil = (props) => {
                 <img className="gobackArrow" src={"/retro.png"} />
               </button>
             </Link>
-
             <div>
               <div className="myperfilCont">
                 <div className="FotoPerfilACont">
-                  
-                    <img src={valor()} className="ProfilePictureAlum" />
-                   
-                    
-              
-                  <button className="button-17" role="button" onClick={() => handleOpenWidget()}>
+                  <img src={valor()} className="ProfilePictureAlum" />
+
+                  <button
+                    className="button-17"
+                    role="button"
+                    onClick={() => handleOpenWidget()}
+                  >
                     Alumno
                   </button>
                 </div>
+
                 <div className="InFoAlumnoPErfCont">
                   <div className="titleMyPRofile">
                     <span>Mi Perfil</span>
@@ -135,18 +139,22 @@ export const AlumnoPerfil = (props) => {
                       <div className="miniContinfoPErfAlu">
                         <div className="eachInfoIputPErProfe">
                           <div className="nameInfoPErAlu">Nombre:</div>
+
                           <div className="lainfoPErAlu">{info.name}</div>
                         </div>
                         <div className="eachInfoIputPErProfe">
                           <div className="nameInfoPErAlu">Apellido:</div>
+
                           <div className="lainfoPErAlu">{info.lastname}</div>
                         </div>
                         <div className="eachInfoIputPErProfe">
                           <div className="nameInfoPErAlu">Edad:</div>
+
                           <div className="lainfoPErAlu">{info.age} años</div>
                         </div>
                         <div className="eachInfoIputPErProfe">
                           <div className="nameInfoPErAlu">Pais:</div>
+
                           <div className="lainfoPErAlu">
                             <img
                               src={info.country.flag}
@@ -170,36 +178,36 @@ export const AlumnoPerfil = (props) => {
                     size={24}
                   />
                 </div>
-                <div className="tabla-reservas">
-                  <Table striped  hover variant="light">
+                <div className="tabla-reservas position-absolute">
+                  <Table striped hover variant="light">
                     <thead>
-                      <tr>
+                      <tr className="text-center">
                         <th>Día</th>
                         <th>Hora</th>
                         <th>Profesor</th>
                       </tr>
                     </thead>
                     <tbody>
-                      {
-                        info.fechas.map(f=>{
-                          return f.profesors.map(p=>{
-                            return (
-                              <tr>
-                                <th>{f.fecha}</th>
-                                <th>{f.hora}</th>
-                                <th>
-                                  <Link className="link-hacia-el-profe" to={"/profesores/" + p.id}>
-                                    {p.nombre + " " + p.apellido}
-                                  </Link>
-                                </th>
-                              </tr>
-                            )
-                          })
-                        })
-                      }
+                      {info.fechas?.map((f) => {
+                        return f.profesors.map((p) => {
+                          return (
+                            <tr>
+                              <th>{f.fecha}</th>
+                              <th>{f.hora}</th>
+                              <th>
+                                <Link
+                                  className="link-hacia-el-profe"
+                                  to={"/profesores/" + p.id}
+                                >
+                                  {p.nombre + " " + p.apellido}
+                                </Link>
+                              </th>
+                            </tr>
+                          );
+                        });
+                      })}
                     </tbody>
                   </Table>
-
                 </div>
               </div>
             </div>

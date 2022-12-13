@@ -1,3 +1,62 @@
+
+.register-group {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  background: #fff;
+  border-radius: 30px;
+}
+
+.register-group .register-item input {
+  font-size: 20px;
+  padding-left: 10px;
+}
+.register-group .register-item button {
+  background: transparent;
+  cursor: pointer;
+}
+.register-group .register-item button i {
+  font-size: 20px;
+}
+
+#wrapper {
+  display: flex;
+  width: 700px;
+  
+}
+.col-4 {
+  flex: 4;
+  margin-top: 5vw;
+}
+.col-8 {
+  flex: 8;
+  margin: 5vw 2vw;
+}
+#status-aside {
+  min-height: 28vw;
+  margin: 0 15px;
+  background: rgb(172, 156, 172);
+  border-radius: 20px;
+  padding: 30px 0;
+  box-sizing: border-box;
+}
+
+.user-info {
+  /* width: 100%; */
+  height: 50px;
+  background: rgb(139, 122, 139);
+  border-radius: 20px;
+  margin: 0 15px 10px;
+  padding: 0 10px;
+  line-height: 50px;
+  font-size: 20px;
+  font-weight: 700;
+  color: #fff;
+  text-transform: uppercase;
+  text-align: center;
+}
+
 .list-user-item {
   padding: 10px 20px;
   color: #fff;
@@ -55,9 +114,7 @@
 .btnSalirChat {
   border: none;
 }
-.btn {
-  width: 6vw;
-}
+
 .inputChat {
   border: none;
   width: 15vw;
@@ -68,7 +125,7 @@
   width: 15vw;
   height: 0vw;
   position: fixed;
-  right: 0vw;
+  right: 0;
   bottom: 41vw;
 }
 .message-content {
@@ -140,9 +197,7 @@
   overflow-x: hidden;
   background: lightgray;
 }
-.card {
-  margin-left: 17vw;
-}
+
 
 .divContainer {
   width: 40vw;
@@ -151,6 +206,7 @@
   right: 25vw;
   bottom: 6vw;
 }
+
 
 .numChats {
   color: rgb(199, 197, 221);
@@ -179,3 +235,4 @@
   font-weight: bold;
   width: 2rem;
 }
+

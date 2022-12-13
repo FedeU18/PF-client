@@ -110,16 +110,14 @@ const profesoresReducer = (state = initialState, action) => {
         ...state,
         detail: {},
       };
-    // case "CLEAR2":
-    //     return {
-    //       ...state,
-    //       detail: {},
-    //     };
     case VACIAR_ESTADO:
       return {
         ...state,
         detail: action.payload,
       };
+    case "DESMONTAJE": {
+      return initialState;
+    }
     default:
       return {
         ...state,

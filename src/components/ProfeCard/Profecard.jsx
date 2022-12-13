@@ -6,7 +6,10 @@ import { AiFillStar } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { editAlumno } from "../../redux/Actions/Alumno";
+
 import userAuthentication from "../../Authentication/functions/user";
+
+import styles from "./ProfeCard.module.css";
 
 export const ProfeCard = ({
   id,
@@ -18,10 +21,12 @@ export const ProfeCard = ({
   puntuacion,
   username,
   pais,
+
   active,
   socket,
 }) => {
   const { userData } = userAuthentication();
+
 
   var regexUrl =
     /[a-z0-9-\.]+\.[a-z]{2,4}\/?([^\s<>\#%"\,\{\}\\|\\\^\[\]`]+)?$/;
@@ -29,6 +34,7 @@ export const ProfeCard = ({
     "https://as01.epimg.net/epik/imagenes/2020/01/17/portada/1579264345_014526_1579264425_noticia_normal_recorte1.jpg";
   const [fav, setFav] = useState(false);
   const [promedio, setPromedio] = useState(0);
+
   const [alerta, setAlerta] = useState([]);
   console.log("alertaaaa->", alerta);
   const dispatch = useDispatch();
@@ -76,6 +82,7 @@ export const ProfeCard = ({
     }
   }, []);
 
+
   const handleFav = () => {
     console.log("aquiiinnn");
     if (
@@ -108,9 +115,14 @@ export const ProfeCard = ({
   };
 
   return (
-    <Card style={{ width: "18rem", margin: "16px" }}>
+
+    <Card className={`rounded-4 position-relative ${styles.card_container}`}>
       <Link to={"/profesores/" + id}>
-        <img src={imagen} className="cardAboutContImg" />
+        <img
+          src={imagen}
+          className={`cardAboutContImg ${styles.border_cards}`}
+        />
+
       </Link>
 
       <Card.Body>
@@ -124,7 +136,13 @@ export const ProfeCard = ({
               </div>
             </Link>
             <Link to={"/profesores/" + id}>
-              <div className="nameUsuarioC">{username}</div>
+
+              <h5 className="nameUsuarioC">
+                {username.length > 10
+                  ? `${username.slice(0, 10)}...`
+                  : username}
+              </h5>
+
             </Link>
             <div>
               <img className="flagcarProfe" src={pais} />
@@ -133,56 +151,70 @@ export const ProfeCard = ({
         </Card.Title>
 
         <Card.Text>
-          {descripcion}
+          <span>
+            {descripcion.length > 60
+              ? `${descripcion.slice(0, 50)}...`
+              : descripcion}
+          </span>
           <br></br>
-          Enseña:{" "}
-          {materias?.length > 0 &&
-            materias.map((m) => (
-              <span key={m.name} className="materiasNaCaPro">
-                {" "}
-                {m.name}{" "}
-              </span>
-            ))}
-        </Card.Text>
-        {active && (
-          <div className="iconVisible">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="16"
-              height="16"
-              fill="currentColor"
-              class="bi bi-chat-right-text-fill"
-              viewBox="0 0 16 16"
-            >
-              <path d="M16 2a2 2 0 0 0-2-2H2a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h9.586a1 1 0 0 1 .707.293l2.853 2.853a.5.5 0 0 0 .854-.353V2zM3.5 3h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1 0-1zm0 2.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1 0-1zm0 2.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1 0-1z" />
-            </svg>
-            <h5>1</h5>
-          </div>
-        )}
 
-        <div className="puncContCard">
-          <AiFillStar size={22} />
-          <div className="puntProfCard">
-            {puntuacion?.length > 0 ? promedio / puntuacion?.length : 0}
+          <span className="fw-bolder">Enseña:</span>
+          <div>
+            {materias?.length > 0 &&
+              materias.map((m, index) => {
+                return index < 2 ? (
+                  <>
+                    <span
+                      key={m.name}
+                      className={`materiasNaCaPro ${styles.materias_profe} d-inline-block mt-1`}
+                    >
+                      {m.name}
+                    </span>
+                  </>
+                ) : null;
+              })}
+            <br />
+            <span className="fw-bolder">
+              {materias.length > 2 ? "..." : null}
+            </span>
+          </div>
+        </Card.Text>
+        <div
+          className={`puncContCard position-absolute ${styles.estrella_puntuacion}`}
+        >
+          <div>
+            <AiFillStar className="fs-2 text-warning" />
+          </div>
+          <div className={`d-inline-block ${styles.puntuacion}`}>
+            <h5 className="puntProfCard text-warning">
+              {puntuacion?.length > 0 ? promedio / puntuacion?.length : 0}
+            </h5>
           </div>
         </div>
+        <hr className={`position-absolute ${styles.hr_card}`} />
+        <div
+          className={`precioFavCont position-absolute ${styles.precio_heart} d-flex justify-content-around w-100`}
+        >
+          <div>
+            <button onClick={handleFav} className="btnFavProfeCards">
+              {fav ? (
+                <MdOutlineFavorite
+                  size={26}
+                  style={{ color: "rgb(253, 17, 49)", cursor: "pointer" }}
+                />
+              ) : (
+                <MdOutlineFavoriteBorder
+                  className="text-danger"
+                  size={26}
+                  style={{ cursor: "pointer" }}
+                />
+              )}
+            </button>
+          </div>
+          <div className={styles.precio_por_hora}>
+            <span className="text-success"><b>{precio} US$</b> por hora</span>
+          </div>
 
-        <hr></hr>
-        <div className="precioFavCont">
-          <button onClick={handleFav} className="btnFavProfeCards">
-            {fav ? (
-              <MdOutlineFavorite
-                size={26}
-                style={{ color: "rgb(253, 17, 49)", cursor: "pointer" }}
-              />
-            ) : (
-              <MdOutlineFavoriteBorder
-                size={26}
-                style={{ cursor: "pointer" }}
-              />
-            )}
-          </button>
-          <div>{precio} US$ por hora</div>
         </div>
       </Card.Body>
     </Card>
