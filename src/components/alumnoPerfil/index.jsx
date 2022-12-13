@@ -42,7 +42,7 @@ export const AlumnoPerfil = (props) => {
   useEffect(() => {
     console.log(info.favourites);
     console.log(profes);
-    if (info.favourites.length > 0 && profes.length > 0) {
+    if (info.favourites?.length > 0 && profes.length > 0) {
       // info.favourites?.map((f) => {
       //   profes.map((p) => {
       //     if (p.id === f) {
@@ -60,7 +60,7 @@ export const AlumnoPerfil = (props) => {
         }
         console.log(profesFavoritos);
         setMyFavProfe(profesFavoritos);
-        console.log(myFavProfe)
+        console.log(myFavProfe);
       }
     }
   }, [profes.length]);
@@ -289,7 +289,14 @@ export const AlumnoPerfil = (props) => {
                   <div>
                     <Carousel>
                       {myFavProfe.map((f, index) => (
-                        <Carousel.Item key={index} style={{marginLeft: "4rem", paddingBottom:" 3rem", marginTop:"4rem"}}>
+                        <Carousel.Item
+                          key={index}
+                          style={{
+                            marginLeft: "4rem",
+                            paddingBottom: " 3rem",
+                            marginTop: "4rem",
+                          }}
+                        >
                           <div className="centerProfCardsFavAL">
                             <ProfeCard
                               id={f.id}
