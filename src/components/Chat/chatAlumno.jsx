@@ -12,10 +12,10 @@ export const ChatAlumno = ({
   const [mensaje, setMensaje] = useState("");
   const [mensajes, setMensajes] = useState([]);
 
-  setMensajes([...mensajesAntiguos, ...mensajes]);
-  const mensajesAntiguos = () => {
-    socket.emit("mensajes_antiguos", userLogin, receptor);
+  const mensajesOld = () => {
+    setMensajes([...mensajesAntiguos, ...mensajes]);
   };
+
   const mensajesProfe = mensajes.filter(
     (e) =>
       (e.remitente === userLogin && e.receptor === receptor) ||
@@ -46,9 +46,7 @@ export const ChatAlumno = ({
     socket.emit("solicitarMSG_pendientes");
 
     socket.emit("join_room", canal);
-    socket.on("mensajes_antiguos", (data) => {
-      setMensajes([...mensajes, ...data]);
-    });
+
     socket.on("alerta_mensajes", (data) => {
       console.log("soy alerta mensajes", data);
     });
@@ -77,7 +75,7 @@ export const ChatAlumno = ({
       <div>
         <div className="titulo">
           <h4 className="tituloChat">Chatea con el profe</h4>
-          <button onClick={mensajesAntiguos}>☑</button>
+          <button onClick={mensajesOld}>☑</button>
         </div>
         <ScrollToBottom className="cardBody " id="chat">
           {mensajesProfe.map((e) => {
