@@ -16,7 +16,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { clearAlumno } from "../../redux/Actions/Alumno";
 import { clear } from "../../redux/Actions/Profesor";
 import { BsFillBellFill } from "react-icons/bs";
-import { getNotificaciones,EditarNotificaciones } from "../../redux/Actions/Notificacion";
+import {
+  getNotificaciones,
+  EditarNotificaciones,
+} from "../../redux/Actions/Notificacion";
+import { CgProfile, CgLogOff } from "react-icons/cg";
 
 export const NavBar = () => {
   const navigate = useNavigate();
@@ -24,32 +28,33 @@ export const NavBar = () => {
   const { userData } = userAuthentication();
   let infoAlumno = useSelector((state) => state.alumnos.alumno);
   let infoProfesor = useSelector((state) => state.profesores.detail);
-  let notificaciones=useSelector((state)=>state.notificaciones.notificaciones);
+  let notificaciones = useSelector(
+    (state) => state.notificaciones.notificaciones
+  );
   const [useFoto, SetUserFoto] = useState("");
-  const [notis,setNotis]=useState(0)
+  const [notis, setNotis] = useState(0);
   let id = userData.id;
-  
-  
+
   useEffect(() => {
     dispatch(actionsAlumno.getAlumnoFromAPI(id));
     dispatch(actionsProfesor.getProfesorById(id));
-    dispatch(getNotificaciones())
+    dispatch(getNotificaciones());
     return () => {
       dispatch(clear());
       dispatch(clearAlumno());
     };
   }, []);
 
-  useEffect(()=>{
-    setNotis(0)
-    if(notificaciones.length>0){
-      notificaciones.map(n=>{
-        if(n.visto1===false){
-          setNotis((prev)=>prev+1)
+  useEffect(() => {
+    setNotis(0);
+    if (notificaciones.length > 0) {
+      notificaciones.map((n) => {
+        if (n.visto1 === false) {
+          setNotis((prev) => prev + 1);
         }
-      })
+      });
     }
-  },[notificaciones])
+  }, [notificaciones]);
 
   useEffect(() => {
     if (
@@ -84,10 +89,10 @@ export const NavBar = () => {
     }
   }, [infoAlumno, infoProfesor]);
 
-  const handleNotis=()=>{
-    dispatch(EditarNotificaciones())
-    navigate("/notificaciones")
-  }
+  const handleNotis = () => {
+    dispatch(EditarNotificaciones());
+    navigate("/notificaciones");
+  };
 
   const CloseMySesion = () => {
     logOut();
@@ -114,60 +119,65 @@ export const NavBar = () => {
       >
         <div className="d-flex justify-content-between gap-4 p-1 align-items-center">
           <div>
-            <img onClick={handleGoHome}
+            <img
+              onClick={handleGoHome}
               src={"/logoPF.png"}
               className={"logoProyecto d-block"}
-              style={{ width: "75px", height: "40px" ,cursor:'pointer'}}
+              style={{ width: "75px", height: "40px", cursor: "pointer" }}
             />
           </div>
 
           <div>
-            
-              <SearchBar />
-            
+            <SearchBar />
           </div>
 
-         
+          <div
+            className={`${
+              Object.entries(infoProfesor).length > 0 &&
+              infoProfesor.administrador === true &&
+              "colAvatarDrop"
+            }`}
+          >
+            {Object.entries(infoProfesor).length > 0 &&
+              infoProfesor.administrador === true && (
+                <button
+                  type="button"
+                  className="position-relative btnBellNoti"
+                  onClick={handleNotis}
+                >
+                  <BsFillBellFill size={30} />
+                  {notis > 0 && (
+                    <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                      {notis}
+                    </span>
+                  )}
+                </button>
+              )}
 
-          <div className={`${Object.entries(infoProfesor).length > 0 && infoProfesor.administrador===true &&'colAvatarDrop'}`}>
-            {Object.entries(infoProfesor).length > 0 && infoProfesor.administrador===true &&(
-              <button type="button" 
-                      class=" position-relative btnBellNoti"
-                      onClick={handleNotis}>
-                    <BsFillBellFill size={30}/>
-                    {notis>0 && (
-                      <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                        {notis}
-                      </span> 
-
-                    )}
-              </button>
-              
-            )}
-
-            <div className="position-relative">
+            <div className="position-relative" style={{ marginRight: ".5rem" }}>
               <img
-                className="imgAvatar rounded-5"
+                className="imgAvatar rounded-5 border-0"
                 src={useFoto}
                 style={{ objectFit: "cover", width: "40px", height: "40px" }}
               />
-             
 
               <NavDropdown
                 className={`position-absolute top-0 start-0 p-1 rounded-5`}
                 id="basic-nav-dropdown"
-                style={{ width: "45px", height: "50px" ,  color: "transparent"
-              }}
+                style={{ width: "45px", height: "50px", color: "transparent" }}
               >
                 <div>
                   <NavDropdown.Item
-                    className="opacity-100"
+                    className="fw-bolder"
                     onClick={handleProfile}
                   >
-                    Mi Perfil
+                    <CgProfile className="fs-5 Ajuste-Icons" /> Mi Perfil
                   </NavDropdown.Item>
-                  <NavDropdown.Item onClick={CloseMySesion}>
-                    Cerrar Sesión
+                  <NavDropdown.Item
+                    className="fw-bolder"
+                    onClick={CloseMySesion}
+                  >
+                    <CgLogOff className="fs-5 Ajuste-Icons" /> Cerrar Sesión
                   </NavDropdown.Item>
                 </div>
               </NavDropdown>

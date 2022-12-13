@@ -7,15 +7,21 @@ import userAuthenticate from "../../Authentication/functions/user";
 import Table from "react-bootstrap/Table";
 import StripePagos from "../../Payments/StripePagos";
 import { setReservaProfe } from "../../redux/Actions/Mailer";
+import { getAlumnoFromAPI } from "../../redux/Actions/Alumno";
+
+
 
 const Calendario = ({ profe }) => {
-  const [error, setError] = useState(false)  
-  console.log("error: ", error)
+  const [error, setError] = useState(false);
+  
   const dispatch = useDispatch();
   const [errorDays, setErrorDays] = useState(false);
   const alumno = useSelector((state) => state.alumnos.alumno);
+
+  console.log("pepe", alumno);
+
   const fechas = useSelector((state) => state.fechas.fechas);
-  console.log("profe: " ,profe)
+  console.log("profe: ", profe);
   const user = userAuthenticate();
   const [activate, setActivate] = useState(false);
   const [date, onChange] = useState(new Date());
@@ -29,8 +35,10 @@ const Calendario = ({ profe }) => {
 
   useEffect(() => {
     dispatch(getFecha());
+    dispatch(getAlumnoFromAPI(user.userData.id))
   }, []);
 
+ 
   useEffect(() => {
     setActivate(false);
     if (reserva.fecha && reserva.hora) {
@@ -49,7 +57,6 @@ const Calendario = ({ profe }) => {
       } else {
         setErrorDays(true);
       }
-      
     }
     const data = {
       emailProfesor: profe.email,
@@ -62,18 +69,20 @@ const Calendario = ({ profe }) => {
     localStorage.setItem("data-payment", DATAJSON);
   }, [reserva.fecha, reserva.hora]);
 
-  useEffect(()=>{
-    let reservado= {};
-    Object.keys(profe).length !== 0 &&( reservado = profe.fechas.find(f=> f.fecha === reserva.fecha && f.hora === reserva.hora))
-  if(typeof(reservado) === "object"){
-    if(Object.keys(reservado).length !== 0){
-      setError(true)
+  useEffect(() => {
+    let reservado = {};
+    Object.keys(profe).length !== 0 &&
+      (reservado = profe.fechas?.find(
+        (f) => f.fecha === reserva.fecha && f.hora === reserva.hora
+      ));
+    if (typeof reservado === "object") {
+      if (Object.keys(reservado).length !== 0) {
+        setError(true);
+      }
+    } else {
+      setError(false);
     }
-  } else {
-    setError(false)
-  }
-  
-  }, [reserva.fecha, reserva.hora])
+  }, [reserva.fecha, reserva.hora]);
 
   const handleHora = (e) => {
     e.preventDefault();
@@ -101,7 +110,6 @@ const Calendario = ({ profe }) => {
     }
   };
 
-
   return (
     <div>
       <div>
@@ -115,53 +123,60 @@ const Calendario = ({ profe }) => {
         />
       </div>
       <div className="reservasCont">
-      <div className="all-horarios">
-        <div>
-          <h2>Horario: </h2>
-        </div>
-        <div className="horarios">
-          <button onClick={(e) => handleHora(e)} value="12:00-13:00">
-            12:00-13:00
-          </button>
-          <button onClick={(e) => handleHora(e)} value="15:00-16:00">
-            15:00-16:00
-          </button>
-          <button onClick={(e) => handleHora(e)} value="17:00-18:00">
-            17:00-18:00
-          </button>
-        </div>
-      </div>
-
-      <h2>Tu reserva: </h2>
-
-      <Table striped bordered hover>
-        <thead>
-          <tr>
-            <td>Fecha</td>
-            <td>Hora</td>
-            <td>Precio</td>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>{reserva.fecha}</td>
-            <td>{reserva.hora}</td>
-            <td>{profe.precio + "$"}</td>
-          </tr>
-        </tbody>
-      </Table>
-
-      <div className="reserva w-100 justify-content-evenly flex-column">
-        <button
-          disabled={error || errorDays || reserva.fecha === "" || reserva.hora === ""}
-          onClick={(e) => handleSubmitFecha(e)}
-        >
-          Reservar
-        </button>
-        {activate && <StripePagos profe={profe} />}
-
+        <div className="all-horarios">
+          <div>
+            <h2>Horario: </h2>
+          </div>
+          <div className="horarios">
+            <button onClick={(e) => handleHora(e)} value="12:00-13:00">
+              12:00-13:00
+            </button>
+            <button onClick={(e) => handleHora(e)} value="15:00-16:00">
+              15:00-16:00
+            </button>
+            <button onClick={(e) => handleHora(e)} value="17:00-18:00">
+              17:00-18:00
+            </button>
+          </div>
         </div>
 
+        <h2>Tu reserva: </h2>
+
+        <Table striped bordered hover>
+          <thead>
+            <tr>
+              <td>Fecha</td>
+              <td>Hora</td>
+              <td>Precio</td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>{reserva.fecha}</td>
+              <td>{reserva.hora}</td>
+               {alumno.promo ? <td><strike>{profe.precio + "$" }</strike> {(profe.precio - (profe.precio * 20 ) /100 ) + "$"}</td>  : <td> {profe.precio + "$" } </td>}
+              
+            </tr>
+          </tbody>
+   
+          
+
+        </Table>
+
+               
+        <div className="reserva w-100 justify-content-evenly align-items-center flex-column">
+          <button
+            disabled={
+              error || errorDays || reserva.fecha === "" || reserva.hora === ""
+            }
+            onClick={(e) => handleSubmitFecha(e)}
+            style={{ maxWidth: "200px" }}
+            className="border-0 rounded-1 fs-5"
+          >
+            reservar
+          </button>
+          {activate && <StripePagos profe={profe} />}
+        </div>
       </div>
       <div>
         {errorDays && (
@@ -169,9 +184,11 @@ const Calendario = ({ profe }) => {
             La reserva no puede ser hoy ni un dia anterior al dia actual
           </p>
         )}
-      {
-        error && <p className="text-center mt-3 p-2 text-danger">Esta Fecha ya está reservada, elija otra</p>
-      }
+        {error && (
+          <p className="text-center mt-3 p-2 text-danger">
+            Esta Fecha ya está reservada, elija otra
+          </p>
+        )}
       </div>
     </div>
   );

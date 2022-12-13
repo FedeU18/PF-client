@@ -84,14 +84,16 @@ const FormTeacher = ({ setMostrarProfe }) => {
       console.log(allUsers);
       const noRepeatPlease = allUsers.find((user) => user.username === value);
 
-      if (noRepeatPlease)
-        setAllErrors({ ...allErrors, usernameErrExist: true });
-      else setAllErrors({ ...allErrors, usernameErrExist: false });
+      // if (validateUser.test(value)) {
+      //   setAllErrors({ ...allErrors, usernameErr: false });
+      // } else {
+      //   setAllErrors({ ...allErrors, usernameErr: true });
+      // }
 
-      if (validateUser.test(value)) {
-        setAllErrors({ ...allErrors, usernameErr: false });
+      if (noRepeatPlease) {
+        setAllErrors({ ...allErrors, usernameErrExist: true });
       } else {
-        setAllErrors({ ...allErrors, usernameErr: true });
+        setAllErrors({ ...allErrors, usernameErrExist: false });
       }
     } else if (key === "email") {
       const emailVerify = /^\w+([.-_+ñ]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/;
@@ -183,7 +185,9 @@ const FormTeacher = ({ setMostrarProfe }) => {
     <div data-aos="fade-right">
       <form className="form">
         <div className="formulario">
-          <h3>Bienvenido</h3>
+          <h3>
+            Bienvenido
+          </h3>
 
           {parte === "primera" && (
             <div>
@@ -386,8 +390,12 @@ const FormTeacher = ({ setMostrarProfe }) => {
                   }
                 >
                   {loader && (
-                    <div class="spinner-border spinner-border-sm" role="status" style={{marginRight:".4rem"}}>
-                      <span class="visually-hidden"></span>
+                    <div
+                      className="spinner-border spinner-border-sm"
+                      role="status"
+                      style={{ marginRight: ".4rem" }}
+                    >
+                      <span className="visually-hidden"></span>
                     </div>
                   )}
                   Registrate

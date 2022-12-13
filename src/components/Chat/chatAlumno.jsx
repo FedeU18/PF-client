@@ -28,16 +28,21 @@ export const ChatAlumno = ({ canal, socket, userLogin, receptor }) => {
           ":" +
           new Date(Date.now()).getMinutes(),
       };
+      await socket.emit("alerta_mensajes", mensajeData);
+      await socket.emit("chat_abierto", receptor);
       await socket.emit("mensaje_privado", mensajeData);
       setMensaje("");
     }
   };
 
   useEffect(() => {
+    socket.emit("solicitarMSG_pendientes");
+
     socket.emit("join_room", canal);
     socket.on("mensajes_antiguos", (data) => {
       setMensajes([...mensajes, ...data]);
     });
+
     socket.on("mensaje_privado", (res) => {
       console.log("recibo mensajes desde alumno", res);
       if (
@@ -59,7 +64,7 @@ export const ChatAlumno = ({ canal, socket, userLogin, receptor }) => {
 
   return (
     <div>
-      <div className="container">
+      <div>
         <div className="row">
           <div className="col-md-7 mt-5">
             <div className="card">
@@ -75,7 +80,7 @@ export const ChatAlumno = ({ canal, socket, userLogin, receptor }) => {
                       id={userLogin !== e.remitente ? "you" : "other"}
                     >
                       <div className="message-content">
-                        <p>{e.mensaje}</p>
+                        <p>{e.mensaje.toLowerCase()}</p>
                       </div>
                       <div className="message-meta">
                         <p id="time">{e.time}</p>
