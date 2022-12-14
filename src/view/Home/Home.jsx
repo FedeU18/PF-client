@@ -23,7 +23,7 @@ import autentication from "../../Authentication/functions/user";
 import logOut from "../../Authentication/functions/logOut";
 import Badge from "react-bootstrap/Badge";
 import Button from "react-bootstrap/Button";
-import { ChatProfe } from "../../components/Chat/chatProfe";
+// import { ChatProfe } from "../../components/Chat/chatProfe";
 import MateriasBtn from "./MateriasBtn.jsx";
 import Caru from "./Caru.jsx";
 import Loader from "../../components/Loader/Loader";
