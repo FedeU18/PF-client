@@ -11,11 +11,11 @@ function Footer() {
     
       <div className="footer-contenedor">
        
-        <div className="footer">
+        <div className="footer ">
           
           {/* Column1 */}
           <div >
-            <h4 className="fab-titulos-footer">Soporte</h4>
+            <h4 className="fab-titulos-footer mt-4">Soporte</h4>
             <li className="fab-subtitulos-footer">Politicas de privacidad</li>
             <li className="fab-subtitulos-footer">Terminos del servicio</li>
             <li className="fab-subtitulos-footer">Legal</li>
@@ -24,8 +24,8 @@ function Footer() {
           </div>
           {/* Column2 */}
           <div>
-            <h4 className="fab-titulos-footer">Mas soporte</h4>
-            <li className="fab-subtitulos-footer"> <Link to="/about" className="aFootAbout">
+            <h4 className="fab-titulos-footer mt-4">Mas soporte</h4>
+            <li className="fab-subtitulos-footer "> <Link to="/about" className="aFootAbout text-white">
             About
           </Link></li>
               <li className="fab-subtitulos-footer">accesibilidad</li>
@@ -37,21 +37,23 @@ function Footer() {
           </div>
           {/* Column3 */}
           <div>
-            <h4 className="fab-titulos-footer">Redes Sociales</h4>
+            <h4 className="fab-titulos-footer mt-4">Redes Sociales</h4>
 
             <ul className="list-unstyled">
               <a href="https://www.youtube.com/channel/UCsUXZoWZow_fXUi1ATVbsGg" target="_blank">
-              <li className="text-danger"><IoLogoYoutube size={22}/> Youtube</li>
-
+              <li className="text-white"><IoLogoYoutube size={30}/> Youtube</li>
+               <br />
               </a>
               <a href="https://www.instagram.com/findteacher2/" target="_blank">
-              <li className="fab-subtitulos-footer"><FaInstagram size={22}/> Instagram</li>
+              <li className="fab-subtitulos-footer text-white"><FaInstagram size={30}/> Instagram</li>
               </a>
+              
               <a>
-              <li className="text-primary"><BsFacebook size={22}/> Facebook</li>
+              <li className="text-primary text-white"><BsFacebook size={30}/> Facebook</li>
               </a>
+              <br />
               <a>
-              <li className="fab-subtitulos-footer"><AiFillTwitterCircle size={22}/> Twitter</li>
+              <li className="fab-subtitulos-footer"><AiFillTwitterCircle size={30}/> Twitter</li>
               </a>
               
             </ul>
