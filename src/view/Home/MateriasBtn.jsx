@@ -12,9 +12,7 @@ function MateriasBtn() {
   };
 
   return (
-
-<div className="materiasBTNCont">
-
+    <div className="materiasBTNCont">
       {materias.length > 0 &&
         materias.map((el, index) => (
           <MateriaBox

@@ -334,24 +334,24 @@
   display: none;
 }
 
-
-.materiasBTNCont{
-
-  margin-left: 3rem;
+.materiasBTNCont {
+  display: flex;
+  gap: .5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  /* margin-left: 3rem;
   height: 100%;
   display: grid;
-  grid-template-columns: max-content max-content max-content max-content max-content max-content max-content max-content max-content;
+  grid-template-columns: max-content max-content max-content max-content max-content max-content max-content max-content max-content; */
 }
-
-
 
 .mi_perfil_profe_dark {
   background-color: #242529;
   color: aliceblue;
-    /* #1A202C  #171923* #242529  101011 */
+  /* #1A202C  #171923* #242529  101011 */
 }
 
 .mi_perfil_profe_dark_words {
   color: aliceblue;
-  font-weight: bolder;}
-
+  font-weight: bolder;
+}

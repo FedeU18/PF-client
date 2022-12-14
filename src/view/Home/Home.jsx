@@ -28,7 +28,7 @@ import MateriasBtn from "./MateriasBtn.jsx";
 import Caru from "./Caru.jsx";
 import Loader from "../../components/Loader/Loader";
 import FooterH from "./FooterH.jsx";
-import Footer from ".././Landing/Footer.jsx"
+import Footer from ".././Landing/Footer.jsx";
 import { RiCloseCircleFill } from "react-icons/ri";
 
 export const Home = () => {
@@ -122,7 +122,7 @@ export const Home = () => {
     if (Object.entries(profesor).length > 0 && profesor.baneado === true) {
       setBan(true);
     }
-  }, [infoAlumno,profesor]);
+  }, [infoAlumno, profesor]);
 
   useEffect(() => {
     socket.emit("solicitarMSG_pendientes");
@@ -182,18 +182,20 @@ export const Home = () => {
   return (
     <>
       <NavBar />
-      {ban===true?(<div className="BloackACcountCont">
-        Su cuenta ha sido blogueada de Find Your Teacher .
-      </div>):(<div>
+      {ban === true ? (
+        <div className="BloackACcountCont">
+          Su cuenta ha sido blogueada de Find Your Teacher .
+        </div>
+      ) : (
+        <div>
+          <Caru />
 
-      <Caru />
-
-      {profes.length > 0 ? (
-        <div className={theme === "dark" ? "dark_home" : null}>
-          {/* <button className="filtroBtn">
+          {profes.length > 0 ? (
+            <div className={theme === "dark" ? "dark_home" : null}>
+              {/* <button className="filtroBtn">
             <BsFillGrid3X3GapFill onClick={handleFiltros} />
           </button> */}
-          {/* {filtrosSeleccionados.materias?.length > 0 ? (
+              {/* {filtrosSeleccionados.materias?.length > 0 ? (
             filtrosSeleccionados.materias.map((f) => (
               <button
                 className={`btnListOpSelected ${
@@ -255,61 +257,64 @@ export const Home = () => {
               </button>
             )} */}
 
-          {/* <Filtros open={open} close={handleCloseFiltros} />
+              {/* <Filtros open={open} close={handleCloseFiltros} />
           <br></br> */}
 
-          <ProfeCards
-            socket={socket}
-            msgUsuariosAlumno={msgUsuariosAlumno}
-            profes={profes}
-          />
+              <ProfeCards
+                socket={socket}
+                msgUsuariosAlumno={msgUsuariosAlumno}
+                profes={profes}
+              />
 
-          {userData.rol === "teacher" && (
-            <BotonChats
-              chatUsers={chatUsers}
-              mensajesUsuarios={mensajesUsuarios}
-              mostrarChatUsers={mostrarChatUsers}
-            />
+              {userData.rol === "teacher" && (
+                <BotonChats
+                  chatUsers={chatUsers}
+                  mensajesUsuarios={mensajesUsuarios}
+                  mostrarChatUsers={mostrarChatUsers}
+                />
+              )}
+
+              <div className="d-flex justify-content-center aling-item-center p-2">
+                <MateriasBtn />
+              </div>
+
+              {chatUsers && (
+                <ChatProfe
+                  setChatUsers={setChatUsers}
+                  usuariosChat={usuariosChat}
+                  socket={socket}
+                  userLogin={profesor.nombre}
+                  canal={profesor.id}
+                />
+              )}
+            </div>
+          ) : (
+            <div
+              className={`d-flex justify-content-center align-items-center ${
+                theme === "dark" ? "dark_loader_eye" : null
+              }`}
+              style={{ height: "75vh" }}
+            >
+              <Loader theme={theme} />
+            </div>
           )}
-        
-        <div className=" d-flex justify-content-center aling-item-center mt-5 mb-5">
-       <MateriasBtn/>
-        </div> 
 
-          {chatUsers && (
-            <ChatProfe
-              setChatUsers={setChatUsers}
-              usuariosChat={usuariosChat}
-              socket={socket}
-              userLogin={profesor.nombre}
-              canal={profesor.id}
-            />
-          )}
-        </div>
-      ) : (
-        <div
-          className={`d-flex justify-content-center align-items-center ${theme === "dark" ? "dark_loader_eye" : null}`}
-          style={{ height: "75vh" }}
-        >
-          <Loader theme={theme}/>
-        </div>
-      )}
-
-      <div
-        className="d-flex flex-column align-items-center"
-        style={{ margin: "0 auto" }}
-      >
-        <hr />
-        {/*<footer>
+          <div
+            className="d-flex flex-column align-items-center"
+            style={{ margin: "0 auto" }}
+          >
+            <hr />
+            {/*<footer>
           <Link to="/about" className="aFootAbout">
             About
           </Link>
         </footer>
       */}
-      </div>
-      {/*<FooterH />*/}
-      </div>)}
-      <Footer/>
+          </div>
+          {/*<FooterH />*/}
+        </div>
+      )}
+      <Footer />
     </>
   );
 };
