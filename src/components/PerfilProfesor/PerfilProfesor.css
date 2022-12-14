@@ -335,8 +335,15 @@
 }
 
 
+.materiasBTNCont{
 
-/* DARK MODE */
+  margin-left: 3rem;
+  height: 100%;
+  display: grid;
+  grid-template-columns: max-content max-content max-content max-content max-content max-content max-content max-content max-content;
+}
+
+
 
 .mi_perfil_profe_dark {
   background-color: #242529;
@@ -347,3 +354,4 @@
 .mi_perfil_profe_dark_words {
   color: aliceblue;
   font-weight: bolder;}
+
