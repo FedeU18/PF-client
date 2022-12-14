@@ -24,7 +24,8 @@ export const AddComent=({show ,handleClose, alumnoId, profesorId ,myId})=> {
 
   return (
     <>
-      <Modal show={show} onHide={()=>{handleClose()}}>
+      <Modal show={show} onHide={()=>{setContenido('')
+                                      handleClose()}}>
         <Modal.Header closeButton>
           <Modal.Title>Añade Una Reseña</Modal.Title>
         </Modal.Header>

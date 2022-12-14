@@ -21,7 +21,8 @@ export const EditarComent=({show,comentId ,handleClose, profileOwner,placeholder
     }
     return(
         <>
-        <Modal show={show} onHide={()=>{handleClose()}}>
+        <Modal show={show} onHide={()=>{ setContenido('')
+                                        handleClose()}}>
           <Modal.Header closeButton>
             <Modal.Title>Editar Comentario </Modal.Title>
           </Modal.Header>

@@ -16,12 +16,15 @@ export const AddPuntuacion=({show ,handleClose, alumnoId, profesorId ,myId})=> {
     const handleSendComent=()=>{
       handleClose()
        dispatch(createPunctuationprofe(profesorId,{puntaje, profesorId, alumnoId:myId}))
+       setStars(0)
        setPuntaje(0)
     }
 
   return (
     <>
-      <Modal show={show} onHide={()=>{handleClose()}}>
+      <Modal show={show} onHide={()=>{setPuntaje(0)
+                                      setStars(0)
+                                        handleClose()}}>
         <Modal.Header closeButton>
           <Modal.Title>Añade Una Puntaje</Modal.Title>
         </Modal.Header>

@@ -116,6 +116,30 @@ export const Home = () => {
   }, [infoAlumno.fechaLimiteBan]);
 
   useEffect(() => {
+    if (Object.entries(profesor).length > 0 && profesor.baneado === true) {
+      const array = profesor.fechaLimiteBan.split("-");
+
+      console.log(
+        array[0],
+        " ",
+        yyyy,
+        " ",
+        array[1],
+        " ",
+        mm,
+        " ",
+        array[2],
+        " ",
+        dd
+      );
+      if (array[0] <= yyyy && array[1] <= mm && array[2] <= dd) {
+        console.log("aaaaa");
+        dispatch(editAlumno({ baneado: false }, profesor.id));
+      }
+    }
+  }, [profesor.fechaLimiteBan]);
+
+  useEffect(() => {
     if (Object.entries(infoAlumno).length > 0 && infoAlumno.baneado === true) {
       setBan(true);
     }
