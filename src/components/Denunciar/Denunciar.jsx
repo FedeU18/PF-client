@@ -19,7 +19,8 @@ export const Denuncia=({show,handleClose,comentarioId,denunciadoId,denuncianteId
     }
   return (
     <>
-         <Modal show={show} onHide={handleClose}>
+         <Modal show={show} onHide={()=>{setRazon('Muestras de odio')
+                                          handleClose()}}>
         <Modal.Header closeButton>
           <Modal.Title>Denunciar Comentario</Modal.Title>
         </Modal.Header>

@@ -65,6 +65,7 @@ export const EditarAlumno = ({ show, handleClose, alumno }) => {
     e.preventDefault();
     dispatch(editAlumno(actualizar, alumno.id));
     setActualizar({});
+    setOpConf(1)
     setUserAlumno({
       name: false,
       lastname: false,
@@ -76,7 +77,16 @@ export const EditarAlumno = ({ show, handleClose, alumno }) => {
   };
   return (
     <>
-      <Modal show={show} onHide={handleClose}>
+      <Modal show={show} onHide={()=>{ setActualizar({});
+                                        setUserAlumno({
+                                          name: false,
+                                          lastname: false,
+                                          age: false,
+                                          picture: false,
+                                          country: false,
+                                        });
+                                        setOpConf(1)
+                                      handleClose()}}>
         <Modal.Header closeButton>
           <Modal.Title>Configuraciones</Modal.Title>
         </Modal.Header>
@@ -163,6 +173,7 @@ export const EditarAlumno = ({ show, handleClose, alumno }) => {
                   <div>
                     <input
                       type="number"
+                      min={0}
                       name="age"
                       onChange={(e) => objActualizarAlumno(e)}
                       placeholder={alumno.age + "..."}

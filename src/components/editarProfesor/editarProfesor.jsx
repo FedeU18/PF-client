@@ -47,6 +47,7 @@ const EditarProfesor = ({ show, profesor, handleClose }) => {
     e.preventDefault();
     dispatch(putProfesor(profesor.id, actualizar));
     setActualizar({});
+    setOpConf(1)
     setuseProfesor({
       nombre: false,
       apellido: false,
@@ -75,7 +76,17 @@ const EditarProfesor = ({ show, profesor, handleClose }) => {
 
   return (
     <>
-      <Modal show={show} onHide={handleClose}>
+      <Modal show={show} onHide={()=>{
+                                        setActualizar({});
+                                        setOpConf(1)
+                                        setuseProfesor({
+                                          nombre: false,
+                                          apellido: false,
+                                          precio: false,
+                                          imagen: false,
+                                          country: false,
+                                        });
+                                        handleClose}}>
         <Modal.Header closeButton>
           <Modal.Title>Configuraciones</Modal.Title>
         </Modal.Header>
