@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./componenteChat.css";
 import ScrollToBottom from "react-scroll-to-bottom";
 import img from "../Chat/concluido.png";
+let socket;
 
 export const ChatAlumno = ({ canal, socket, userLogin, receptor }) => {
   const [mensaje, setMensaje] = useState("");
@@ -12,7 +13,10 @@ export const ChatAlumno = ({ canal, socket, userLogin, receptor }) => {
       (e.remitente === userLogin && e.receptor === receptor) ||
       (e.remitente === receptor && e.receptor === userLogin)
   );
+  useEffect(()=>{
+    socket = io("https://find-your-teacher-api.onrender.com");
 
+  },[])
   const enviarMensaje = async (e) => {
     e.preventDefault();
     if (mensaje !== "") {
