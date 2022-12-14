@@ -1,5 +1,5 @@
 import io from "socket.io-client";
-const socket = io("https://find-your-teacher-api.onrender.com/");
+const socket = io("https://find-your-teacher-api.onrender.com");
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";

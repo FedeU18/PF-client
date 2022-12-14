@@ -1,5 +1,5 @@
 import io from "socket.io-client";
-const socket = io("https://find-your-teacher-api.onrender.com/");
+const socket = io("https://find-your-teacher-api.onrender.com");
 import "./Home.css";
 import React from "react";
 import { NavBar } from "../../components/Nav/Nav";
