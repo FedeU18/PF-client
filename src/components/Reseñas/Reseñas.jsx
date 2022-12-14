@@ -58,7 +58,7 @@ export const Reseñas =({puntajes})=>{
                     <AiFillStar size={25}/>
                     <AiFillStar size={25}/>
                     <span className='proNumvRe'>
-                    {puntajes?.length>0 ? promedio/(puntajes?.length):0}
+                    { puntajes?.length>0 ? Math.round( (promedio/(puntajes?.length)) * 10)/ 10 :0}
                     </span>
                 </div>
             </div>

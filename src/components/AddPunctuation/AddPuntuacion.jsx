@@ -14,9 +14,9 @@ export const AddPuntuacion=({show ,handleClose, alumnoId, profesorId ,myId})=> {
 
    
     const handleSendComent=()=>{
+      handleClose()
        dispatch(createPunctuationprofe(profesorId,{puntaje, profesorId, alumnoId:myId}))
-       setPuntaje('')
-       handleClose()
+       setPuntaje(0)
     }
 
   return (
@@ -67,7 +67,7 @@ export const AddPuntuacion=({show ,handleClose, alumnoId, profesorId ,myId})=> {
         
         <Modal.Footer>
           <button  onClick={()=>{handleSendComent()
-                                handleClose()}} disabled={puntaje===''?true:false} className='btnSEndComment'>
+                            }}  className='btnSEndComment'>
             <RiSendPlaneFill />
           </button>
         </Modal.Footer>
