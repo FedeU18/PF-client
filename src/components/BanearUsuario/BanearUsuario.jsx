@@ -57,7 +57,9 @@ export const BanearUsuario=({show, handleClose,demandado})=> {
     }
   return (
      <>
-      <Modal show={show} onHide={()=>{
+      <Modal 
+        style={{backgroundColor:'rgb(0, 0, 0,0.5)'}}
+        show={show} onHide={()=>{
         setFecha('')
         setRazon('')
         setErrors('')

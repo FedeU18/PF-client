@@ -183,10 +183,10 @@ const [ban, setBan] = useState(false);
 
       {profes.length > 0 ? (
         <div className={theme === "dark" ? "dark_home" : null}>
-          <button className="filtroBtn">
+          {/* <button className="filtroBtn">
             <BsFillGrid3X3GapFill onClick={handleFiltros} />
-          </button>
-          {filtrosSeleccionados.materias?.length > 0 ? (
+          </button> */}
+          {/* {filtrosSeleccionados.materias?.length > 0 ? (
             filtrosSeleccionados.materias.map((f) => (
               <button
                 className={`btnListOpSelected ${
@@ -242,10 +242,10 @@ const [ban, setBan] = useState(false);
               >
                 X {filtrosSeleccionados.precio}{" "}
               </button>
-            )}
+            )} */}
 
-          <Filtros open={open} close={handleCloseFiltros} />
-          <br></br>
+          {/* <Filtros open={open} close={handleCloseFiltros} />
+          <br></br> */}
 
           <ProfeCards
             socket={socket}

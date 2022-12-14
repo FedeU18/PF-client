@@ -333,3 +333,13 @@
 .notShowAlert {
   display: none;
 }
+
+
+.materiasBTNCont{
+
+  margin-left: 3rem;
+  height: 100%;
+  display: grid;
+  grid-template-columns: max-content max-content max-content max-content max-content max-content max-content max-content max-content;
+}
+

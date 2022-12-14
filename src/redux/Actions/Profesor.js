@@ -9,8 +9,29 @@ import {
   FILTER_PRECIO,
   FILTER_PUNTUACION,
   SET_PROFE_FILTERED,
+
 } from "../types/typesProfesor";
 
+export const clearAction=(globalState,payload)=>{
+  return{type:"CLEARSEARCH", globalStateName:globalState , payload:payload}
+}
+export const getUsersNames=()=>dispatch=>{
+  return axios.get("/all")
+  .then((d)=>{ 
+      console.log(d)
+      dispatch({ type:"GET_USERSNAMES", payload: d.data }) 
+     
+     })
+   .catch ((e) =>{console.log(e)}) 
+}
+export const getMatches=(name)=>dispatch=>{
+  return axios.get(`/?name=${name}`)
+  .then((d)=>{ 
+      dispatch({ type:"GET_MATCHES", payload: d.data }) 
+     
+     })
+   .catch ((e) =>{console.log(e)}) 
+}
 export const getUsersByPais=()=>dispatch=>{
     
   return axios.get("/profesores/paises")
