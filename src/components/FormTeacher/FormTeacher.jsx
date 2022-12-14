@@ -185,9 +185,7 @@ const FormTeacher = ({ setMostrarProfe }) => {
     <div data-aos="fade-right">
       <form className="form">
         <div className="formulario">
-          <h3>
-            Bienvenido
-          </h3>
+          <h3>Bienvenido</h3>
 
           {parte === "primera" && (
             <div>
@@ -345,7 +343,7 @@ const FormTeacher = ({ setMostrarProfe }) => {
               <div className="label-input">
                 <label>¿Que enseñas?</label>
                 <select onChange={(e) => handleSelectMaterias(e)}>
-                  <option value="default">Elige una o más materias</option>
+                  <option value="default" disabled>elige una o más materias</option>
                   {materiasSort.length &&
                     materiasSort.map((m) => {
                       return (
