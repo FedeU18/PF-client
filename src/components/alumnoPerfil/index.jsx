@@ -19,6 +19,7 @@ import { ProfeCard } from "../ProfeCard/Profecard.jsx";
 import LoaderPerfilStudent from "./LoaderPerfilStudent.jsx";
 import Table from "react-bootstrap/Table";
 import { allProfes } from "../../redux/Actions/Profesor.js";
+import FavoriteCard from "./FavoriteCard.jsx";
 
 export const AlumnoPerfil = (props) => {
   const theme = useSelector((state) => state.theme.theme);
@@ -42,7 +43,7 @@ export const AlumnoPerfil = (props) => {
   useEffect(() => {
     console.log(info.favourites);
     console.log(profes);
-    if (info.favourites &&  info.favourites.length > 0 && profes.length > 0) {
+    if (info.favourites && info.favourites.length > 0 && profes.length > 0) {
       // info.favourites?.map((f) => {
       //   profes.map((p) => {
       //     if (p.id === f) {
@@ -60,7 +61,7 @@ export const AlumnoPerfil = (props) => {
         }
         console.log(profesFavoritos);
         setMyFavProfe(profesFavoritos);
-        console.log(myFavProfe)
+        console.log(myFavProfe);
       }
     }
   }, [profes.length]);
@@ -267,7 +268,7 @@ export const AlumnoPerfil = (props) => {
             </div>
 
             <div
-              className={`myFavCont ${
+              className={`myFavCont mis-fav-scroll ${
                 theme === "dark" ? "dark_mi_perfil_alumno" : null
               }`}
             >
@@ -287,25 +288,22 @@ export const AlumnoPerfil = (props) => {
                   </div>
                 ) : (
                   <div>
-                    <Carousel>
-                      {myFavProfe.map((f, index) => (
-                        <Carousel.Item key={index} style={{marginLeft: "4rem", paddingBottom:" 3rem", marginTop:"4rem"}}>
-                          <div className="centerProfCardsFavAL">
-                            <ProfeCard
-                              id={f.id}
-                              username={f.username}
-                              nombre={f.nombre}
-                              imagen={f.imagen}
-                              pais={f.country?.flag}
-                              descripcion={f.descripcion}
-                              materias={f.materias}
-                              puntuacion={f.puntuacions}
-                              precio={f.precio}
-                            />
-                          </div>
-                        </Carousel.Item>
-                      ))}
-                    </Carousel>
+                    {myFavProfe.map((f, index) => (
+                      <div className="centerProfCardsFavAL d-flex align-items-center flex-column mb-2">
+                        <FavoriteCard
+                          key={index}
+                          id={f.id}
+                          username={f.username}
+                          nombre={f.nombre}
+                          imagen={f.imagen}
+                          pais={f.country?.flag}
+                          descripcion={f.descripcion}
+                          materias={f.materias}
+                          puntuacion={f.puntuacions}
+                          precio={f.precio}
+                        />
+                      </div>
+                    ))}
                   </div>
                 )}
               </div>

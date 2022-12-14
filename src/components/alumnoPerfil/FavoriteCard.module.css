@@ -1,0 +1,46 @@
+.card_fav_profesor {
+  width: 90%;
+  background-color: #fff;
+  display: flex;
+  padding: .5rem;
+  align-items: center;
+  border-radius: .4rem;
+  justify-content: space-around;
+  transition: transform .1s ease;
+  cursor: pointer;
+  background-color: aliceblue;
+  color: black;
+  border: 1px solid black;
+}
+
+.card_fav_profesor_dark {
+  background-color: rgb(37, 34, 34);
+  color: aliceblue;
+  border: 1px solid white;
+}
+
+.h5 {
+  margin: 0;
+}
+
+.img_card_favorite {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.country_flag_fav {
+  width: 30px;
+  height: 20px;
+}
+
+.linkName_profefor_favorite {
+  color: rgb(20, 17, 17);
+}
+
+/* Hover favorite Profesor */
+
+.card_fav_profesor:hover {
+  transform: scale(1.03);
+}

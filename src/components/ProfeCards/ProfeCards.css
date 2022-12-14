@@ -2,8 +2,8 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  margin-top: 1rem;
   gap: 1.5rem;
+  padding-top: 1rem;
 }
 .cardTempSoPO {
   width: 200px;

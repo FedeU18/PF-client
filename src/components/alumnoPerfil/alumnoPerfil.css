@@ -14,14 +14,14 @@
   top: 4rem;
 }
 
-.ContMyPerfilFavorites{
+.ContMyPerfilFavorites {
   display: grid;
-  grid-template-columns: 5%  53% 42%;
+  grid-template-columns: 5% 53% 42%;
 }
 
-.myperfilCont{
+.myperfilCont {
   background-color: rgb(223, 233, 241);
-  width: 90% ;
+  width: 90%;
   height: 50vh;
   margin-left: 5%;
   margin-top: 2.5rem;
@@ -31,10 +31,10 @@
   border-radius: 5px;
 }
 
-.myFavCont{
+.myFavCont {
   position: relative;
   background-color: rgb(223, 233, 241);
-  width: 80% ;
+  width: 80%;
   height: 88vh;
   margin-left: 5%;
   margin-top: 2.5rem;
@@ -42,18 +42,18 @@
   border-radius: 5px;
 }
 
-.pendientesContperfAlum{
+.pendientesContperfAlum {
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   background-color: rgb(223, 233, 241);
-  width: 90% ;
+  width: 90%;
   height: 34vh;
   margin-left: 5%;
   margin-top: 2.5rem;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
- 
+
   border-radius: 5px;
 }
 /* 
@@ -61,14 +61,11 @@
 
 } */
 
-.FotoPerfilACont{
-
-border-radius: 5px 0px 5px 0px;
-
-
+.FotoPerfilACont {
+  border-radius: 5px 0px 5px 0px;
 }
 
-.AvatarNameAluPer{
+.AvatarNameAluPer {
   width: 10rem;
   height: 10rem;
   border-radius: 50%;
@@ -82,7 +79,7 @@ border-radius: 5px 0px 5px 0px;
   padding-top: 1.2rem;
 }
 
-.ProfilePictureAlum{
+.ProfilePictureAlum {
   width: 10rem;
   height: 10rem;
   border-radius: 50%;
@@ -91,25 +88,25 @@ border-radius: 5px 0px 5px 0px;
   border: 3px solid white;
 }
 
-
 .button-17 {
   align-items: center;
   appearance: none;
   background-color: #fff;
   border-radius: 24px;
   border-style: none;
-  box-shadow: rgba(0, 0, 0, .2) 0 3px 5px -1px,rgba(0, 0, 0, .14) 0 6px 10px 0,rgba(0, 0, 0, .12) 0 1px 18px 0;
+  box-shadow: rgba(0, 0, 0, 0.2) 0 3px 5px -1px,
+    rgba(0, 0, 0, 0.14) 0 6px 10px 0, rgba(0, 0, 0, 0.12) 0 1px 18px 0;
   box-sizing: border-box;
   color: #3c4043;
   cursor: pointer;
   display: inline-flex;
   fill: currentcolor;
-  font-family: "Google Sans",Roboto,Arial,sans-serif;
+  font-family: "Google Sans", Roboto, Arial, sans-serif;
   font-size: 14px;
   font-weight: 500;
   height: 48px;
   justify-content: center;
-  letter-spacing: .25px;
+  letter-spacing: 0.25px;
   line-height: normal;
   max-width: 100%;
   overflow: visible;
@@ -117,24 +114,26 @@ border-radius: 5px 0px 5px 0px;
   position: relative;
   text-align: center;
   text-transform: none;
-  transition: box-shadow 280ms cubic-bezier(.4, 0, .2, 1),opacity 15ms linear 30ms,transform 270ms cubic-bezier(0, 0, .2, 1) 0ms;
+  transition: box-shadow 280ms cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 15ms linear 30ms, transform 270ms cubic-bezier(0, 0, 0.2, 1) 0ms;
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
   width: 9rem;
-  will-change: transform,opacity;
+  will-change: transform, opacity;
   z-index: 0;
   margin-top: 5%;
   margin-left: 17%;
 }
 
 .button-17:hover {
-  background: #F6F9FE;
+  background: #f6f9fe;
   color: #174ea6;
 }
 
 .button-17:active {
-  box-shadow: 0 4px 4px 0 rgb(60 64 67 / 30%), 0 8px 12px 6px rgb(60 64 67 / 15%);
+  box-shadow: 0 4px 4px 0 rgb(60 64 67 / 30%),
+    0 8px 12px 6px rgb(60 64 67 / 15%);
   outline: none;
 }
 
@@ -144,39 +143,42 @@ border-radius: 5px 0px 5px 0px;
 }
 
 .button-17:not(:disabled) {
-  box-shadow: rgba(60, 64, 67, .3) 0 1px 3px 0, rgba(60, 64, 67, .15) 0 4px 8px 3px;
+  box-shadow: rgba(60, 64, 67, 0.3) 0 1px 3px 0,
+    rgba(60, 64, 67, 0.15) 0 4px 8px 3px;
 }
 
 .button-17:not(:disabled):hover {
-  box-shadow: rgba(60, 64, 67, .3) 0 2px 3px 0, rgba(60, 64, 67, .15) 0 6px 10px 4px;
+  box-shadow: rgba(60, 64, 67, 0.3) 0 2px 3px 0,
+    rgba(60, 64, 67, 0.15) 0 6px 10px 4px;
 }
 
 .button-17:not(:disabled):focus {
-  box-shadow: rgba(60, 64, 67, .3) 0 1px 3px 0, rgba(60, 64, 67, .15) 0 4px 8px 3px;
+  box-shadow: rgba(60, 64, 67, 0.3) 0 1px 3px 0,
+    rgba(60, 64, 67, 0.15) 0 4px 8px 3px;
 }
 
 .button-17:not(:disabled):active {
-  box-shadow: rgba(60, 64, 67, .3) 0 4px 4px 0, rgba(60, 64, 67, .15) 0 8px 12px 6px;
+  box-shadow: rgba(60, 64, 67, 0.3) 0 4px 4px 0,
+    rgba(60, 64, 67, 0.15) 0 8px 12px 6px;
 }
 
 .button-17:disabled {
-  box-shadow: rgba(60, 64, 67, .3) 0 1px 3px 0, rgba(60, 64, 67, .15) 0 4px 8px 3px;
+  box-shadow: rgba(60, 64, 67, 0.3) 0 1px 3px 0,
+    rgba(60, 64, 67, 0.15) 0 4px 8px 3px;
 }
 
-.titleMyPRofile{
-  
+.titleMyPRofile {
   display: grid;
   grid-template-columns: 90% 10%;
-
 }
 
-.titleMyPRofile span{
+.titleMyPRofile span {
   margin-left: 2rem;
   font-size: 34px;
   font-weight: bold;
 }
 
-.btnEditProAlu{
+.btnEditProAlu {
   all: unset;
   cursor: pointer;
   font-size: 24px;
@@ -184,11 +186,11 @@ border-radius: 5px 0px 5px 0px;
 /* .contInfoPErfAlum{
 
 } */
-.flagalumPro{
+.flagalumPro {
   width: 2rem;
   margin-right: 5px;
 }
-.miniContinfoPErfAlu{
+.miniContinfoPErfAlu {
   margin-top: 2%;
   width: 94%;
   margin-left: 6%;
@@ -197,15 +199,15 @@ border-radius: 5px 0px 5px 0px;
   grid-template-rows: max-content max-content;
 }
 
-.nameInfoPErAlu{
+.nameInfoPErAlu {
   color: rgb(151, 140, 140);
   text-transform: uppercase;
   font-weight: bold;
   font-size: 13px;
-  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
-.lainfoPErAlu{
-  background-color: rgb(151, 140, 140,0.2);
+.lainfoPErAlu {
+  background-color: rgb(151, 140, 140, 0.2);
   width: 80%;
   padding-left: 4%;
   height: 2rem;
@@ -213,50 +215,48 @@ border-radius: 5px 0px 5px 0px;
   padding-top: 0.3rem;
 }
 
-.eachInfoIputPErProfe{
+.eachInfoIputPErProfe {
   margin-bottom: 1.6rem;
 }
 
-.plusnipa{
+.plusnipa {
   padding-left: 6%;
 }
-.plusnipa2{
+.plusnipa2 {
   margin-left: 6%;
-  background-color: rgb(151, 140, 140,0.2);
-  width:84%;
+  background-color: rgb(151, 140, 140, 0.2);
+  width: 84%;
   padding-left: 4%;
   height: 2rem;
   color: rgb(43, 43, 43);
   padding-top: 0.3rem;
 }
 
-.myFavHeaderPerFal{
- 
+.myFavHeaderPerFal {
   height: 4rem;
   font-weight: bold;
   font-size: 24px;
-  color: rgb(129, 126, 126,0.8);
+  color: rgb(129, 126, 126, 0.8);
   text-align: center;
   padding-top: 1.2rem;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px 0px;
-  
 }
 
-.myFavHeaderPerFal span{
-  margin-right: 3% ;
+.myFavHeaderPerFal span {
+  margin-right: 3%;
 }
 
-.myPEndHeaderPerFal{
+.myPEndHeaderPerFal {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  margin-bottom: .3rem;
+  margin-bottom: 0.3rem;
   width: 80%;
   height: 3rem;
   font-weight: bold;
   font-size: 24px;
-  color: rgb(129, 126, 126,0.8);
+  color: rgb(129, 126, 126, 0.8);
   text-align: center;
   padding-top: 1.2rem;
   /* box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px 0px; */
@@ -266,30 +266,22 @@ border-radius: 5px 0px 5px 0px;
   color: black;
 }
 
-.mispenSpan{
+.mispenSpan {
   margin-right: 3%;
 }
 
-.aunnofavCont{
+.aunnofavCont {
   font-size: 16px;
   color: rgb(134, 133, 133);
   font-weight: bold;
   margin-top: 40%;
   display: flex;
   text-align: center;
-  vertical-align:middle;
+  vertical-align: middle;
   justify-content: center;
   align-self: center;
   align-content: center;
 }
-
-.centerProfCardsFavAL{
-  margin-left: 15%;
-}
-
-
-
-
 
 /* 
 
@@ -300,7 +292,6 @@ border-radius: 5px 0px 5px 0px;
 
 */
 
-
 .email-student-loader {
   width: 92% !important;
   margin-left: 1rem;
@@ -310,9 +301,32 @@ border-radius: 5px 0px 5px 0px;
   background-color: #242529;
 }
 
-.info_student_dark{
+.info_student_dark {
   color: aliceblue;
   font-weight: bolder;
 }
 
 /* #1A202C  #171923* #242529 */
+
+.mis-fav-scroll {
+  overflow-y: auto;
+}
+
+.mis-fav-scroll::-webkit-scrollbar { 
+   width: .7rem; 
+} 
+
+.mis-fav-scroll::-webkit-scrollbar-thumb {
+  background-color: transparent;
+  background-color: rgb(70, 67, 67);
+}
+
+/* .mis-fav-scroll::-webkit-scrollbar-track {
+  background-color: black;
+  width: 1rem;
+} */
+
+/* .mis-fav-scroll::-webkit-scrollbar-thumb {
+  background-color: black;
+  width: 1rem;
+} */
