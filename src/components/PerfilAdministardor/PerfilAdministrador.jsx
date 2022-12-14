@@ -1,27 +1,38 @@
 import './PerfilAdmi.css'
 import { Card, Title, DonutChart ,BarList, Bold,Flex,Text,BarChart, Subtitle} from '@tremor/react';
 import { useEffect, useState } from 'react';
-import { allProfes,getProfesorsBYMateria,getUsersByPais,getProfesorById } from '../../redux/Actions/Profesor';
+import { allProfes,
+        getUsersNames,
+         getProfesorsBYMateria,
+         getUsersByPais,
+         getProfesorById } from '../../redux/Actions/Profesor';
 import { getAllAlumnos } from '../../redux/Actions/Alumno';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-
-
+import { FaSearch } from "react-icons/fa";
+import { BuscarModal } from '../SearchModal/SearchModal';
 
 export const PerfilAdmi=({id})=>{
     const dispatch=useDispatch()
     const [cities,setCities]=useState([])
+    const [lgShow, setLgShow] = useState(false);
     const alumnos=useSelector((state)=> state.alumnos.alumnos)
     const profesores=useSelector((state)=> state.profesores.profesores)
     const profeByMateria=useSelector((state)=>state.profesores.profesoresBYMateria)
     const usuariosBYPais=useSelector((state)=>state.profesores.usuariosBYPais)
     let info = useSelector((state) => state.profesores.detail);
+
+    const lgHide=()=>{
+        setLgShow(false)
+    }
+
     useEffect(()=>{
         dispatch(getProfesorById(id))
         dispatch(getAllAlumnos())
         dispatch(allProfes())
         dispatch(getProfesorsBYMateria())
         dispatch(getUsersByPais())
+        dispatch(getUsersNames())
         
     },[])
 
@@ -41,6 +52,7 @@ export const PerfilAdmi=({id})=>{
 
     return(
         <div className='allADmiPErfil'>
+            <BuscarModal lgShow={lgShow}  lgHide={lgHide}/>
         <div className="contAdmiFirstRow">
             <Link to="/home">
               <button className="goBackBtn">
@@ -49,6 +61,25 @@ export const PerfilAdmi=({id})=>{
             </Link>
         <div className='admiContData'>
         <div>
+        <div className="search-input">
+          <div className="position-relative bg-light rounded-5 p-1">
+            <input
+              className="searchInput form-control rounded-5 border-0 fs-5 p-1"
+              type="text"
+              placeholder="buscar.."     
+              style={{ marginLeft: ".3rem" }}
+              onClick={() => setLgShow(true)}
+            ></input>
+
+            <button
+              type="submit"
+              className="btn position-absolute"
+              style={{ top: "5px", right: "5px" }}
+            >
+              <FaSearch className="text-primary fs-5" />
+            </button>
+          </div>
+        </div>
              <div className="myperfilContPlus">
                 <div className="FotoPerfilACont">
                   <img src={info.imagen} className="ProfilePictureAlum" />

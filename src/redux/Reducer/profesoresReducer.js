@@ -17,12 +17,20 @@ const initialState = {
   allProfesores: [],
   detail: {},
   profesFiltered: [],
+  matches:[],
+  allUsernames:[]
+
 };
 
 import { FilterOrder } from "./filterHelper";
 
 const profesoresReducer = (state = initialState, action) => {
   switch (action.type) {
+    case "CLEARSEARCH":
+            return{
+                ...state,
+                [action.globalStateName]:action.payload
+            }
     case 'GET_PROFEBYMATERIA':
       return {
         ...state,
@@ -32,6 +40,16 @@ const profesoresReducer = (state = initialState, action) => {
         return {
           ...state,
           usuariosBYPais:action.payload,
+        }
+        case 'GET_USERSNAMES':
+      return {
+        ...state,
+        allUsernames:action.payload,
+      }
+      case 'GET_MATCHES':
+        return {
+          ...state,
+          matches:action.payload,
         }
     case GET_PROFESORES:
       return {

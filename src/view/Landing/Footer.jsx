@@ -15,42 +15,43 @@ function Footer() {
           
           {/* Column1 */}
           <div >
-            <h4>Soporte</h4>
-            <li>Politicas de privacidad</li>
-            <li>Terminos del servicio</li>
-            <li>Legal</li>
-            <li>Acerca de nosotro</li>
-            <li>findteacher2@gmail.com</li>
+            <h4 className="fab-titulos-footer">Soporte</h4>
+            <li className="fab-subtitulos-footer">Politicas de privacidad</li>
+            <li className="fab-subtitulos-footer">Terminos del servicio</li>
+            <li className="fab-subtitulos-footer">Legal</li>
+            <li className="fab-subtitulos-footer">Acerca de nosotro</li>
+            <li className="fab-subtitulos-footer">findteacher2@gmail.com</li>
           </div>
           {/* Column2 */}
           <div>
-            <h4>Mas soporte</h4>
-            <li> <Link to="/about" className="aFootAbout">
+            <h4 className="fab-titulos-footer">Mas soporte</h4>
+            <li className="fab-subtitulos-footer"> <Link to="/about" className="aFootAbout">
             About
           </Link></li>
-              <li>accesibilidad</li>
-              <li>Como cuidamos tu privacidad</li>
-              <li>Ayuda</li>
+              <li className="fab-subtitulos-footer">accesibilidad</li>
+              <li className="fab-subtitulos-footer">Como cuidamos tu privacidad</li>
+              <li className="fab-subtitulos-footer">Ayuda</li>
               
-              <li>etc...</li>
+              <li className="fab-subtitulos-footer">etc...</li>
             
           </div>
           {/* Column3 */}
           <div>
-            <h4>Redes Sociales</h4>
+            <h4 className="fab-titulos-footer">Redes Sociales</h4>
 
             <ul className="list-unstyled">
               <a href="https://www.youtube.com/channel/UCsUXZoWZow_fXUi1ATVbsGg" target="_blank">
-              <li><IoLogoYoutube size={22}/> Youtube</li>
+              <li className="text-danger"><IoLogoYoutube size={22}/> Youtube</li>
+
               </a>
               <a href="https://www.instagram.com/findteacher2/" target="_blank">
-              <li><FaInstagram size={22}/> Instagram</li>
+              <li className="fab-subtitulos-footer"><FaInstagram size={22}/> Instagram</li>
               </a>
               <a>
-              <li><BsFacebook size={22}/> Facebook</li>
+              <li className="text-primary"><BsFacebook size={22}/> Facebook</li>
               </a>
               <a>
-              <li><AiFillTwitterCircle size={22}/> Twitter</li>
+              <li className="fab-subtitulos-footer"><AiFillTwitterCircle size={22}/> Twitter</li>
               </a>
               
             </ul>

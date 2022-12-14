@@ -42,7 +42,7 @@ export const AlumnoPerfil = (props) => {
   useEffect(() => {
     console.log(info.favourites);
     console.log(profes);
-    if (info.favourites.length > 0 && profes.length > 0) {
+    if (info.favourites &&  info.favourites.length > 0 && profes.length > 0) {
       // info.favourites?.map((f) => {
       //   profes.map((p) => {
       //     if (p.id === f) {
@@ -243,9 +243,9 @@ export const AlumnoPerfil = (props) => {
                     </thead>
                     <tbody>
                       {info.fechas?.map((f) => {
-                        return f.profesors.map((p) => {
+                        return f.profesors.map((p, index) => {
                           return (
-                            <tr>
+                            <tr key={index}>
                               <th>{f.fecha}</th>
                               <th>{f.hora}</th>
                               <th>

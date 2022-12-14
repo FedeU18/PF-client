@@ -1,0 +1,30 @@
+.allMatchesCont{
+    min-height:80vh ;
+    height: 100%;
+    padding-bottom: 4rem;
+}
+
+.SearchAdmiCont{
+    width: 90%;
+    margin-left: 5%;
+}
+
+.UserCArdsCont{
+    display: grid;
+    grid-template-columns: max-content max-content max-content;
+}
+
+.allUsersSEarchCont{
+    width: 90%;
+    margin-left: 5%;
+}
+
+.NOTFoundBanner{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    vertical-align: center;
+    text-align: center;
+    height: 8rem;
+
+}

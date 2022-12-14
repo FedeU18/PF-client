@@ -9,7 +9,8 @@ import CajaInv from "./CajaInv.jsx"
 
 import AOS from "aos"
 import "aos/dist/aos.css"
-// import "./tarjetas.css"
+import "./Tarjetas.css"
+
 
 function Tarjetas() {
     useEffect(()=>{

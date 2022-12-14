@@ -586,6 +586,7 @@
 }
 
 .forma2 {
+  transform: translate(0);
   position: absolute;
   background-color: #a8a8a860;
   top: 75%;
