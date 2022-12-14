@@ -271,8 +271,10 @@ export const Home = () => {
               mostrarChatUsers={mostrarChatUsers}
             />
           )}
-
-          <MateriasBtn />
+        
+        <div className=" d-flex justify-content-center aling-item-center mt-5 mb-5">
+       <MateriasBtn/>
+        </div> 
 
           {chatUsers && (
             <ChatProfe
