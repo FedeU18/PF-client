@@ -33,6 +33,7 @@ export const BanearUsuario=({show, handleClose,demandado})=> {
 
   const handleBan=()=>{    
 
+    console.log(demandado)
      if(demandado.tipo==='profesor'){
         dispatch(putProfesor(demandado.id,{baneado:true,
                                             fechaLimiteBan:fecha,
