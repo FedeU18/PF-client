@@ -23,6 +23,7 @@ import { ChatAlumno } from "../../components/chat/chatAlumno";
 export const Detalle = () => {
   let { id } = useParams();
   let dispatch = useDispatch();
+  const theme = useSelector((state) => state.theme.theme);
   let details = useSelector((state) => state.profesores.detail);
   let infoAlumno = useSelector((state) => state.alumnos.alumno);
   // holaa nooooo
@@ -32,10 +33,7 @@ export const Detalle = () => {
   const [openFotos, setOpenFotos] = useState(false);
   const [show, setShow] = useState(false);
   const [alerta, setAlerta] = useState([]);
-  const [mensajesAntiguos, setMensajes] = useState([]);
   const { userData } = userAuthentication();
-
-  console.log("mensajes antiguos-->", mensajesAntiguos);
   let msgUsuariosAlumno = [];
 
   if (alerta.length) {
@@ -54,14 +52,14 @@ export const Detalle = () => {
 
   useEffect(() => {
     socket.emit("solicitarMSG_pendientes");
-    socket.on("mensajes_antiguos", (data) => {
-      setMensajes([...data]);
-    });
+
     dispatch(actionsAlumno.getAlumnoFromAPI(userData.id));
     dispatch(getProfesorById(id));
+
     socket.on("alerta_mensajes", (data) => {
       setAlerta([...data]);
     });
+
     return () => dispatch(clear());
   }, []);
 
@@ -87,7 +85,7 @@ export const Detalle = () => {
     setOpenFotos(false);
   };
   return (
-    <div className="detalleProfeContainer">
+    <div className={`detalleProfeContainer`}>
       <Certificados
         fotos={details.certificados}
         close={handleCloseFotos}
@@ -128,6 +126,10 @@ export const Detalle = () => {
             <button
               className={`${
                 current === "Información" ? "opcionEleDe" : "opnoEleDe"
+              } ${
+                theme === "dark" && current === "Información"
+                  ? "dark_casilla_de_datos"
+                  : null
               }`}
               name={"Información"}
               onClick={handleChangeOp}
@@ -182,18 +184,24 @@ export const Detalle = () => {
           </div>
         </div>
 
-        <div className="infoConteiner">
+        <div className={`infoConteiner`}>
           {current === "Información" && (
-            <div className="subContDe">
+            <div
+              className={`subContDe ${
+                theme === "dark" ? "detalle_comercial_dark" : null
+              }`}
+            >
               <div className="porqueEleContDes">
                 <div className="porqueEleDes">
                   <span className="subTitleDe">Por qué elegirme:</span>
                   {details.descripcion2 === null ||
                   details.descripcion2 === "" ? (
-                    <div className="certiNoCont">
-                      <span className="">
-                        Este author aun no añade una descripción.
-                      </span>
+                    <div
+                      className={`certiNoCont ${
+                        theme === "dark" ? "detalle_description_profesor" : null
+                      }`}
+                    >
+                      <span>Este author aun no añade una descripción.</span>
                     </div>
                   ) : (
                     <div>{details.descripcion2}</div>
@@ -212,7 +220,11 @@ export const Detalle = () => {
                 <div className="certiContDe">
                   <span className="subTitleDe">Estudios y Certificados:</span>
                   {details.certificados?.length === 0 && (
-                    <div className="certiNoCont">
+                    <div
+                      className={`certiNoCont ${
+                        theme === "dark" ? "detalle_description_profesor" : null
+                      }`}
+                    >
                       <span className="">
                         Este author aun no tiene certificados que mostrar.
                       </span>
@@ -222,9 +234,9 @@ export const Detalle = () => {
                   {details.certificados?.length > 0 &&
                     details.certificados?.length < 7 && (
                       <div className="certiSiCont">
-                        {details.certificados.map((c) => (
+                        {details.certificados.map((c, index) => (
                           <div
-                            key={c}
+                            key={index}
                             className="fotoCertificadoDeco"
                             onClick={handleOpenFotos}
                           >
@@ -235,11 +247,11 @@ export const Detalle = () => {
                     )}
                   {details.certificados?.length > 6 && (
                     <div className="certiSiCont">
-                      {details.certificados.map((c, i) => (
+                      {details.certificados.map((c, index) => (
                         <>
                           {i < 5 && (
                             <div
-                              key={i}
+                              key={index}
                               className="fotoCertificadoDeco"
                               onClick={handleOpenFotos}
                             >
@@ -261,8 +273,8 @@ export const Detalle = () => {
                 <div className="materiasContDe">
                   <span className="subTitleDe">Materias:</span>
                   {details.materias?.length > 0 &&
-                    details.materias.map((m) => (
-                      <div key={m} className="nameLogoMaDeCont">
+                    details.materias.map((m, index) => (
+                      <div key={index} className="nameLogoMaDeCont">
                         <div className="logoMaDeContDo">
                           <div className="logoMaDeCont">
                             <img src={`/${m.name}.png`} className="logoMaDe" />
@@ -310,7 +322,6 @@ export const Detalle = () => {
             <div className="subContDe">
               {userData.rol === "student" && (
                 <ChatAlumno
-                  mensajesAntiguos={mensajesAntiguos}
                   socket={socket}
                   userLogin={userData.name}
                   canal={details.id}

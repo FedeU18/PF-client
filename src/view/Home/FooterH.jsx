@@ -1,10 +1,12 @@
 import React from "react";
 import "./FooterH.css";
 import Footer from ".././Landing/Footer.jsx";
+import {useSelector} from 'react-redux'
 
 function FooterH() {
+  const theme = useSelector(state => state.theme.theme)
   return (
-    <div className="fab-footer-container">
+    <div className={`fab-footer-container ${theme === "dark" ? "dark_footer_theme" : null}`}>
       <div className="fab-footer">
         {/* Column1 */}
         <div className="col" id="fab-col">
@@ -62,7 +64,7 @@ function FooterH() {
           </p>
         </div>
       </div>
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 }
