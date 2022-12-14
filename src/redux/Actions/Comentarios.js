@@ -15,9 +15,11 @@ export function loadingComents () {
   }
 }
 
-export const createPunctuationprofe=(id,payload)=>{
+export const createPunctuationprofe=(id,payload)=>dispatch=>{
   return axios.post("/puntajes", payload)
   .then((d)=>{ 
+      console.log(d)
+      console.log(id)
       dispatch({ type:"POST_PUNTAJE", payload: d.data }) 
       dispatch(getProfesorById(id))
      })
