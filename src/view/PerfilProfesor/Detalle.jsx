@@ -17,7 +17,7 @@ import { GrAdd } from "react-icons/gr";
 import userAuthentication from "../../Authentication/functions/user";
 import * as actionsAlumno from "../../redux/Actions/Alumno";
 import Calendario from "../../components/Calendario/Calendario";
-// import { ChatAlumno } from "../../components/chat/chatAlumno";
+import { ChatAlumno } from "../../components/chat/chatAlumno";
 import { AddPuntuacion } from "../../components/AddPunctuation/AddPuntuacion";
 
 export const Detalle = () => {
@@ -347,15 +347,14 @@ export const Detalle = () => {
           )}
           {current === "Chat" && (
             <div className="subContDe">
-              {/* {userData.rol === "student" && (
+              {userData.rol === "student" && (
                 <ChatAlumno
                   socket={socket}
                   userLogin={userData.name}
                   canal={details.id}
                   receptor={details.nombre}
                 />
-              )} */}
-              Chat
+              )}
             </div>
           )}
         </div>
