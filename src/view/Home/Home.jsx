@@ -184,10 +184,10 @@ export const Home = () => {
 
       {profes.length > 0 ? (
         <div className={theme === "dark" ? "dark_home" : null}>
-          <button className="filtroBtn">
+          {/* <button className="filtroBtn">
             <BsFillGrid3X3GapFill onClick={handleFiltros} />
-          </button>
-          {filtrosSeleccionados.materias?.length > 0 ? (
+          </button> */}
+          {/* {filtrosSeleccionados.materias?.length > 0 ? (
             filtrosSeleccionados.materias.map((f) => (
               <button
                 className={`btnListOpSelected ${
@@ -247,10 +247,10 @@ export const Home = () => {
               >
                 X {filtrosSeleccionados.precio}{" "}
               </button>
-            )}
+            )} */}
 
-          <Filtros open={open} close={handleCloseFiltros} />
-          <br></br>
+          {/* <Filtros open={open} close={handleCloseFiltros} />
+          <br></br> */}
 
           <ProfeCards
             socket={socket}
@@ -280,10 +280,10 @@ export const Home = () => {
         </div>
       ) : (
         <div
-          className="d-flex justify-content-center align-items-center"
+          className={`d-flex justify-content-center align-items-center ${theme === "dark" ? "dark_loader_eye" : null}`}
           style={{ height: "75vh" }}
         >
-          <Loader></Loader>
+          <Loader theme={theme}/>
         </div>
       )}
 

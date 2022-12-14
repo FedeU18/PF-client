@@ -160,3 +160,21 @@
   height: 40vh;
   /* overflow-y: scroll; */
 }
+
+
+
+/* DARK MODE */
+
+
+.calendario_dark {
+  background-color: #101011;
+  color: aliceblue;
+}
+
+.calendario_dark_button {
+  color: aliceblue;
+}
+
+.calendario_dark_date {
+  color: aliceblue;
+}

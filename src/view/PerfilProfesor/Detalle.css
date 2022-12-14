@@ -3,7 +3,7 @@
   background-size: 100% 100%;
   background-repeat: no-repeat;
   
-  background-image: url('https://i.pinimg.com/564x/82/f2/7c/82f27c36993bb5afecfa277e2f78c7ca.jpg');
+  background-image: url("./img/fott.png");
   width: 100%;
   height: 100vh;
   display: grid;
@@ -294,3 +294,19 @@ padding-top: 4%;
 .subContDecontChats{
   padding-top: 2vh;
 }
+
+.detalle_comercial_dark  {
+  background-color: #101011;
+  color: aliceblue;
+}
+
+.detalle_description_profesor {
+  border: 1px solid aliceblue;
+  color: aliceblue;
+}
+
+.dark_casilla_de_datos {
+  background-color: #101011;
+  color: aliceblue;
+}
+/* #1A202C  #171923* #242529  101011 */
