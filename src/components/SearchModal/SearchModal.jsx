@@ -183,7 +183,7 @@ export const BuscarModal= ({lgShow , lgHide})=> {
                             {
                                  matchesProAlu.Alumno.map((m)=>(
                                     <div>
-                                        <UserCard id={m.id}
+                                        <UserCard id={m}
                                    nombre={m.name}
                                    apellido={m.lastname}
                                    username={m.username} 

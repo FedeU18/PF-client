@@ -91,3 +91,13 @@ hr {
 }
 /* #1A202C  #171923* #242529  101011 */
 
+
+
+.BloackACcountCont{
+  display: flex;
+  justify-content: center;
+  vertical-align: middle;
+  text-align: center;
+  align-items: center;
+  height: 80vh;
+}

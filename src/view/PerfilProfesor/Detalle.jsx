@@ -2,38 +2,51 @@ import io from "socket.io-client";
 const socket = io("https://find-your-teacher-api.onrender.com/");
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import "./Detalle.css";
 import Button from "react-bootstrap/Button";
 import { clear, getProfesorById } from "../../redux/Actions/Profesor.js";
 import { Link } from "react-router-dom";
 import { AiFillStar } from "react-icons/ai";
-import { NavBar } from "../../components/Nav/Nav.jsx";
-import { Certificados } from "../../components/Certificados/Certificados.jsx";
-import { Reseñas } from "../../components/Reseñas/Reseñas.jsx";
-import { Comentarios } from "../../components/Comentarios/Comentarios.jsx";
-import { AddComent } from "../../components/AddComent/AddComent.jsx";
+import { NavBar } from "../../components/Nav/Nav";
+import { Certificados } from "../../components/Certificados/Certificados";
+import { Reseñas } from "../../components/Reseñas/Reseñas";
+import { Comentarios } from "../../components/Comentarios/Comentarios";
+import { AddComent } from "../../components/AddComent/AddComent";
 import { GrAdd } from "react-icons/gr";
 import userAuthentication from "../../Authentication/functions/user";
 import * as actionsAlumno from "../../redux/Actions/Alumno";
 import Calendario from "../../components/Calendario/Calendario";
 // import { ChatAlumno } from "../../components/chat/chatAlumno";
+import { AddPuntuacion } from "../../components/AddPunctuation/AddPuntuacion";
 
 export const Detalle = () => {
   let { id } = useParams();
   let dispatch = useDispatch();
+  const navigate=useNavigate()
   const theme = useSelector((state) => state.theme.theme);
   let details = useSelector((state) => state.profesores.detail);
-  let infoAlumno = useSelector((state) => state.alumnos.alumno);
-  // holaa nooooo
-  console.log("soy detalles---->", details);
-
+  let infoAlumno = useSelector((state) => state.alumnos.alumno);  
   const [current, setCurrent] = useState("Información");
   const [openFotos, setOpenFotos] = useState(false);
   const [show, setShow] = useState(false);
+  const [showP, setShowP] = useState(false);
   const [alerta, setAlerta] = useState([]);
   const { userData } = userAuthentication();
   let msgUsuariosAlumno = [];
+
+  useEffect(() => {
+    if (Object.entries(infoAlumno).length > 0 && infoAlumno.baneado === true) {
+      console.log(infoAlumno)
+      navigate('/home')
+    }
+    if (Object.entries(details).length > 0 && details.baneado === true) {
+      console.log(details)
+      navigate('/home')
+    }
+  }, [infoAlumno,details]);
+  // holaa nooooo
+  console.log("soy detalles---->", details);
 
   if (alerta.length) {
     alerta.forEach((e) => {
@@ -74,6 +87,9 @@ export const Detalle = () => {
 
   const handleShow = () => setShow(true);
   const handleClose = () => setShow(false);
+  
+  const  handleShowPunct = () => setShowP(true);
+  const handleClosePunct = () => setShowP(false);
 
   const handleOpenFotos = () => {
     console.log("ulal");
@@ -302,9 +318,14 @@ export const Detalle = () => {
                   coments={details.coments}
                 />
                 {userData.id !== details.id && infoAlumno.tipo && (
+                  <div>
+                    <button className="btnAddComOp" onClick={handleShowPunct}>
+                    <AiFillStar/>
+                  </button>
                   <button className="btnAddComOp" onClick={handleShow}>
                     +
                   </button>
+                  </div>
                 )}
               </div>
 
@@ -314,6 +335,13 @@ export const Detalle = () => {
                 profesorId={details.id}
                 show={show}
                 handleClose={handleClose}
+              />
+              <AddPuntuacion
+                alumnoId={infoAlumno.id}
+                myId={userData.id}
+                profesorId={details.id}
+                show={showP}
+                handleClose={handleClosePunct}
               />
             </div>
           )}

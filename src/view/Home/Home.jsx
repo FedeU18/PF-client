@@ -119,7 +119,10 @@ export const Home = () => {
     if (Object.entries(infoAlumno).length > 0 && infoAlumno.baneado === true) {
       setBan(true);
     }
-  }, [infoAlumno]);
+    if (Object.entries(profesor).length > 0 && profesor.baneado === true) {
+      setBan(true);
+    }
+  }, [infoAlumno,profesor]);
 
   useEffect(() => {
     socket.emit("solicitarMSG_pendientes");
@@ -149,36 +152,39 @@ export const Home = () => {
     dispatch(filterProfes(filtrosSeleccionados));
   }, [filtrosSeleccionados]);
 
-  const handleFiltros = () => {
-    setOpen(true);
-  };
-  const handleCloseFiltros = (set) => {
-    setOpen(set);
-  };
+  // const handleFiltros = () => {
+  //   setOpen(true);
+  // };
+  // const handleCloseFiltros = (set) => {
+  //   setOpen(set);
+  // };
 
-  const handleDeleteOpSelec = (e) => {
-    dispatch(
-      addOPSelected({
-        ...filtrosSeleccionados,
-        materias: filtrosSeleccionados.materias.filter(
-          (f) => f !== e.target.name
-        ),
-      })
-    );
-  };
+  // const handleDeleteOpSelec = (e) => {
+  //   dispatch(
+  //     addOPSelected({
+  //       ...filtrosSeleccionados,
+  //       materias: filtrosSeleccionados.materias.filter(
+  //         (f) => f !== e.target.name
+  //       ),
+  //     })
+  //   );
+  // };
 
-  const handleDelOp = (e) => {
-    dispatch(
-      addOPSelected({
-        ...filtrosSeleccionados,
-        [e.target.name]: "",
-      })
-    );
-  };
+  // const handleDelOp = (e) => {
+  //   dispatch(
+  //     addOPSelected({
+  //       ...filtrosSeleccionados,
+  //       [e.target.name]: "",
+  //     })
+  //   );
+  // };
 
   return (
     <>
       <NavBar />
+      {ban===true?(<div className="BloackACcountCont">
+        Su cuenta ha sido blogueada de Find Your Teacher .
+      </div>):(<div>
 
       <Caru />
 
@@ -265,8 +271,10 @@ export const Home = () => {
               mostrarChatUsers={mostrarChatUsers}
             />
           )}
-
-          <MateriasBtn />
+        
+        <div className=" d-flex justify-content-center aling-item-center mt-5 mb-5">
+       <MateriasBtn/>
+        </div> 
 
           {chatUsers && (
             <ChatProfe
@@ -300,6 +308,7 @@ export const Home = () => {
       */}
       </div>
       {/*<FooterH />*/}
+      </div>)}
       <Footer/>
     </>
   );

@@ -35,7 +35,6 @@ export const NavBar = () => {
   let notificaciones = useSelector(
     (state) => state.notificaciones.notificaciones
   );
-  const [useFoto, SetUserFoto] = useState("");
   const [notis, setNotis] = useState(0);
   let id = userData.id;
 
@@ -68,38 +67,7 @@ export const NavBar = () => {
     }
   }, [notificaciones]);
 
-  useEffect(() => {
-    if (
-      Object.entries(infoProfesor).length === 0 &&
-      Object.entries(infoAlumno).length === 0
-    ) {
-      SetUserFoto(
-        "https://thumbs.gfycat.com/BronzeSpryAlleycat-size_restricted.gif"
-      );
-    } else {
-      if (infoAlumno.picture) {
-        if (infoAlumno.picture === "sin foto") {
-          SetUserFoto(
-            "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
-          );
-        } else {
-          console.log("aqui a");
-          SetUserFoto(infoAlumno.picture);
-        }
-      }
-      if (infoProfesor.imagen) {
-        if (infoProfesor.imagen === "") {
-          console.log("aqui");
-          SetUserFoto(
-            "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
-          );
-        } else {
-          console.log("aqui 2");
-          SetUserFoto(infoProfesor.imagen);
-        }
-      }
-    }
-  }, [infoAlumno, infoProfesor]);
+  
 
   const handleNotis = () => {
     dispatch(EditarNotificaciones());
@@ -167,11 +135,30 @@ export const NavBar = () => {
               )}
 
             <div className="position-relative" style={{ marginRight: ".5rem" }}>
+              {Object.entries(infoProfesor).length === 0 && Object.entries(infoAlumno).length === 0 &&(
+
               <img
                 className="imgAvatar rounded-5 border-0"
-                src={useFoto}
+                src={"https://thumbs.gfycat.com/BronzeSpryAlleycat-size_restricted.gif"}
                 style={{ objectFit: "cover", width: "40px", height: "40px" }}
               />
+              )}
+              {Object.entries(infoProfesor).length > 0  &&(
+
+              <img
+                className="imgAvatar rounded-5 border-0"
+                src={infoProfesor.imagen}
+                style={{ objectFit: "cover", width: "40px", height: "40px" }}
+              />
+              )}
+              {Object.entries(infoAlumno).length > 0 &&(
+
+              <img
+                className="imgAvatar rounded-5 border-0"
+                src={infoAlumno.picture}
+                style={{ objectFit: "cover", width: "40px", height: "40px" }}
+              />
+              )}
 
               <NavDropdown
                 className={`position-absolute top-0 start-0 p-1 rounded-5`}

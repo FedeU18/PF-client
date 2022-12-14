@@ -10,11 +10,13 @@ import { clearAlumno } from "../../redux/Actions/Alumno";
 import { clear } from "../../redux/Actions/Profesor";
 import LoaderPerfilStudent from "../../components/alumnoPerfil/LoaderPerfilStudent";
 import LoaderProfePerfil from "../../components/PerfilProfesor/LoaderProfePerfil";
+import { useNavigate } from "react-router-dom";
 
 export const Perfil = () => {
   const { userData } = userAuthentication();
   let id = userData.id;
   const dispatch = useDispatch();
+  const navigate=useNavigate()
   let infoAlumno = useSelector((state) => state.alumnos.alumno);
   let infoProfesor = useSelector((state) => state.profesores.detail);
 
@@ -27,6 +29,14 @@ export const Perfil = () => {
       dispatch(clearAlumno());
     };
   }, []);
+  useEffect(() => {
+    if (Object.entries(infoAlumno).length > 0 && infoAlumno.baneado === true) {
+      navigate('/home')
+    }
+    if (Object.entries(infoProfesor).length > 0 && infoProfesor.baneado === true) {
+      navigate('/home')
+    }
+  }, [infoAlumno,infoProfesor]);
 
   if(Object.entries(infoProfesor).length > 0 &&
   infoProfesor.administrador===true ){
