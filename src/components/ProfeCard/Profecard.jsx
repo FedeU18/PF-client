@@ -25,7 +25,7 @@ export const ProfeCard = ({
 }) => {
   const theme = useSelector((state) => state.theme.theme);
   const { userData } = userAuthentication();
-  console.log('punct',puntuacion);
+  console.log("punct", puntuacion);
   var regexUrl =
     /[a-z0-9-\.]+\.[a-z]{2,4}\/?([^\s<>\#%"\,\{\}\\|\\\^\[\]`]+)?$/;
   const img =
@@ -139,14 +139,12 @@ export const ProfeCard = ({
             {materias?.length > 0 &&
               materias.map((m, index) => {
                 return index < 2 ? (
-                  <>
-                    <span
-                      key={m.name}
-                      className={`materiasNaCaPro ${styles.materias_profe} d-inline-block mt-1`}
-                    >
-                      {m.name}
-                    </span>
-                  </>
+                  <span
+                    key={m.name}
+                    className={`materiasNaCaPro ${styles.materias_profe} d-inline-block mt-1`}
+                  >
+                    {m.name}
+                  </span>
                 ) : null;
               })}
             <br />
@@ -179,12 +177,15 @@ export const ProfeCard = ({
           </div>
           <div className={`d-inline-block ${styles.puntuacion}`}>
             <h5 className="puntProfCard text-warning">
-              {puntuacion?(
+              {puntuacion ? (
                 <>
-                {puntuacion?.length > 0 ? Math.round( (promedio/(puntuacion?.length)) * 10)/ 10 : 0}
+                  {puntuacion?.length > 0
+                    ? Math.round((promedio / puntuacion?.length) * 10) / 10
+                    : 0}
                 </>
-
-              ):(0)}
+              ) : (
+                0
+              )}
             </h5>
           </div>
         </div>

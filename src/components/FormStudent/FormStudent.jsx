@@ -427,7 +427,6 @@ const FormStudent = ({ setMostrarStudent }) => {
 
         <div>
           <p className="text-center">
-            {/* <p>quiero aprender ya!!</p> */}
             <b className="fs-6">o</b>
           </p>
           <div

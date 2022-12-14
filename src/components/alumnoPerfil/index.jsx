@@ -41,17 +41,7 @@ export const AlumnoPerfil = (props) => {
   }, []);
 
   useEffect(() => {
-    console.log(info.favourites);
-    console.log(profes);
     if (info.favourites && info.favourites.length > 0 && profes.length > 0) {
-      // info.favourites?.map((f) => {
-      //   profes.map((p) => {
-      //     if (p.id === f) {
-      //       setMyFavProfe((prev) => [...prev, p]);
-      //     }
-      //   });
-      // });
-
       const profesFavoritos = [];
       if (profes.length > 0) {
         for (const profesor of profes) {
@@ -59,9 +49,7 @@ export const AlumnoPerfil = (props) => {
             profesFavoritos.push(profesor);
           }
         }
-        console.log(profesFavoritos);
         setMyFavProfe(profesFavoritos);
-        console.log(myFavProfe);
       }
     }
   }, [profes.length]);
@@ -246,18 +234,20 @@ export const AlumnoPerfil = (props) => {
                       {info.fechas?.map((f) => {
                         return f.profesors.map((p, index) => {
                           return (
-                            <tr key={index}>
-                              <th>{f.fecha}</th>
-                              <th>{f.hora}</th>
-                              <th>
-                                <Link
-                                  className="link-hacia-el-profe"
-                                  to={"/profesores/" + p.id}
-                                >
-                                  {p.nombre + " " + p.apellido}
-                                </Link>
-                              </th>
-                            </tr>
+                            <div key={index}>
+                              <tr>
+                                <th>{f.fecha}</th>
+                                <th>{f.hora}</th>
+                                <th>
+                                  <Link
+                                    className="link-hacia-el-profe"
+                                    to={"/profesores/" + p.id}
+                                  >
+                                    {p.nombre + " " + p.apellido}
+                                  </Link>
+                                </th>
+                              </tr>
+                            </div>
                           );
                         });
                       })}

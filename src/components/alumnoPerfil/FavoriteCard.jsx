@@ -16,7 +16,9 @@ const FavoriteCard = ({ id, username, nombre, imagen, pais }) => {
       onClick={() => navigate(`/profesores/${id}`)}
     >
       <img src={imagen} alt={username} className={styles.img_card_favorite} />
-      <h5 className={styles.h5}>{username}</h5>
+      <h5 className={styles.h5}>
+        {username.length > 10 ? `${username.slice(0, 9)}...` : username}
+      </h5>
       <img src={pais} alt={nombre} className={styles.country_flag_fav} />
     </div>
   );
