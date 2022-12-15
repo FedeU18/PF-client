@@ -10,6 +10,7 @@ import {
   SET_PROFE_FILTERED,
   SORT_PRICE_BACK,
   FILTER_PROF_COUNTRY_BACK,
+  SORT_USER_BACK,
 } from "../types/typesProfesor";
 
 const initialState = {
@@ -106,6 +107,25 @@ const profesoresReducer = (state = initialState, action) => {
               
           }
         }
+
+     case SORT_USER_BACK:{
+          let orderedUser = [...state.profesFiltered]
+
+          orderedUser = orderedUser.sort((a, b) => {
+              if(a.precio < b.precio) {
+                  return action.payload === "AZ" ? -1 : 1;
+              }
+              if(a.precio > b.precio) {
+                  return action.payload === "AZ" ? 1 : -1;
+              }
+              return 0;
+          })
+          return {
+            ...state,
+            profesFiltered: orderedUser,
+            
+        }
+      }
 
         case FILTER_PROF_COUNTRY_BACK:
           let filteredCountry = [];

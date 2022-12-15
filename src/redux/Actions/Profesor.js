@@ -11,6 +11,7 @@ import {
   SET_PROFE_FILTERED,
   SORT_PRICE_BACK,
   FILTER_PROF_COUNTRY_BACK,
+  SORT_USER_BACK,
 
 } from "../types/typesProfesor";
 
@@ -136,6 +137,13 @@ export function filterProfeCountryBack(payload) {
 export function sortPriceBack(payload) {
   return {
     type: SORT_PRICE_BACK,
+    payload,
+  };
+}
+
+export function sortUserBack(payload) {
+  return {
+    type: SORT_USER_BACK,
     payload,
   };
 }
