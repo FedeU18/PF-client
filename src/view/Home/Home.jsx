@@ -217,73 +217,72 @@ export const Home = () => {
 
           {profes.length > 0 ? (
             <div className={theme === "dark" ? "dark_home" : null}>
-               <button className="filtroBtn">
-            <BsFillGrid3X3GapFill onClick={handleFiltros} />
-          </button> 
-               {filtrosSeleccionados.materias?.length > 0 ? (
-            filtrosSeleccionados.materias.map((f) => (
-              <button
-                className={`btnListOpSelected ${
-                  theme === "dark" ? "dark_filtros" : null
-                }`}
-                name={f}
-                onClick={handleDeleteOpSelec}
-              >
-                X{' '}
-                {f[0].toUpperCase() + f.slice(1, f.length)}
+              <button className="filtroBtn">
+                <BsFillGrid3X3GapFill onClick={handleFiltros} />
               </button>
-            ))
-          ) : (
-            <button
-              className={`btnListOpSelected ${
-                theme === "dark" ? "dark_filtros" : null
-              }`}
-            >
-              Todas las materias
-            </button>
-          )}
+              {filtrosSeleccionados.materias?.length > 0 ? (
+                filtrosSeleccionados.materias.map((f) => (
+                  <button
+                    className={`btnListOpSelected ${
+                      theme === "dark" ? "dark_filtros" : null
+                    }`}
+                    name={f}
+                    onClick={handleDeleteOpSelec}
+                  >
+                    X {f[0].toUpperCase() + f.slice(1, f.length)}
+                  </button>
+                ))
+              ) : (
+                <button
+                  className={`btnListOpSelected ${
+                    theme === "dark" ? "dark_filtros" : null
+                  }`}
+                >
+                  Todas las materias
+                </button>
+              )}
 
-          {filtrosSeleccionados.pais && filtrosSeleccionados.pais !== "" ? (
-            <button
-              className={`btnListOpSelected`}
-              name="pais"
-              onClick={handleDelOp}
-            >
-              X {filtrosSeleccionados.pais}
-            </button>
-          ) : (
-            <button
-              className={`btnListOpSelected ${
-                theme === "dark" ? "dark_filtros" : null
-              }`}
-            >
-              Todos los paises
-            </button>
-          )}
+              {filtrosSeleccionados.pais && filtrosSeleccionados.pais !== "" ? (
+                <button
+                  className={`btnListOpSelected`}
+                  name="pais"
+                  onClick={handleDelOp}
+                >
+                  X {filtrosSeleccionados.pais}
+                </button>
+              ) : (
+                <button
+                  className={`btnListOpSelected ${
+                    theme === "dark" ? "dark_filtros" : null
+                  }`}
+                >
+                  Todos los paises
+                </button>
+              )}
 
-          {filtrosSeleccionados.puntuacion &&
-            filtrosSeleccionados.puntuacion !== "" && (
-              <button
-                className="btnListOpSelected"
-                name="puntuacion"
-                onClick={handleDelOp}
-              >
-                X {filtrosSeleccionados.puntuacion}
-              </button>
-            )}
-          {filtrosSeleccionados.precio &&
-            filtrosSeleccionados.precio !== "" && (
-              <button
-                className="btnListOpSelected"
-                name="precio"
-                onClick={handleDelOp}
-              >
-                X {filtrosSeleccionados.precio}{" "}
-              </button>
-            )} 
+              {filtrosSeleccionados.puntuacion &&
+                filtrosSeleccionados.puntuacion !== "" && (
+                  <button
+                    className="btnListOpSelected"
+                    name="puntuacion"
+                    onClick={handleDelOp}
+                  >
+                    X {filtrosSeleccionados.puntuacion}
+                  </button>
+                )}
+              {filtrosSeleccionados.precio &&
+                filtrosSeleccionados.precio !== "" && (
+                  <button
+                    className="btnListOpSelected"
+                    name="precio"
+                    onClick={handleDelOp}
+                  >
+                    X {filtrosSeleccionados.precio}{" "}
+                  </button>
+                )}
 
-               <Filtros open={open} close={handleCloseFiltros} />
-                <br></br> 
+              <Filtros open={open} close={handleCloseFiltros} />
+              <br></br>
 
               <Pagination
                 socket={socket}
@@ -328,7 +327,9 @@ export const Home = () => {
             className="d-flex flex-column align-items-center"
             style={{ margin: "0 auto" }}
           >
-            <hr />
+            <div className="bg-success">
+              <hr />
+            </div>
             {/*<footer>
           <Link to="/about" className="aFootAbout">
             About
