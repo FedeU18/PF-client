@@ -1,0 +1,62 @@
+.upperBtn{
+    margin-top: 4%;
+    margin-bottom: 2%;
+ 
+}
+.underBtn{
+    margin-top: 3%;
+    margin-bottom: 5%;
+    
+}
+.centerButons{
+   display: flex;
+    justify-content: center;
+    vertical-align: middle;
+    align-items: center;
+   
+}
+
+    
+.pageBtn , .prevBtn ,.nextBtn{   
+
+    all:unset;
+    text-align: center;
+    border-radius: 1px;
+    cursor: pointer;
+    width: 42px;
+    height: 42px;
+    margin: 0% 1% 0% 0%;
+    background-color: rgb(255, 255, 255,0.2);
+    border-color: #303333;
+    border-width: 1px;
+    border-style: solid;
+    
+    /* //-webkit-text-stroke: 0.3px white; */
+    color: black;
+    font-size: 20px;
+}
+.currentBTN{    
+    width: 44px;
+    height: 44px;
+    border-width: 2.5px;
+    border-style: solid;
+    
+    
+}
+.pageBtn:hover , .prevBtn:hover ,.nextBtn:hover{
+    border-width: 2.5px;
+    border-style:solid;
+    
+}
+.nextBtn{
+    border-radius: 0px 45px 45px 0px;
+}
+
+.prevBtn{
+    border-radius: 45px 0px 0px 45px;
+}
+
+.cardsPRofeCont{
+    width: 80%;
+    margin-left: 10%;
+}
