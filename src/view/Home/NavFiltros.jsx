@@ -8,6 +8,7 @@ import { sortUserBack } from "../../redux/Actions/Profesor";
 //dispachar la accion de traer paises.
 
 function NavFiltros() {
+  const theme = useSelector(state =>  state.theme.theme)
   const paises = useSelector((state) => state.paises.paises);
   const dispatch = useDispatch();
 
@@ -46,7 +47,7 @@ function NavFiltros() {
       
       {/*-----------FILTROS--------------------*/}
       <div className="fab-contenedor-selectores">
-        <div className="fab-caja-filtros">
+        <div className={`fab-caja-filtros ${theme === "dark" ? "dark_caja_selects" : null}`}>
           <select className="fab-select" onChange={onSelectSortChange}>
             <option>Precio</option> 
             <option value="asc">Menor</option>
