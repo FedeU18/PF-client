@@ -166,8 +166,8 @@ const FormGoogle = ({ mostrarStudent, setMostrarStudent }) => {
                 </span>
               )}
             </div>
-            <div className="mt-2 row">
-              <div className="col-8">
+            <div className="mt-2 row d-flex justify-content-center">
+              <div className="col-7">
                 <label htmlFor="lastname">apellido </label>
                 <input
                   type="text"
