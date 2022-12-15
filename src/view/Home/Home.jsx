@@ -30,6 +30,7 @@ import Loader from "../../components/Loader/Loader";
 import FooterH from "./FooterH.jsx";
 import Footer from ".././Landing/Footer.jsx";
 import { RiCloseCircleFill } from "react-icons/ri";
+import { Pagination } from "../../components/Paginacion/Paginacion";
 
 export const Home = () => {
   const dispatch = useDispatch();
@@ -176,32 +177,32 @@ export const Home = () => {
     dispatch(filterProfes(filtrosSeleccionados));
   }, [filtrosSeleccionados]);
 
-  // const handleFiltros = () => {
-  //   setOpen(true);
-  // };
-  // const handleCloseFiltros = (set) => {
-  //   setOpen(set);
-  // };
+  const handleFiltros = () => {
+    setOpen(true);
+  };
+  const handleCloseFiltros = (set) => {
+    setOpen(set);
+  };
 
-  // const handleDeleteOpSelec = (e) => {
-  //   dispatch(
-  //     addOPSelected({
-  //       ...filtrosSeleccionados,
-  //       materias: filtrosSeleccionados.materias.filter(
-  //         (f) => f !== e.target.name
-  //       ),
-  //     })
-  //   );
-  // };
+  const handleDeleteOpSelec = (e) => {
+    dispatch(
+      addOPSelected({
+        ...filtrosSeleccionados,
+        materias: filtrosSeleccionados.materias.filter(
+          (f) => f !== e.target.name
+        ),
+      })
+    );
+  };
 
-  // const handleDelOp = (e) => {
-  //   dispatch(
-  //     addOPSelected({
-  //       ...filtrosSeleccionados,
-  //       [e.target.name]: "",
-  //     })
-  //   );
-  // };
+  const handleDelOp = (e) => {
+    dispatch(
+      addOPSelected({
+        ...filtrosSeleccionados,
+        [e.target.name]: "",
+      })
+    );
+  };
 
   return (
     <>
@@ -216,10 +217,10 @@ export const Home = () => {
 
           {profes.length > 0 ? (
             <div className={theme === "dark" ? "dark_home" : null}>
-              {/* <button className="filtroBtn">
+               <button className="filtroBtn">
             <BsFillGrid3X3GapFill onClick={handleFiltros} />
-          </button> */}
-              {/* {filtrosSeleccionados.materias?.length > 0 ? (
+          </button> 
+               {filtrosSeleccionados.materias?.length > 0 ? (
             filtrosSeleccionados.materias.map((f) => (
               <button
                 className={`btnListOpSelected ${
@@ -228,7 +229,7 @@ export const Home = () => {
                 name={f}
                 onClick={handleDeleteOpSelec}
               >
-                <RiCloseCircleFill className="fs-4 text-danger button_quit_materia" />
+                X{' '}
                 {f[0].toUpperCase() + f.slice(1, f.length)}
               </button>
             ))
@@ -279,12 +280,12 @@ export const Home = () => {
               >
                 X {filtrosSeleccionados.precio}{" "}
               </button>
-            )} */}
+            )} 
 
-              {/* <Filtros open={open} close={handleCloseFiltros} />
-          <br></br> */}
+               <Filtros open={open} close={handleCloseFiltros} />
+                <br></br> 
 
-              <ProfeCards
+              <Pagination
                 socket={socket}
                 msgUsuariosAlumno={msgUsuariosAlumno}
                 profes={profes}
