@@ -1,5 +1,5 @@
 import io from "socket.io-client";
-const socket = io("http://localhost:3001");
+const socket = io("https://find-your-teacher-api.onrender.com");
 import "./Home.css";
 import React from "react";
 import { NavBar } from "../../components/Nav/Nav";
@@ -23,7 +23,7 @@ import autentication from "../../Authentication/functions/user";
 import logOut from "../../Authentication/functions/logOut";
 import Badge from "react-bootstrap/Badge";
 import Button from "react-bootstrap/Button";
-import { ChatProfe } from "../../components/Chat/chatProfe";
+// import { ChatProfe } from "../../components/Chat/chatProfe";
 import MateriasBtn from "./MateriasBtn.jsx";
 import Caru from "./Caru.jsx";
 import Loader from "../../components/Loader/Loader";
@@ -52,7 +52,7 @@ export const Home = () => {
 
   let mensajesUsuarios = [];
   let msgUsuariosAlumno = [];
-
+  
   if (alerta.length) {
     alerta.forEach((e) => {
       if (

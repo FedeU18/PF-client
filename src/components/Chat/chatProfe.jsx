@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import ScrollToBottom from "react-scroll-to-bottom";
 import "animate.css";
-
+let socket;
 import "./profesor.css";
 
 export const ChatProfe = ({
@@ -63,7 +63,10 @@ export const ChatProfe = ({
       setMensaje("");
     }
   };
+  useEffect(()=>{
+    socket = io("https://find-your-teacher-api.onrender.com");
 
+  },[])
   useEffect(() => {
     setChatUsers(true);
     socket.emit("solicitarMSG_pendientes");

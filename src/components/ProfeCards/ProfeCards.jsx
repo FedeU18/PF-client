@@ -11,7 +11,6 @@ export const ProfeCards = ({ profes, msgUsuariosAlumno, socket }) => {
     <div className="ProfeCardsCont">
       {profes && profes.length > 0 ? (
         profes?.map((e, index) => {
-
           let active = msgUsuariosAlumno?.includes(e.nombre);
           return e.Error ? (
 
