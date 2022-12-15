@@ -3,6 +3,7 @@ import { useSelector,useDispatch } from "react-redux";
 import "./NavFiltros.css";
 import { sortPriceBack } from "../../redux/Actions/Profesor";
 import { filterProfeCountryBack } from "../../redux/Actions/Profesor";
+import { sortUserBack } from "../../redux/Actions/Profesor";
 
 //dispachar la accion de traer paises.
 
@@ -29,6 +30,15 @@ function NavFiltros() {
 
   }
 
+  function onSelectSortUser(e) {
+    e.preventDefault();
+   
+   dispatch(sortUserBack(e.target.value));
+    
+    
+
+  }
+
 
 
   return (
@@ -42,10 +52,10 @@ function NavFiltros() {
             <option value="asc">Menor</option>
             <option value="desc">Mayor</option>
           </select>
-          <select className="fab-select">
-            <option>Puntuacion</option>
-            <option value="asc">Mayor</option>
-            <option value="desc">Menor</option>
+          <select className="fab-select" onChange={onSelectSortUser}>
+            <option>Username</option>
+            <option value="ZA">Menor</option>
+            <option value="AZ">Mayor</option>
           </select>
           <select className="fab-select" onChange={onSelectFilter}>
             <option>Paises</option>
