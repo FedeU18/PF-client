@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import "./Detalle.css";
 import Button from "react-bootstrap/Button";
-import { clear, getProfesorById } from "../../redux/Actions/Profesor";
+import { clear, getProfesorById } from "../../redux/Actions/Profesor.js";
 import { Link } from "react-router-dom";
 import { AiFillStar } from "react-icons/ai";
 import { NavBar } from "../../components/Nav/Nav";

@@ -51,7 +51,7 @@ export const Home = () => {
 
   let mensajesUsuarios = [];
   let msgUsuariosAlumno = [];
-
+  
   if (alerta.length) {
     alerta.forEach((e) => {
       if (
