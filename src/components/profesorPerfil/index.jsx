@@ -11,7 +11,6 @@ export const AlumnoPerfil = (props) => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    console.log("me monte al useEfect alumnoperfil");
     dispach(getProfesorById(props.id));
   }, []);
   let info = useSelector((state) => state.profesores.profesores);

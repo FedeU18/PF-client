@@ -1,4 +1,3 @@
-
 .container {
   display: flex;
   justify-content: center;
@@ -15,8 +14,8 @@
   text-shadow: 1px 1px #0f0f0f;
   font-size: 18px;
   font-weight: bold;
- margin: none;
- box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  margin: none;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
 
 .container:hover {
@@ -24,13 +23,9 @@
   background-color: #368abf;
   color: white;
 }
-.imgMateriBTn{
+.imgMateriBTn {
   filter: drop-shadow(0 0 0.35rem rgb(3, 3, 3));
 }
-
-
-
-
 
 /* 
 .caja:hover {

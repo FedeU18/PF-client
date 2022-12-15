@@ -11,6 +11,8 @@ const initialGoogleProfe = {
   apellido: "",
   rol: "teacher",
   pais: "",
+  precio: "",
+  materias: [],
 };
 
 const FormGoogleProfe = ({ mostrarProfe, setMostrarProfe }) => {
@@ -19,9 +21,11 @@ const FormGoogleProfe = ({ mostrarProfe, setMostrarProfe }) => {
   const divref = useRef();
   const [globalMessage, setGlobalMessage] = useState("");
   const [formGoogleProfe, setFormGoogleProfe] = useState(initialGoogleProfe);
-  const { nombre, apellido, username, pais } = formGoogleProfe;
+  const { nombre, apellido, username, pais, materias, precio } =
+    formGoogleProfe;
   const paises = useSelector((state) => state.paises.paises);
   const profes = useSelector((state) => state.profesores.allProfesores);
+  const allMaterias = useSelector((state) => state.materias.materias);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -76,6 +80,35 @@ const FormGoogleProfe = ({ mostrarProfe, setMostrarProfe }) => {
 
     if (e.target === div) {
       setMostrarProfe(false);
+    }
+  };
+
+  const handleQuitMateria = (id) => {
+    const materiasQuitada = materias.filter((materias) => materias !== id);
+
+    setFormGoogleProfe({
+      ...formGoogleProfe,
+      materias: materiasQuitada,
+    });
+  };
+
+  const showMateria = (id) => {
+    const myMateriasProfesor = allMaterias.find(
+      (materia) => materia.id === Number(id)
+    );
+
+    return myMateriasProfesor.name;
+  };
+
+  const handleMateriasGoogle = (e) => {
+    const value = e.target.value;
+    if (materias.includes(value) || value === "") {
+      return;
+    } else {
+      setFormGoogleProfe({
+        ...formGoogleProfe,
+        materias: [...formGoogleProfe.materias, value],
+      });
     }
   };
 
@@ -166,11 +199,63 @@ const FormGoogleProfe = ({ mostrarProfe, setMostrarProfe }) => {
             </select>
           </div>
 
+          <div className="mt-2 row">
+            <div className="col-6">
+              <label htmlFor="materias">Materias</label>
+              <select
+                name="materias"
+                className="form-control"
+                id="materias"
+                onChange={handleMateriasGoogle}
+              >
+                <option value="">---</option>
+                {allMaterias.map((materia) => (
+                  <option key={materia.id} value={materia.id}>
+                    {materia.name}
+                  </option>
+                ))}
+              </select>
+            </div>
+            <div className="col-6">
+              <label htmlFor="precio">Precio:</label>
+              <input
+                className="form-control"
+                type="number"
+                name="precio"
+                id="precio"
+                min="10"
+                max="1000"
+                value={precio}
+                onChange={handleChange}
+                placeholder="USD"
+              />
+            </div>
+          </div>
+          <div>
+          <div className="mt-2 text-center">
+                {materias.map((materiaId) => (
+                  <button
+                    onClick={() => handleQuitMateria(materiaId)}
+                    type="button"
+                    className="btn btn-dark mt-2"
+                    key={materiaId}
+                    style={{ margin: "0 .5rem" }}
+                  >
+                    {showMateria(materiaId)}
+                  </button>
+                ))}
+              </div>
+          </div>
+
           <p className="text-danger text-center mt-2">{globalMessage}</p>
 
           <div className="text-center mt-3">
             <div>
-              <button type="submit" className="btn btn-primary btn-sm">
+              <button
+                type="submit"
+                className="btn btn-primary btn-sm"
+                disabled={materias.length < 1}
+              >
                 Registrarse
               </button>
             </div>

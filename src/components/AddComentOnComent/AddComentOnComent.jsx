@@ -24,7 +24,8 @@ export const AddComentOnComent=({show,comentId ,handleClose, alumnoId, profesorI
     }
     return(
         <>
-        <Modal show={show} onHide={()=>{handleClose()}}>
+        <Modal show={show} onHide={()=>{setContenido('')
+                                        handleClose()}}>
           <Modal.Header closeButton>
             <Modal.Title>Responder a {alumnoName!==null && alumnoName} </Modal.Title>
           </Modal.Header>

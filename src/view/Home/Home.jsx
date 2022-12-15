@@ -28,8 +28,9 @@ import MateriasBtn from "./MateriasBtn.jsx";
 import Caru from "./Caru.jsx";
 import Loader from "../../components/Loader/Loader";
 import FooterH from "./FooterH.jsx";
-import Footer from ".././Landing/Footer.jsx"
+import Footer from ".././Landing/Footer.jsx";
 import { RiCloseCircleFill } from "react-icons/ri";
+import { Pagination } from "../../components/Paginacion/Paginacion";
 
 export const Home = () => {
   const dispatch = useDispatch();
@@ -116,13 +117,37 @@ export const Home = () => {
   }, [infoAlumno.fechaLimiteBan]);
 
   useEffect(() => {
+    if (Object.entries(profesor).length > 0 && profesor.baneado === true) {
+      const array = profesor.fechaLimiteBan.split("-");
+
+      console.log(
+        array[0],
+        " ",
+        yyyy,
+        " ",
+        array[1],
+        " ",
+        mm,
+        " ",
+        array[2],
+        " ",
+        dd
+      );
+      if (array[0] <= yyyy && array[1] <= mm && array[2] <= dd) {
+        console.log("aaaaa");
+        dispatch(editAlumno({ baneado: false }, profesor.id));
+      }
+    }
+  }, [profesor.fechaLimiteBan]);
+
+  useEffect(() => {
     if (Object.entries(infoAlumno).length > 0 && infoAlumno.baneado === true) {
       setBan(true);
     }
     if (Object.entries(profesor).length > 0 && profesor.baneado === true) {
       setBan(true);
     }
-  }, [infoAlumno,profesor]);
+  }, [infoAlumno, profesor]);
 
   useEffect(() => {
     socket.emit("solicitarMSG_pendientes");
@@ -152,164 +177,170 @@ export const Home = () => {
     dispatch(filterProfes(filtrosSeleccionados));
   }, [filtrosSeleccionados]);
 
-  // const handleFiltros = () => {
-  //   setOpen(true);
-  // };
-  // const handleCloseFiltros = (set) => {
-  //   setOpen(set);
-  // };
+  const handleFiltros = () => {
+    setOpen(true);
+  };
+  const handleCloseFiltros = (set) => {
+    setOpen(set);
+  };
 
-  // const handleDeleteOpSelec = (e) => {
-  //   dispatch(
-  //     addOPSelected({
-  //       ...filtrosSeleccionados,
-  //       materias: filtrosSeleccionados.materias.filter(
-  //         (f) => f !== e.target.name
-  //       ),
-  //     })
-  //   );
-  // };
+  const handleDeleteOpSelec = (e) => {
+    dispatch(
+      addOPSelected({
+        ...filtrosSeleccionados,
+        materias: filtrosSeleccionados.materias.filter(
+          (f) => f !== e.target.name
+        ),
+      })
+    );
+  };
 
-  // const handleDelOp = (e) => {
-  //   dispatch(
-  //     addOPSelected({
-  //       ...filtrosSeleccionados,
-  //       [e.target.name]: "",
-  //     })
-  //   );
-  // };
+  const handleDelOp = (e) => {
+    dispatch(
+      addOPSelected({
+        ...filtrosSeleccionados,
+        [e.target.name]: "",
+      })
+    );
+  };
 
   return (
     <>
       <NavBar />
-      {ban===true?(<div className="BloackACcountCont">
-        Su cuenta ha sido blogueada de Find Your Teacher .
-      </div>):(<div>
-
-      <Caru />
-
-      {profes.length > 0 ? (
-        <div className={theme === "dark" ? "dark_home" : null}>
-          {/* <button className="filtroBtn">
-            <BsFillGrid3X3GapFill onClick={handleFiltros} />
-          </button> */}
-          {/* {filtrosSeleccionados.materias?.length > 0 ? (
-            filtrosSeleccionados.materias.map((f) => (
-              <button
-                className={`btnListOpSelected ${
-                  theme === "dark" ? "dark_filtros" : null
-                }`}
-                name={f}
-                onClick={handleDeleteOpSelec}
-              >
-                <RiCloseCircleFill className="fs-4 text-danger button_quit_materia" />
-                {f[0].toUpperCase() + f.slice(1, f.length)}
-              </button>
-            ))
-          ) : (
-            <button
-              className={`btnListOpSelected ${
-                theme === "dark" ? "dark_filtros" : null
-              }`}
-            >
-              Todas las materias
-            </button>
-          )}
-
-          {filtrosSeleccionados.pais && filtrosSeleccionados.pais !== "" ? (
-            <button
-              className={`btnListOpSelected`}
-              name="pais"
-              onClick={handleDelOp}
-            >
-              X {filtrosSeleccionados.pais}
-            </button>
-          ) : (
-            <button
-              className={`btnListOpSelected ${
-                theme === "dark" ? "dark_filtros" : null
-              }`}
-            >
-              Todos los paises
-            </button>
-          )}
-
-          {filtrosSeleccionados.puntuacion &&
-            filtrosSeleccionados.puntuacion !== "" && (
-              <button
-                className="btnListOpSelected"
-                name="puntuacion"
-                onClick={handleDelOp}
-              >
-                X {filtrosSeleccionados.puntuacion}
-              </button>
-            )}
-          {filtrosSeleccionados.precio &&
-            filtrosSeleccionados.precio !== "" && (
-              <button
-                className="btnListOpSelected"
-                name="precio"
-                onClick={handleDelOp}
-              >
-                X {filtrosSeleccionados.precio}{" "}
-              </button>
-            )} */}
-
-          {/* <Filtros open={open} close={handleCloseFiltros} />
-          <br></br> */}
-
-          <ProfeCards
-            socket={socket}
-            msgUsuariosAlumno={msgUsuariosAlumno}
-            profes={profes}
-          />
-
-          {userData.rol === "teacher" && (
-            <BotonChats
-              chatUsers={chatUsers}
-              mensajesUsuarios={mensajesUsuarios}
-              mostrarChatUsers={mostrarChatUsers}
-            />
-          )}
-        
-        <div className=" d-flex justify-content-center aling-item-center mt-5 mb-5">
-       <MateriasBtn/>
-        </div> 
-
-          {chatUsers && (
-            <ChatProfe
-              setChatUsers={setChatUsers}
-              usuariosChat={usuariosChat}
-              socket={socket}
-              userLogin={profesor.nombre}
-              canal={profesor.id}
-            />
-          )}
+      {ban === true ? (
+        <div className="BloackACcountCont">
+          Su cuenta ha sido blogueada de Find Your Teacher .
         </div>
       ) : (
-        <div
-          className={`d-flex justify-content-center align-items-center ${theme === "dark" ? "dark_loader_eye" : null}`}
-          style={{ height: "75vh" }}
-        >
-          <Loader theme={theme}/>
-        </div>
-      )}
+        <div>
+          <Caru />
 
-      <div
-        className="d-flex flex-column align-items-center"
-        style={{ margin: "0 auto" }}
-      >
-        <hr />
-        {/*<footer>
+          {profes.length > 0 ? (
+            <div className={theme === "dark" ? "dark_home" : null}>
+              <button className="filtroBtn">
+                <BsFillGrid3X3GapFill onClick={handleFiltros} />
+              </button>
+              {filtrosSeleccionados.materias?.length > 0 ? (
+                filtrosSeleccionados.materias.map((f) => (
+                  <button
+                    className={`btnListOpSelected ${
+                      theme === "dark" ? "dark_filtros" : null
+                    }`}
+                    name={f}
+                    onClick={handleDeleteOpSelec}
+                  >
+                    X {f[0].toUpperCase() + f.slice(1, f.length)}
+                  </button>
+                ))
+              ) : (
+                <button
+                  className={`btnListOpSelected ${
+                    theme === "dark" ? "dark_filtros" : null
+                  }`}
+                >
+                  Todas las materias
+                </button>
+              )}
+
+              {filtrosSeleccionados.pais && filtrosSeleccionados.pais !== "" ? (
+                <button
+                  className={`btnListOpSelected`}
+                  name="pais"
+                  onClick={handleDelOp}
+                >
+                  X {filtrosSeleccionados.pais}
+                </button>
+              ) : (
+                <button
+                  className={`btnListOpSelected ${
+                    theme === "dark" ? "dark_filtros" : null
+                  }`}
+                >
+                  Todos los paises
+                </button>
+              )}
+
+              {filtrosSeleccionados.puntuacion &&
+                filtrosSeleccionados.puntuacion !== "" && (
+                  <button
+                    className="btnListOpSelected"
+                    name="puntuacion"
+                    onClick={handleDelOp}
+                  >
+                    X {filtrosSeleccionados.puntuacion}
+                  </button>
+                )}
+              {filtrosSeleccionados.precio &&
+                filtrosSeleccionados.precio !== "" && (
+                  <button
+                    className="btnListOpSelected"
+                    name="precio"
+                    onClick={handleDelOp}
+                  >
+                    X {filtrosSeleccionados.precio}{" "}
+                  </button>
+                )}
+
+              <Filtros open={open} close={handleCloseFiltros} />
+              <br></br>
+
+              <Pagination
+                socket={socket}
+                msgUsuariosAlumno={msgUsuariosAlumno}
+                profes={profes}
+              />
+
+              {userData.rol === "teacher" && (
+                <BotonChats
+                  chatUsers={chatUsers}
+                  mensajesUsuarios={mensajesUsuarios}
+                  mostrarChatUsers={mostrarChatUsers}
+                />
+              )}
+
+              <div className="d-flex justify-content-center aling-item-center p-2">
+                <MateriasBtn />
+              </div>
+
+              {chatUsers && (
+                <ChatProfe
+                  setChatUsers={setChatUsers}
+                  usuariosChat={usuariosChat}
+                  socket={socket}
+                  userLogin={profesor.nombre}
+                  canal={profesor.id}
+                />
+              )}
+            </div>
+          ) : (
+            <div
+              className={`d-flex justify-content-center align-items-center ${
+                theme === "dark" ? "dark_loader_eye" : null
+              }`}
+              style={{ height: "75vh" }}
+            >
+              <Loader theme={theme} />
+            </div>
+          )}
+
+          <div
+            className="d-flex flex-column align-items-center"
+            style={{ margin: "0 auto" }}
+          >
+            <div className="bg-success">
+              <hr />
+            </div>
+            {/*<footer>
           <Link to="/about" className="aFootAbout">
             About
           </Link>
         </footer>
       */}
-      </div>
-      {/*<FooterH />*/}
-      </div>)}
-      <Footer/>
+          </div>
+          {/*<FooterH />*/}
+        </div>
+      )}
+      <Footer />
     </>
   );
 };

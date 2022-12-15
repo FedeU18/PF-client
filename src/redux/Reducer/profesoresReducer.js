@@ -8,6 +8,9 @@ import {
   FILTER_PUNTUACION,
   VACIAR_ESTADO,
   SET_PROFE_FILTERED,
+  SORT_PRICE_BACK,
+  FILTER_PROF_COUNTRY_BACK,
+  SORT_USER_BACK,
 } from "../types/typesProfesor";
 
 const initialState = {
@@ -85,6 +88,58 @@ const profesoresReducer = (state = initialState, action) => {
         ...state,
       };
     }
+
+    case SORT_PRICE_BACK:{
+            let orderedPrice = [...state.profesFiltered]
+
+            orderedPrice = orderedPrice.sort((a, b) => {
+                if(a.precio < b.precio) {
+                    return action.payload === "asc" ? -1 : 1;
+                }
+                if(a.precio > b.precio) {
+                    return action.payload === "asc" ? 1 : -1;
+                }
+                return 0;
+            })
+            return {
+              ...state,
+              profesFiltered: orderedPrice,
+              
+          }
+        }
+
+     case SORT_USER_BACK:{
+          let orderedUser = [...state.profesFiltered]
+
+          orderedUser = orderedUser.sort((a, b) => {
+              if(a.precio < b.precio) {
+                  return action.payload === "AZ" ? -1 : 1;
+              }
+              if(a.precio > b.precio) {
+                  return action.payload === "AZ" ? 1 : -1;
+              }
+              return 0;
+          })
+          return {
+            ...state,
+            profesFiltered: orderedUser,
+            
+        }
+      }
+
+        case FILTER_PROF_COUNTRY_BACK:
+          let filteredCountry = [];
+          state.profesFiltered.map((profe) => {
+              if(profe.country.name === action.payload) {
+                  return filteredCountry.push(profe)
+              }
+          })
+          return {
+              ...state,
+              profesFiltered: filteredCountry,
+              
+          }    
+
     case FILTER_PRECIO: {
       let filterPrecio =
         action.payload === "MayorPrecio"
