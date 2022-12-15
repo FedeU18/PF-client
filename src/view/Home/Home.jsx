@@ -1,4 +1,5 @@
-
+import io from "socket.io-client";
+const socket = io("https://find-your-teacher-api.onrender.com");
 import "./Home.css";
 import React from "react";
 import { NavBar } from "../../components/Nav/Nav";
@@ -29,8 +30,6 @@ import Loader from "../../components/Loader/Loader";
 import FooterH from "./FooterH.jsx";
 import Footer from ".././Landing/Footer.jsx"
 import { RiCloseCircleFill } from "react-icons/ri";
-import io from "socket.io-client";
-let socket;
 
 export const Home = () => {
   const dispatch = useDispatch();
@@ -91,11 +90,6 @@ export const Home = () => {
   const infoAlumno = useSelector((state) => state.alumnos.alumno);
 
   const materias = useSelector((state) => state.materias.filtrosSeleccionados);
-
-  useEffect(()=>{
-    socket = io("https://find-your-teacher-api.onrender.com");
-
-  },[])
 
   useEffect(() => {
     if (Object.entries(infoAlumno).length > 0 && infoAlumno.baneado === true) {

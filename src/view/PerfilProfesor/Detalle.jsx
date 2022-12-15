@@ -1,3 +1,5 @@
+import io from "socket.io-client";
+const socket = io("https://find-your-teacher-api.onrender.com");
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
@@ -17,8 +19,6 @@ import * as actionsAlumno from "../../redux/Actions/Alumno";
 import Calendario from "../../components/Calendario/Calendario";
 import { ChatAlumno } from "../../components/chat/chatAlumno";
 import { AddPuntuacion } from "../../components/AddPunctuation/AddPuntuacion";
-import io from "socket.io-client";
-let socket;
 
 export const Detalle = () => {
   let { id } = useParams();
@@ -34,10 +34,6 @@ export const Detalle = () => {
   const [alerta, setAlerta] = useState([]);
   const { userData } = userAuthentication();
   let msgUsuariosAlumno = [];
-
-  useEffect(()=>{
-    socket = io("https://find-your-teacher-api.onrender.com");
-  },[])
 
   useEffect(() => {
     if (Object.entries(infoAlumno).length > 0 && infoAlumno.baneado === true) {
