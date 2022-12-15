@@ -9,6 +9,8 @@ import {
   FILTER_PRECIO,
   FILTER_PUNTUACION,
   SET_PROFE_FILTERED,
+  SORT_PRICE_BACK,
+  FILTER_PROF_COUNTRY_BACK,
 
 } from "../types/typesProfesor";
 
@@ -120,6 +122,20 @@ export function filterPrecio(payload) {
 export function setProfeFiltered(payload) {
   return {
     type: SET_PROFE_FILTERED,
+    payload,
+  };
+}
+
+export function filterProfeCountryBack(payload) {
+  return {
+    type: FILTER_PROF_COUNTRY_BACK,
+    payload,
+  };
+}
+
+export function sortPriceBack(payload) {
+  return {
+    type: SORT_PRICE_BACK,
     payload,
   };
 }
